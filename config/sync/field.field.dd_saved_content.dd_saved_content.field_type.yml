@@ -1,0 +1,21 @@
+uuid: c22bc0e1-82ef-4510-bbf3-db20d25d27dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_saved_content.field_type
+  module:
+    - dd_account_dashboard
+    - options
+id: dd_saved_content.dd_saved_content.field_type
+field_name: field_type
+entity_type: dd_saved_content
+bundle: dd_saved_content
+label: Type
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

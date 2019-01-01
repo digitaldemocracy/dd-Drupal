@@ -1,0 +1,255 @@
+diff --git a/config/install/config_ignore.settings.yml b/config/install/config_ignore.settings.yml
+index 629b34249..6404c1024 100644
+--- a/config/install/config_ignore.settings.yml
++++ b/config/install/config_ignore.settings.yml
+@@ -1 +1,2 @@
+ ignored_config_entities: { }
++ignored_regions: { }
+diff --git a/config/schema/config_ignore.schema.yml b/config/schema/config_ignore.schema.yml
+index 94ef71450..b71171dc4 100644
+--- a/config/schema/config_ignore.schema.yml
++++ b/config/schema/config_ignore.schema.yml
+@@ -6,4 +6,9 @@ config_ignore.settings:
+       type: sequence
+       label: 'List of ignored configurations'
+       sequence:
+-        type: string
+\ No newline at end of file
++        type: string
++    ignored_regions:
++      type: sequence
++      label: 'List of ignored block layout regions'
++      sequence:
++        type: string
+diff --git a/config_ignore.drush.inc b/config_ignore.drush.inc
+index 0b1c2787f..a212fd3cd 100644
+--- a/config_ignore.drush.inc
++++ b/config_ignore.drush.inc
+@@ -51,19 +51,20 @@ function drush_config_ignore_pre_config_import($source = NULL) {
+     $change_list[$collection] = $storage_comparer->getChangelist(NULL, $collection);
+   }
+ 
+-  $update_changes = $change_list['']['update'];
+ 
+-  if (!empty($update_changes)) {
++  $red = "\033[31;40m\033[1m%s\033[0m";
++  $yellow = "\033[1;33;40m\033[1m%s\033[0m";
++  $green = "\033[1;32;40m\033[1m%s\033[0m";
+ 
+-    $red = "\033[31;40m\033[1m%s\033[0m";
+-    $yellow = "\033[1;33;40m\033[1m%s\033[0m";
+-    $green = "\033[1;32;40m\033[1m%s\033[0m";
++  drush_print();
++  drush_print(sprintf($green, 'Message from Config Ignore'), 1);
++  drush_print('The following list of config will be ignore if you chose to import', 1);
+ 
+-    drush_print();
+-    drush_print(sprintf($green, 'Message from Config Ignore'), 1);
+-    drush_print('The following list of config will be ignore if you chose to import', 1);
+-    foreach ($update_changes as $config_name) {
+-      if (ConfigImporterIgnore::matchConfigName($config_name)) {
++  foreach (['delete', 'update'] as $op) {
++    $changes = $change_list[''][$op];
++
++    foreach ($changes as $config_name) {
++      if (ConfigImporterIgnore::matchConfigName($storage_comparer, $config_name)) {
+         drush_print(sprintf($red, $config_name), 3);
+       }
+     }
+diff --git a/config_ignore.module b/config_ignore.module
+index 5387b3774..0804fd0f4 100644
+--- a/config_ignore.module
++++ b/config_ignore.module
+@@ -34,17 +34,20 @@ function config_ignore_form_config_admin_import_form_alter(&$form, FormStateInte
+ 
+   $storage_compare = new StorageComparer($storage_sync, $storage, $config_manager);
+   foreach ($storage_compare->getAllCollectionNames() as $collection) {
+-    // Add a new header.
+-    $form[$collection]['update']['list']['#header'][] = t('Ignored');
+-
+-    // Now check if the rows match any of the ignored entities.
+-    if (isset($form[$collection]['update']['list']['#rows']) && !empty($form[$collection]['update']['list']['#rows'])) {
+-      foreach ($form[$collection]['update']['list']['#rows'] as $key => $row) {
+-        if (ConfigImporterIgnore::matchConfigName($row['name'])) {
+-          $form[$collection]['update']['list']['#rows'][$key]['ignored'] = t('✔');
+-        }
+-        else {
+-          $form[$collection]['update']['list']['#rows'][$key]['ignored'] = t('✖');
++
++    foreach (['delete', 'update'] as $op) {
++      // Add a new header.
++      $form[$collection][$op]['list']['#header'][] = t('Ignored');
++
++      // Now check if the rows match any of the ignored entities.
++      if (isset($form[$collection][$op]['list']['#rows']) && !empty($form[$collection][$op]['list']['#rows'])) {
++        foreach ($form[$collection][$op]['list']['#rows'] as $key => $row) {
++          if (ConfigImporterIgnore::matchConfigName($storage_compare, $row['name'])) {
++            $form[$collection][$op]['list']['#rows'][$key]['ignored'] = t('✔');
++          }
++          else {
++            $form[$collection][$op]['list']['#rows'][$key]['ignored'] = t('✖');
++          }
+         }
+       }
+     }
+diff --git a/src/ConfigImporterIgnore.php b/src/ConfigImporterIgnore.php
+index a7396c2fb..774921999 100644
+--- a/src/ConfigImporterIgnore.php
++++ b/src/ConfigImporterIgnore.php
+@@ -4,6 +4,7 @@
+ 
+ use Drupal\Component\Utility\Unicode;
+ use Drupal\Core\Config\ConfigImporter;
++use Drupal\Core\Config\StorageComparer;
+ use Drupal\user\SharedTempStore;
+ 
+ /**
+@@ -31,10 +32,10 @@ public static function preImport(array &$context, ConfigImporter $config_importe
+     $config_to_ignore = [];
+ 
+     foreach (['delete', 'create', 'rename', 'update'] as $op) {
+-      // For now, we only support updates.
+-      if ($op == 'update') {
++      // For now, we only support updates and deletes.
++      if ($op == 'update' || $op == 'delete') {
+         foreach ($config_importer->getUnprocessedConfiguration($op) as $config) {
+-          if (self::matchConfigName($config)) {
++          if (self::matchConfigName($config_importer->getStorageComparer(), $config)) {
+             $config_to_ignore[$op][$config] = \Drupal::config($config)->getRawData();
+           }
+         }
+@@ -109,15 +110,51 @@ public static function postImport(array &$context, ConfigImporter $config_import
+   /**
+    * Match a config entity name against the list of ignored config entities.
+    *
++   * @param StorageComparer $storage_comparer
++   *   Storage Comparer object.
+    * @param string $config_name
+    *   The name of the config entity to match against all ignored entities.
+    *
+    * @return bool
+    *   True, if the config entity is to be ignored, false otherwise.
+    */
+-  public static function matchConfigName($config_name) {
++  public static function matchConfigName(StorageComparer $storage_comparer, $config_name) {
++    $collection = \Drupal\Core\Config\StorageInterface::DEFAULT_COLLECTION;
++    $config_ignored_regions = \Drupal::config('config_ignore.settings')->get('ignored_regions');
+     $config_ignore_settings = \Drupal::config('config_ignore.settings')->get('ignored_config_entities');
+-    \Drupal::moduleHandler()->invokeAll('config_ignore_settings_alter', [&$config_ignore_settings]);
++    \Drupal::moduleHandler()->invokeAll('config_ignore_settings_alter', [ & $config_ignore_settings ]);
++
++    // Check Region Ignores.
++    if ($config_ignored_regions) {
++      foreach ($config_ignored_regions as $config_ignored_region) {
++        $data = $storage_comparer->getTargetStorage($collection)
++          ->read($config_name);
++        if ($data) {
++          if (isset($data['region'])) {
++            // If the string is an excluded region, don't ignore it.
++            if (static::FORCE_EXCLUSION_PREFIX . $data['region'] == $config_ignored_region) {
++              return FALSE;
++            }
++
++            // Check if the last character in the string is an asterisk.
++            // If so, it means that it is a wildcard.
++            if (Unicode::substr($config_ignored_region, -1) == static::INCLUDE_SUFFIX) {
++              // Remove the asterisk character from the end of the string.
++              $config_ignored_region = rtrim($config_ignored_region, static::INCLUDE_SUFFIX);
++              // Test if the start of the config, we are checking, are matching
++              // the $config_ignore_setting string. If it is a match, mark
++              // that config name to be ignored.
++              if (Unicode::substr($data['region'], 0, strlen($config_ignored_region)) == $config_ignored_region) {
++                return TRUE;
++              }
++            }
++            elseif (in_array($data['region'], $config_ignored_region, TRUE)) {
++              return TRUE;
++            }
++          }
++        }
++      }
++    }
+ 
+     // If the string is an excluded config, don't ignore it.
+     if (in_array(static::FORCE_EXCLUSION_PREFIX . $config_name, $config_ignore_settings, TRUE)) {
+diff --git a/src/Form/Settings.php b/src/Form/Settings.php
+index ed77ae751..b39f6ff43 100644
+--- a/src/Form/Settings.php
++++ b/src/Form/Settings.php
+@@ -44,6 +44,15 @@ public function buildForm(array $form, FormStateInterface $form_state, Request $
+       '#default_value' => implode(PHP_EOL, $config_ignore_settings->get('ignored_config_entities')),
+       '#size' => 60,
+     ];
++    $form['ignored_regions'] = [
++      '#type' => 'textarea',
++      '#rows' => 25,
++      '#title' => $this->t('Block Layout Regions to ignore'),
++      '#description' => $this->t('One region name per line.<br />Examples: <ul><li>content</li><li>breadcrumb</li><li>sidebar* (will ignore all regions that start with <em>sidebar</em>)<li>@force_importsidebar_first (will force import for sidebar_first region, even if ignored by a wildcard)</li></ul>', ['@force_import' => ConfigImporterIgnore::FORCE_EXCLUSION_PREFIX]),
++      '#default_value' => implode(PHP_EOL, $config_ignore_settings->get('ignored_regions')),
++      '#size' => 60,
++    ];
++
+     return parent::buildForm($form, $form_state);
+   }
+ 
+@@ -56,6 +65,11 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
+     $config_ignore_settings_array = preg_split("[\n|\r]", $values['ignored_config_entities']);
+     $config_ignore_settings_array = array_filter($config_ignore_settings_array);
+     $config_ignore_settings->set('ignored_config_entities', $config_ignore_settings_array);
++
++    $config_ignore_region_settings_array = preg_split("[\n|\r]", $values['ignored_regions']);
++    $config_ignore_region_settings_array = array_filter($config_ignore_region_settings_array);
++    $config_ignore_settings->set('ignored_regions', $config_ignore_region_settings_array);
++
+     $config_ignore_settings->save();
+     parent::submitForm($form, $form_state);
+   }
+diff --git a/src/Tests/ConfigIgnoreSettingsTest.php b/src/Tests/ConfigIgnoreSettingsTest.php
+index 3ad6f4db1..9517fb91e 100644
+--- a/src/Tests/ConfigIgnoreSettingsTest.php
++++ b/src/Tests/ConfigIgnoreSettingsTest.php
+@@ -28,6 +28,7 @@ public function testSettingsForm() {
+ 
+     $edit = [
+       'ignored_config_entities' => 'config.test',
++      'ignored_regions' => 'testregion',
+     ];
+ 
+     $this->drupalPostForm('admin/config/development/configuration/ignore', $edit, t('Save configuration'));
+@@ -35,6 +36,10 @@ public function testSettingsForm() {
+     $settings = $this->config('config_ignore.settings')->get('ignored_config_entities');
+ 
+     $this->assertEqual($settings, ['config.test']);
++
++    $settings = $this->config('config_ignore.settings')->get('ignored_regions');
++
++    $this->assertEqual($settings, ['testregion']);
+   }
+ 
+ }
+diff --git a/src/Tests/ConfigIgnoreTest.php b/src/Tests/ConfigIgnoreTest.php
+index 0da0ec495..0496c2ab8 100644
+--- a/src/Tests/ConfigIgnoreTest.php
++++ b/src/Tests/ConfigIgnoreTest.php
+@@ -65,6 +65,8 @@ public function testValidateIgnoring() {
+     // Validate that the user gets a message about what has been ignored.
+     $this->assertText('The following config entity was ignored');
+ 
++    // @todo Add region tests here.
++
+   }
+ 
+   /**
+diff --git a/tests/src/Functional/ConfigIgnoreTest.php b/tests/src/Functional/ConfigIgnoreTest.php
+index fe4783eaf..aac79958b 100644
+--- a/tests/src/Functional/ConfigIgnoreTest.php
++++ b/tests/src/Functional/ConfigIgnoreTest.php
+@@ -56,6 +56,8 @@ public function testSyncTableUpdate() {
+     $this->drupalGet('admin/config/development/configuration');
+     $this->assertSession()->responseContains('✔');
+     $this->assertSession()->responseContains('✖');
++
++    // @todo Add region tests here.
+   }
+ 
+ }

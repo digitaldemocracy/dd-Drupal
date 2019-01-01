@@ -1,0 +1,8 @@
+services:
+  dd_fax_service.dd_fax_service:
+    class: Drupal\dd_fax_service\DdFaxService
+    arguments: ["@config.factory", "@logger.channel.dd_fax_service", "@key.repository"]
+
+  logger.channel.dd_fax_service:
+    parent: logger.channel_base
+    arguments: ['dd_fax_service']

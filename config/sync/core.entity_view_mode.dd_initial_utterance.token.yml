@@ -1,0 +1,10 @@
+uuid: 8c2fb81d-a101-408b-a228-40e0b07d7ce1
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_utterance
+id: dd_initial_utterance.token
+label: Token
+targetEntityType: dd_initial_utterance
+cache: true

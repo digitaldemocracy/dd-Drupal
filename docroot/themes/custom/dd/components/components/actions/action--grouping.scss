@@ -1,0 +1,154 @@
+@import 'init';
+
+// Grouping
+//
+// Markup: action--grouping.twig
+//
+// Style guide: Actions.grouping
+
+.actions {
+  margin-bottom: 1em;
+
+  &--no-recipients {
+
+    //@include respond-to('m') {
+    //  width: 48%;
+    //  float: right;
+    //
+    //  .action {
+    //    border-top: 1px solid $dd-greylight;
+    //    padding-top: 1em;
+    //  }
+    //}
+  }
+
+  &--recipients {
+
+
+    > * {
+      padding: .5rem 1rem;
+    }
+
+    h3 {
+      font-size: 1em;
+      line-height: 1.2em;
+      border-top: 1px solid $dd-greylight;
+      padding-top: 1em;
+      margin-top: 0;
+    }
+
+  }
+
+}
+
+// The contact representatives block.
+#block-contactrepresentativesblock {
+  padding: .5rem 1rem;
+
+  @include dd-box-shadow(0, 3px, 4px, 0, #9c9e9d);
+  background-color: $dd-yellow-light; // overrides dd-box-shadow.
+
+  @include respond-to('m') {
+    max-width: 364px; // Aside with on Desktop.
+    margin: 0 auto;
+  }
+
+  h2 {
+    margin-top: 0;
+    color: $dd-charcoal;
+    font-size: 1rem;
+    margin-bottom: 0;
+  }
+
+  .button {
+    background-color: $dd-charcoal;
+    text-shadow: none;
+    box-shadow: 1px 1px 0 1.5px lighten($dd-charcoal, 10%);
+
+    &:hover {
+      box-shadow: 1px 1px 0 1.5px $dd-black;
+    }
+  }
+
+  .button--action {
+    background-color: transparent;
+  }
+
+  .action-link-wrapper,
+  .action.display {
+    padding: .5em 0;
+    background-color: $dd-charcoal;
+    display: inline-block;
+    border: 1px solid $dd-yellow-light;
+    width: 100%;
+    border-top-width: 0;
+  }
+
+  .action.display {
+    &.Letter.to.Editor {
+      padding-left: .4rem;
+    }
+
+    &.Display.Text {
+      background-color: $dd-yellow-lightest;
+      padding: .5rem;
+      margin-top: 1em;
+      border: 1px solid #fff;
+
+      p {
+        margin: .5rem 0;
+      }
+    }
+  }
+
+  .legislator-name-wrapper {
+    margin-top: 1.5rem;
+  }
+
+  a.legislator-name {
+    font-weight: bold;
+    font-size: 1rem;
+  }
+
+  label {
+    font-weight: normal;
+    margin-bottom: 1rem;
+  }
+
+  .form-item-legislator-party-district {
+    margin: 0;
+  }
+
+  .actions-divider {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-top: 2px solid $dd-blue;
+  }
+
+  .legislator-actions {
+    margin-left: 10px;
+  }
+
+}
+
+.action, .action-link-wrapper {
+
+  padding: .5rem 0;
+
+  &.display { // for actions that don't lead to forms.
+    display: block;
+  }
+}
+
+.action-link-wrapper {
+  display: inline-block;
+}
+
+.video-clip-title {
+  display: none;
+}
+
+// Bottom actions section
+.action-link {
+
+}

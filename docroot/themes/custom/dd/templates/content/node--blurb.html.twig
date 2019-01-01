@@ -1,0 +1,23 @@
+{% extends "node.html.twig" %}
+
+{% block heading %}
+  <!-- Hides the label -->
+{% endblock heading %}
+
+{% block content %}
+  {{ attach_library('dd/blurb') }}
+
+  {% include "@dd/components/blurb/blurb.twig"
+    with {
+      body: content.body,
+      byline: content.field_byline,
+      graphic: content.field_graphic
+    }
+  %}
+
+{% endblock %}
+
+
+
+
+

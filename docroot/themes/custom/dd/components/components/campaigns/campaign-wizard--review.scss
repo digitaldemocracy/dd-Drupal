@@ -1,0 +1,188 @@
+@import "init";
+
+.campaign-wizard {
+
+  #block-views-block-campaign-wizard-targets-block-2 {
+    margin-top: .5rem;
+  }
+
+  .view-campaign-wizard-targets.view-display-id-block_2,
+  .view-campaign-wizard-catch-all-actions {
+    .view-header {
+      background-color: $dd-blue;
+      @include flex-container(
+              $flex-wrap: nowrap,
+              $justify-content: space-between
+      );
+      align-items: center;
+      padding: .5rem 1rem;
+
+      h2 {
+        @include flex-item;
+        color: $white;
+        margin: .5rem 0;
+        font-weight: normal;
+      }
+
+      .button--edit {
+        @include flex-item;
+
+        a {
+          display: block;
+
+        }
+      }
+    }
+
+    caption {
+      @include font-size(l);
+      color: $dd-dimgray;
+      margin-left: 0 !important;
+      padding-bottom: .5rem;
+
+      .unassigned-group {
+        color: $dd-blue;
+        font-weight: bold;
+      }
+    }
+
+    .view-content {
+      background: #fff;
+      padding: 1em .5rem;
+      margin-left: 0 !important;
+
+      tbody {
+        tr {
+          background-color: $dd-offwhite !important;
+        }
+
+        article {
+          h2 {
+            display: none;
+          }
+        }
+
+        .button--assign {
+          a {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    .action-icon:hover {
+      background-color: $dd-blue;
+    }
+  }
+
+  .view-campaign-stats,
+  #block-views-block-campaign-stats-catch-all-block-1 {
+    > .view-header {
+      background-color: $dd-blue;
+      @include flex-container(
+              $flex-wrap: nowrap,
+              $justify-content: space-between
+      );
+      align-items: center;
+      padding: .5rem 1rem;
+
+      h2 {
+        @include flex-item;
+        color: $white;
+        margin: .5rem 0;
+        font-weight: normal;
+      }
+
+      .button--edit {
+        @include flex-item;
+
+        a {
+          display: block;
+
+        }
+      }
+    }
+
+    caption {
+      @include font-size(l);
+      color: $dd-dimgray;
+      margin-left: -10px !important;
+      padding-bottom: .5rem;
+
+      .unassigned-group {
+        color: $dd-blue;
+        font-weight: bold;
+      }
+    }
+
+     .view-content {
+      background: #fff;
+      padding: 1em .5rem;
+      margin-left: 0 !important;
+      table {
+        margin-left: 10px;
+        margin-bottom: 20px;
+        width: 98%;
+      }
+
+      tbody {
+        tr {
+          background-color: $dd-offwhite !important;
+        }
+
+        article {
+          h2 {
+            display: none;
+          }
+        }
+
+        .button--assign {
+          a {
+            box-shadow: none;
+          }
+        }
+      }
+    }
+    .action-icon {
+      float: left;
+      margin-right: 10px;
+    }
+    .action-icon:hover {
+      background-color: $dd-blue;
+    }
+
+    .action-icon-stat-wrapper {
+      margin:15px;
+    }
+    .views-field-dd-action-stats {
+      min-width: 100px;
+    }
+  }
+
+  #block-views-block-campaign-stats-catch-all-block-1 {
+    .action-label {
+      float: left;
+      margin-right: 10px;
+    }
+  }
+
+  .view-campaign-wizard-catch-all-actions {
+    .views-row {
+      display: block;
+    }
+
+    .action-icon,
+    .action-label {
+      padding-right: 0;
+      display: inline-block;
+      margin-bottom: 10px;
+    }
+    .action-icon:hover {
+      background-color: $dd-blue;
+    }
+
+    .action-label {
+      margin-left: .5rem;
+      vertical-align: bottom;
+    }
+  }
+}

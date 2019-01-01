@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_fax_service_history.html.twig
+ * Default theme implementation to present Dd fax service history data.
+ *
+ * This template is used when viewing Dd fax service history pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_fax_service_history()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_fax_service_history') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

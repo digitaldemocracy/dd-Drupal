@@ -1,0 +1,496 @@
+<?php
+
+use \Drupal\node\Entity\Node;
+use \Drupal\paragraphs\Entity\Paragraph;
+use \Drupal\Component\Render\HtmlEscapedText;
+use \Drupal\dd_clip\Entity\DdClip;
+
+/**
+ * @file
+ * Digital Democracy Demo Data module file.
+ */
+
+/**
+ * Generate random text.
+ *
+ * @param string $paragraphs
+ *   # of paragraphs.
+ * @param string $length
+ *   Length of data (short/long).
+ * @param bool $use_html
+ *   If FALSE, will strip tags.
+ *
+ * @return \Drupal\Component\Render\HtmlEscapedText
+ *   Return sanitized random text.
+ */
+function _dd_demo_get_random_text($paragraphs = '2', $length = 'short', $use_html = TRUE) {
+  $client = \Drupal::httpClient();
+  $response = $client->get('http://loripsum.net/api/' . $paragraphs . '/' . $length);
+  return new HtmlEscapedText($response->getBody());
+}
+
+/**
+ * Creates a clip node.
+ *
+ * @param array $array
+ *   Array of DdClip data.
+ *
+ * @return \Drupal\dd_clip\Entity\DdClip
+ *   DdClip Entity
+ */
+function _dd_demo_data_create_clip($array) {
+  $entity = DdClip::create($array);
+  $entity->save();
+  return $entity;
+}
+
+/**
+ * Clip nodes.
+ */
+function _dd_demo_data_clips() {
+  // Load video IDs.
+  $db = \Drupal\Core\Database\Database::getConnection('default', \Drupal\dd_base\DdBase::getDddbName());
+  $data = $db->select('Video', 'v')->fields('v', ['vid', 'fileId'])->execute();
+  $data = $data->fetchAll();
+
+  $number_generated = 10;
+  $clips = [];
+
+  // Generate objects.
+  for ($i = 0; $i < $number_generated; $i++) {
+    $vid = $data[rand(0, (count($data) - 1))]->vid;
+    $file_id = $data[rand(0, (count($data) - 1))]->fileId;
+    $clips[] = [
+      'type' => 'dd_clip',
+      'name' => '(Generated) Clip ' . $file_id . ' - start: 392 end: 443',
+      'field_videoid' => $file_id,
+      'field_duration_float' => rand(0, 500),
+      'field_file_size' => rand(1024, 4096),
+      'field_transcript' => _dd_demo_get_random_text(rand(0, 4), TRUE),
+      'field_clips' => '[{"start":0,"end":51,"vid_start":"392","vid_end":"443","hid":"891","vid":"t4M20C8hjzI","hearing_title":"Senate Standing Committee on Energy, Utilities and Communications hearing of 03-15-2016"}]',
+      'field_clip_source' => [
+        'video',
+      ],
+      'status' => 1,
+      'user_id' => 1,
+    ];
+  }
+
+  return $clips;
+}
+
+/**
+ * Get generated clip entities.
+ *
+ * @return array
+ *   Array of clip entities
+ */
+function _dd_demo_data_get_clips() {
+  $query = \Drupal::entityQuery('dd_clip')->condition('name', '(Generated) Clip%', 'LIKE');
+  $ids = $query->execute();
+  $storage_handler = \Drupal::entityTypeManager()->getStorage('dd_clip');
+  $entities = $storage_handler->loadMultiple($ids);
+  return $entities;
+}
+
+/**
+ * Get generated target action entities.
+ *
+ * @return array
+ *   Array of target action entities
+ */
+function _dd_demo_data_get_target_actions() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $query = $node_storage->getQuery();
+  $query->condition('title', '(Generated) Campaign%', 'LIKE');
+  $query->condition('type', 'target_actions');
+  $node_ids = $query->execute();
+  $nodes = Node::loadMultiple($node_ids);
+  return $nodes;
+}
+
+/**
+ * Get generated campaign entities.
+ *
+ * @return array
+ *   Array of campaign entities
+ */
+function _dd_demo_data_get_campaigns() {
+  $node_storage = \Drupal::entityTypeManager()->getStorage('node');
+  $query = $node_storage->getQuery();
+  $query->condition('title', '(Generated) Campaign%', 'LIKE');
+  $query->condition('type', 'campaign');
+  $node_ids = $query->execute();
+  $nodes = Node::loadMultiple($node_ids);
+  return $nodes;
+}
+
+/**
+ * Remove generated dd data.
+ *
+ * @param string $type
+ *   Content type to remove.
+ *
+ * @return array
+ *   Entities removes
+ */
+function _dd_demo_data_remove($type) {
+  $entities = [];
+  switch ($type) {
+    case 'clips':
+      $entities = _dd_demo_data_get_clips();
+      $storage_handler = \Drupal::entityTypeManager()->getStorage('dd_clip');
+      $storage_handler->delete($entities);
+      break;
+
+    case 'campaigns':
+      $storage_handler = \Drupal::entityTypeManager()->getStorage('node');
+      $entities = _dd_demo_data_get_target_actions();
+      $storage_handler->delete($entities);
+
+      $entities = _dd_demo_data_get_campaigns();
+      $storage_handler->delete($entities);
+
+      break;
+  }
+
+  return $entities;
+}
+
+/**
+ * Creates a paragraph.
+ *
+ * @param array $array
+ *   Node data array.
+ *
+ * @return \Drupal\paragraphs\Entity\Paragraph
+ *   Paragraph entity
+ */
+function _dd_demo_data_create_paragraph($array) {
+  $pg = Paragraph::create($array);
+  $pg->save();
+  return $pg;
+}
+
+/**
+ * Action paragraphs.
+ */
+function _dd_demo_data_paragraphs() {
+  $clips = _dd_demo_data_get_clips();
+
+  // Create a fake file.
+  $contents = file_get_contents('http://images.hellogiggles.com/uploads/2015/03/22/featured.jpg');
+  $file = file_save_data($contents, 'public://mock-image.jpg');
+
+  $all_phone_targets = [
+    'contact_made',
+    'conversation_summary',
+  ];
+  $random_phone_target_keys = array_rand($all_phone_targets, rand(1, 2));
+
+  if (!is_array($random_phone_target_keys)) {
+    $random_phone_target_keys = [$random_phone_target_keys];
+  }
+
+  $phone_targets = [];
+  foreach ($random_phone_target_keys as $key) {
+    $phone_targets[] = $all_phone_targets[$key];
+  }
+
+  // Set up data.
+  $pgs = [
+    [
+      'type' => 'display_text',
+      'field_action_body' => _dd_demo_get_random_text(),
+    ],
+    [
+      'type' => 'display_video_clip_montage',
+      'field_video_clip' => ['target_id' => $clips[array_rand($clips)]->id()],
+      'field_video_description' => _dd_demo_get_random_text('2'),
+    ],
+    [
+      'type' => 'download_action',
+      'field_download_description' => 'Lorem ipsum dolor sit amet',
+      'field_download_action_file' => ['target_id' => $file->id()],
+    ],
+    [
+      'type' => 'email_action',
+      'field_email_body' => _dd_demo_get_random_text('2'),
+      'field_email_subject' => 'Lorem ipsum dolor sit amet',
+      'field_success_message' => _dd_demo_get_random_text('2'),
+    ],
+    [
+      'type' => 'fax_action',
+      'field_action_body' => _dd_demo_get_random_text(),
+      'field_subject' => 'Lorem ipsum dolor sit amet',
+      'field_success_message' => _dd_demo_get_random_text('3'),
+    ],
+    [
+      'type' => 'letter_to_editor',
+      'field_email_body' => _dd_demo_get_random_text('2'),
+      'field_email_subject' => 'Lorem ipsum dolor sit amet',
+      'field_radius' => '50',
+      'field_target_address' => [
+        'country_code' => 'US',
+        'locality' => 'Altoona',
+        'postal_code' => '16601',
+      ],
+      'field_video_clip' => ['target_id' => $clips[array_rand($clips)]->id()],
+    ],
+    [
+      'type' => 'phone_action',
+      'field_phone_targets' => $phone_targets,
+      'field_talking_points' => _dd_demo_get_random_text('2'),
+      'field_advocacy_message' => _dd_demo_get_random_text('3'),
+    ],
+    [
+      'type' => 'tweet_legislator_action',
+      'field_sample_tweet' => 'Lorem ipsum dolor sit amet',
+    ],
+  ];
+
+  return $pgs;
+}
+
+/**
+ * Creates an action node.
+ *
+ * @param array $array
+ *   Node data array.
+ *
+ * @return \Drupal\node\Entity\Node
+ *   Node
+ */
+function _dd_demo_data_create_action($array) {
+  $node = Node::create($array);
+  $node->save();
+  return $node->id();
+}
+
+/**
+ * Action nodes.
+ */
+function _dd_demo_data_actions($paragraphs, $time) {
+  // Load committees.
+  $committees = \Drupal::entityTypeManager()->getStorage('dd_committee');
+  $committees = $committees->loadMultiple();
+  $committee_id = $committees[array_rand($committees)]->id();
+  $committee_set = [];
+  $committee_ids = [];
+
+  $number_of_committees = rand(1, 5);
+  for ($i = 0; $i < $number_of_committees; $i++) {
+    $id_value = $committees[array_rand($committees)]->id();
+    $committee_set[] = [
+      'target_id' => $id_value,
+    ];
+    $committee_ids[] = $id_value;
+  }
+
+  // Load senate pids from Term table.
+  $db = \Drupal\Core\Database\Database::getConnection('default', \Drupal\dd_base\DdBase::getDddbName());
+  $data = $db->select('Term', 't')
+    ->fields('t', ['pid']);
+  $data->condition('t.state', \Drupal\dd_base\DdBase::getCurrentState());
+  $data->condition('t.house', 'Senate');
+  $data = $data->execute();
+  $pids = $data->fetchAll();
+
+  // Get two random sets of pids.
+  $pid_set_1 = [];
+  $pid_set_1_er = [];
+  $pid_set_1_count = rand(1, 5);
+
+  for ($i = 0; $i < $pid_set_1_count; $i++) {
+    $pid = $pids[array_rand($pids)]->pid;
+    $pid_set_1[] = $pid;
+    $pid_set_1_er[] = ['target_id' => $pid];
+  }
+
+  $pid_set_2 = [];
+  $pid_set_2_er = [];
+  $pid_set_2_count = rand(1, 5);
+
+  for ($i = 0; $i < $pid_set_2_count; $i++) {
+    $pid_set_2[] = $pids[array_rand($pids)]->pid;
+    $pid_set_2_er[] = ['target_id' => $pid];
+  }
+
+  // Load assembly pids from Term table.
+  $db = \Drupal\Core\Database\Database::getConnection('default', \Drupal\dd_base\DdBase::getDddbName());
+  $data = $db->select('Term', 't')
+    ->fields('t', ['pid']);
+  $data->condition('t.state', \Drupal\dd_base\DdBase::getCurrentState());
+  $data->condition('t.house', 'Assembly');
+  $data = $data->execute();
+  $pids = $data->fetchAll();
+
+  // Get a random sets of pids.
+  $pid_set_3 = [];
+  $pid_set_3_er = [];
+  $pid_set_3_count = rand(1, 5);
+
+  for ($i = 0; $i < $pid_set_3_count; $i++) {
+    $pid = $pids[array_rand($pids)]->pid;
+    $pid_set_3[] = $pid;
+    $pid_set_3_er[] = ['target_id' => $pid];
+  }
+
+  // Generate sets of paragraphs.
+  $action_set_1 = [];
+  $action_set_2 = [];
+  $action_set_3 = [];
+
+  foreach ($paragraphs as $pg) {
+
+    switch (rand() % 3) {
+      case 0:
+        $action_set_1[] = [
+          'target_id' => $pg->id(),
+          'target_revision_id' => $pg->getRevisionId(),
+        ];
+        break;
+
+      case 1:
+        $action_set_2[] = [
+          'target_id' => $pg->id(),
+          'target_revision_id' => $pg->getRevisionId(),
+        ];
+        break;
+
+      case 2:
+        $action_set_3[] = [
+          'target_id' => $pg->id(),
+          'target_revision_id' => $pg->getRevisionId(),
+        ];
+        break;
+
+    }
+  }
+
+  // Generate objects.
+  $actions = [
+    [
+      'type' => 'target_actions',
+      'title' => '(Generated) Campaign ' . $time . ' - Statewide Senators',
+      'field_target_types' => [
+        'senators',
+      ],
+      'field_statewide_target' => '1',
+    ],
+    [
+      'type' => 'target_actions',
+      'title' => '(Generated) Campaign ' . $time . ' - Statewide Committee ' . $committee_id,
+      'field_committees' => $committee_set,
+      'field_target_types' => [
+        'committees',
+      ],
+      'field_statewide_target' => '1',
+    ],
+    [
+      'type' => 'target_actions',
+      'title' => '(Generated) Campaign ' . $time . ' - Senators ' . implode(', ', $pid_set_1),
+      'field_senators' => $pid_set_1_er,
+      'field_statewide_target' => '0',
+      'field_actions' => $action_set_1,
+      'field_target_types' => [
+        'senators',
+      ],
+    ],
+    [
+      'type' => 'target_actions',
+      'title' => '(Generated) Campaign ' . $time . ' - Committees ' . implode(', ', $committee_ids),
+      'field_committees' => $committee_set,
+      'field_statewide_target' => '0',
+      'field_actions' => $action_set_2,
+      'field_target_types' => [
+        'committees',
+      ],
+    ],
+    [
+      'type' => 'target_actions',
+      'title' => '(Generated) Campaign ' . $time . ' - Senators ' . implode(', ', $pid_set_2) . ' - Assembly Reps ' . implode(', ', $pid_set_3),
+      'field_senators' => $pid_set_2_er,
+      'field_assembly_reps' => $pid_set_3_er,
+      'field_statewide_target' => '0',
+      'field_actions' => $action_set_3,
+      'field_target_types' => [
+        'senators',
+        'assembly_reps',
+      ],
+    ],
+  ];
+
+  return $actions;
+}
+
+/**
+ * Creates a campaign node.
+ *
+ * @param array $array
+ *   Array of node data.
+ *
+ * @return \Drupal\node\Entity\Node
+ *   Node
+ */
+function _dd_demo_data_create_campaign($array) {
+  $node = Node::create($array);
+  return $node->save();
+}
+
+/**
+ * Campaign node.
+ */
+function _dd_demo_data_campaign($time) {
+  // Get random starting date.
+  $t = strtotime("-2 days");
+  $t = strtotime("+" . rand(0, 4) . " days", $t);
+
+  // Get random bill ID.
+  $bills = \Drupal::entityTypeManager()->getStorage('dd_bill');
+  $bills = $bills->loadMultiple();
+  $bill_id = $bills[rand(0, (count($bills) - 1))]->id();
+
+  // Acquiring clip data.
+  $clips = _dd_demo_data_get_clips();
+
+  $clip_count = rand(1, 4);
+  $clip_field_value = [];
+  for ($i = 0; $i < $clip_count; $i++) {
+    $clip_id = $clips[array_rand($clips)]->id();
+    $clip_field_value[] = [
+      'target_id' => $clip_id,
+    ];
+  }
+
+  // Acquiring target action data.
+  $target_actions = \Drupal::entityTypeManager()->getStorage('node');
+  $target_actions = $target_actions->loadByProperties(['type' => 'target_actions']);
+  $target_actions_er = [];
+  foreach ($target_actions as $target_action) {
+    $target_actions_er[] = ['target_id' => $target_action->id()];
+  }
+
+  // Return node.
+  return [
+    'type' => 'campaign',
+    'title' => '(Generated) Campaign ' . $time,
+    'body' => _dd_demo_get_random_text(rand(0, 4)),
+    'field_public_campaign' => TRUE,
+    'field_start_date' => date('Y-m-d', $t),
+    'field_end_date' => date('Y-m-d', strtotime("+2 days", $t)),
+    'field_bill' => [
+      ['target_id' => $bill_id],
+    ],
+    'field_bill_title_override' => (rand() % 2 == 0) ? 'Bill Title Overridden' : '',
+    'field_bill_digest_override' => (rand() % 2 == 0) ? 'Bill Digest Overridden' : '',
+    'field_bill_subject_override' => (rand() % 2 == 0) ? 'Bill Subject Overridden' : '',
+    'field_video_clips' => $clip_field_value,
+    'field_target_actions' => $target_actions_er,
+    'uid' => 1,
+    'field_enable_facebook_share' => 1,
+    'field_enable_twitter_share' => 1,
+    'field_sample_tweet' => 'Lorem ipsum dolor sit amet',
+  ];
+}
+

@@ -1,0 +1,19 @@
+uuid: bdc3e121-e120-43ac-a1b5-dbe471c2b22f
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_video_tags
+field_name: field_video_tags
+entity_type: dd_clip
+type: entity_reference
+settings:
+  target_type: dd_video_tags
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

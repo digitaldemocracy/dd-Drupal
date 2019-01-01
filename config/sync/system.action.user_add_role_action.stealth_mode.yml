@@ -1,0 +1,14 @@
+uuid: ff7877fe-87dc-4d36-bd23-c16607a328a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.stealth_mode
+  module:
+    - user
+id: user_add_role_action.stealth_mode
+label: 'Add the Stealth Mode role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: stealth_mode

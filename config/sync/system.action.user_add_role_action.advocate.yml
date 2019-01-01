@@ -1,0 +1,14 @@
+uuid: fb9558f6-8b6e-425a-a538-1c8166992ea3
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.advocate
+  module:
+    - user
+id: user_add_role_action.advocate
+label: 'Add the advocate role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: advocate

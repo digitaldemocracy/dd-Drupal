@@ -1,0 +1,504 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_payment_system.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\user\Entity\User;
+use \Drupal\node\Entity\Node;
+use \Drupal\dd_payment_system\Entity\DdSubscriptionPlan;
+use \Drupal\dd_payment_system\Entity\DdInvoiceHistory;
+use Drupal\user\UserInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\field\FieldConfigInterface;
+use Drupal\node\Entity\NodeType;
+
+/**
+ * Object for storing role id, name, and plan name.
+ */
+class Role {
+  public $rid;
+  public $name;
+  public $plan;
+
+  public function __construct($rid, $name, $plan) {
+    $this->rid = $rid;
+    $this->name = $name;
+    $this->plan = $plan;
+  }
+}
+
+/**
+ * Implements hook_help().
+ */
+function dd_payment_system_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_payment_system':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= t('This module requires the clipper_gallery_block and ');
+      $output .= '<p>' . t('Payament System Module lets you process payment.');
+      $output .= t('This module requires /stripe_checkout/charge ');
+      $output .= t('to be registered as a webhook in the stripe dashboard.');
+      $output .= t('Keys for stripe needs to be set via key and stripe_api modules.');
+      $output .= '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_field_widget_info_alter().
+ *
+ * Allows stripe_checkout widget to be applied to number fields.
+ */
+function dd_payment_system_field_widget_info_alter(array &$info) {
+  $info['number']['field_types'][] = 'stripe_checkout';
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_payment_system_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-subscribe-plan' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-subscribe-plan',
+    ),
+    'dd-cancel-plan' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-cancel-plan',
+    ),
+    'stripe_checkout' => array(
+      'variables' => array(
+        'action'=> NULL,
+        'anon_url' => NULL,
+        'price' => NULL,
+        'data' => NULL,
+        'logged_in' => NULL,
+        'entity_id' => NULL,
+        'field_name' => NULL,
+      ),
+    ),
+    'dd-payment-system-email' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'dd-payment-system-email',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function dd_payment_system_preprocess_node(&$variables) {
+  if (isset($variables['node'])
+    && $variables['node']->getType() === "dd_invoice") {
+    global $base_url;
+    $variables['base_url'] = $base_url;
+    $variables['uid'] = \Drupal::currentUser()->id();
+  }
+}
+
+/**
+ * Implements hook_stripe_charge_succeeded invoked by DdPaymentSystemStripeController.
+ * @param Boolean $customer_created
+ *  True if the customer was created, false otherwise.
+ *
+ * @param \Drupal\Core\Session\AccountInterface $user
+ *
+ * @param \Stripe\Customer $customer
+ *
+ * @param \Stripe\Subscription $subscription
+ *
+ * @param \Drupal\node\Entity\Node $node
+ */
+function dd_payment_system_stripe_charge_succeeded($customer_created, $user, $customer, $subscription, $node) {
+  $node->field_balance_due->setValue(0);
+  $node->save();
+
+  dd_payment_system_remove_roles($user);
+  dd_payment_system_add_role($user, $node->getTitle());
+
+  $user->field_expiration_date->setValue($node->field_expires->first()->value);
+
+  if ($customer_created) {
+    $user->field_cid->setValue($customer->id);
+  }
+
+  if ($subscription) {
+    $user->field_sku->setValue($subscription->id);
+  }
+
+  $user->save();
+
+  dd_payment_system_save_invoice_history($node);
+}
+
+function dd_payment_system_stripe_invoice_created($customer_id, $amount, $plan, 
+                                                  $interval, $interval_count) {
+
+  $query = \Drupal::entityQuery('user')
+    ->condition('field_cid', $customer_id, '=');
+
+  $result = $query->execute();
+
+  $content = "You have been charged $" . $amount/100 . " for " . $plan . ". Thank you very much.";
+  if ($result) {
+    $uid = reset($result);
+    $user = User::load($uid);
+
+    $add_time = ("+" . $interval_count . " " . $interval);
+    $timestamp = strtotime($add_time, strtotime($user->field_expiration_date->value));
+    $new_expiration_date = gmdate("Y-m-d\TH:i:s", $timestamp);
+    $user->field_expiration_date->setValue($new_expiration_date);
+    $user->save;
+
+    dd_payment_system_send_mail($user, $content, 'invoice_created');
+  } else {
+    \Drupal::logger('dd_payment_system')
+      ->error("There are no users with customer id={$customer_id}.");
+  }
+}
+
+/**
+ * Implements hook_stripe_subscription_deleted invoked by DdPaymentSystemWebhook.
+ *
+ * @param Integer $sub_id
+ *   The subscription id of the user that we are trying to find. 
+ */
+function dd_payment_system_stripe_subscription_deleted($sub_id) {
+  $query = \Drupal::entityQuery('user')
+    ->condition("field_sku.value", $sub_id, '=');
+  $result = $query->execute();
+
+  if ($result) {
+    $uid = reset($result);
+    $user = User::load($uid);
+    $user->field_sku->setValue(NULL);
+    $user->save();
+  } else {
+    \Drupal::logger('dd_payment_system')
+      ->error("There is no user with subscription id={$sub_id}.");
+  }
+}
+
+/**
+ * A helper function to remove existing membership roles from user.
+ * The caller is responsible for saving the modified object
+ * because this function does not save the object. 
+ *
+ * @param UserInterface $user_interface
+ *   an UserInterface type object for the user who made the payment
+ */
+function dd_payment_system_remove_roles($user_interface) {
+  $plans = DdSubscriptionPlan::loadByFields(array());
+  foreach ($plans as $plan) {
+    $rid = $plan->field_role_name->first()->value;
+    $user_interface->removeRole($rid);
+  }
+}
+
+/**
+ * A helper function to add a role to user.
+ * The caller is responsible for saving the modified object
+ * because this function does not save the object. 
+ *
+ * @param UserInterface $user_interface
+ *   an UserInterface type object for the user who made the payment
+ *
+ * @param String $plan_name
+ *   The name of the plan user purchased
+ */
+function dd_payment_system_add_role($user_interface, $plan_name) {
+  $plans = DdSubscriptionPlan::loadByFields(
+    [['field' => 'name', 'value' => $plan_name]]);
+  $role = current($plans)->field_role_name->first()->value;
+  $user_interface->addRole($role);
+}
+
+/**
+ * A helper function to save invoice to invoice history.
+ *
+ * @param Node $node
+ *   a dd_invoice type node
+ */
+function dd_payment_system_save_invoice_history($node) {
+  $history = DdInvoiceHistory::create(
+      array(
+        'status' => 0,
+        'name' => $node->getTitle(),
+        'language' => 'und',
+      ));
+  $history->field_balance_due->setValue($node->field_balance_due->first()->value);
+  $history->field_total->setValue($node->field_total->first()->value);
+  $history->field_expires->setValue($node->field_expires->first()->value);
+  $history->field_duration_days->setValue($node->field_duration_days->first()->value);
+  $history->save();
+}
+
+/**
+  * A helper function to compare a date to today's date.
+  *
+  * @param String $ex_date
+  *   a string that represents the date
+  *
+  * @return Integer $days
+  *   the difference in the number of days between a date and today's date.
+  */
+function dd_payment_system_compare_date($ex_date) {
+  $today = date("Y-m-d H:i:s");
+  $today_dt = new DateTime($today);
+  $ex_dt = new DateTime($ex_date);
+  $value = $today_dt->diff($ex_dt)->days;
+  if ($today_dt > $ex_dt) {
+    return -1;
+  } else {
+    return $value;
+  }
+}
+
+/**
+ * Implements hook_mail()
+ */
+function dd_payment_system_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+    case 'almost_expire':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Your current membership plan at Digital Democracy is ending in a few days!', $options);
+      $message['body'][] = SafeMarkup::checkPlain($params['message']);
+      break;
+
+    case 'expired':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Your membership plan at Digital Democracy has expired!', $options);
+      $message['body'][] = SafeMarkup::checkPlain($params['message']);
+      break;
+
+    case 'invoice_created':
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Thank you for subscribing to Digital Democracy!', $options);
+      $message['body'][] = SafeMarkup::checkPlain($params['message']);
+      break;
+  }
+}
+
+/**
+ * A helper function that calls hook_mail() to send emails to users.
+ *
+ * @param UserInterface $user
+ *   The UserInterface type object that will be the recipient of the email.
+ * @param String $content
+ *   The message string.
+ * @param String $case
+ *   The string that is used to differentiate between an expired membership
+ *   and a membership that is going to expire soon.
+ */
+function dd_payment_system_send_mail($user, $content, $case) {
+  global $base_url;
+
+  $msg_data = array(
+    '#theme' => 'dd-payment-system-email',
+    '#elements' => array(),
+  );
+
+  $msg_data['#elements']['username'] = $user->getUsername();
+  $msg_data['#elements']['base_url'] = $base_url;
+  $msg_data['#elements']['message'] = $content;
+  $message = \Drupal::service('renderer')->renderRoot($msg_data);
+
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'dd_payment_system';
+  $params['message'] = $message;
+  $to = $user->getEmail();
+  $langcode = $user->getPreferredLangCode();
+  $result = $mailManager->mail($module, $case, $to, $langcode, $params, NULL, true);
+  if ($result['result'] !== true) {
+    \Drupal::logger('dd_payment_system')->error('There was a problem sending your message and it was not sent.');
+  }
+}
+
+/**
+  * A helper function to send mail to users who have expired memberships.
+  *
+  * @param Integer $uid
+  *   The unique id of a user.
+  * @param String $date
+  *   A String that represents a date.
+  * @param String $role
+  *   One of the four roles that a user is a member of.
+  */
+function dd_payment_system_send_expire_mail($uid, $date, $role) {
+  $user = User::load($uid);
+  $name = $user->getUsername();
+  $email = $user->getEmail();
+
+  $date_format = new DateTime($date);
+  if ($email) {
+    $content = "Your " . $role . " has expired on " . $date_format->format("m/d/Y") . ".";
+    $content .= " Thank you for supporting Digital Democracy!";
+    $case = 'expired';
+    dd_payment_system_send_mail($user, $content, $case);
+  } else {
+    \Drupal::logger('dd_payment_system')
+      ->error('The user' . $name . 'did not provide an email for the account.');
+  }
+}
+
+/**
+  * A helper function to alert users that their accounts will expire soon.
+  *
+  * @param Integer $uid
+  *   The unique id of a user.
+  * @param String $date
+  *   A String that represents a date.
+  * @param String $role
+  *   One of the four roles that a user is a member of.
+  */
+function dd_payment_system_send_almost_expire_mail($uid, $date, $role) {
+  $user = User::load($uid);
+  $name = $user->getUsername();
+  $email = $user->getEmail();
+
+  $sub_id = $user->field_sku->value;
+  $sk = \Drupal::service('stripe_api.stripe_api')->getApiKey();
+  \Stripe\Stripe::setApiKey($sk);
+  $subscription = \Stripe\Subscription::retrieve($sub_id);
+  $date_format = new DateTime($date);
+  if ($email) {
+    if ($subscription->cancel_at_period_end === false) {
+      $content = "Your " . $role . " will be automatically renewed on " . $date_format->format("m/d/Y"); 
+      $content .= ", and you will be charged on this date. Thank you for your continued support of Digital Democracy!";
+    } else {
+      $content = "Your " . $role . " is going to expire on " . $date_format->format("m/d/Y") . ".";
+      $content .= " You will not be charged further. Thank you for supporting Digital Democracy!";
+    }
+    $case = 'almost_expire';
+    dd_payment_system_send_mail($user, $content, $case);
+  } else {
+    \Drupal::logger('dd_payment_system')
+      ->error('The user' . $name . 'did not provide an email for the account.');
+  }
+}
+
+/**
+  * This function is used to check users' accounts. If the user account
+  * is expired, remove the role from that user and send email. If the user
+  * account is almost expired, send email to that user to alert them.
+  */
+function dd_payment_system_start() {
+  $plans = DdSubscriptionPlan::loadByFields(array());
+  $roles = array();
+  foreach ($plans as $plan) {
+    $role_name = $plan->field_role_name->value;
+    $role_plan = $plan->name->value;
+    $role_id = $plan->id->value;
+    array_push($roles, new Role($role_id, $role_name, $role_plan)); 
+  }
+
+  $query = \Drupal::entityQuery('user');
+  $result = $query->execute();
+  $users = User::loadMultiple($result);
+
+  $days_to_expire = \Drupal::configFactory()->getEditable('dd_payment_system.settings')
+    ->get('default_alert_days');
+
+  foreach ($users as $user) {
+    $user_roles = $user->getRoles();
+    $membership_role = NULL;
+
+    foreach ($roles as $role) {
+      if (array_search($role->name, $user_roles) !== FALSE) {
+        $membership_role = $role->plan;
+      }
+    } 
+    
+    if ($membership_role) {
+      $date = $user->get('field_expiration_date')->value;
+      $uid = $user->get('uid')->value;
+      $expired = dd_payment_system_compare_date($date);
+
+      if ($expired < 0) {    
+        dd_payment_system_send_expire_mail($uid, $date, $membership_role);
+        dd_payment_system_remove_roles($user);
+        $user->save();
+      } else if ($expired <= $days_to_expire) {
+        dd_payment_system_send_almost_expire_mail($uid, $date, $membership_role);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_extra_field_info()
+ */
+function dd_payment_system_entity_extra_field_info() {
+  $extra = array();
+
+  $extra['node']['dd_invoice']['display']['field_subscription_message'] = array(
+    'label' => t('Message'),
+    'description' => t('Message to alert users of recurring payments.'),
+    'weight' => 100,
+    'visible' => TRUE,
+  );
+    
+  return $extra;
+}
+
+/**
+ * Implements hook_ENTITY_TYPE_view()
+ */
+function dd_payment_system_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $node, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  if ($node->getType() === "dd_invoice") {
+    $plans = DdSubscriptionPlan::loadByFields(
+      [['field' => 'name', 'value' => $node->label()]]);
+
+    if (!empty($plans)) {
+      $recur = current($plans)->field_recurring->value;
+
+      if ($display->getComponent('field_subscription_message') && $recur) {
+        $build['field_subscription_message'] = array(
+          '#type' => 'markup',
+          '#markup' => '<b>You will be automatically charged at the beginning of every subscription period.</b>',
+        );
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dd_payment_system_cron() {
+  dd_payment_system_start();
+}
+ 
+/**
+ * Function that is called from running drush command.
+ */
+function dd_payment_system_run() {
+  //dd_payment_system_start();
+  //dd_payment_system_entity_extra_field_info();
+}
+

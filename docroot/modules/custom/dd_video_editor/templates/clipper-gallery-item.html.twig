@@ -1,0 +1,59 @@
+<li Class="clip-item bank-clip" data-tag="{{ elements.tags }}">
+<div class='clip-bank-videos clearfix'>
+  <span class="share-close"></span>
+  <div class="cd-video-share clearfix hide">
+    <div class="share-label">SHARE CLIP: </div>
+    <ul class="social-lists clearfix {% if not elements.node_status %}disable{% endif %}">
+      <li class="facebook "  data-nid="{{ elements.nid }}">
+        <a class="link-share" title="click to share on Facebook" href="#" data-network="facebook" data-url="{{ elements.url }}" ></a>
+      </li>
+      <li class="twitter "  data-nid="{{ elements.nid }}"><a href="#" title="click to share on Twitter" class="btn-twitter" data-toggle="modal" data-offset="50" data-target="#share-modal" data-network="twitter" data-url="{{ elements.url }}" ></a></li>
+
+      <li class="google " data-nid="{{ elements.nid }}"><a href="#" class="btn-google" data-toggle="modal" data-offset="50" data-target="#share-modal" title="click to share on Google Plus" data-network="google-plus" data-url="{{ elements.url }}" ></a></li>
+      <li class="in " data-nid="{{ elements.nid }}"><a href='#' title="click to share on LinkedIn" target="_blank" class="btn-linkedin" data-toggle="modal" data-offset="50"  data-target="#share-modal" data-network="linkedin" data-url="{{ elements.url }}" ></a></li>
+      <li class="embed embed-clip " data-nid="{{ elements.nid }}"><a href='#' title="click to share on Embed" ></a></li>
+    </ul>
+    <span class="embed-close"></span>
+    <div class="embed-clip-video hide" id="embed-video-{{ elements.nid }}"><textarea  wrap='off'><iframe Scrolling="No" width="{{ elements.iframe_width }}" height="{{ elements.iframe_height }}" src="{{ elements.embed_url }}" frameborder="0" class="entity_iframe entity_iframe_node" ></iframe></textarea></div>
+  </div>
+  <div class="cd-video-row">
+    <div class="clearfix row-1">
+      <div class='my-cd-video'>
+        <div class='cb-video'>
+          <img height='70' width='125' src='{{ elements.source_thumbnail }}'>
+        </div>
+      </div>
+      <div class='about-cb-video'>
+        <div class='cb-video-title'>
+          <a href="/dd_video_editor/clip={{ elements.clip_id }}">{{ elements.title_clip }}</a>
+        </div>
+        <div class='cb-video-note'>
+          {{ elements.note_clip }}
+        </div>
+      </div>
+    </div>
+
+    <div class="clearfix row-2">
+      <div class='cd-video-op'>
+        <a href='{{ elements.url }}' class='cb-play-video'>Play</a>
+        <a href='{{ elements.edit_url }}' class='cb-edit-video'>Edit</a>
+        <a href='clip={{ elements.clip_id }}' class='cb-clip-video'>Edit</a>
+      {% if elements.anno_perm %}
+        <a href='{{ elements.anno_url }}' class='cb-annotate-video'>Edit</a>
+      {% endif %}
+        <a id='clip_delete' href='{{ elements.delete_url }}' class='cb-delete-video'>Delete</a>
+        <a id='clip_share' href='javascript:void(0)'  class='cb-share-video' data-clipid="{{ elements.clip_id }}" title="click to share the clip">Share</a>
+      </div>
+      <div class='cb-video-size'>
+        {% if elements.node_status %}
+        <span class="public status">CLIP IS SHARED</span><br/>
+        {% else %}
+        <span class="private status">CLIP IS PRIVATE</span><br/>
+        {% endif %}
+        <span>{{ elements.clip_length }}</span><br/>
+        <span>SIZE: {{ elements.exact_file_size }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+</li>

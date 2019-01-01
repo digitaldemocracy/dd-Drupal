@@ -1,0 +1,5 @@
+services:
+  dd_metrics.logger:
+    class: Drupal\dd_metrics\DdMetricsService
+    arguments: ['@current_user', '@database', '@entity_type.manager', '@event_dispatcher', '@session']
+

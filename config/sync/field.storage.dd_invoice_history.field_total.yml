@@ -1,0 +1,21 @@
+uuid: 6af4253a-39b1-4ad9-be50-561d5cf15978
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_payment_system
+id: dd_invoice_history.field_total
+field_name: field_total
+entity_type: dd_invoice_history
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,45 @@
+uuid: 5620f098-dc0e-4121-8a84-a8b59fd68ec3
+langcode: und
+status: true
+dependencies:
+  module:
+    - options
+    - user
+id: user.field_user_type
+field_name: field_user_type
+entity_type: user
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: journalist
+      label: Journalist
+    -
+      value: lobbyist
+      label: Lobbyist
+    -
+      value: legislator
+      label: Legislator
+    -
+      value: legislative_staff
+      label: 'Legislative Staff'
+    -
+      value: state_agency_rep
+      label: 'State Agency Representative'
+    -
+      value: ceo
+      label: CEO
+    -
+      value: educator
+      label: Educator
+    -
+      value: citizen
+      label: 'Concerned Citizen'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

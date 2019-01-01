@@ -1,0 +1,41 @@
+uuid: 57695604-da5b-495b-b3fe-714e417156fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee_authors.dd_committee_authors.default
+targetEntityType: dd_committee_authors
+bundle: dd_committee_authors
+mode: default
+content:
+  bid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  cid:
+    type: entity_reference_autocomplete
+    weight: 2
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  vid:
+    type: entity_reference_autocomplete
+    weight: 0
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  bid_dr_id: true
+  vid_dr_id: true

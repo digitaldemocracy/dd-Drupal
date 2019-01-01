@@ -1,0 +1,17 @@
+uuid: d821abd2-5de6-41ed-9064-a0046d377c4c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Counties
+type: counties
+description: 'US Counties / FIPS codes'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

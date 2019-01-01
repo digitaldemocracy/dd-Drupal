@@ -1,0 +1,20 @@
+uuid: 4ec65da5-fd7e-4d85-a2c8-3e6b48e3c3dd
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill_alerts
+id: dd_bill_alert_history.field_user_id
+field_name: field_user_id
+entity_type: dd_bill_alert_history
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

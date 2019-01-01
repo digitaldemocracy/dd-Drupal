@@ -1,0 +1,10 @@
+uuid: 1702b958-8f6d-488b-92d3-c5e377745a7f
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.video_only
+label: 'Video Only'
+targetEntityType: dd_clip
+cache: true

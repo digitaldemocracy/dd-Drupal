@@ -1,0 +1,19 @@
+uuid: 88e38806-9fe8-4585-a9ef-c7e6d3f3c62b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_sponsored_text
+    - node.type.widget
+id: node.widget.field_widget_sponsored_text
+field_name: field_widget_sponsored_text
+entity_type: node
+bundle: widget
+label: 'Sponsored By Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

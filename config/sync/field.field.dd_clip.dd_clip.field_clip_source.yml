@@ -1,0 +1,21 @@
+uuid: 8d75f907-74d5-4509-9a66-60457b121cf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_clip_source
+  module:
+    - dd_clip
+    - options
+id: dd_clip.dd_clip.field_clip_source
+field_name: field_clip_source
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Clip Source'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

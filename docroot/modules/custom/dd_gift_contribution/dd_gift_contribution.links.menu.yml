@@ -1,0 +1,39 @@
+# DD Gift menu items definition
+entity.dd_gift.collection:
+  title: 'DD Gift list'
+  route_name: entity.dd_gift.collection
+  description: 'List DD Gift entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_gift.admin.structure.settings:
+  title: DD Gift settings
+  description: 'Configure DD Gift entities'
+  route_name: dd_gift.settings
+  parent: system.admin_structure
+# DD Contribution menu items definition
+entity.dd_contribution.collection:
+  title: 'DD Contribution list'
+  route_name: entity.dd_contribution.collection
+  description: 'List DD Contribution entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_contribution.admin.structure.settings:
+  title: DD Contribution settings
+  description: 'Configure DD Contribution entities'
+  route_name: dd_contribution.settings
+  parent: system.admin_structure
+# DD Behests menu items definition
+entity.dd_behests.collection:
+  title: 'DD Behests list'
+  route_name: entity.dd_behests.collection
+  description: 'List DD Behests entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_behests.admin.structure.settings:
+  title: DD Behests settings
+  description: 'Configure DD Behests entities'
+  route_name: dd_behests.settings
+  parent: system.admin_structure

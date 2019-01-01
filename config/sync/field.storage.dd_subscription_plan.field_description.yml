@@ -1,0 +1,19 @@
+uuid: 115e0539-c09f-4545-b483-7465d134360c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_payment_system
+    - text
+id: dd_subscription_plan.field_description
+field_name: field_description
+entity_type: dd_subscription_plan
+type: text_with_summary
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

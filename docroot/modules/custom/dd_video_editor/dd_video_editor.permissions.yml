@@ -1,0 +1,6 @@
+access dd video builder:
+  title: 'Access the Video Builder page'
+access dd video annotator:
+  title: 'Access the Video Annotator page'
+attach transcripts to clips:
+  title: 'Attach Transcripts to Clips'

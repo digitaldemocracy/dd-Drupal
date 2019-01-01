@@ -1,0 +1,21 @@
+uuid: cd40cd5e-b63b-40ac-b2c8-e17c0ed0f9c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_videoid
+field_name: field_videoid
+entity_type: dd_clip
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

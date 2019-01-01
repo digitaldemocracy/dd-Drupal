@@ -1,0 +1,14 @@
+uuid: b2823851-2bef-4eb8-8347-c4cf9776a937
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.journalist
+  module:
+    - user
+id: user_add_role_action.journalist
+label: 'Add the Journalist role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: journalist

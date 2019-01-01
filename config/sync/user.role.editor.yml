@@ -1,0 +1,50 @@
+uuid: 4f3a7945-8e99-4ff0-9629-01df2b541fc7
+langcode: en
+status: true
+dependencies: {  }
+id: editor
+label: Editor
+weight: 5
+is_admin: null
+permissions:
+  - 'access administration pages'
+  - 'access content overview'
+  - 'access dd video annotator'
+  - 'access dd video builder'
+  - 'access site in maintenance mode'
+  - 'access site reports'
+  - 'access user contact forms'
+  - 'administer contact forms'
+  - 'administer nodes'
+  - 'administer permissions'
+  - 'administer url aliases'
+  - 'administer users'
+  - 'attach transcripts to clips'
+  - 'create article content'
+  - 'create blurb content'
+  - 'create campaign content'
+  - 'create page content'
+  - 'create url aliases'
+  - 'delete all revisions'
+  - 'delete any article content'
+  - 'delete any blog content'
+  - 'delete any blurb content'
+  - 'delete any dd_email_subscription content'
+  - 'delete any page content'
+  - 'edit any article content'
+  - 'edit any blog content'
+  - 'edit any blurb content'
+  - 'edit any dd_email_subscription content'
+  - 'edit any page content'
+  - 'revert all revisions'
+  - 'revert article revisions'
+  - 'revert blog revisions'
+  - 'revert blurb revisions'
+  - 'revert page revisions'
+  - 'use text format full_html'
+  - 'view all revisions'
+  - 'view article revisions'
+  - 'view blog revisions'
+  - 'view blurb revisions'
+  - 'view page revisions'
+  - 'view the administration theme'

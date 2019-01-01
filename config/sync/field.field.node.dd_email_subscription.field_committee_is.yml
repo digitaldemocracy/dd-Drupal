@@ -1,0 +1,19 @@
+uuid: e3602faf-beaf-4937-8884-53a432ce0083
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_committee_is
+    - node.type.dd_email_subscription
+id: node.dd_email_subscription.field_committee_is
+field_name: field_committee_is
+entity_type: node
+bundle: dd_email_subscription
+label: '<span class="and-label">AND</span> Narrow all searches above to Hearing Location'
+description: 'Restrict search to utterances from a certain hearing location such as committee. Hearing location name may not contain slashes, apostrophes, quotation marks, asterisks, semicolons, equals signs, percent signs, or curly braces. Leave blank to ignore this restriction.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

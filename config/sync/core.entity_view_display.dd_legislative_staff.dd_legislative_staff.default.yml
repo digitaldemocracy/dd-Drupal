@@ -1,0 +1,114 @@
+uuid: e2c8ef8d-7713-43e7-9bc8-cb2518cdf292
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_legislative_staff.dd_legislative_staff.default
+targetEntityType: dd_legislative_staff
+bundle: dd_legislative_staff
+mode: default
+content:
+  committee:
+    type: entity_reference_entity_view
+    weight: 7
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  first:
+    label: inline
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  flag:
+    type: boolean
+    weight: 6
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 3
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  last:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  legislator:
+    type: entity_reference_entity_view
+    weight: 5
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  middle:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  pid: true
+  servesOn_dr_ids: true

@@ -1,0 +1,5 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+  <div class="action-link--{{ action_type }} action-icon" title="{{ action }}"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+<a href="/action-center/{{ action_type }}-action-form/{{ elements['#paragraph'].parent_id.value }}" class="use-ajax action-link--{{ action_type }}" data-dialog-type="modal">{{ action }}</a>
+{% endif %}

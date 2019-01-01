@@ -1,0 +1,12 @@
+dd_fax_service_payment.pay:
+  path: '/user/{user}/fax_extension'
+  defaults:
+    _controller: '\Drupal\dd_fax_service_payment\Controller\DdFaxServicePaymentController::extend_fax'
+    _title: 'Extend Fax'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+

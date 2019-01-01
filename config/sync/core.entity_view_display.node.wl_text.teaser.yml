@@ -1,0 +1,34 @@
+uuid: 39c6eec1-2bfb-4c51-aa7f-999d4c5e026c
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.wl_text.body
+    - field.field.node.wl_text.field_location
+    - field.field.node.wl_text.field_weight
+    - node.type.wl_text
+  module:
+    - text
+    - user
+id: node.wl_text.teaser
+targetEntityType: node
+bundle: wl_text
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_location: true
+  field_weight: true

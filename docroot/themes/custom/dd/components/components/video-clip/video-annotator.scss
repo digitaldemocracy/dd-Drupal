@@ -1,0 +1,217 @@
+@import 'init';
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/video-clip/icons';
+
+.hide {
+  display: none;
+}
+
+#annotations {
+  position: absolute;
+  height: 360px;
+  width: 640px;
+  overflow: hidden;
+}
+
+.annotation {
+  position: absolute;
+  color: white;
+  background: blue;
+  opacity: .6;
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.annotation:hover {
+  opacity: 1;
+}
+
+.view-mode .annotation:hover .annotation-close {
+  display: block;
+  cursor: pointer;
+}
+
+.view-mode .annotation.has-link:hover {
+  cursor: pointer;
+}
+
+.annotation-close {
+  display: none;
+  width: 16px;
+  height: 16px;
+  background: image-url('cp-close.png') no-repeat center;
+  background-size: contain;
+  position: absolute;
+  top: -8px;
+  right: -8px;
+}
+
+.annotation-link {
+  width: 16px;
+  height: 16px;
+  background: image-url('cp-undo.png') no-repeat center;
+  background-size: contain;
+  position: absolute;
+  bottom: -8px;
+  right: -8px;
+}
+
+.left-vceditor {
+  float: left;
+  width: 640px;
+}
+
+.target-focus {
+  opacity: 1;
+}
+
+.right-vcbank {
+  float: right;
+  width: 250px;
+}
+
+#saveRow {
+  padding: 20px 0;
+}
+
+.trackEdit {
+  display: none;
+}
+
+div.trackEdit label {
+  width: 100%;
+}
+
+div.trackEdit .ui-spinner {
+  width: 100%;
+}
+
+div.trackEdit .tool-col {
+  width: 45%;
+  display: inline-block;
+}
+
+div.trackEdit .tool-col:nth-child(even) {
+  float: right;
+}
+
+div.trackEdit textarea {
+  width: 100%;
+}
+
+div.trackEdit {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: solid 1px;
+}
+
+#trackDeleteBtn {
+  float: right;
+  color: #000;
+  background-color: #f5f5f5;
+}
+
+#trackEnableLink {
+  margin-right: 5px;
+}
+
+#trackLink {
+  width: 100%;
+}
+
+#saveBtn {
+  float: right;
+}
+
+#addAnnoBtn {
+  cursor: pointer;
+  -webkit-appearance: button;
+  color: #000;
+  background-color: #f5f5f5;
+}
+
+span.glyphicon-plus {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: image-url('ui-icons-222222-256x240.png') -17px -129px;
+}
+
+span.glyphicon-trash {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: image-url('ui-icons-222222-256x240.png') -177px -97px;
+}
+
+.video-area .content-video {
+  padding: 0 10px;
+}
+
+.fontSelect {
+  position: relative;
+  padding: 3px;
+  height: 28px;
+  line-height: 28px;
+  cursor: pointer;
+}
+
+.fontSelect span {
+  overflow: hidden;
+  margin-left: 5px;
+}
+
+.fontSelect .arrow-down {
+  position: absolute;
+  right: 10px;
+  top: 14px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid black;
+}
+
+.fontSelectUl {
+  list-style: none;
+  width: 200px;
+  background: #f9f9f9;
+  position: absolute;
+  left: 0;
+  top: 35px;
+  padding: 0;
+}
+
+.fontSelectUl li {
+  height: 24px;
+  line-height: 24px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0 10px;
+
+  font-size: 14px;
+
+  border-left: 1px solid #f0f0f0;
+  border-right: 1px solid #f0f0f0;
+}
+
+.fontSelectUl li:last-child {
+  -webkit-border-radius: 0 0 4px 4px;
+  -moz-border-radius: 0 0 4px 4px;
+  border-radius: 0 0 4px 4px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.fontSelectUl li:hover {
+  background: #ddd;
+}
+
+#textTool {
+  padding: 10px 0;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  margin-top: 10px;
+}
+

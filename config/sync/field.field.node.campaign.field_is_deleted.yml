@@ -1,0 +1,23 @@
+uuid: e93774d7-4e9b-491d-87c7-65dab95d123e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_deleted
+    - node.type.campaign
+id: node.campaign.field_is_deleted
+field_name: field_is_deleted
+entity_type: node
+bundle: campaign
+label: 'Is Deleted'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

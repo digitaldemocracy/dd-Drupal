@@ -1,0 +1,21 @@
+uuid: 1ae6d575-4d9e-4fb7-9ed5-bd70a3c41ee6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_legislator_position
+field_name: field_legislator_position
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

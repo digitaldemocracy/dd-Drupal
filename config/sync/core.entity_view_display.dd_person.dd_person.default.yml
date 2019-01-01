@@ -1,0 +1,34 @@
+uuid: 7148821f-53df-40d5-85fa-e21f545d034b
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_person.dd_person.default
+targetEntityType: dd_person
+bundle: dd_person
+mode: default
+content: {  }
+hidden:
+  affiliation_dr_ids: true
+  affiliation_oids: true
+  affiliations: true
+  biography: true
+  classification_dr_ids: true
+  classifications: true
+  current_affiliation_dr_ids: true
+  current_affiliation_oids: true
+  current_affiliations: true
+  current_classification_dr_ids: true
+  current_classifications: true
+  first: true
+  fullname_firstlast: true
+  fullname_lastfirst: true
+  has_spoken: true
+  image: true
+  last: true
+  last_name_alpha: true
+  middle: true
+  servesOn_dr_ids: true
+  suffix: true
+  title: true

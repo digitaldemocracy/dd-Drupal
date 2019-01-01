@@ -1,0 +1,20 @@
+uuid: e43c1f70-a711-4511-b14f-0aa962a28898
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - dd_fax_service
+id: dd_fax_service_history.field_start_date
+field_name: field_start_date
+entity_type: dd_fax_service_history
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

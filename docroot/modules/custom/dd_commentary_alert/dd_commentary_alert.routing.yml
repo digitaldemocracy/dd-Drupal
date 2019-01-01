@@ -1,0 +1,7 @@
+dd_commentary_alert_settings:
+  path: '/admin/structure/dd_commentary_alert/settings'
+  defaults:
+    _form: '\Drupal\dd_commentary_alert\Form\DDCommentaryAlertSettingsForm'
+    _title: 'DD Commentary Alert Settings'
+  requirements:
+    _permission: 'administer site configuration'

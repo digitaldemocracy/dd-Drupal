@@ -1,0 +1,13 @@
+# DD Utterance menu items definition
+entity.dd_utterance.collection:
+  title: 'DD Utterance list'
+  route_name: entity.dd_utterance.collection
+  description: 'List DD Utterance entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_utterance.admin.structure.settings:
+  title: DD Utterance settings
+  description: 'Configure DD Utterance entities'
+  route_name: dd_utterance.settings
+  parent: system.admin_structure

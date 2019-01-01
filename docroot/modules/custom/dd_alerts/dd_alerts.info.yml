@@ -1,0 +1,5 @@
+name: DD Alerts
+type: module
+description: Custom logic for the bill and video alert forms.
+core: 8.x
+package: DigitalDemocracy

@@ -1,0 +1,62 @@
+uuid: 2d8fadb3-a339-4ab0-9591-3786b836634c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.letter_to_editor.field_email_body
+    - field.field.paragraph.letter_to_editor.field_email_subject
+    - field.field.paragraph.letter_to_editor.field_override_newspapers
+    - field.field.paragraph.letter_to_editor.field_targeted_newspapers
+    - field.field.paragraph.letter_to_editor.field_video_clip
+    - paragraphs.paragraphs_type.letter_to_editor
+  module:
+    - options
+    - text
+id: paragraph.letter_to_editor.default
+targetEntityType: paragraph
+bundle: letter_to_editor
+mode: default
+content:
+  field_email_body:
+    weight: 3
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_email_subject:
+    weight: 4
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_override_newspapers:
+    weight: 7
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_targeted_newspapers:
+    weight: 5
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_video_clip:
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: entity_reference_entity_id
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

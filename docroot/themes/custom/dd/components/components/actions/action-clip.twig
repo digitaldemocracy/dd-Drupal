@@ -1,0 +1,5 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+  <div class="action-link--video action-icon" title="Display Video Clip/Montage"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+<a href="/campaignclip/{{ video_id }}/{{ campaign_id }}/{{ campaign_action_paragraphs_id }}" onClick="Drupal.behaviors.campaigns.logActionMetric('{{ campaign_id }}', 'display_video_clip_montage', '{{ campaign_action_id }}', '{{ campaign_action_paragraphs_id }}', '{{ legislator_pid }}');" target="_blank" class="button--action action-link action-link--video">{{ video_link_text }}</a>
+{% endif %}

@@ -1,0 +1,33 @@
+dd_fax_service.admin:
+  title: 'DD Fax Service'
+  description: 'Edit Fax Service credentials.'
+  parent: system.admin_config_services
+  route_name: dd_fax_service.admin
+
+# Dd fax service history menu items definition
+entity.dd_fax_service_history.collection:
+  title: 'Dd fax service history list'
+  route_name: entity.dd_fax_service_history.collection
+  description: 'List Dd fax service history entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_fax_service_history.admin.structure.settings:
+  title: Dd fax service history settings
+  description: 'Configure Dd fax service history entities'
+  route_name: dd_fax_service_history.settings
+  parent: system.admin_structure
+
+# Dd fax service history menu items definition
+entity.dd_fax_service_history.collection:
+  title: 'Dd fax service history list'
+  route_name: entity.dd_fax_service_history.collection
+  description: 'List Dd fax service history entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_fax_service_history.admin.structure.settings:
+  title: Dd fax service history settings
+  description: 'Configure Dd fax service history entities'
+  route_name: dd_fax_service_history.settings
+  parent: system.admin_structure

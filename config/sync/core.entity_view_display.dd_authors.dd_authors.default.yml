@@ -1,0 +1,85 @@
+uuid: dfcda6e4-40bd-4a97-b9bd-23c0d4d572be
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_authors.dd_authors.default
+targetEntityType: dd_authors
+bundle: dd_authors
+mode: default
+content:
+  bid_dr_id:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  contribution:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 3
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  vid_dr_id:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  bid: true
+  first: true
+  last: true
+  middle: true
+  pid: true
+  servesOn_dr_ids: true
+  vid: true

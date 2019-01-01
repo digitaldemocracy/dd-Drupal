@@ -1,0 +1,63 @@
+dd_account_dashboard.my_account:
+  title: 'My Account'
+  weight: 10
+  route_name: dd_account_dashboard.my_account
+  base_route: entity.user.canonical
+
+dd_account_dashboard.saved_content:
+  title: 'My Saved Content'
+  weight: 20
+  route_name: dd_account_dashboard.saved_content
+  base_route: entity.user.canonical
+
+dd_account_dashboard.bill_alerts:
+  title: 'My Bill Alerts'
+  weight: 20
+  route_name: dd_account_dashboard.bill_alerts
+  base_route: entity.user.canonical
+
+dd_account_dashboard.keyword_alerts:
+  title: 'My Video Alerts'
+  weight: 30
+  route_name: dd_account_dashboard.keyword_alerts
+  base_route: entity.user.canonical
+
+dd_account_dashboard.clip_bank:
+  title: 'My Clip Bank'
+  weight: 40
+  route_name: dd_video_editor.my_clip_bank_page
+  base_route: entity.user.canonical
+
+dd_account_dashboard.video_builder:
+  title: 'Video Builder'
+  weight: 45
+  route_name: dd_video_editor.video_builder
+  base_route: entity.user.canonical
+
+dd_account_dashboard.campaigns:
+  title: 'Campaigns'
+  weight: 50
+  route_name: dd_account_dashboard.campaigns
+  base_route: entity.user.canonical
+
+dd_account_dashboard.member_clips:
+  title: 'Member Clips'
+  weight: 60
+  route_name: dd_account_dashboard.member_clips
+  base_route: entity.user.canonical
+
+dd_account_dashboard.video_builder:
+  title: 'Video Builder'
+  weight: 10
+  route_name: dd_account_dashboard.video_builder
+  base_route: dd_account_dashboard.clip_bank
+
+dd_saved_content.settings_tab:
+  route_name: dd_saved_content.settings
+  title: 'Settings'
+  base_route: dd_saved_content.settings
+dd_account_dashboard.widgets:
+  title: 'Widgets'
+  weight: 70
+  route_name: dd_account_dashboard.widgets
+  base_route: entity.user.canonical

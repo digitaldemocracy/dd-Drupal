@@ -1,0 +1,67 @@
+<input type="hidden" id="refreshed" value="no">
+<div id="video-editor-message"></div>
+<div class="left-vceditor col-sm-7">
+  <div class="vc-header vc-title ">
+    <h1 class="vc-page-header">
+    {{ video_title }}
+    </h1>
+    {% if clip_date %}
+    <span class="vc-month">Clip Created on: {{ clip_date }}</span>
+    {% endif %}
+  </div>
+  <div class="vc-slider-time clearfix"> 		 
+    <div class="vc-video">
+    <video id="player1" class="video-js vjs-default-skin"
+      controls preload="auto" width="685" height="390" 
+      data-videoid="{{ video_id }}" poster="{{ thumbnail }}" >
+      <source src="{{ video_file }}"  type="{{ video_type }}">
+    </video>
+    </div>
+    <div class="vc-btn-and-time clearfix">	
+      <div class="vc-slider">
+        <div id="slider-range"></div>
+      </div>
+      <div class="vc-buttons">					
+        <button type="submit" id="edit-start-button" name="op" value="start clip" class="btn btn-default form-submit">start clip</button>
+        <button type="submit" id="edit-stop-button" name="op" value="end clip" class="btn btn-default form-submit">end clip</button>
+        <button type="submit" id="edit-preview-button" name="op" value="preview" class="btn btn-default form-submit">preview</button>
+        {% if source %}
+        <a href="{{ source }}" class="btn btn-default form-submit" style="text-decoration:none;">CLIP SOURCE</a>
+        {% endif %}
+      </div>
+      <div class="vc-timer">
+        <div class="vc-start-time">	
+	  <div class="start-label"><span>Start Time</span></div>
+	  <div class="vc-start-min">
+            <div class="form-item form-item-start-min form-type-textfield form-group"> <label class="control-label" for="edit-start-min">Start Time (min)</label>
+<input class="form-control form-text" type="text" id="edit-start-min" name="start_min" value="{{ time.start_min }}" size="5" maxlength="128" /></div>
+            <div class="st-min"><span>Min</span></div>
+          </div>
+	  <div class="vc-start-sec">
+            <div class="form-item form-item-start-sec form-type-textfield form-group"> <label class="control-label" for="edit-start-sec">Start Time (seconds)</label>
+<input class="form-control form-text" type="text" id="edit-start-sec" name="start_sec" value="{{ time.start_sec }}" size="5" maxlength="128" /></div>
+            <div class="st-sec"><span>Sec</span></div>
+          </div>
+        </div>
+        <div class="vc-end-time">
+          <div class="end-label"><span>End Time</span></div>
+          <div class="vc-end-min">
+            <div class="form-item form-item-end-min form-type-textfield form-group"> <label class="control-label" for="edit-end-min">End Time (min)</label>
+<input class="form-control form-text" type="text" id="edit-end-min" name="end_min" value="{{ time.end_min }}" size="5" maxlength="128" /></div>
+            <div class="end-min"><span>Min</span></div>
+          </div>
+	  <div class="vc-end-sec">
+            <div class="form-item form-item-end-sec form-type-textfield form-group">
+              <label class="control-label" for="edit-end-sec">End Time (sec)</label>
+              <input class="form-control form-text" type="text" id="edit-end-sec" name="end_sec" value="{{ time.end_sec }}" size="5" maxlength="128" />
+            </div>
+          <div class="end-sec"><span>Sec</span></div>
+        </div>					
+      </div>
+    </div>
+  </div>
+  <div class="vc-clip-details">
+    {{ form }}
+  </div>
+</div>
+{{ attach_library('dd/dd-video-clipper') }}

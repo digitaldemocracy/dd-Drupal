@@ -1,0 +1,5 @@
+services:
+  dd_commentary_alert.commands:
+    class: \Drupal\dd_commentary_alert\Commands\DdCommentaryAlertCommands
+    tags:
+      - { name: drush.command }

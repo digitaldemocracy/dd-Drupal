@@ -1,0 +1,50 @@
+uuid: 9504e5db-6a49-4944-a2e3-8b1212d70742
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blurb.body
+    - field.field.node.blurb.field_byline
+    - field.field.node.blurb.field_display_in_endorsements
+    - field.field.node.blurb.field_display_in_news
+    - field.field.node.blurb.field_graphic
+    - node.type.blurb
+  module:
+    - image
+    - text
+    - user
+id: node.blurb.teaser
+targetEntityType: node
+bundle: blurb
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    settings:
+      trim_length: 200
+    third_party_settings: {  }
+    region: content
+  field_byline:
+    type: string
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  field_graphic:
+    type: image
+    weight: 2
+    label: hidden
+    settings:
+      image_style: ''
+      image_link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_display_in_endorsements: true
+  field_display_in_news: true
+  links: true

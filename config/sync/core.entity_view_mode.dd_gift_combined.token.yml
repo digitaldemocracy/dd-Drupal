@@ -1,0 +1,10 @@
+uuid: 844c58e5-7846-428a-8928-a2539ea48862
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_gift_combined.token
+label: Token
+targetEntityType: dd_gift_combined
+cache: true

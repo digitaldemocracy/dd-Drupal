@@ -1,0 +1,23 @@
+uuid: ee76cfbf-6896-4083-b920-75245afa0065
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_legislator_position
+    - paragraphs.paragraphs_type.phone_action
+id: paragraph.phone_action.field_legislator_position
+field_name: field_legislator_position
+entity_type: paragraph
+bundle: phone_action
+label: 'Include checkboxes to capture Legislator''s Position'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

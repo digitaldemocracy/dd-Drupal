@@ -1,0 +1,34 @@
+uuid: 54258b25-677b-46dc-bf0a-54802d764f13
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.primary_author
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: primaryauthor
+theme: dd
+region: sidebar_first
+weight: -38
+provider: null
+plugin: 'facet_block:primary_author'
+settings:
+  id: 'facet_block:primary_author'
+  label: 'Primary Author'
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /bills
+    negate: false
+    context_mapping: {  }

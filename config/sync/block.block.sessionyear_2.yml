@@ -1,0 +1,34 @@
+uuid: 6bd6a273-6744-4b29-841f-0b7e966e3a39
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.hearing_session_year
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: sessionyear_2
+theme: dd
+region: sidebar_first
+weight: -35
+provider: null
+plugin: 'facet_block:hearing_session_year'
+settings:
+  id: 'facet_block:hearing_session_year'
+  label: 'Session Year'
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /hearings
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,18 @@
+uuid: 1b7bc770-2bbf-4d4c-be68-a9a95eb485ed
+langcode: en
+status: true
+dependencies: {  }
+countryCode: VA
+format: "%recipient\n%organization\n%addressLine1\n%addressLine2\n%postalCode %locality"
+requiredFields:
+  - recipient
+  - addressLine1
+  - locality
+uppercaseFields:
+  - locality
+administrativeAreaType: null
+localityType: city
+dependentLocalityType: null
+postalCodeType: postal
+postalCodePattern: '00120'
+postalCodePrefix: null

@@ -1,0 +1,7 @@
+name: DD Hearing
+type: module
+description: DD Hearing entity
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

@@ -1,0 +1,47 @@
+uuid: 215ac864-f0a9-43f6-b97b-a82d54049c4e
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:af9c0e24-e220-4841-afb1-2bc601b4bbb5'
+  module:
+    - block_content
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+  theme:
+    - dd
+id: forresearchers
+theme: dd
+region: home_content_right
+weight: 0
+provider: null
+plugin: 'block_content:af9c0e24-e220-4841-afb1-2bc601b4bbb5'
+settings:
+  id: 'block_content:af9c0e24-e220-4841-afb1-2bc601b4bbb5'
+  label: 'For Researchers'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

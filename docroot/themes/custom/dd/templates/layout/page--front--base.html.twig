@@ -1,0 +1,27 @@
+{% extends "page--front.html.twig" %}
+
+{# Template for the Base Site Home page.
+   This has the sae main region the same as the state sites, hence it extends the page--front template.
+   The header region is different. It does not display the Main navigation menu.
+#}
+
+{% block header %}
+  <header class="header header__region" role="banner">
+    {% if page.top %}
+      <section class ="top__region layout-center"> {{ page.top }} </section>
+    {% endif %}
+    <section class = "layout-center branding__region">
+      <div class = "page-header__region"> {{ page.header }} </div>
+    </section>
+  </header>
+{% endblock %}
+
+{% block innercontent %}
+  {{ page.base_top_content }}
+  {% if page.highlighted %}
+    <div class = "layout-3col__full">
+      {{ page.highlighted }}
+    </div>
+  {% endif %}
+
+{% endblock %}

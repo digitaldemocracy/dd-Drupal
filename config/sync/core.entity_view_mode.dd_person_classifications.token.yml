@@ -1,0 +1,10 @@
+uuid: 4f845a40-e32c-4da2-bb82-c6a92b19ca0c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_person_classifications.token
+label: Token
+targetEntityType: dd_person_classifications
+cache: true

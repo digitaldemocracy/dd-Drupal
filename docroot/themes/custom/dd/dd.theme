@@ -1,0 +1,789 @@
+<?php
+/**
+ * @file
+ * Contains the theme's functions to manipulate Drupal's default markup.
+ *
+ * Complete documentation for this file is available online.
+ * @see https://drupal.org/node/1728096
+ */
+
+use Drupal\dd_base\DdBase;
+
+/**
+ * Override or insert variables into the maintenance page template.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("maintenance_page" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function dd_preprocess_maintenance_page(&$variables, $hook) {
+  // When a variable is manipulated or added in preprocess_html or
+  // preprocess_page, that same work is probably needed for the maintenance page
+  // as well, so we can just re-use those functions to do that work here.
+  dd_preprocess_html($variables, $hook);
+  dd_preprocess_page($variables, $hook);
+}
+// */
+
+/**
+ * Override or insert variables into the html templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("html" in this case.)
+ */
+
+function dd_preprocess_html(&$variables, $hook) {
+  $variables['dd_env'] = DdBase::getEnv();
+  $variables['dd_site_type'] = DdBase::getSiteType();
+  $variables['dd_state'] = DdBase::getCurrentState();
+  $variables['dd_whitelabel_id'] = DdBase::getWhiteLabelId();
+
+  $route = \Drupal::routeMatch();
+  $route_name = $route->getRouteName();
+
+  if (in_array($route_name, ['entity.node.canonical', 'node.add', 'entity.node.edit_form'])) {
+    if ($route_name == 'node.add') {
+      $node_type = $route->getParameter('node_type');
+      $variables['attributes']['class'][] = 'is-page-node-type-' . str_replace('_', '-', $node_type->id());
+
+    }
+    else {
+      $node = $route->getParameter('node');
+      if ($node) {
+        $variables['attributes']['class'][] = 'is-page-node-type-' . str_replace('_', '-', $node->getType());
+        $variables['attributes']['class'][] = 'page-node-' . $node->id();
+      }
+    }
+  }
+
+  switch ($route_name) {
+    case 'entity.node.edit_form':
+      $variables['attributes']['class'][] = 'node-edit-form';
+      break;
+
+    case 'node.add':
+      $variables['attributes']['class'][] = 'node-add-form';
+      break;
+
+    case 'view.campaign_stats.page_1':
+      $variables['page']['#attached']['library'][] = 'dd/campaign-admin';
+      break;
+  }
+
+  // For Widget node types, disable all attached libraries.
+  if (isset($variables['node_type']) && $variables['node_type'] == "widget" && $route_name == "entity.node.canonical") {
+    unset($variables['page']['#attached']);
+    if (isset($variables['page_top']) && isset($variables['page_top']['toolbar'])) {
+      unset($variables['page_top']['toolbar']);
+    }
+    if (isset($variables['page']['content']['dd_local_tasks'])) {
+      unset($variables['page']['content']['dd_local_tasks']);
+    }
+  }
+
+  $campaign_wizard_class = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+  if (!empty($campaign_wizard_class)) {
+    $variables['attributes']['class'][] = 'campaign-wizard';
+    $variables['attributes']['class'][] = $campaign_wizard_class;
+  }
+
+  // The body tag's classes are controlled by the $classes_array variable. To
+  // remove a class from $classes_array, use array_diff().
+  //  $variables['classes_array'] = array_diff($variables['classes_array'],
+  //    array('class-to-remove')
+  //  );
+
+  $request = \Drupal::request();
+
+  // Allow ?contentonly=true to return page without header or footer.
+  $contentonly = ($request->query->get('contentonly') ||
+                 \Drupal::routeMatch()->getRouteName() === "view.alignments.page_2");
+  if ($contentonly == 'true') {
+    if (isset($variables['page_top']) && isset($variables['page_top']['toolbar'])) {
+      unset($variables['page_top']);
+    }
+  }
+
+}
+
+/**
+ * Implements HOOK_theme_suggestions_HOOK_alter
+ *
+ * Theme suggestions to override html template for widgets
+ * @param array $suggestions
+ * @param array $variables
+ */
+
+
+function dd_theme_suggestions_html_alter(&$suggestions, $variables) {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    $node_type = (!empty($node)) ? $node->getType() : FALSE;
+
+    if($node_type == "widget") {
+      $suggestions[] = 'html__node' . '__' . $node_type ;
+    }
+
+}
+
+/**
+ * Override or insert variables into the page templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("page" in this case.)
+ */
+function dd_preprocess_page(&$variables, $hook) {
+  if ($variables['is_front'] == TRUE) {
+    // Check if Action Center campaigns should be hidden.
+    if (
+        DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL &&
+        isset($variables['page']['content']['views_block__campaign_teasers_action_center_block_1'])
+    ) {
+      if (!\Drupal\dd_admin\DdAdmin::showActionCenter()) {
+        unset($variables['page']['content']['views_block__campaign_teasers_action_center_block_1']);
+      }
+    }
+
+    // Remove advanced search site form from base site home page.
+    if (
+      isset($variables['page']['content']['exposedformsite_searchsite_search']) &&
+      \Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_BASE
+    ) {
+      unset($variables['page']['content']['exposedformsite_searchsite_search']);
+    }
+
+    $variables['site_domain_urls'] = DdBase::getStateDomains(TRUE);
+
+    // Check for pixel tracking.
+    if (isset($_SESSION['messages']['status'])) {
+      foreach ($_SESSION['messages']['status'] as $message) {
+        if ($message->__toString() == 'A welcome message with further instructions has been sent to your email address.') {
+          $variables['#attached']['library'][] = 'dd/dd-user-confirm-tracker';
+        }
+      }
+    }
+  }
+  elseif (isset($variables['node']) && ($variables['node']->id() == 18 || $variables['node']->id() == 12117182)) {
+    // Node ID 18 = base site, 12117182 = CA site (for local testing).
+    $variables['#attached']['library'][] = 'dd/dd-about';
+  }
+
+
+  // Apply DdAdminContentSettings switches to pages.
+  if (DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+    $content = &$variables['page']['content'];
+    $sidebar_first = &$variables['page']['sidebar_first'];
+    $sidebar_second = &$variables['page']['sidebar_second'];
+    if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_behest_payments')) {
+      if (isset($content['views_block__person_behest_details_years_block_1'])) {
+        unset($content['views_block__person_behest_details_years_block_1']);
+      }
+    }
+
+    if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_gifts')) {
+      if (isset($content['views_block__person_gifts_received_years_block_1'])) {
+        unset($content['views_block__person_gifts_received_years_block_1']);
+      }
+      if (isset($sidebar_second['views_block__person_gifts_received_years_block_2'])) {
+        unset($sidebar_second['views_block__person_gifts_received_years_block_2']);
+      }
+    }
+
+    if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_contributions')) {
+      if (isset($content['views_block__person_contributions_person_contributions'])) {
+        unset($content['views_block__person_contributions_person_contributions']);
+      }
+      if (isset($sidebar_second['views_block__person_contributions_top_person_contributions'])) {
+        unset($sidebar_second['views_block__person_contributions_top_person_contributions']);
+      }
+    }
+
+    // Remove campaign wizard nav block from sidebar for non-campaigns.
+    $route_name = \Drupal::routeMatch()->getRouteName();
+    if (isset($variables['node']) && $route_name == 'entity.node.edit_form' && $variables['node']->getType() != 'campaign') {
+      if (isset($sidebar_first['ddcampaignwizardnavblock'])) {
+        // Check blocks in region, if > 1 then leave the sidebar.
+        $region_blocks = array_filter(array_keys($sidebar_first), function ($key) {
+          return strpos($key, '#') === FALSE;
+        });
+        if (count($region_blocks) > 1) {
+          unset($sidebar_first['ddcampaignwizardnavblock']);
+        }
+        else {
+          unset($variables['page']['sidebar_first']);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Override or insert variables into the region templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("region" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function dd_preprocess_region(&$variables, $hook) {
+  // Don't use Zen's region--no-wrapper.tpl.php template for sidebars.
+  if (strpos($variables['region'], 'sidebar_') === 0) {
+    $variables['theme_hook_suggestions'] = array_diff(
+      $variables['theme_hook_suggestions'], array('region__no_wrapper')
+    );
+  }
+}
+// */
+
+/**
+ * Override or insert variables into the block templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("block" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function dd_preprocess_block(&$variables, $hook) {
+  // Add a count to all the blocks in the region.
+  // $variables['classes_array'][] = 'count-' . $variables['block_id'];
+
+  // By default, Zen will use the block--no-wrapper.tpl.php for the main
+  // content. This optional bit of code undoes that:
+  if ($variables['block_html_id'] == 'block-system-main') {
+    $variables['theme_hook_suggestions'] = array_diff(
+      $variables['theme_hook_suggestions'], array('block__no_wrapper')
+    );
+  }
+}
+// */
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for form templates.
+ * @param array $suggestions
+ * @param array $variables
+ */
+function dd_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+
+  // Block suggestions.
+
+  $homepageaudienceblocks = array('fororganizations', 'forresearchers', 'forcitizens', 'forjournalists');
+  if (in_array($variables['elements']['#id'], $homepageaudienceblocks)) {
+    $suggestions[] = 'block__homepageaudiences';
+  }
+}
+
+/**
+ * Override or insert variables into the node templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("node" in this case.)
+ */
+
+/**
+ * Implements hook_preprocess_node() for NODE document templates.
+ */
+function dd_preprocess_node(&$variables) {
+  // Allowed view modes
+  $view_mode = $variables['view_mode']; // Retrieve view mode
+  $allowed_view_modes = ['full']; // Array of allowed view modes (for performance so as to not execute on unneeded nodes)
+
+  // If view mode is in allowed view modes list, pass to THEME_add_regions_to_node()
+  if(in_array($view_mode, $allowed_view_modes)) {
+    // Allowed regions (for performance so as to not execute for unneeded region)
+    $allowed_regions = ['content_top'];
+    dd_add_regions_to_node($allowed_regions, $variables);
+  }
+
+  // Add Campaign Bill Teaser to campaign full view.
+  if ($variables['node']->getType() == 'campaign' && $view_mode == 'full') {
+    $variables['campaign_bill_teaser'] = views_embed_view('campaign_bill_teaser', 'block_1', $variables['node']->id());
+  }
+}
+
+/**
+ * THEME_add_regions_to_node
+ */
+
+function dd_add_regions_to_node($allowed_regions, &$variables) {
+  // Retrieve active theme
+  $theme = \Drupal::theme()->getActiveTheme()->getName();
+
+  // Retrieve theme regions
+  $available_regions = system_region_list($theme, 'REGIONS_ALL');
+
+  // Validate allowed regions with available regions
+  $regions = array_intersect(array_keys($available_regions), $allowed_regions);
+
+  // For each region
+  foreach ($regions as $key => $region) {
+
+    // Load region blocks
+    $blocks = entity_load_multiple_by_properties('block', array('theme' => $theme, 'region' => $region));
+
+    // Sort ‘em
+    uasort($blocks, 'Drupal\block\Entity\Block::sort');
+
+    // Capture viewable blocks and their settings to $build
+    $build = array();
+    foreach ($blocks as $key => $block) {
+      if ($block->access('view')) {
+        $build[$key] = entity_view($block, 'block');
+      }
+    }
+
+    // Add build to region
+    $variables[$region] = $build;
+  }
+}
+
+/**
+ * Override or insert variables into the comment templates.
+ *
+ * @param array $variables
+ *   Variables to pass to the theme template.
+ * @param string $hook
+ *   The name of the template being rendered ("comment" in this case.)
+ */
+/* -- Delete this line if you want to use this function
+function dd_preprocess_comment(&$variables, $hook) {
+  $variables['sample_variable'] = t('Lorem ipsum.');
+}
+// */
+
+
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function dd_page_attachments_alter(array &$page) {
+  $page['#attached']['drupalSettings']['current_state'] = DdBase::getCurrentState();
+  $page['#attached']['drupalSettings']['site_type'] = DdBase::getSiteType();
+  $page['#attached']['drupalSettings']['whitelabel_id'] = DdBase::getWhiteLabelId();
+  $page['#attached']['drupalSettings']['site_domains'] = DdBase::getStateDomains();
+  $page['#attached']['drupalSettings']['site_domain_urls'] = DdBase::getStateDomains(TRUE);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function dd_preprocess_views_view_grouping(&$variables) {
+  if ($variables['view']->id() == 'hearing_components' && $variables['view']->current_display == 'bill_votes') {
+    // Add BID and VoteID values to grouping classes.
+    $values = array_values($variables['rows']);
+
+    if ($values) {
+      $last_grouping_row = $values[count($values) - 1]['rows'];
+      $first_row_of_group = array_values($last_grouping_row)[0];
+      $bid = $first_row_of_group->_relationship_entities['hid']->getBid();
+      $vote_id = $first_row_of_group->billvotesummary_billdiscussion_voteid;
+      $variables['view_grouping_classes'] = 'bill_votes voteId_' . $vote_id . ' hide ' . $bid;
+    }
+  }
+}
+
+/**
+ * Implements hook_block().
+ */
+function dd_preprocess_block(&$variables, $hook) {
+  switch ($variables['plugin_id']) {
+    case 'dd_hearing_district_map_block':
+      $variables['#attached']['library'][] = 'dd/dd-district-map';
+      break;
+
+    case 'dd_site_search_block':
+      $variables['#attached']['library'][] = 'core/drupal.autocomplete';
+
+    case 'views_block:hearing_participation_bills-hearing_part_block':
+      $variables['#attached']['library'][] = 'dd/dd-participation';
+      break;
+
+    case 'views_block:hearing_components-agendized_bills':
+      $variables['#attached']['library'][] = 'dd/dd-agendized-bills';
+      break;
+
+    case 'views_block:committee_members_years-block_committee_members':
+    case 'views_block:committee_hearings_years-block_1':
+    case 'views_block:legislator_biography_years-block_1':
+    case 'views_block:organization_alignments_years-org_bill_alignments':
+    case 'views_block:organization_testimony_years-block_1':
+    case 'views_block:person_authored_bills_years-block_1':
+    case 'views_block:person_gifts_received_years-block_1':
+    case 'views_block:person_gifts_received_years-block_2':
+    case 'views_block:person_behest_details_years-block_1':
+    case 'views_block:person_committees_years-block_1':
+    case 'views_block:person_contributions-person_contributions':
+    case 'views_block:person_contributions-top_person_contributions':
+    case 'views_block:person_testimony_years-block_1':
+    case 'views_block:person_top_block_years-block_former_classifications_block':
+      $variables['#attached']['library'][] = 'dd/dd-tab-groupings';
+      break;
+
+    case 'views_block:person_top_block_current-block_1':
+      $is_legislator = FALSE;
+      $parameters = \Drupal::routeMatch()->getParameters();
+      if ($parameters->get('dd_person')) {
+        $pid = $parameters->get('dd_person')->id();
+
+        $classifications = \Drupal\dd_person\Entity\DdPerson::getClassificationsForPid($pid, 1);
+        foreach ($classifications as $classification) {
+          if ($classification->PersonType == 'Legislator') {
+            $is_legislator = TRUE;
+          }
+        }
+      }
+      $variables['#attached']['drupalSettings']['dd_person']['isLegislator'] = $is_legislator;
+      break;
+
+    case 'local_tasks_block':
+      if (DdBase::getSiteType() != \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+        // Remove campaigns and member clip menu items from local tasks.
+        unset($variables['content']['#primary']['dd_account_dashboard.campaigns']);
+        unset($variables['content']['#primary']['dd_account_dashboard.member_clips']);
+      }
+      break;
+  }
+
+  if (strpos($variables['plugin_id'], 'facet_block:') !== FALSE) {
+    $variables['#attached']['library'][] = 'dd/dd-facets';
+  }
+
+  if ($variables['plugin_id'] == 'views_block:person_top_block_years-block_former_classifications_block') {
+    $parameters = \Drupal::routeMatch()->getParameters();
+    $pid = $parameters->get('dd_person')->id();
+    $classifications = \Drupal\dd_person\Entity\DdPerson::getClassificationsForPid($pid, -1);
+    $all_legislator = TRUE;
+    $has_is_current = FALSE;
+
+    // Check all classifications for legislator.
+    if ($classifications) {
+      foreach ($classifications as $classification) {
+        if ($classification->PersonType != 'Legislator') {
+          $all_legislator = FALSE;
+        }
+
+        if ($classification->is_current) {
+          $has_is_current = TRUE;
+        }
+      }
+    }
+
+    // If all legislator, hide Past Affiliations block.
+    if ($all_legislator && $has_is_current) {
+      $variables['#attached']['library'][] = 'dd/dd-hide-past-affiliations';
+    }
+  }
+
+  if ($variables['plugin_id'] == 'system_branding_block') {
+    $variables['dd_state_domain_urls'] = DdBase::getStateDomains(TRUE, TRUE);
+    $variables['dd_state'] = DdBase::getCurrentState();
+    $variables['dd_site_type'] = DdBase::getSiteType();
+    $variables['dd_whitelabel_id'] = DdBase::getWhiteLabelId();
+    try {
+      $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    }
+    catch (Exception $e) {
+      $variables['is_front'] = FALSE;
+    }
+  }
+
+  if ($variables['plugin_id'] == 'page_title_block' && is_array($variables['content']['#title']) && $variables['content']['#title']['#markup'] == 'Search') {
+    $variables['content']['#title']['dd_share_toolbar'] = [
+      '#type' => 'container',
+      '#attributes' => ['class' => ['dd-share-toolbar-group']],
+      'bookmark_link' => \Drupal\dd_alerts\Plugin\Block\DdShareToolbarBlock::getBookmarkLink('search'),
+    ];
+  }
+
+  if ($variables['plugin_id'] == 'views_block:person_contributions-top_person_contributions' || $variables['plugin_id'] == 'views_block:person_gifts_received_years-block_2') {
+    $variables['#attached']['library'][] = 'dd/dd-top-contribution-gifts';
+  }
+
+  $variables['site_domain_urls'] = DdBase::getStateDomains(TRUE);
+
+}
+
+/**
+ * Implements hook_preprocess_views_view().
+ */
+function dd_preprocess_views_view(&$variables) {
+  if (
+    ($variables['view']->id() == 'committee_members_years' && $variables['view']->current_display == 'block_committee_members') ||
+    ($variables['view']->id() == 'committee_hearings_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'legislator_biography_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'organization_alignments_years' && $variables['view']->current_display == 'org_bill_alignments') ||
+    ($variables['view']->id() == 'organization_testimony_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'person_authored_bills_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'person_gifts_received_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'person_gifts_received_years' && $variables['view']->current_display == 'block_2') ||
+    ($variables['view']->id() == 'person_contributions' && $variables['view']->current_display == 'person_contributions') ||
+    ($variables['view']->id() == 'person_contributions' && $variables['view']->current_display == 'top_person_contributions') ||
+    ($variables['view']->id() == 'person_behest_details_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'person_testimony_years' && $variables['view']->current_display == 'block_1') ||
+    ($variables['view']->id() == 'person_top_block_years' && $variables['view']->current_display == 'block_former_classifications_block') ||
+    ($variables['view']->id() == 'person_committees_years' && $variables['view']->current_display == 'block_1')
+  ) {
+
+    $row_tabs = array(
+      '#type' => 'html_tag',
+      '#tag' => 'ul',
+      '#value' => '',
+    );
+    $variables['attributes']['class'][] = 'tabbed-view';
+
+    $block_id = $variables['view']->id() . '--' . $variables['view']->current_display;
+
+    // Loop through grouped rows and add wrappers for tabbing purposes.
+    foreach ($variables['rows'] as $key => &$grouping) {
+      $title = preg_replace('/[^a-zA-Z0-9-]+/', '-', $grouping['#title']);
+      $group_id = $block_id . '_group-' . $title;
+      $row_tabs['#value'] .= '<li><a href="#' . $group_id . '">' . $grouping['#title'] . '</a></li>';
+
+      $grouping['#theme_wrappers'] = array('container');
+      $grouping['#attributes'] = array(
+        'id' => $group_id,
+      );
+      $grouping['#title'] = '';
+    }
+    array_unshift($variables['rows'], $row_tabs);
+
+    $variables['#attached']['library'][] = 'dd/dd-ajax-view';
+  }
+  elseif ($variables['view']->id() == 'hearings_faceted') {
+    $variables['#attached']['library'][] = 'dd/dd-ajax-view';
+  }
+  elseif ($variables['view']->id() == 'alignments') {
+    $variables['#attached']['library'][] = 'dd/dd-alignment-chart';
+  }
+
+  elseif ($variables['view']->id() == 'blogs_by_author' || $variables['view']->id() == 'commentators_listing' ) {
+    $variables['#attached']['library'][] = 'dd/commentary';
+  }
+
+  elseif ($variables['view']->id() == 'campaign_teasers_action_center') {
+    $variables['#attached']['library'][] = 'dd/action-center';
+    $variables['#attached']['library'][] = 'dd/masonry';
+  }
+
+  if ($variables['view']->id() == 'person_top_block_current' && $variables['view']->current_display == 'block_1') {
+    foreach ($variables['rows'] as $key => &$row) {
+      if (isset($row['#rows'][0]['#row'])) {
+        $block_manager = \Drupal::service('plugin.manager.block');
+        $plugin_block = $block_manager->createInstance('dd_person_district_map_block');
+
+        $row['#rows'][] = $plugin_block->build();
+      }
+    }
+  }
+
+  if ($variables['view']->id() == 'committee_contact_info' && $variables['view']->current_display == 'block_1') {
+    $block_manager = \Drupal::service('plugin.manager.block');
+    $plugin_block = $block_manager->createInstance('dd_share_toolbar_block');
+
+    $block = $plugin_block->build();
+    $variables['header'] = $block;
+  }
+
+  // Attach library for toggling the affiliations field content.
+  if ($variables['view']->id() == 'persons_faceted'  && $variables['view']->current_display == 'page_1') {
+    $variables['#attached']['library'][] = 'dd/dd-person-search';
+  }
+
+  // Attach library to the bill alignment view (appears in Org pages).
+  if ($variables['view']->id() == 'organization_alignments_years' && $variables['view']->current_display == 'org_bill_alignments') {
+    $variables['#attached']['library'][] = 'dd/organization-page';
+  }
+}
+
+/**
+ * Alters theme suggestions for page.
+ *
+ * @param array $suggestions
+ *   Array of suggestions
+ * @param array $variables
+ *   Page variables
+ * @param string $hook
+ *   Hook name
+ */
+function dd_theme_suggestions_page_alter(&$suggestions, &$variables, $hook) {
+  // Alter suggestions for faceted to pages to add page__has_facets.
+  $request = \Drupal::routeMatch()->getRouteObject()->getDefault('view_id');
+  if (!empty($request)) {
+    $faceted_views = array(
+      'bills_faceted',
+      'committees_faceted',
+      'hearings_faceted',
+      'persons_faceted',
+      'organizations',
+      'site_search',
+    );
+    if (in_array($request, $faceted_views)) {
+      $suggestions[] = 'page__has_facets';
+    }
+  }
+
+  $request = \Drupal::request();
+
+  // Allow ?contentonly=true to return page without header or footer.
+  $contentonly = ($request->query->get('contentonly') ||
+                 \Drupal::routeMatch()->getRouteName() === "view.alignments.page_2");
+  if ($contentonly == 'true') {
+    $suggestions[] = 'page__content_only';
+  }
+
+  // Add template suggestions for home page based on site type.  page--front--sitetype.
+  // We may want to extend this to other paths, for state or white label specific templates.
+
+  $is_front_page = \Drupal::service('path.matcher')->isFrontPage();
+  $dd_sitetype = DdBase::getSiteType();
+  $dd_state = DdBase::getCurrentState();
+
+  // Add suggestions for site pages.
+  $suggestions[] = 'page__' . $dd_sitetype;
+  $suggestions[] = 'page__' . $dd_sitetype . '__' . strtolower($dd_state);
+  if ($dd_sitetype == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+    $suggestions[] = 'page__' . $dd_sitetype . '__' . DdBase::getWhiteLabelId();
+    $suggestions[] = 'page__' . $dd_sitetype . '__' . DdBase::getWhiteLabelId() . '__' . strtolower($dd_state);
+  }
+
+  if ($is_front_page == TRUE) {
+    $suggestions[] = 'page__front__' . $dd_sitetype;
+    $suggestions[] = 'page__front__' . $dd_sitetype . '__' . strtolower($dd_state);
+    if ($dd_sitetype == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+      $suggestions[] = 'page__front__' . $dd_sitetype . '__' . DdBase::getWhiteLabelId();
+      $suggestions[] = 'page__front__' . $dd_sitetype . '__' . DdBase::getWhiteLabelId() . '__' . strtolower($dd_state);
+    }
+  }
+
+  $entity_view = \Drupal::routeMatch()->getRouteObject()->getDefault('_entity_view');
+  if ($entity_view == 'dd_hearing.full') {
+    $variables['#attached']['library'][] = 'dd/dd-utterance';
+  }
+
+  // Add a campaign wizard suggestion if class exists.
+  $campaign_wizard_class = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+
+  if (!empty($campaign_wizard_class)) {
+    $suggestions[] = 'page__campaign_wizard';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_form_alter(&$form, $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form') {
+    $form['actions']['reset']['#access'] = TRUE;
+  }
+
+  if ($form_id == 'user_register_form') {
+    $form['#attached']['library'][] = 'dd/dd-user-register-tracker';
+  }
+}
+
+/**
+ * Implements hook_preprocess_menu().
+ */
+function dd_preprocess_menu(&$variables) {
+  // Hide menu items from certain environments.
+  if ($variables['theme_hook_original'] == 'menu__main') {
+    $menu_titles_hide = [];
+
+    $site_type = DdBase::getSiteType();
+    $state = DdBase::getCurrentState();
+
+    if ($state != 'CA') {
+      $menu_titles_hide['Analysis'] = 'Analysis';
+      $menu_titles_hide['Alignments'] = 'Alignments';
+    }
+
+    // NY and non-state sites disable commentary.
+    if ($state == 'NY' || $site_type != \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_STATE) {
+      $menu_titles_hide['Commentary'] = 'Commentary';
+    }
+
+    if (!\Drupal\dd_admin\DdAdmin::showActionCenter()) {
+      $menu_titles_hide['Action Center'] = 'Action Center';
+    }
+
+    // React to DdAdminContentSettings form settings.
+    if (DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+      if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_hearings')) {
+        $menu_titles_hide['Hearings'] = 'Hearings';
+      }
+
+      if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_organizations')) {
+        $menu_titles_hide['Organizations'] = 'Organizations';
+      }
+
+      if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_speakers')) {
+        $menu_titles_hide['Speakers'] = 'Speakers';
+      }
+
+      if (!\Drupal\dd_admin\DdAdmin::checkVisibility('visibility_bills')) {
+        $menu_titles_hide['Bills'] = 'Bills';
+      }
+    }
+
+    foreach ($variables['items'] as $key => $item) {
+      if ($menu_titles_hide && in_array($item['title'], $menu_titles_hide)) {
+        unset($variables['items'][$key]);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_region().
+ */
+
+function dd_preprocess_region(&$vars) {
+
+  $region = $vars['elements']['#region'];
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_args = explode('/', $current_path);
+  
+  //drupal_set_message('got here');
+  $vars['show_powered_by_dd'] = theme_get_setting('show_powered_by_dd');
+
+  // Add .content to both content_top and content_main
+  $content_region = array (
+    'content_top',
+    'content'
+  );
+
+  // Add dd-box-shadow if it's one of these paths.
+  if (in_array($region, $content_region)) {
+    $vars['attributes']['class'][] = 'content';
+
+    $box_shadow_paths = array (
+      'persons',
+      'bills',
+      'hearings',
+      'blog',
+      'commentators',
+    );
+
+    $request = \Drupal::request();
+    // Allow ?contentonly=true to return page without header or footer.
+    $contentonly = ($request->query->get('contentonly') ||
+                 \Drupal::routeMatch()->getRouteName() === "view.alignments.page_2");
+
+    if ((count($path_args) > 1) && (in_array($path_args[1], $box_shadow_paths))) {
+      $vars['attributes']['class'][] = 'dd-box-shadow';
+    }
+    elseif ($contentonly == 'true') {
+      $vars['attributes']['class'][] = 'dd-contentonly';
+    }
+    else {
+      $vars['attributes']['class'][] = 'dd-rounded-corners';
+    }
+  }
+}

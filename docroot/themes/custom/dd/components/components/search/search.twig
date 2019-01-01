@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Component for search.
+ *
+ * Variables:
+
+ * - content: [string] The component contents.
+ */
+#}
+
+<div class="search">
+  {% block content %}
+    <input value= "{{ content }}" placeholder= "{{ placeholder }}" />
+  {% endblock %}
+</div>
+
+//@todo turn this into a variant for exposed views filters
+
+<div class="views-exposed-form">
+  <div class="form-type-textfield">
+
+      <label for="edit-search-api-fulltext">Search</label>
+
+      <input data-drupal-selector="edit-search-api-fulltext" type="text" id="edit-search-api-fulltext" name="search_api_fulltext" value="" size="30" maxlength="128" class="form-text">
+
+      <div id="edit-search-api-fulltext--description" class="description">
+        Committee, Speaker, Author
+      </div>
+  </div>
+</div>

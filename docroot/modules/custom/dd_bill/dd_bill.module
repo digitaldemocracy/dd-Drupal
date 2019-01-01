@@ -1,0 +1,170 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_bill.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dd_bill\Entity\DdBill;
+use Drupal\dd_bill\Entity\DdBillDiscussion;
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_help().
+ */
+function dd_bill_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_bill module.
+    case 'help.page.dd_bill':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Bill') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_entity_storage_load().
+ */
+function dd_bill_entity_storage_load(array $entities, $entity_type) {
+  if ($entity_type == 'dd_bill') {
+    foreach ($entities as $entity) {
+      $bill_version_current = DdBill::getBillVersionCurrentForBid($entity->getBid());
+      if ($bill_version_current && $bill_version_current->dr_id) {
+        $entity->setBillVersionCurrentDrId($bill_version_current->dr_id);
+        $pid = DdBill::getPrimaryBillAuthorPidForBid($entity->getBid());
+        if ($pid) {
+          $entity->setPrimaryAuthorPid($pid);
+        }
+      }
+
+      if ($entity->getType() != '' && $entity->getNumber() != '') {
+        $entity->setTypeNumber($entity->getType() . ' ' . $entity->getNumber());
+      }
+    }
+  }
+  elseif ($entity_type == 'dd_bill_discussion') {
+    foreach ($entities as $entity) {
+      $query = Database::getConnection('default', \Drupal\dd_base\DdBase::getDddbName())->select('Bill', 'b');
+      $query->condition('b.bid', $entity->getBid());
+      $query->fields('b', array('dr_id'));
+      $ids = $query->execute()->fetchCol();
+      if ($ids) {
+        $entity->setBidDrId(reset($ids));
+      }
+
+      $speakers = DdBillDiscussion::getSpeakersForBillDiscussion($entity->id());
+      if ($speakers) {
+        $entity->setSpeakers($speakers);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_bill_views_data_alter(array &$data) {
+  $data['Bill']['BillDiscussionSpeakers'] = array(
+    'title' => t('Bill Discussion Speakers'),
+    'help' => t('Show a list of speakers'),
+    'field' => array(
+      'id' => 'bill_discussion_speakers',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_bill_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-bills-faceted-bills-faceted') {
+    $user_input = $form_state->getUserInput();
+    $session_years = [];
+
+    if (isset($user_input['f']) && count($user_input['f'])) {
+      foreach ($user_input['f'] as $facet) {
+        list($key, $value) = explode(':', $facet);
+        if ($key == 'session_year') {
+          $session_years[] = $value;
+        }
+      }
+    }
+
+    if ($session_years) {
+      $session_years = implode(':', $session_years);
+    }
+    else {
+      $session_years = 'all';
+    }
+
+    $form['bid']['#autocomplete_route_name'] = 'dd_bill.bill_autocomplete';
+    $form['bid']['#autocomplete_route_parameters'] = ['session_years' => $session_years, 'use_bid_value' => TRUE];
+    $form['author_search']['#autocomplete_route_name'] = 'dd_person.person_autocomplete';
+
+    $form['#attached']['library'][] = 'dd/dd-autocomplete';
+    $form['#submit'][] = '_dd_bill_search_submit';
+  }
+}
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_bill_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Add State conditions for search_api tracking of entities.
+  if (isset($query->getTables()['base_table'])) {
+    if ($query->getTables()['base_table']['table'] == 'Bill' && \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))) {
+      $query->condition('base_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+    }
+    elseif ($query->getTables()['base_table']['table'] == 'BillDiscussion' && \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))) {
+      $query->join('Bill', 'bill_table', 'base_table.bid = bill_table.bid');
+      $query->condition('bill_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+    }
+  }
+}
+
+/**
+ * Adds our theme specifications to the Theme Registry.
+ */
+function dd_bill_theme($existing, $type, $theme, $path) {
+  return array(
+    'dd_bill' => array(
+      'variables' => array('element' => null),
+      'template' => 'dd_bill'
+    ),
+  );
+}
+
+/**
+ * Bill Search Form Submit Handler.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_bill_search_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $view = $form_state->get('view');
+  $input = $view->getExposedInput();
+  $name = $form_state->getValue('author_search');
+
+  // Strip out (#) PID from name.
+  if ($name != '') {
+    $name = trim(preg_replace("/[()\d]/", "", $name));
+    $input['author_search'] = $name;
+    $view->exposed_data['author_search'] = $name;
+  }
+
+  // If input is not a BID (like AB 1), use the type_number field.
+  if (isset($input['bid']) && strlen($input['bid']) < 14) {
+    $input['type_number'] = strtoupper($input['bid']);
+    $view->exposed_data['type_number'] = strtoupper($input['bid']);
+    $input['bid'] = '';
+    $view->exposed_data['bid'] = '';
+  }
+
+  $view->setExposedInput($input);
+}

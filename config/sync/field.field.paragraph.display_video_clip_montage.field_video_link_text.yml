@@ -1,0 +1,19 @@
+uuid: 0e1b4fd2-b74d-43c6-8918-95946b56a52d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_link_text
+    - paragraphs.paragraphs_type.display_video_clip_montage
+id: paragraph.display_video_clip_montage.field_video_link_text
+field_name: field_video_link_text
+entity_type: paragraph
+bundle: display_video_clip_montage
+label: 'Video Link Text'
+description: 'The text shown on the button to show the video action page'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,6 @@
+name: 'Digital Democracy Demo Content'
+type: module
+description: 'Creates demo content'
+package: DigitalDemocracy
+core: 8.x
+

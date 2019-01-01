@@ -1,0 +1,16 @@
+administer dd hearing entities:
+  title: 'Administer DD Hearing entities'
+  description: 'Allow to access the administration form to configure DD Hearing entities.'
+  restrict access: true
+
+edit dd hearing entities:
+  title: 'Edit DD Hearing entities'
+
+access dd hearing overview:
+  title: 'Access the DD Hearing overview page'
+
+view published dd hearing entities:
+  title: 'View published DD Hearing entities'
+
+view unpublished dd hearing entities:
+  title: 'View unpublished DD Hearing entities'

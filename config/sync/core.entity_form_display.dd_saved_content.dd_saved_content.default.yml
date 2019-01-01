@@ -1,0 +1,32 @@
+uuid: 482dfaef-d8c2-42ba-a081-ea03e1913fa4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_saved_content.dd_saved_content.field_description
+    - field.field.dd_saved_content.dd_saved_content.field_path
+    - field.field.dd_saved_content.dd_saved_content.field_state
+    - field.field.dd_saved_content.dd_saved_content.field_type
+    - field.field.dd_saved_content.dd_saved_content.field_url
+  module:
+    - dd_account_dashboard
+id: dd_saved_content.dd_saved_content.default
+targetEntityType: dd_saved_content
+bundle: dd_saved_content
+mode: default
+content:
+  field_description:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  field_path: true
+  field_state: true
+  field_type: true
+  field_url: true
+  name: true
+  user_id: true

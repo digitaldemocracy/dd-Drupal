@@ -1,0 +1,37 @@
+uuid: ff5e2812-b94f-4378-a216-fb6926c469d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bill_hearings
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__bill_hearings_block_1
+theme: dd
+region: sidebar_second
+weight: -37
+provider: null
+plugin: 'views_block:bill_hearings-block_1'
+settings:
+  id: 'views_block:bill_hearings-block_1'
+  label: 'Discussed In Hearings'
+  provider: views
+  label_display: visible
+  views_label: 'Discussed In Hearings'
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/bill/*'
+    negate: false
+    context_mapping: {  }

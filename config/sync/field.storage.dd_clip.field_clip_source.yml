@@ -1,0 +1,30 @@
+uuid: 997cecbe-19c6-45c9-afa2-a13b731c507f
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+    - options
+id: dd_clip.field_clip_source
+field_name: field_clip_source
+entity_type: dd_clip
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: video
+      label: 'Original Video'
+    -
+      value: clip
+      label: 'Other Clip'
+    -
+      value: montage
+      label: 'Other Montage'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

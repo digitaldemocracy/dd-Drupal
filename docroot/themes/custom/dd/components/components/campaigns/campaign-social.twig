@@ -1,0 +1,7 @@
+{% if enable_twitter_share['#markup'] != 'Off' %}
+  {{ attach_library('dd/action-tweet') }}
+  <a href="https://twitter.com/intent/tweet?text={{ tweet|url_encode }}&url={{ url('<current>')|render|url_encode }}" class="action-link--tweet twitter-mention-button" data-size="large" data-show-count="false">Tweet about campaign</a>
+{% endif %}
+{% if enable_facebook_share['#markup'] != 'Off' %}
+  <div class="fb-share-button" data-href="{{ url('<current>') }}" data-layout="button" data-size="large" data-mobile-iframe="true"></div>
+{% endif %}

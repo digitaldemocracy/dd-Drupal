@@ -1,0 +1,69 @@
+<?php
+
+/**
+ * @file
+ * Containd dd_fax_service_payment module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\user\Entity\User;
+use \Drupal\node\Entity\Node;
+use Drupal\user\UserInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\field\FieldConfigInterface;
+use Drupal\node\Entity\NodeType;
+use Drupal\dd_fax_service\Entity\DdFaxServiceHistory;
+
+/**
+ * Implements hook_theme().
+ */
+function dd_fax_service_payment_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-fax-service-payment-form' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-fax-service-payment-form',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * Function that is invoked by DdPaymentSystemStripeController. Increases 
+ * fax_service current_limit. Saves invoice history.
+ * @param Boolean $customer_created
+ *   true if a new customer was created, otherwise false 
+ * @param User
+ *   user information
+ * @param Stripe\Customer
+ *   stripe customer information
+ * @param Node
+ *   node information
+ * @param FaxServicePaymentEntity
+ *   entity for fax_service_payment
+ */
+function dd_fax_service_payment_stripe_charge_succeeded_fax($customer_created,
+ $user, $customer, $node, $fax_payment) {
+  
+  $node->field_balance_due->setValue(0);
+  $node->save(); 
+
+  if ($customer_created) {
+    $user->field_cid->setValue($customer->id);
+    $user->save();
+  }
+
+  $fax_service = current(DdFaxServiceHistory::loadByFields(array()));
+
+  $old_limit = $fax_service->field_current_limit->value;
+  $increase = $fax_payment->field_increase_limit->value;
+  $new_limit = $old_limit + $increase;
+
+  $fax_service->field_current_limit->setValue($new_limit);
+  $fax_service->save();
+
+  dd_payment_system_save_invoice_history($node);
+}

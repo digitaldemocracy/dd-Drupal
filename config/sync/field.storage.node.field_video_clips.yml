@@ -1,0 +1,20 @@
+uuid: 08840885-b509-4392-86d2-c562af7a5d4e
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+    - node
+id: node.field_video_clips
+field_name: field_video_clips
+entity_type: node
+type: entity_reference
+settings:
+  target_type: dd_clip
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

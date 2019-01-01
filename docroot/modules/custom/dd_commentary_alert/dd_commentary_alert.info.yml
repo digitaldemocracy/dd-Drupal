@@ -1,0 +1,7 @@
+name: DD Commentary Alert
+type: module
+description: Alert users on new commentaries
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

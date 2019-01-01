@@ -1,0 +1,23 @@
+uuid: 1922d33f-2d06-4372-81bc-1488c708c51c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_phone_action_id
+    - node.type.phone_action_response
+id: node.phone_action_response.field_phone_action_id
+field_name: field_phone_action_id
+entity_type: node
+bundle: phone_action_response
+label: 'Phone Action ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

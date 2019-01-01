@@ -1,0 +1,18 @@
+uuid: 69ca6edb-87c3-4bad-a9c1-685b9c7062e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.counties
+id: node.counties.title
+field_name: title
+entity_type: node
+bundle: counties
+label: 'County Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

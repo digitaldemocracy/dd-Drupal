@@ -1,0 +1,27 @@
+dd_email_editor.address_form:
+ path: '/email_editor/find/{content_type}/{arg}'
+ defaults:
+   _controller: '\Drupal\dd_email_editor\Controller\DdEmailEditorController::find'
+   _title: 'Find Newspapers'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE
+dd_email_editor.get_contact_links:
+ path: '/email_editor/get_contact/{state}/{zip}/{city}/{street}/{arg}'
+ defaults:
+   _controller: '\Drupal\dd_email_editor\Controller\DdEmailEditorController::getLinks'
+   _title: 'Editorislator Contact Links'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE
+dd_email_editor.find_newspapers_by_address:
+ path: '/email_editor/find_by_address'
+ defaults:
+   _controller: '\Drupal\dd_email_editor\Controller\DdEmailEditorController::findByAddress'
+   _title: 'Find Newspapers In Your Area'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE

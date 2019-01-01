@@ -1,0 +1,36 @@
+uuid: c7c4fa4d-be2e-4766-8d0c-ca04b31cbd4f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.organizations
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: exposedformorganizationsorganizations_page
+theme: dd
+region: sidebar_first
+weight: -44
+provider: null
+plugin: 'views_exposed_filter_block:organizations-organizations_page'
+settings:
+  id: 'views_exposed_filter_block:organizations-organizations_page'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /organizations
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,22 @@
+uuid: 49bde9d0-dd8e-4d25-a482-156fba8d61a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dd_subscription_type
+id: node.dd_subscription_type.status
+field_name: status
+entity_type: node
+bundle: dd_subscription_type
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

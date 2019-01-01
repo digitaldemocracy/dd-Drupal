@@ -1,0 +1,83 @@
+uuid: c3bbaa7f-b389-49b5-93a4-3e8a59658300
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.phone_action.field_advocacy_message
+    - field.field.paragraph.phone_action.field_advocacy_message_label
+    - field.field.paragraph.phone_action.field_capture_info
+    - field.field.paragraph.phone_action.field_capture_staff
+    - field.field.paragraph.phone_action.field_legislator_position
+    - field.field.paragraph.phone_action.field_phone_targets
+    - field.field.paragraph.phone_action.field_talking_points
+    - paragraphs.paragraphs_type.phone_action
+  module:
+    - options
+    - text
+id: paragraph.phone_action.default
+targetEntityType: paragraph
+bundle: phone_action
+mode: default
+content:
+  field_advocacy_message:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_advocacy_message_label:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_capture_info:
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_capture_staff:
+    weight: 9
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_legislator_position:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_phone_targets:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_talking_points:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

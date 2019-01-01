@@ -1,0 +1,139 @@
+@import 'init';
+// Search
+//
+// Markup: speakers--search.twig
+//
+// Style guide: components.speakers-search
+
+.is-path-persons {
+  h1.page-title {
+    @include visually-hidden;
+  }
+}
+
+.dd--speakers--search {
+  > .view-content { // with > so that it isn't inherited by the embedded view.
+    @include glossary-anchors;
+
+    h3 {
+      &:first-child {
+        margin-top: 1rem;
+      }
+
+      // Override base line-height
+      @include zen-respond-to(s) {
+        line-height: 1;
+      }
+
+      // Center text within circle for all breakpoints
+      @include zen-respond-to(l) {
+        padding: 5%;
+      }
+    }
+
+    -webkit-columns: 2;
+    -moz-columns: 2;
+    columns: 2;
+
+    @include zen-respond-to(m) {
+      -webkit-columns: 3;
+      -moz-columns: 3;
+      columns: 3;
+    }
+    @include zen-respond-to(m) {
+      -webkit-columns: 4;
+      -moz-columns: 4;
+      columns: 4;
+    }
+    @include zen-respond-to(xl) {
+      -webkit-columns: 5;
+      -moz-columns: 5;
+      columns: 5;
+    }
+  }
+
+  // Style the exposed search block
+  .views-exposed-form {
+
+    //The submit button
+    input#edit-submit-persons-faceted {
+      @include input-search-icon;
+      text-indent: -9999px;
+      line-height: 1px;
+      height: 45px;
+      margin-top: 24px;
+      padding: 22px;
+    }
+
+    //The clear button
+    input#edit-reset {
+      display: none;
+    }
+  }
+}
+
+.organizations__glossary {
+  clear: both;
+}
+
+
+.block-views-blockspeaker-top-participation-block-1,
+.block-views-blocklegislator-top-participation-block-1 {
+
+  .view-content {
+    @include flex-container(flex-start, flex-start);
+  }
+
+  //
+  .top-speakers {
+    @include flex-item();
+    margin: 1em 0;
+    padding: 2px;
+    width: 50%;
+
+    @include zen-respond-to(xs) {
+      width: 33%;
+    }
+
+    @include zen-respond-to(m) {
+      width: 25%;
+      padding: 4px;
+    }
+
+    @include zen-respond-to(xxl) {
+      width: 20%;
+    }
+
+  }
+}
+
+.dd--speakers--search,
+.block-views-blockspeaker-top-participation-block-1,
+.block-views-blocklegislator-top-participation-block-1 {
+  @include line-height(24px);
+
+  // Responsive picture grid widths
+  .speakers__search {
+    &--row {
+      -webkit-column-break-inside: avoid;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    @include dd-round-headshots(100px);
+
+    &--full-name {
+      padding-top: 1rem;
+      font-weight: bold;
+      text-transform: capitalize;
+    }
+
+    &--affiliations {
+      margin-left: 22px;
+    }
+  }
+}
+
+.block-views-blockspeaker-top-participation-block-1 {
+  @include dd-bottom-border();
+}

@@ -1,0 +1,12 @@
+uuid: b1b441f1-e829-4a08-8b37-cc9a4bf709f4
+langcode: en
+status: true
+dependencies: {  }
+id: premium
+label: Premium
+weight: 14
+is_admin: null
+permissions:
+  - 'access dd video annotator'
+  - 'access dd video builder'
+  - 'attach transcripts to clips'

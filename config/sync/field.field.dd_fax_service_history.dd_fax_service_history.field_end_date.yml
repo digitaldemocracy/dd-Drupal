@@ -1,0 +1,21 @@
+uuid: 26522c37-2af5-460e-8fe9-ca4916c74f0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_history.field_end_date
+  module:
+    - datetime
+    - dd_fax_service
+id: dd_fax_service_history.dd_fax_service_history.field_end_date
+field_name: field_end_date
+entity_type: dd_fax_service_history
+bundle: dd_fax_service_history
+label: 'End Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

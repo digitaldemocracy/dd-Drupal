@@ -1,0 +1,38 @@
+uuid: c2fa999b-b6fe-4500-8cfa-dfc85c88b30f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_sponsored_logo
+    - node.type.widget
+  module:
+    - image
+id: node.widget.field_widget_sponsored_logo
+field_name: field_widget_sponsored_logo
+entity_type: node
+bundle: widget
+label: 'Sponsored by Logo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: widget
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: 500kb
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

@@ -1,0 +1,17 @@
+uuid: e47ca0ba-6525-4afd-b94d-82d1ffb50193
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Campaign
+type: campaign
+description: 'Action Center Campaign'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

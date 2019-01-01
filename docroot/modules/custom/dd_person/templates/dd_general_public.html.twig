@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_general_public.html.twig
+ * Default theme implementation to present DD General Public data.
+ *
+ * This template is used when viewing DD General Public pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_general_public()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_general_public') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

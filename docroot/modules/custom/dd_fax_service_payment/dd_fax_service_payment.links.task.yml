@@ -1,0 +1,22 @@
+# Dd fax service payment entity routing definition
+dd_fax_service_payment_entity.settings_tab:
+  route_name: dd_fax_service_payment_entity.settings
+  title: 'Settings'
+  base_route: dd_fax_service_payment_entity.settings
+
+entity.dd_fax_service_payment_entity.canonical:
+  route_name: entity.dd_fax_service_payment_entity.canonical
+  base_route: entity.dd_fax_service_payment_entity.canonical
+  title: 'View'
+
+entity.dd_fax_service_payment_entity.edit_form:
+  route_name: entity.dd_fax_service_payment_entity.edit_form
+  base_route: entity.dd_fax_service_payment_entity.canonical
+  title: 'Edit'
+
+entity.dd_fax_service_payment_entity.delete_form:
+  route_name:  entity.dd_fax_service_payment_entity.delete_form
+  base_route:  entity.dd_fax_service_payment_entity.canonical
+  title: Delete
+  weight: 10
+

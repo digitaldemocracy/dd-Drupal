@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_video_tags.html.twig
+ * Default theme implementation to present DD Video Tags data.
+ *
+ * This template is used when viewing DD Video Tags pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_video_tags()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_video_tags') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

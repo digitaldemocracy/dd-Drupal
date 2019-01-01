@@ -1,0 +1,131 @@
+// DEFAULT OPTIONS
+
+// Prefix for Hover class names
+$name-space: 'hvr' !default;
+
+// Durations
+$fast-duration: .1s !default;
+$medium-duration: .3s !default;
+$slow-duration: .5s !default;
+
+// Colors
+$primary-color: #e1e1e1 !default;
+$secondary-color: #666 !default;
+$highlight-color: #ccc !default;
+$active-color: $dd-yellow !default;
+$shadow-color: rgba(0, 0, 0, .6) !default;
+
+// Speech bubbles options
+$tip-width: 10px !default;  //the width of the speech bubble tip
+$tip-height: 10px !default; //the height of the speech bubble tip
+$tip-color: $primary-color !default;
+
+// Arrows options
+$space-between-text-and-arrows: 2.2em !default;
+
+// Curl dimensions
+$curl-width: 25px !default;
+$curl-height: 25px !default;
+
+// Curl colors
+$reveal-area-color: white !default;    // reveal area behind the curl
+$curl-line-color: #aaa !default;       // crease line
+$curl-transition-color: #ccc !default;	// color transitioning from crease line to final color
+$curl-last-color: white !default;		// final color of the back of the curl
+
+// Browser Prefixes - Which CSS prefixes should be used?
+$webkit: true !default;
+$moz: false !default;
+$ms: false !default;
+$o: false !default;
+
+// Compile with or without classes
+$include-classes: true !default;
+
+
+// As is often the case, some devices/browsers need additional code to get CSS to work
+// in the most desired way. These mixins are used to quickly drop in hacks for each element
+// Find out more here: https://github.com/IanLunn/Hover/wiki/Hacks-Explained
+
+@mixin hardware-accel() {
+  // Improve performance on mobile/tablet devices
+  @include prefixed(transform, translateZ(0));
+}
+
+@mixin improve-anti-alias() {
+  // Improve aliasing on mobile/tablet devices
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
+}
+
+@mixin font-smooth() {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin force-block-level() {
+  // Transforms need to be block-level to work
+  display: inline-block;
+  vertical-align: middle;
+}
+
+@mixin hacks() {
+  @include force-block-level();
+  @include hardware-accel();
+  @include improve-anti-alias();
+  @include font-smooth();
+}
+
+
+// prefix declarations
+@mixin prefixed($property, $value) {
+  @if $webkit == true {
+    -webkit-#{$property}: #{$value};
+  }
+
+  @if $moz == true {
+    -moz-#{$property}: #{$value};
+  }
+
+  @if $ms == true {
+    -ms-#{$property}: #{$value};
+  }
+
+  @if $o == true {
+    -o-#{$property}: #{$value};
+  }
+
+  #{$property}: #{$value};
+}
+
+// prefix keyframes
+@mixin keyframes($name) {
+  @if $webkit == true {
+    @-webkit-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $moz == true {
+    @-moz-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $ms == true {
+    @-ms-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @if $o == true {
+    @-o-keyframes #{$name} {
+      @content;
+    }
+  }
+
+  @keyframes #{$name} {
+    @content;
+  }
+}
+

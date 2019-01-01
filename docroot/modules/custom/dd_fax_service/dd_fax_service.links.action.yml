@@ -1,0 +1,10 @@
+entity.dd_fax_service_history.add_form:
+  route_name: entity.dd_fax_service_history.add_form
+  title: 'Add Dd fax service history'
+  appears_on:
+    - entity.dd_fax_service_history.collection
+entity.dd_fax_service_history.add_form:
+  route_name: entity.dd_fax_service_history.add_form
+  title: 'Add Dd fax service history'
+  appears_on:
+    - entity.dd_fax_service_history.collection

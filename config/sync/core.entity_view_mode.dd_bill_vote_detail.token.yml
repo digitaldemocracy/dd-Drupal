@@ -1,0 +1,10 @@
+uuid: 7b8af1f7-0418-465e-8746-2811eb5e9486
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill_vote_detail.token
+label: Token
+targetEntityType: dd_bill_vote_detail
+cache: true

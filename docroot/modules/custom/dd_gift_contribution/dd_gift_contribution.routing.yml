@@ -1,0 +1,15 @@
+dd_gift_contribution.gift_donor_autocomplete:
+  path: '/dd_gift_donor_autocomplete'
+  defaults:
+    _controller: '\Drupal\dd_gift_contribution\Controller\DdDonorAutocompleteController::handleAutocomplete'
+    source: 'gift'
+  requirements:
+    _access: 'TRUE'
+
+dd_gift_contribution.contribution_donor_autocomplete:
+  path: '/dd_contribution_donor_autocomplete'
+  defaults:
+    _controller: '\Drupal\dd_gift_contribution\Controller\DdDonorAutocompleteController::handleAutocomplete'
+    source: 'contribution'
+  requirements:
+    _access: 'TRUE'

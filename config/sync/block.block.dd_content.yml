@@ -1,0 +1,22 @@
+uuid: 381ba1aa-cff8-4f72-a76f-40702101e27b
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - dd
+_core:
+  default_config_hash: YFmOaBSHO_hFz-O1oKw8PMS5SjKYVcZlr90o_dPwYfs
+id: dd_content
+theme: dd
+region: content
+weight: -46
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

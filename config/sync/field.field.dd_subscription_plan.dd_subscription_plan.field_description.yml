@@ -1,0 +1,22 @@
+uuid: d8fb2249-3dec-4667-b3f6-4883b9ce4bed
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_subscription_plan.field_description
+  module:
+    - dd_payment_system
+    - text
+id: dd_subscription_plan.dd_subscription_plan.field_description
+field_name: field_description
+entity_type: dd_subscription_plan
+bundle: dd_subscription_plan
+label: Description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

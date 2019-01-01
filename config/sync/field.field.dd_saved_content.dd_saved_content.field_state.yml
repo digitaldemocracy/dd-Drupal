@@ -1,0 +1,21 @@
+uuid: e805deab-25f5-4112-a3f8-b40fa9635c61
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_saved_content.field_state
+  module:
+    - dd_account_dashboard
+    - options
+id: dd_saved_content.dd_saved_content.field_state
+field_name: field_state
+entity_type: dd_saved_content
+bundle: dd_saved_content
+label: State
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

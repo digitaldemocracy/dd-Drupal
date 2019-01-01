@@ -1,0 +1,24 @@
+uuid: c07fb49a-e281-478b-81c5-41ed019f2c90
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.display_video_clip_montage.field_sample_tweet
+    - field.field.paragraph.display_video_clip_montage.field_video_clip
+    - field.field.paragraph.display_video_clip_montage.field_video_description
+    - field.field.paragraph.display_video_clip_montage.field_video_link_text
+    - paragraphs.paragraphs_type.display_video_clip_montage
+id: paragraph.display_video_clip_montage.icon
+targetEntityType: paragraph
+bundle: display_video_clip_montage
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_sample_tweet: true
+  field_video_clip: true
+  field_video_description: true
+  field_video_link_text: true
+  uid: true

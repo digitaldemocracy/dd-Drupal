@@ -1,0 +1,7 @@
+<div class="dd-email-editor-contact-links">
+  <ul class="contact-links">
+    {% for link in links %}
+    <li><a href="{{ link.url|raw }}" target="{{ link.target }}">Email {{ link.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,10 @@
+dd_admin:
+  visibility_action_center: "anonymous"
+  visibility_behest_payments: "anonymous"
+  visibility_bill_details: "anonymous"
+  visibility_contributions: "anonymous"
+  visibility_gifts: "anonymous"
+  visibility_hearings: "anonymous"
+  visibility_lobbyists: "anonymous"
+  visibility_organizations: "anonymous"
+  visibility_speakers: "anonymous"

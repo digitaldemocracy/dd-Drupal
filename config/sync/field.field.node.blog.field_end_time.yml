@@ -1,0 +1,23 @@
+uuid: 6e0b9f01-a5c6-4e55-bff3-285c9fbb908c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_end_time
+    - node.type.blog
+id: node.blog.field_end_time
+field_name: field_end_time
+entity_type: node
+bundle: blog
+label: end_time
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

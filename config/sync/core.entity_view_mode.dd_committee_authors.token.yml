@@ -1,0 +1,10 @@
+uuid: 484733d2-2646-41d2-be8f-4eb22269ad6d
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee_authors.token
+label: Token
+targetEntityType: dd_committee_authors
+cache: true

@@ -1,0 +1,17 @@
+uuid: 792c48e0-b9fe-4c5b-87ba-ddfa0d7fd2ca
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'DD Bill Alert'
+type: dd_bill_alert
+description: 'Alerts for specific bills'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

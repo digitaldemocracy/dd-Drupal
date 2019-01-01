@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_person.html.twig
+ * Default theme implementation to present DD Person data.
+ *
+ * This template is used when viewing DD Person pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_person()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd-person') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

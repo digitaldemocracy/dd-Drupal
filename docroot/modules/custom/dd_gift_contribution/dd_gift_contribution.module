@@ -1,0 +1,136 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_gift_contribution.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dd_gift_contribution\Entity\DdContribution;
+use Drupal\dd_gift_contribution\Entity\DdGiftCombined;
+
+/**
+ * Implements hook_help().
+ */
+function dd_gift_contribution_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_gift_contribution module.
+    case 'help.page.dd_gift_contribution':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Gift Contribution') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_gift_contribution_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $pages = array(
+    'views-exposed-form-gifts-page-1' => 'legislator',
+    'views-exposed-form-gifts-page-2' => 'staff',
+    'views-exposed-form-gifts-page-3' => 'office',
+    'views-exposed-form-gifts-page-4' => 'office',
+  );
+
+  // Adjustments for the years.
+  if ($form_id == 'views_exposed_form' && in_array($form['#id'], array_keys($pages))) {
+    $field_id = 'year';
+
+    // Only alter forms with the necessary field.
+    if (isset($form[$field_id])) {
+      $options = DdGiftCombined::getSessionYears($pages[$form['#id']]);
+
+      // Alter the field.
+      $form[$field_id]['#type'] = 'select';
+      $form[$field_id]['#options'] = $options;
+      $form[$field_id]['#chosen'] = TRUE;
+      unset($form[$field_id]['#size']);
+
+      // Set to highest session year available.
+      $input = $form_state->getUserInput();
+      if ($input['year'] == '') {
+        $input['year'] = max(array_keys($options));
+        $form_state->setUserInput($input);
+      }
+    }
+
+    $form['#attached']['library'][] = 'dd/dd-gifts';
+  }
+
+  // Adjustments for the recipient person dropdown.
+  if ($form_id == 'views_exposed_form' && in_array($form['#id'], array(
+    'views-exposed-form-contributions-default',
+    'views-exposed-form-contributions-contributions-legislator',
+    'views-exposed-form-gifts-page-1',
+    'views-exposed-form-gifts-page-2',
+    'views-exposed-form-gifts-page-3',
+    'views-exposed-form-gifts-page-4',
+  ))) {
+
+    $field_id = 'pid';
+    $type = '';
+
+    if ($form['#id'] == 'views-exposed-form-gifts-page-3' or
+      $form['#id'] == 'views-exposed-form-gifts-page-4') {
+      $type = 'office';
+    }
+    elseif ($form['#id'] == 'views-exposed-form-gifts-page-2') {
+      $type = 'staff';
+    }
+
+    if ($form['#id'] == 'views-exposed-form-gifts-page-4') {
+      // Add custom autocomplete to donor field.
+      $form['sourceName']['#autocomplete_route_name'] = 'dd_gift_contribution.gift_donor_autocomplete';
+      $form['#attached']['library'][] = 'core/drupal.autocomplete';
+    }
+
+    // Only alter forms with the necessary field.
+    if (isset($form[$field_id])) {
+      if (
+        $form['#id'] == 'views-exposed-form-contributions-default' ||
+        $form['#id'] == 'views-exposed-form-contributions-contributions-legislator'
+      ) {
+        $options = DdContribution::getRecipients($type);
+      }
+      else {
+        $options = DdGiftCombined::getRecipients($type, $input['year']);
+
+      }
+
+      // Alter the field.
+      $form[$field_id]['#type'] = 'select';
+      $form[$field_id]['#options'] = $options;
+      $form[$field_id]['#chosen'] = TRUE;
+    }
+  }
+
+  if ($form['#id'] == 'views-exposed-form-contributions-contributions-donor') {
+    // Add custom autocomplete to donor field.
+    $form['contributor']['#autocomplete_route_name'] = 'dd_gift_contribution.contribution_donor_autocomplete';
+    $form['#attached']['library'][] = 'core/drupal.autocomplete';
+  }
+  elseif ($form['#id'] == 'views-exposed-form-gifts-page-3' || $form['#id'] == 'views-exposed-form-gifts-page-4') {
+    // Office and Donor pages get submit handler to fill in Recipient PID.
+    $form['#submit'][] = '_dd_gift_form_submit';
+  }
+}
+
+/**
+ * Form submit handler for gifts.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form state
+ */
+function _dd_gift_form_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $view = $form_state->get('view');
+  $input = $view->getExposedInput();
+  if (isset($input['pid'])) {
+    $view->exposed_data['recipientPid'] = $input['pid'];
+  }
+}

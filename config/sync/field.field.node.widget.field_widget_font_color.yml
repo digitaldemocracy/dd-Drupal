@@ -1,0 +1,23 @@
+uuid: 384a8108-bbff-4a94-8fb0-73b0aab48b22
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_font_color
+    - node.type.widget
+  module:
+    - jquery_colorpicker
+id: node.widget.field_widget_font_color
+field_name: field_widget_font_color
+entity_type: node
+bundle: widget
+label: 'Font Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '000000'
+default_value_callback: ''
+settings: {  }
+field_type: jquery_colorpicker

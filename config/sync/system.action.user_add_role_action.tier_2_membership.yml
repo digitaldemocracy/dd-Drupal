@@ -1,0 +1,14 @@
+uuid: e197bb9e-0e0f-433b-9cf4-4f4d55cc2d0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tier_2_membership
+  module:
+    - user
+id: user_add_role_action.tier_2_membership
+label: 'Add the Tier 2 Membership role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: tier_2_membership

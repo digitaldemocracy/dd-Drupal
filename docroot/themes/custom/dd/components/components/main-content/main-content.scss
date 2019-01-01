@@ -1,0 +1,92 @@
+@import 'init';
+
+.main-content-region {
+  @include zen-apply-gutter-padding();
+  overflow: hidden;
+  background: white;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+
+
+  &.dd-rounded-corners { // For now, these are default.
+    @include dd-rounded-corners();
+  }
+
+  &.dd-box-shadow {
+    @include dd-box-shadow();
+  }
+
+  h1.page-title {
+    margin-top: 0;
+  }
+}
+
+
+
+
+.content {
+  &--top {
+    @extend .main-content-region;
+    margin-bottom: $zen-gutters;
+
+  }
+  &--main {
+    @extend .main-content-region;
+
+    .block#block-dd-page-title {
+      border-bottom: 0;
+    }
+
+  }
+
+  &.dd-box-shadow {
+
+  }
+}
+
+// ----- Exceptions to the above ----
+
+.is-path-blog,
+.is-path-frontpage.dd-site-type-whitelabel,
+.is-path-action-center {
+  .content--main {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    background: transparent;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+  }
+}
+
+// Styling when there is no padding.
+.is-path-bill,
+.is-path-person {
+  .dd-rounded-corners.content--main {
+    padding: 0;
+  }
+}
+
+
+// Make this easily available site-wide.
+
+.dd-rounded-corners {
+  @include dd-rounded-corners;
+}
+
+.code-box {
+  display: block;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+  color: #333;
+  word-break: break-all;
+  word-wrap: break-word;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  overflow-x: scroll;
+}

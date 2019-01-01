@@ -1,0 +1,33 @@
+uuid: 58995ff0-b891-4904-9b21-e61dc6aeb8e0
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+    - facets
+    - system
+  theme:
+    - dd
+id: billstatementsearchblock
+theme: dd
+region: sidebar_second
+weight: -40
+provider: null
+plugin: dd_bill_statement_search_block
+settings:
+  id: dd_bill_statement_search_block
+  label: 'Search for Statements'
+  provider: dd_bill
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/bill/*'
+    negate: false
+    context_mapping: {  }

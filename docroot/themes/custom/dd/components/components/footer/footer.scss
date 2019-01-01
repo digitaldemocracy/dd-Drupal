@@ -1,0 +1,132 @@
+@import 'init';
+
+// Branding footer
+//
+// Markup: footer.twig
+//
+// Style guide: components.footer
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/footer';
+
+.footer,
+%footer {
+  @include type-layout(s, 1);
+  @include margin-top(2, s);
+  @include padding(0 0, s);
+  border-top: 1px solid color(border);
+  background: $dd-blue;
+  padding: 1.5rem 0;
+
+  nav {
+    display: inline-block;
+  }
+
+  .footer--inner {
+    @include flex-container;
+    justify-content: space-between;
+
+    & > nav {
+      @include flex-item;
+    }
+  }
+
+}
+
+#block-footer {
+  padding: 1rem 0;
+
+  ul.menu  {
+    @include white-links;
+    text-transform: uppercase;
+    font-size: 1rem;
+
+    @include zen-respond-to(s) {
+      font-size: 1.15rem;
+    }
+  }
+
+  li.menu-item {
+    // move padding to anchor tags for better mobile usability
+    a {
+      padding: .5rem;
+      display: block;
+
+      @include zen-respond-to(s) {
+        padding: 1rem;
+      }
+    }
+
+    a.contact {
+      //padding-left: 30px;
+      //background: image-url('ico-envelop.png') no-repeat;
+      //background-size: 24px 24px;
+      //background-position-y: -3px;
+    }
+  }
+}
+
+#block-social {
+  padding: 5px 0;
+
+  a {
+    width: 40px;
+    height: 40px;
+    font-size: 0;
+    padding: 24px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-color: $dd-charcoal;
+    border-radius: 50%;
+    background-position: center;
+    cursor: pointer;
+
+    @include zen-respond-to(s) {
+      width: 56px;
+      height: 56px;
+    }
+
+    &:hover {
+      background-color: $dd-blue-lightest;
+    }
+
+    &.facebook {
+      background-image: image-url('ico-facebook.svg');
+      background-size: 14px;
+
+      @include zen-respond-to(s) {
+        background-size: 14px;
+      }
+    }
+
+    &.twitter {
+      background-image: image-url('ico-twitter.svg');
+      background-size: 29px;
+
+      @include zen-respond-to(s) {
+        background-size: 29px;
+      }
+    }
+  }
+
+
+}
+
+.powered-by-dd {
+  display: none;
+  @if $whitelabel-id == cmta or $whitelabel-id == hungeractionla {
+    line-height: 100px;
+    display: inline-block;
+    width: 150px;
+    height: 72px;
+    //float: right;
+
+    a {
+      background-image: image-url('logo-dd--powered-by.png');
+      text-indent: -9999px;
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

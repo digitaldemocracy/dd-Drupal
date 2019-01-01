@@ -1,0 +1,169 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_email_legislator.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\node\Entity\Node;
+use Drupal\dd_email_legislator\Utility\CommonHelper;
+
+/**
+ * Implements hook_help().
+ */
+function dd_email_legislator_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_email_legislator':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module helps you find your legislators');
+      $output .= t(' and email them.');
+      $output .= '</p>';
+      return $output;
+    
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_email_legislator_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-find-my-leg' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-find-my-leg',
+    ),
+    'dd-leg-contact-links' => array(
+      'variables' => array(
+        'links' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-leg-contact-links',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param string $sender_first
+ *   sender first name 
+ * @param string $sender_last
+ *   sender last name 
+ * @param string $sender_email
+ *   sender email address 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ * @param string $bcc
+ *   bcc address
+ *
+ * @return renderable array
+ *   the array including legislatorsi with the url for emailing and geo_coord. 
+ */
+function dd_email_legislator_get_contact_links($state, $zip, $city, $street,
+                                               $sender_first, $sender_last,
+                                               $sender_email, $body,
+                                               $subject=null, $bcc=null) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+                   'first' => $sender_first,
+                   'last' => $sender_last,
+                   'email' => $sender_email,
+             );
+  $result = CommonHelper::findLegislators($address);
+  if (!isset($result['data'])) {
+    return array(
+      '#markup' => 'Failed to locate your address.',
+    );
+  }
+  $links = \Drupal::moduleHandler()->invokeAll(
+    'legislators_contact_links', [
+          $address,
+          $result['data']['legislators'],
+          $body,
+          $subject,
+          $bcc 
+        ]);
+  return array('legislators' => $links,
+               'geo_coord' => $result['data']['geo_coord']);
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param string $sender_first
+ *   sender first name 
+ * @param string $sender_last
+ *   sender last name 
+ * @param string $sender_email
+ *   sender email address 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ * @param array $legislators
+ *   list of legislators. Each legislator should at least contain:
+ *     'house name e.g. Senate' => [
+ *       'first' => 'first name',
+ *       'middle' => 'middle name if any',
+ *       'last' => 'last name',
+ *       'district' => 'district',
+ *       'pid' => pid,
+ *       'email' => 'email address',
+ *     ]
+ * @param string $bcc
+ *   bcc address
+ *
+ * @return renderable array
+ *   the array including legislatorsi with the url for emailing and geo_coord. 
+ */
+function dd_email_legislator_contact_links($state, $zip, $city, $street,
+                                               $sender_first, $sender_last,
+                                               $sender_email, $body,
+                                               $subject=null, $legislators, $bcc=null) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+                   'first' => $sender_first,
+                   'last' => $sender_last,
+                   'email' => $sender_email,
+             );
+  $links = \Drupal::moduleHandler()->invokeAll(
+    'legislators_contact_links', [
+          $address,
+          $legislators,
+          $body,
+          $subject,
+          $bcc,
+        ]);
+  return array('legislators' => $links);
+}

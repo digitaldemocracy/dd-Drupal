@@ -1,0 +1,19 @@
+uuid: 85c0dcf2-f2fd-468f-9a52-5bb8e5f8e727
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill_subject
+    - node.type.campaign
+id: node.campaign.field_bill_subject
+field_name: field_bill_subject
+entity_type: node
+bundle: campaign
+label: 'Add a Bill Subject'
+description: 'This is shown above the Bill Summary. Will display the bill''s original subject if empty.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

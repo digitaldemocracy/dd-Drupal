@@ -1,0 +1,14 @@
+
+# Dd fax service payment entity menu items definition
+entity.dd_fax_service_payment_entity.collection:
+  title: 'Dd fax service payment entity list'
+  route_name: entity.dd_fax_service_payment_entity.collection
+  description: 'List Dd fax service payment entity entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_fax_service_payment_entity.admin.structure.settings:
+  title: Dd fax service payment entity settings
+  description: 'Configure Dd fax service payment entity entities'
+  route_name: dd_fax_service_payment_entity.settings
+  parent: system.admin_structure

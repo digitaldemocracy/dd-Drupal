@@ -1,0 +1,843 @@
+# These lines define the dd/base library.
+base:
+  css:
+    # The SMACSS category, "base", is loaded before other categories. Drupal 8
+    # loads stylesheets based on the SMACSS ordering of:
+    # base, layout, component, state, theme
+    base:
+      # The {} brackets allow you to specify the additional options, weight and
+      # media. For example, you can specify this is a print media stylesheet by
+      # specifying: { media: print } Note: this isn't recommended since
+      # separate print stylesheets is bad for front-end performance.
+      components/asset-builds/css/base.css: {}
+    theme:
+      'https://fonts.googleapis.com/css?family=Roboto+Slab:Bold,Regular|Roboto:500,400': {type: external}
+      # Include font-awesome sitewide
+      components/base/vendors/font-awesome/css/font-awesome.min.css: {}
+    component:
+      # We need the homepage css sitewide in the base site.
+      components/asset-builds/css/homepage.css: {}
+  # If this library had JavaScript you could specify it like this:
+  js:
+    js/script.js: {}
+  dependencies:
+    - dd/clearfix
+    - dd/visually-hidden
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.cookie
+
+layouts:
+  css:
+    # The SMACSS category, "layout", is loaded after "base" styles.
+    layout:
+      components/asset-builds/css/layouts.css: {}
+
+# The list below is organized alphabetically.
+
+account:
+  css:
+    component:
+      components/asset-builds/css/account.css: {}
+
+action-center:
+  css:
+    component:
+      components/asset-builds/css/action-center.css: {}
+
+action-clip:
+  css:
+    component:
+      components/asset-builds/css/action-clip.css: {}
+
+action-download:
+  css:
+    component:
+      components/asset-builds/css/action-download.css: {}
+
+action-link:
+  css:
+    component:
+      components/asset-builds/css/action-links.css: {}
+  dependencies:
+    - dd/action-grouping
+
+action-grouping:
+  css:
+    component:
+      components/asset-builds/css/action--grouping.css: {}
+
+action-phone:
+  css:
+    component:
+      components/asset-builds/css/action--phone.css: {}
+
+action-tweet:
+  css:
+    component:
+      components/asset-builds/css/action-tweet.css: {}
+
+analysis:
+  css:
+    component:
+      components/asset-builds/css/gift-contribution.css: {}
+  js:
+    js/dd_alignments.js: {}
+
+autocomplete:
+  css:
+    component:
+      components/asset-builds/css/autocomplete.css: {}
+
+bills:
+  css:
+    component:
+      components/asset-builds/css/bills.css: {}
+
+bill-page:
+  css:
+    component:
+      components/asset-builds/css/bill-page.css: {}
+
+blurb:
+  css:
+    component:
+      components/asset-builds/css/blurb.css: {}
+
+
+breadcrumb:
+  css:
+    component:
+      components/asset-builds/css/breadcrumb.css: {}
+  dependencies:
+    - dd/visually-hidden
+
+box:
+  css:
+    component:
+      components/asset-builds/css/box.css: {}
+
+clearfix:
+  css:
+    component:
+      components/asset-builds/css/clearfix.css: {}
+
+collapsible-fieldset:
+  css:
+    component:
+      components/asset-builds/css/collapsible-fieldset.css: {}
+
+commentary:
+  css:
+    component:
+      components/asset-builds/css/commentary.css: {}
+
+campaign:
+  css:
+    component:
+      components/asset-builds/css/campaign.css: {}
+      components/asset-builds/css/address-lookup.css: {}
+  js:
+    js/dd_campaign.js: {}
+    js/dd_campaign_social.js: {}
+
+  dependencies:
+  - core/jquery
+  - core/drupalSettings
+  - dd/dd-video-player
+  - dd/clip
+  - core/drupal.dialog.ajax
+  - dd/share
+
+campaign-admin:
+  css:
+    component:
+      components/asset-builds/css/campaign-admin.css: {}
+      components/asset-builds/css/campaign-wizard.css: {}
+      components/asset-builds/css/campaign-wizard--nav.css: {}
+      components/asset-builds/css/campaign-wizard--steps.css: {}
+      components/asset-builds/css/campaign-wizard--review.css: {}
+      components/asset-builds/css/campaign-wizard--bottom-nav.css: {}
+  js:
+    js/dd_campaign_admin.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.tabs
+
+campaign-visit:
+  js:
+    js/dd_campaign_visit.js: {}
+  dependencies:
+    - dd/campaign
+clip:
+  css:
+    component:
+      components/asset-builds/css/clip.css: {}
+
+comment:
+  css:
+    component:
+      components/asset-builds/css/comment.css: {}
+
+committees:
+  css:
+    component:
+      components/asset-builds/css/committees.css: {}
+  js:
+    js/dd_committees.js: {}
+
+dd-alerts:
+  js:
+    js/dd_alerts.js: {}
+
+dd-alignment-chart:
+  js:
+    //www.gstatic.com/charts/loader.js: {type: external}
+    js/charts/alignment_chart.js: {}
+
+dd-analysis-menu:
+  css:
+    component:
+      components/asset-builds/css/analysis-menu.css: {}
+  js:
+    js/analysis-menu.js:
+
+dd-about:
+  css:
+    component:
+      components/asset-builds/css/about.css: {}
+  js:
+    js/about/about.js: {}
+  dependencies:
+  - core/jQuery
+
+dd-autocomplete:
+  js:
+    js/dd_autocomplete.js: {}
+  dependencies:
+  - core/drupal.autocomplete
+
+dd-ajax-view:
+  version: 1.x
+  js:
+    js/dd_ajax_view.js: {}
+  dependencies:
+  - views/views.ajax
+
+dd-agendized-bills:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/agendized-bills.css: {}
+
+dd-blog-edit:
+  version: 1.x
+  js:
+    js/blog/dd_blog.js: {}
+  css:
+    theme:
+      //code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css: {type: external}
+    component:
+      components/asset-builds/css/dd-blog-edit.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.slider
+    - dd/dd-video-player
+    - dd/dd-social-share
+
+dd-blog-view:
+  version: 1.x
+  js:
+    js/blog/dd_blog_view.js: {}
+  css:
+    component:
+      components/asset-builds/css/dd-blog.css: {}
+
+  dependencies:
+    - core/jquery
+    - dd/dd-video-player
+    - dd/dd-social-share
+
+dd-charts:
+  version: 1.x
+  js:
+    https://www.google.com/jsapi: {type: external}
+  dependencies:
+    - core/jquery
+
+dd-clip-page:
+  version: 1.x
+  js:
+    js/video_clip/popcorn-complete.js: {}
+    js/video_clip/annotation.js: {}
+    js/video_clip/dd_videoclip_common.js: {}
+    js/video_clip/dd_clip.js: {}
+  css:
+    theme:
+      //code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css: {type: external}
+    component:
+      components/asset-builds/css/video-clip-common.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.tabs
+    - dd/dd-video-player
+    - dd/dd-social-share
+
+dd-clip-embed:
+  version: 1.x
+  js:
+    js/video_clip/popcorn-complete.js: {}
+    js/video_clip/annotation.js: {}
+    js/video_clip/dd_videoclip_common.js: {}
+    js/video_clip/dd_clip.js: {}
+  css:
+    theme:
+      //code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css: {type: external}
+    component:
+      components/asset-builds/css/video-clip-embed.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.tabs
+    - dd/dd-video-player
+    - dd/dd-social-share
+
+dd-datepicker:
+  version: 1.x
+  js:
+    js/dd_datepicker.js: {}
+  dependencies:
+  - core/jquery
+  - core/jquery.ui.datepicker
+
+dd-district-map:
+  version: 1.x
+  css:
+    theme:
+      libraries/districtmap/leaflet.css: {}
+  js:
+    js/state_maps.js: {}
+    libraries/districtmap/leaflet.js: {}
+    libraries/districtmap/wax.leaf.min.js: {minified: true}
+    libraries/districtmap/d3.v3.min.js: {minified: true}
+    js/district_map.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - core/drupalSettings
+
+dd-facets:
+  version: 1.x
+  js:
+    js/dd_facets.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui.accordion
+    - dd/dd-datepicker
+
+dd-gifts:
+  js:
+    js/dd_gifts.js: {}
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+
+dd-hearing-page:
+  version: 1.x
+  js:
+    libraries/popcornjs/popcorn-complete.js: {}
+    js/utterance_loader.js: {}
+    js/agendized_bills_loader.js: {}
+    js/dd_hearing_vjs_new.js: {}
+  css:
+    component:
+      components/asset-builds/css/hearings.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.once
+    - dd/jquery-scrollTo
+    - core/drupalSettings
+    - dd/dd-video-player
+
+dd-hide-past-affiliations:
+  version: 1.x
+  js:
+    js/dd_hide_past_affiliations.js: {}
+  dependencies:
+    - core/jquery
+
+dd-my-clip-bank:
+  version: 1.x
+  js:
+    js/video_clip/dd_videoclip_common.js: {}
+    js/video_clip/my_clip_bank.js: {}
+  css:
+    theme:
+      //code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css: {type: external}
+    component:
+      components/asset-builds/css/video-clipper.css: {}
+      components/asset-builds/css/video-clip-common.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.tabs
+    - core/jquery.ui.dialog
+    - dd/dd-social-share
+
+dd-participation:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/participation.css: {}
+
+dd-person:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/speaker-person.css: {}
+  js:
+    js/dd_toggle_list_items.js: {}
+
+dd-person-district-map:
+  js:
+    js/dd_person_district_map.js: {}
+  dependencies:
+    - dd/dd-district-map
+
+dd-person-search:
+  js:
+    js/dd_person-search.js: {}
+
+dd-social-share:
+  js:
+    js/social_share.js: {}
+
+dd-tab-groupings:
+  js:
+    js/dd_tab_groupings.js: {}
+  dependencies:
+    - core/jquery.ui.tabs
+
+dd-toggle-list-items:
+  js:
+    js/dd_toggle_list_items.js: {}
+
+dd-top-contribution-gifts:
+  js:
+    js/dd_scroll_to_block.js: {}
+  dependencies:
+    - core/jquery
+    - dd/jquery-scrollTo
+
+dd-user-register-tracker:
+  js:
+    '//pixel.mathtag.com/event/js?mt_id=1127666&mt_adid=164346&v1=&v2=&v3=&s1=&s2=&s3=': {type: external}
+
+dd-user-confirm-tracker:
+  js:
+    '//pixel.mathtag.com/event/js?mt_id=1127667&mt_adid=164346&v1=&v2=&v3=&s1=&s2=&s3=': {type: external}
+
+dd-utterance:
+  css:
+    component:
+      components/asset-builds/css/utterance.css: {}
+
+dd-video-annotator:
+  version: 1.x
+  js:
+    js/video_clip/popcorn-complete.js: {}
+    js/video_clip/dd_video_annotator.js: {}
+    js/video_clip/annotation.js: {}
+    js/video_clip/jquery.fontselector.js: {}
+    js/video_clip/dd_videoclip_common.js: {}
+    https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.js: {type: external}
+    https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.js: {type: external}
+  css:
+    theme:
+      //code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css: {type: external}
+      https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.0/spectrum.min.css: {type: external}
+      https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.min.css: {type: external}
+    component:
+      components/asset-builds/css/video-annotator.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.spinner
+    - core/jquery.ui.draggable
+    - core/jquery.ui.resizable
+    - dd/dd-video-player
+
+dd-video-builder:
+  version: 1.x
+  js:
+    js/video_clip/dd_video_builder.js: {}
+    js/video_clip/dd_videoclip_common.js: {}
+    js/video_clip/my_clip_bank.js: {}
+    js/social_share.js: {}
+  css:
+    component:
+      components/asset-builds/css/video-builder.css: {}
+      components/asset-builds/css/video-clip-common.css: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.draggable
+    - core/jquery.ui.droppable
+    - core/jquery.ui.sortable
+    - dd/dd-video-player
+
+dd-video-clipper:
+  version: 1.x
+  js:
+    js/video_clip/dd_video_editor.js: {}
+
+  dependencies:
+    - core/jquery
+    - core/jquery.ui.slider
+    - dd/dd-video-player
+    - dd/dd-my-clip-bank
+
+dd-video-editor-menu:
+  version: 1.x
+  js:
+    js/video_clip/dd_video_editor_menu.js: {}
+  css:
+    component:
+      components/asset-builds/css/video-editor-menu.css: {}
+
+dd-video-player:
+  version: 1.x
+  css:
+    theme:
+      libraries/video-js/video-js.css: {}
+  js:
+    libraries/video-js/video.js: {}
+    js/VideoPlayer.js: {}
+  dependencies:
+    - core/jquery
+
+dd-payment-system-subscribe:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/payment-subscribe.css: {}
+
+dd-payment-system-cancel:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/payment-cancel.css: {}
+
+dd-invoice-page:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/invoice.css: {}
+
+dd-email-legislator:
+  version: 1.x
+  js:
+    js/email_legislator/email_legislator.js: {}
+  css:
+    component:
+      components/asset-builds/css/email-legislator.css: {}
+
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui
+    - core/jquery.ui.accordion
+
+dd-email-ca-legislator:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/email-ca-legislator.css: {}
+
+dd-email-editor:
+  version: 1.x
+
+  css:
+    component:
+      components/asset-builds/css/email-legislator.css: {}
+
+  dependencies:
+    - core/drupal
+    - core/drupalSettings
+    - core/jquery
+    - core/jquery.once
+    - core/jquery.ui
+    - core/jquery.ui.accordion
+
+dd-fax-service:
+  version: 1.x
+  css:
+    component:
+      components/asset-builds/css/fax.css: {}
+
+dd-widget:
+  css:
+    component:
+      components/asset-builds/css/widget.css: {}
+
+dd-widget-edit:
+  css:
+    component:
+      components/asset-builds/css/widget-edit.css: {}
+
+facets:
+  css:
+    component:
+      components/asset-builds/css/facets.css: {}
+
+footer:
+  css:
+    component:
+      components/asset-builds/css/footer.css: {}
+
+form-item:
+  css:
+    component:
+      components/asset-builds/css/form-item.css: {}
+
+form-table:
+  css:
+    component:
+      components/asset-builds/css/form-table.css: {}
+
+header:
+  css:
+    component:
+      components/asset-builds/css/header.css: {}
+  dependencies:
+    - dd/clearfix
+
+hearings-teaser:
+  css:
+    component:
+      components/asset-builds/css/hearings-teaser.css: {}
+
+hidden:
+  css:
+    component:
+      components/asset-builds/css/hidden.css: {}
+
+highlight-mark:
+  css:
+    component:
+      components/asset-builds/css/highlight-mark.css: {}
+
+homepage:
+  css:
+    component:
+      components/asset-builds/css/homepage.css: {}
+      components/asset-builds/css/homepage-audiences.css: {}
+  js:
+    js/homepage.js: {}
+    js/homepage-video.js: {}
+  dependencies:
+    - dd/blurb
+    - core/jquery
+    - core/drupalSettings
+
+homepage_whitelabel:
+  css:
+    component:
+      components/asset-builds/css/homepage_whitelabel.css: {}
+  dependencies:
+    - dd/clip
+
+inline-links:
+  css:
+    component:
+      components/asset-builds/css/inline-links.css: {}
+
+inline-sibling:
+  css:
+    component:
+      components/asset-builds/css/inline-sibling.css: {}
+
+jquery-scrollTo:
+  js:
+    libraries/jquery.scrollTo/jquery.scrollTo.min.js : {}
+  dependencies:
+    - core/jquery
+
+main-content:
+  css:
+    component:
+      components/asset-builds/css/main-content.css: {}
+
+masonry:
+  js:
+    js/masonry/masonry.min.js: {}
+    js/masonry/dd-masonry.js: {}
+  dependencies:
+    - core/jquery
+
+messages:
+  css:
+    component:
+      components/asset-builds/css/messages.css: {}
+
+modal:
+  css:
+    component:
+      components/asset-builds/css/modal.css: {}
+
+more-link:
+  css:
+    component:
+      components/asset-builds/css/more-link.css: {}
+
+nav-menu:
+  css:
+    component:
+      components/asset-builds/css/nav-menu.css: {}
+  dependencies:
+    - dd/dd-analysis-menu
+
+navbar:
+  css:
+    component:
+      components/asset-builds/css/navbar.css: {}
+  dependencies:
+    - dd/clearfix
+    - dd/visually-hidden
+
+organizations:
+  css:
+    component:
+      components/asset-builds/css/organizations.css: {}
+      components/asset-builds/css/speakers--search.css: {}
+
+# This library is attached to the Bill Alignment Years view block display in the Organization Pages.
+organization-page:
+  js:
+    js/organization-page.js: {}
+
+pager:
+  css:
+    component:
+      components/asset-builds/css/pager.css: {}
+
+print-none:
+  css:
+    component:
+      components/asset-builds/css/print-none.css: {}
+
+progress-bar:
+  css:
+    component:
+      components/asset-builds/css/progress-bar.css: {}
+
+progress-throbber:
+  css:
+    component:
+      components/asset-builds/css/progress-throbber.css: {}
+
+resizable-textarea:
+  css:
+    component:
+      components/asset-builds/css/resizable-textarea.css: {}
+
+responsive-video:
+  css:
+    component:
+      components/asset-builds/css/responsive-video.css: {}
+
+search:
+  css:
+    component:
+      components/asset-builds/css/search.css: {}
+  dependencies:
+    - dd/dd-datepicker
+
+share:
+  css:
+    component:
+      components/asset-builds/css/share.css: {}
+  js:
+    js/facebook.js: {}
+    js/twitter.js: {}
+    js/dd_tooltips.js: {}
+  dependencies:
+    - core/jquery.ui.tooltip
+
+showhide:
+  version: 1.x
+  js:
+    js/showhide.js: {}
+  css:
+    component:
+      components/asset-builds/css/showhide.css: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
+    - dd/jquery-scrollTo
+
+show_targeted_actions:
+  js:
+    js/dd_show_targeted_actions.js: {}
+
+skip-link:
+  css:
+    component:
+      components/asset-builds/css/skip-link.css: {}
+
+sticky-footer:
+  css:
+    component:
+      components/asset-builds/css/sticky-footer.css: {}
+
+table-drag:
+  css:
+    component:
+      components/asset-builds/css/table-drag.css: {}
+
+tabs:
+  css:
+    component:
+      components/asset-builds/css/tabs.css: {}
+  dependencies:
+    - dd/clearfix
+    - dd/visually-hidden
+
+users:
+  css:
+    component:
+      components/asset-builds/css/user-account.css: {}
+
+user-profile:
+  css:
+    component:
+      components/asset-builds/css/user-profile.css: {}
+
+video-thumb-wrapper:
+  css:
+    component:
+      components/asset-builds/css/video-thumb-wrapper.css: {}
+
+visually-hidden:
+  css:
+    component:
+      components/asset-builds/css/visually-hidden.css: {}
+
+watermark:
+  css:
+    component:
+      components/asset-builds/css/watermark.css: {}
+
+wireframe:
+  css:
+    component:
+      components/asset-builds/css/wireframe.css: {}

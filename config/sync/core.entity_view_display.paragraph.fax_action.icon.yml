@@ -1,0 +1,22 @@
+uuid: d422e4e8-bcd6-4030-847a-d513bde4ce82
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.fax_action.field_action_body
+    - field.field.paragraph.fax_action.field_subject
+    - field.field.paragraph.fax_action.field_success_message
+    - paragraphs.paragraphs_type.fax_action
+id: paragraph.fax_action.icon
+targetEntityType: paragraph
+bundle: fax_action
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_body: true
+  field_action_target: true
+  field_subject: true
+  field_success_message: true
+  uid: true

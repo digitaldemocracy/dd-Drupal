@@ -1,0 +1,21 @@
+
+# Dd bill alert history menu items definition
+entity.dd_bill_alert_history.collection:
+  title: 'Dd bill alert history list'
+  route_name: entity.dd_bill_alert_history.collection
+  description: 'List Dd bill alert history entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_bill_alert_history.admin.structure.settings:
+  title: Dd bill alert history settings
+  description: 'Configure Dd bill alert history entities'
+  route_name: dd_bill_alert_history.settings
+  parent: system.admin_structure
+
+dd_bill_alerts.admin:
+  title: 'DD Bill Alerts Settings'
+  description: 'Change hwo far back to get commentaries when cron runs.'
+  parent: system.admin_config_development
+  route_name: dd_bill_alerts_settings
+  weight: 100

@@ -1,0 +1,25 @@
+uuid: 195400e2-409a-43ad-b7db-92c6319e8fe4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_campaign_visitor
+    - node.type.phone_action_response
+id: node.phone_action_response.field_campaign_visitor
+field_name: field_campaign_visitor
+entity_type: node
+bundle: phone_action_response
+label: 'Campaign Visitor'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_campaign_visitor'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

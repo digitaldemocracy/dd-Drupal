@@ -1,0 +1,6 @@
+name: 'DD Video Alert'
+type: module
+description: 'Video Alerts'
+package: DigitalDemocracy
+core: 8.x
+

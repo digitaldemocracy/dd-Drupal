@@ -1,0 +1,7 @@
+name: DD Organization
+type: module
+description: DD Organization
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

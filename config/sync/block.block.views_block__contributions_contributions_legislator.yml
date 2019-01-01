@@ -1,0 +1,49 @@
+uuid: 3ffa5d5b-e9d5-428d-903a-a2ef7a6eb76c
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: views_block__contributions_contributions_legislator
+theme: dd
+region: content
+weight: -23
+provider: null
+plugin: 'views_block:contributions-contributions_legislator'
+settings:
+  id: 'views_block:contributions-contributions_legislator'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/analysis/contributions\r\n/analysis/contributions/legislator\r\n"
+    negate: false
+    context_mapping: {  }

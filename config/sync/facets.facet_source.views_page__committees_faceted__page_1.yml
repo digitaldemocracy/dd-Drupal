@@ -1,0 +1,8 @@
+uuid: ce9293ad-2055-4bec-ad94-3daeb08a9ee7
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__committees_faceted__page_1
+name: 'views_page:committees_faceted__page_1'
+filter_key: ''
+url_processor: query_string

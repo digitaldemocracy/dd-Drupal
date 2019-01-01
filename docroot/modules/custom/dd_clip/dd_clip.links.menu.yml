@@ -1,0 +1,28 @@
+
+# DD Clip menu items definition
+entity.dd_clip.collection:
+  title: 'DD Clip list'
+  route_name: entity.dd_clip.collection
+  description: 'List DD Clip entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_clip.admin.structure.settings:
+  title: DD Clip settings
+  description: 'Configure DD Clip entities'
+  route_name: dd_clip.settings
+  parent: system.admin_structure
+
+# DD Clip Bank Quota menu items definition
+entity.dd_clip_bank_quota.collection:
+  title: 'DD Clip Bank Quota list'
+  route_name: entity.dd_clip_bank_quota.collection
+  description: 'List DD Clip Bank Quota entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_clip_bank_quota.admin.structure.settings:
+  title: DD Clip Bank Quota settings
+  description: 'Configure DD Clip Bank Quota entities'
+  route_name: dd_clip_bank_quota.settings
+  parent: system.admin_structure

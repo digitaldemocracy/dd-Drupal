@@ -1,0 +1,137 @@
+@import 'init';
+$image-url-subdirectory: 'components/blog/icons';
+
+.hide {
+  display: none;
+}
+
+#block-dd-page-title {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  h1.page-title {
+    text-align: center;
+  }
+}
+
+#edit-field-start-time-wrapper,
+#edit-field-end-time-wrapper,
+#edit-field-videoid-wrapper {
+  display: none;
+}
+
+
+#player1 {
+  max-width: none;
+  margin: 20px auto;
+}
+
+video {
+  max-width: none;
+  margin: 0 auto;
+}
+
+.blog-node-edit {
+  width: 685px;
+  margin: 5px auto;
+
+  .vc-slider-time {
+    background: #404040 none repeat scroll 0 0;
+    padding: 35px 0 15px;
+  }
+
+  .vc-slider-time .vc-btn-and-time {
+    background: #838383 none repeat scroll 0 0;
+    margin: 0 auto 8px;
+    padding: 10px 5px;
+    width: 685px;
+  }
+
+  .vc-btn-and-time .vc-slider {
+   padding: 10px 10px 15px;
+  }
+
+  .vc-btn-and-time .vc-buttons {
+    float: left;
+    padding: 15px 10px 10px 15px;
+    width: 265px;
+  }
+
+  .vc-start-time .control-label,
+  .vc-end-time .control-label {
+    display: none;
+  }
+
+  .vc-btn-and-time .vc-timer {
+    float: left;
+    margin-left: 25px;
+  }
+
+  .vc-btn-and-time .vc-timer .vc-start-time {
+    float: left;
+    margin-right: 15px;
+  }
+
+  .vc-timer .vc-start-time .vc-start-min,
+  .vc-timer .vc-start-time .vc-start-sec {
+    float: left;
+  }
+
+  .vc-btn-and-time .vc-timer .vc-end-time {
+    float: left;
+  }
+
+  .vc-timer .vc-end-time .vc-end-min,
+  .vc-timer .vc-end-time .vc-end-sec {
+    float: left;
+  }
+
+  .vc-timer .vc-start-time .start-label,
+  .vc-timer .vc-end-time .end-label {
+    color: #1b1b1b;
+    font-size: 11px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+  }
+
+  .vc-start-time .vc-start-min .st-min,
+  .vc-start-time .vc-start-sec .st-sec,
+  .vc-end-time .vc-end-min .end-min,
+  .vc-end-time .vc-end-sec .end-sec {
+    color: #1b1b1b;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+  }
+
+  .vc-btn-and-time .vc-timer .vc-start-time input,
+  .vc-btn-and-time .vc-timer .vc-end-time input {
+    background: #dcdcdc none repeat scroll 0 0;
+    height: 32px;
+    padding: 5px 4px;
+    width: 38px;
+  }
+
+  .vc-timer .vc-start-time .form-item-start-min,
+  .vc-timer .vc-start-time .form-item-start-sec {
+    margin: 0 4px 5px 0;
+  }
+
+  .vc-timer .vc-end-time .form-item-end-min,
+  .vc-timer .vc-end-time .form-item-end-sec {
+    margin: 0 4px 5px 0;
+  }
+
+  .vc-buttons {
+    background: #000;
+    color: #fff;
+    text-transform: uppercase;
+    padding: 0;
+    width: 108px;
+    height: 60px;
+    font-size: 13px;
+    margin: 2px;
+  }
+}

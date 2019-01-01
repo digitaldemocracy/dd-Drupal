@@ -1,0 +1,165 @@
+dd_action_center.dd_email_action_form:
+  path: '/action-center/email-action-form/{node}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::campaignAction'
+    action_type: email
+    _entity_access: 'node.view'
+    node: \d+
+  requirements:
+    _access: 'TRUE'
+
+dd_action_center.dd_fax_action_form:
+  path: '/action-center/fax-action-form/{node}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::campaignAction'
+    action_type: fax
+    _entity_access: 'node.view'
+    node: \d+
+  requirements:
+    _access: 'TRUE'
+dd_action_center.dd_letter_action_form:
+  path: '/action-center/letter-action-form/{node}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::campaignAction'
+    action_type: letter
+    _entity_access: 'node.view'
+    node: \d+
+  requirements:
+    _access: 'TRUE'
+dd_action_center.dd_phone_action_form:
+  path: '/action-center/phone-action-form/{node}/{legislator_pid}/{paragraph}/{is_governor}'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdPhoneActionForm'
+    _entity_access: 'node.view'
+    node: \d+
+    legislator_pid: \d+
+    paragraph: \d+
+    is_governor: 0
+  requirements:
+    _access: 'TRUE'
+dd_action_center.dd_address_lookup_form:
+ path: '/action-center/address-lookup-form'
+ defaults:
+   _form: '\Drupal\dd_action_center\Form\DdAddressLookupForm'
+ requirements:
+     _access: 'TRUE'
+ options:
+   no_cache: TRUE
+dd_action_center.dd_new_campaign_form:
+  path: '/node/add/newcampaign'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdNewCampaignForm'
+    _title: 'Create a New Campaign'
+  requirements:
+    _permission: 'create campaign content'
+dd_action_center.dd_campaign_statewide_form:
+  path: '/node/{node}/statewide-edit'
+  defaults:
+    _entity_form: 'node.edit'
+  requirements:
+    _entity_access: 'node.update'
+    node: \d+
+  options:
+    _node_operation_route: TRUE
+dd_action_center.dd_campaign_targets_form:
+  path: '/node/{campaign_id}/targets-edit'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignTargetsForm'
+    _title: 'Choose Targets'
+  requirements:
+    campaign_id: \d+
+    _permission: 'create campaign content'
+dd_action_center.dd_campaign_target_actions_form:
+  path: '/node/{campaign_id}/targetactions-edit'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignTargetActionsForm'
+    _title: 'Assign Actions To Targets'
+  requirements:
+    campaign_id: \d+
+    _permission: 'create campaign content'
+dd_action_center.dd_campaign_review_target_actions_form:
+  path: '/node/{campaign_id}/reviewtargetactions'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignReviewTargetActionsForm'
+    _title: 'Review Target Actions'
+  requirements:
+    campaign_id: \d+
+    _permission: 'create campaign content'
+dd_action_center.dd_campaign_preview_form:
+  path: '/node/{campaign_id}/preview'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignPreviewForm'
+    _title: 'Preview Campaign Landing Page'
+  requirements:
+    campaign_id: \d+
+    _permission: 'create campaign content'
+dd_action_center.target_legislators:
+  path: '/target_legislators/{house}/{party}/{committee_name}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdCampaignLegislatorsController::getTargetLegislators'
+    house: ''
+    party: ''
+    committee_name: ''
+  requirements:
+    _permission: 'create campaign content'
+dd_action_center.target_committees:
+  path: '/target_committees/{house}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdCampaignLegislatorsController::getTargetCommittees'
+    house: ''
+    party: ''
+    committee_name: ''
+  requirements:
+    _permission: 'create campaign content'
+dd_action_center.unassign_campaign_action:
+  path: '/node/{campaign_id}/unassign-target-action/{target_id}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::unassignTargetCampaignAction'
+  requirements:
+    _permission: 'create campaign content'
+    campaign_id: \d+
+    target_id: \d+
+dd_action_center.delete_campaign:
+  path: '/node/{node}/delete-campaign'
+  defaults:
+    _entity_form: 'node.delete_campaign'
+    _title: 'Delete Campaign'
+  requirements:
+    _entity_access: 'node.delete'
+    node: \d+
+  options:
+    _node_operation_route: TRUE
+    parameters:
+      node:
+        type: entity.node
+        converter: paramconverter.entity
+dd_action_center.assign_target_campaign_action:
+  path: '/action-center/assign-target-campaign-action'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::assignTargetCampaignAction'
+  requirements:
+    _permission: 'create campaign content'
+dd_action_center.duplicate_campaign_action:
+  path: '/action-center/duplicate-campaign-action/{redirect_to_campaign}'
+  defaults:
+    _controller: '\Drupal\dd_action_center\Controller\DdActionCenterController::duplicateCampaignAction'
+    redirect_to_campaign: TRUE
+  requirements:
+    _permission: 'create campaign content'
+dd_action_center.duplicate_campaign_action_form:
+  path: '/action-center/duplicate-campaign-action-form/{campaign_id}/{campaign_action_id}/{target_id}'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdCampaignWizard\DdDuplicateCampaignActionForm'
+    _title: 'Edit Legislator Target Actions'
+  requirements:
+    campaign_id: \d+
+    campaign_action_id: \d+
+    target_id: \d+
+    _permission: 'create campaign content'
+dd_action_center_settings:
+  path: '/admin/structure/dd_action_center/settings'
+  defaults:
+    _form: '\Drupal\dd_action_center\Form\DdActionCenterSettingsForm'
+    _title: 'DD Action Center Settings'
+  requirements:
+    _permission: 'administer site configuration'

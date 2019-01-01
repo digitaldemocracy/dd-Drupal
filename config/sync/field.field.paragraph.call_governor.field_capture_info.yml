@@ -1,0 +1,23 @@
+uuid: 9dde3c23-5ce5-4dad-a3e2-409ccda55620
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_capture_info
+    - paragraphs.paragraphs_type.call_governor
+id: paragraph.call_governor.field_capture_info
+field_name: field_capture_info
+entity_type: paragraph
+bundle: call_governor
+label: "Include field to capture information conveyed by the staff\t"
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,24 @@
+uuid: cd3717db-3cfa-452f-9d9c-822bc0475d3d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_receive_email_notification
+  module:
+    - user
+id: user.user.field_receive_email_notification
+field_name: field_receive_email_notification
+entity_type: user
+bundle: user
+label: 'Receive Email Alerts'
+description: 'Enable email alerts. You will receive an email whenever new content matches one of your custom alerts.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

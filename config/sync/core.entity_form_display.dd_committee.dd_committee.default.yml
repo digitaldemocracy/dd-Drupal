@@ -1,0 +1,79 @@
+uuid: 07e2c2d3-5107-489e-83a9-2dea35d39e1d
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee.dd_committee.default
+targetEntityType: dd_committee
+bundle: dd_committee
+mode: default
+content:
+  house:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  house_type:
+    type: string_textfield
+    weight: 30
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  member_pids:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  short_name:
+    type: string_textfield
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  state:
+    type: string_textfield
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  type:
+    type: string_textfield
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  cid: true
+  cn_id: true
+  committee_authors: true
+  current_flag: true
+  email: true
+  fax: true
+  hids: true
+  phone: true
+  room: true
+  session_year: true

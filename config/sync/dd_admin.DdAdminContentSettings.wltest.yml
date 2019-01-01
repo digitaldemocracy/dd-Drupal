@@ -1,0 +1,13 @@
+visibility_action_center: anonymous
+visibility_behest_payments: 'off'
+visibility_bill_details: null
+visibility_bills: 'off'
+visibility_contributions: 'off'
+visibility_gifts: 'off'
+visibility_hearings: 'off'
+visibility_lobbyists: 'off'
+visibility_organizations: 'off'
+visibility_speakers: 'off'
+committees_include_exclude: '0'
+committee_cn_ids: {  }
+hearings_include_exclude: '0'

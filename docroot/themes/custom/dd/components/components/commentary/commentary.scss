@@ -1,0 +1,73 @@
+@import 'init';
+
+// ----- Listing of commentators ----
+
+.commentator-listing {
+  padding-bottom: 2rem;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid $dd-greylight;
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}
+
+.blog-listing h4 {
+  clear: left;
+  color: $dd-charcoal;
+  line-height: 1.5rem;
+}
+
+
+
+// ----- Listing of blog teasers ----
+
+.blog-teasers {
+  &-col { // Each row.
+    @include dd-box-shadow();
+    margin: 1rem 0;
+    padding-bottom: 1rem;
+
+    @include zen-respond-to(xs) {
+      width: 48%;
+
+      &:nth-child(odd) {
+        margin-right: 2%;
+      }
+
+      &:nth-child(even) {
+        margin-left: 2%;
+      }
+    }
+  }
+}
+
+// --- Fields in the teasers. ---
+
+.blog-teaser {
+
+  &__image {
+    @include playbutton;
+  }
+
+  &__title {
+    padding: 0 1rem;
+    h2 {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+    }
+  }
+
+  &__author {
+    padding: 0 1rem;
+    font-weight: bold;
+    float: left;
+  }
+
+  &__date {
+    padding: 0 1rem;
+    float: right;
+  }
+}
+
+

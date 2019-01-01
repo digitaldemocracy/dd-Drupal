@@ -1,0 +1,24 @@
+uuid: 0ecec2f1-30fe-4b09-81dd-3dcf29538327
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_payment_entity.field_increase_limit
+  module:
+    - dd_fax_service_payment
+id: dd_fax_service_payment_entity.dd_fax_service_payment_entity.field_increase_limit
+field_name: field_increase_limit
+entity_type: dd_fax_service_payment_entity
+bundle: dd_fax_service_payment_entity
+label: 'increase limit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

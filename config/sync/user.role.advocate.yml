@@ -1,0 +1,11 @@
+uuid: 27a892f6-cb98-4de8-be04-c6d2a9cb7634
+langcode: en
+status: true
+dependencies: {  }
+id: advocate
+label: Advocate
+weight: 10
+is_admin: null
+permissions:
+  - 'access dd video annotator'
+  - 'access dd video builder'

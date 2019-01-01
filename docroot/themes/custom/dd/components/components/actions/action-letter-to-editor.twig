@@ -1,0 +1,14 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+  <div class="action-link--{{ action_type }} action-icon" title="Letter to Editor"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+  {% set json_data = {
+    'body': body|render|striptags,
+    'subject': subject|render|striptags,
+    'state': state,
+    'city': city,
+    'zip': zip,
+    'street': street,
+    'newspapers_override': (paragraph.get('field_override_newspapers').value == 1) ? paragraph.get('field_targeted_newspapers').getString : ''
+  } %}
+  <a href="/email_editor/find_by_address?json={{ json_data|json_encode()|url_encode }}" onClick="Drupal.behaviors.campaigns.logActionMetric('{{ campaign_id }}', 'letter_to_editor', '{{ campaign_action_id }}', '{{ campaign_action_paragraphs_id }}', '{{ legislator_pid }}');" class="use-ajax button--action action-link--{{ action_type }}" data-dialog-type="modal">{{ action }}</a>
+{% endif %}

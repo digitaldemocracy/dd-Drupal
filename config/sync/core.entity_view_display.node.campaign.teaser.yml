@@ -1,0 +1,71 @@
+uuid: cc176db4-b2fc-400a-80e8-ef9176fa059f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.campaign.body
+    - field.field.node.campaign.field_actions
+    - field.field.node.campaign.field_bill
+    - field.field.node.campaign.field_bill_location
+    - field.field.node.campaign.field_bill_position
+    - field.field.node.campaign.field_bill_summary
+    - field.field.node.campaign.field_campaign_desc_location
+    - field.field.node.campaign.field_enable_facebook_share
+    - field.field.node.campaign.field_enable_twitter_share
+    - field.field.node.campaign.field_end_date
+    - field.field.node.campaign.field_private_campaign
+    - field.field.node.campaign.field_sample_tweet
+    - field.field.node.campaign.field_show_bill_author
+    - field.field.node.campaign.field_show_bill_status
+    - field.field.node.campaign.field_start_date
+    - field.field.node.campaign.field_video_clips
+    - field.field.node.campaign.field_video_location
+    - node.type.campaign
+  module:
+    - text
+    - user
+id: node.campaign.teaser
+targetEntityType: node
+bundle: campaign
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    settings:
+      trim_length: 300
+    third_party_settings: {  }
+    region: content
+  field_video_clips:
+    type: entity_reference_entity_view
+    weight: 1
+    label: hidden
+    settings:
+      view_mode: thumbnail
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_actions: true
+  field_bill: true
+  field_bill_location: true
+  field_bill_position: true
+  field_bill_subject: true
+  field_bill_summary: true
+  field_campaign_desc_location: true
+  field_enable_facebook_share: true
+  field_enable_twitter_share: true
+  field_end_date: true
+  field_is_deleted: true
+  field_is_statewide_campaign: true
+  field_non_targeted_actions: true
+  field_private_campaign: true
+  field_sample_tweet: true
+  field_show_bill_author: true
+  field_show_bill_status: true
+  field_start_date: true
+  field_targeted_actions: true
+  field_video_location: true
+  links: true

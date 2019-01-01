@@ -1,0 +1,80 @@
+uuid: 24fe0462-6035-4cf9-8a12-476ce8b05677
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_current_limit
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_end_date
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_faxes_sent
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_limit
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_start_date
+  module:
+    - datetime
+    - dd_fax_service
+    - user
+id: dd_fax_service_history.dd_fax_service_history.default
+targetEntityType: dd_fax_service_history
+bundle: dd_fax_service_history
+mode: default
+content:
+  field_current_limit:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_end_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_faxes_sent:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_limit:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_start_date:
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

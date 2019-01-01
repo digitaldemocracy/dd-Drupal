@@ -1,0 +1,34 @@
+uuid: 85684530-4517-4b1d-82b5-626eb7c21de3
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.session_year
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: sessionyear
+theme: dd
+region: sidebar_first
+weight: -41
+provider: null
+plugin: 'facet_block:session_year'
+settings:
+  id: 'facet_block:session_year'
+  label: 'Session Year'
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /bills
+    negate: false
+    context_mapping: {  }

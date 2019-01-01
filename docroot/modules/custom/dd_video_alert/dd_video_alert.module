@@ -1,0 +1,360 @@
+<?php
+
+use Drupal\Core\Routing\RoutMatchInterface;
+use Drupal\search_api\Query\Query;
+use Drupal\search_api\Entity\Index;
+use Drupal\search_api;
+use Drupal\user\UserInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\node\Entity\Node;
+use Drupal\field\FieldConfigInterface;
+use Drupal\Core\Database\Database;
+use Drupal\dd_base\DdBase;
+use Drupal\dd_person\Entity\DdPerson;
+
+/**
+ * Object to store information of video alert.
+ */
+class sendAlert {
+  public $username;
+  public $uid;
+  public $email;
+  public $urls = array();
+
+  public function __construct($username, $uid, $email, $urls) {
+    $this->username = $username;
+    $this->uid = $uid;
+    $this->email = $email;
+    $this->urls = $urls;
+  }
+
+  public function push_new_urls($urls) {
+    $this->urls = array_merge_recursive($this->urls, $urls);
+  }
+}
+
+/**
+ * Function to query Apache solr with video alert. Searches for recent phrases 
+ * defined by the user in the video alert. If matches are found the function 
+ * returns an associative array of links where key is the title of the node 
+ * and value is the url to the search page of the phrase the user is searching 
+ * for.
+ * @param Drupal\node\Entity\Node node. A video alert that the user created.
+ * @return array links: An associative array where the key is the node title and 
+ *   the values are urls.
+ */
+function dd_video_alert_query_solr($node) {
+  $links = array();
+  $additional_conditions = array();
+  $populated = array();
+  // Check if user wants to search on node.
+  if (!$node->get("field_disable")->value) {
+    $node_title = $node->getTitle();
+    //echo $node_title;
+    // Get lasttouched value.
+    $offset = \Drupal::configFactory()->getEditable('dd_video_alert.settings')
+      ->get('default_lasttouched');
+    $update_time = strtotime(date("Y-m-d H:i:s", strtotime($offset)));
+    //$update_time = strtotime(date("Y-m-d H:i:s", strtotime('-7 years')));
+
+    // Array that contains the fields we search for. Keys are the field names of 
+    // index and values are the field names of dd_email_subscription content.
+    $search_fields = array(
+      "type" => "field_bill_type", 
+      "number" => "field_bill_number_is", 
+      "committee_name" => "field_committee_is", 
+      "pid" => "field_speaker_pid",
+    );
+
+    $index = Index::load('currentutterance_index');
+
+    $query = new Query($index);
+
+    $key_phrases = $node->get('field_key_phrase')->getValue();
+    if ($key_phrases == null || count($key_phrases) == 0) {
+      $key_phrases = [array('value' => '')];
+    }
+    foreach ($key_phrases as $phrase) {
+      //echo print_r($phrase, true);
+      $query->setFulltextFields(['text'])->keys($phrase['value']);
+
+      foreach ($search_fields as $key => $field) {
+        if ($key === 'pid') {
+          $field_value = $node->get($field)->target_id;
+          if ($field_value) {
+            $query->addCondition($key, $field_value);
+            $person = DdPerson::load($field_value);
+            if ($person) {
+              $populated['speaker_pid'] = $field_value;
+              $additional_conditions['speaker'] = $person->getFullNameFirstLast();
+            }
+          }
+        }
+        else {
+          $field_value = $node->get($field)->value;
+          if ($field_value) {
+            if ($key === 'committee_name') {
+              $db_query = Database::getConnection('default',
+                DdBase::getDddbName())->select('CommitteeNames', 'cn');
+              $db_query->fields('cn', array('cn_id'));
+              $db_query->condition('cn.name', $field_value);
+              $db_res = $db_query->execute()->fetch();
+              if ($db_res) {
+                $populated['cn_id'] = $db_res->cn_id;
+                $additional_conditions[$key] = $field_value;
+              }
+            }
+            else {
+              $query->addCondition($key, $field_value);
+              $populated[$key] = $field_value;
+              $additional_conditions[$key] = $field_value;
+            }
+          }
+        }
+      }
+      //echo print_r($populated,true);
+
+      $query->addCondition("lasttouched_ts", $update_time, '>=');
+      //echo $update_time;
+      $result = $query->execute();
+      
+      if ($result->getResultCount()) {
+        $url = dd_video_alert_construct_url([$phrase['value']],
+                                            $populated, $update_time);
+        if (!isset($links[$node_title])) {
+          $links[$node_title]=array();
+        }
+        $links[$node_title]['phrases'] = array($phrase['value']=>$url);
+        add_other_search_fields($links[$node_title], $additional_conditions);
+      }
+    }
+    //echo print_r($links,true);
+  }
+  return $links;
+}
+
+/**
+ * Implements hook_mail.
+ */
+function dd_video_alert_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+  case 'video_alert':
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+    $message['from'] = \Drupal::config('system.site')->get('mail');
+    $message['subject'] = t('New utterance that matched your search has been found.', $options);
+    $message['body'][] = SafeMarkup::checkPlain($params['message']);
+    break;
+  }
+}
+
+/*
+ * Function used to create the url for the search page of the phrase.
+ * @param String phrase. the user defined phrase.
+ * @param Array populated_fields. array containing the fields the user 
+ *   searched on.
+ * @param Date date. lasttouched date.
+ * @return the url that directs to the search page
+ */
+function dd_video_alert_construct_url($phrase, $populated, $date) {
+  global $base_url;
+  //CHANGE THIS TO RELEVANT URL
+  $url = $base_url . '/search?fulltext=';
+
+  $url .= urlencode(implode(' ', $phrase));
+  foreach ($populated as $key => $value) {
+    if ($key !== 'committee_name') {
+      $url .= "&" . $key . "=" . urlencode($value);
+    }
+  }
+
+  $url .= "&lasttouched_ts=" . urlencode(gmdate("Y-m-d\TH:i:s\Z", $date)) . "&sort_by=search_api_relevance&sort_order=DESC";
+  return $url;
+}
+
+/**
+ * Add additional search conditions used to the associative array
+ *   which will be passed onto twig for constructing email message body.
+ *
+ * @param $assoc: reference to associative array
+ * @param $fields: associative array of additional search conditions.
+ */
+function add_other_search_fields(&$assoc, $fields) {
+  foreach ($fields as $key => $val) {
+    $assoc[$key] = $val;
+  }
+}
+
+/*
+ * Function that sends email to users.
+ * @param Array alerts. An array of sendAlert objects that have information 
+ *   on the alerts to send.
+ */
+function dd_video_alert_send_mail($alerts) {
+  $host_name = \Drupal::request()->getHost();
+  $base_url = $host_name;
+  $logo = theme_get_setting('logo.url', 'dd');
+
+
+  $wl_id = \Drupal\dd_base\DdBase::getWhiteLabelId();
+  foreach ($alerts as $alert) {
+    $send_alerts = array();
+    $titles = array();
+    $send_alerts = $alert->urls;
+    $msg_data = array(
+      '#theme' => 'dd_video_alerts',
+      '#elements' => array(),
+    );
+    //echo print_r($send_alerts,true);
+    // Format message in templates/video-alert.html.twig
+    $msg_data['#elements']['user_id'] = $alert->uid;
+    $msg_data['#elements']['username'] = $alert->username;
+    $msg_data['#elements']['alerts'] = $send_alerts;
+    $msg_data['#elements']['base_url'] = $base_url;
+    $msg_data['#elements']['site_name'] = \Drupal::config('system.site')->get('name');
+    $msg_data['#elements']['wl_id'] = $wl_id;
+    $msg_data['#elements']['logo'] = $logo;
+    //echo print_r($msg_data,true);
+    $content = \Drupal::service('renderer')->renderRoot($msg_data);
+
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'dd_video_alert';
+    $key = 'video_alert';
+    $params['message'] = $content;
+    $to = $alert->email;
+    \Drupal::logger('dd_video_alert')->notice("Alert sent to " . $to);
+    //echo $to;
+    //$to = "toshikuboi@hotmail.com";
+    $langcode = \Drupal::currentUser()->getPreferredLangCode();
+    $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, true);
+  } 
+}
+
+/*
+ * Function that saves video alert history.
+ */
+function dd_video_alert_save_history($alerts) {
+  foreach ($alerts as $alert) {
+  $result_string = "";
+    foreach ($alert->urls as $title => $value) {
+      foreach ($value['phrases'] as $key => $url) {
+        $result_string .= "Title: " . $title . ", URL: " . $url . "\n";
+      }
+    }
+    $title = $alert->username . "_" . date("Y-m-d H:i:s");
+    $history = \Drupal\node\Entity\Node::create(
+      array(
+        'type' => 'dd_video_alert_history',
+        'uid' => $alert->uid,
+        'status' => 0,
+        'title' => $title,
+        'language' => 'und',
+      )
+    );  
+    $history->set('field_video_alert_result', $result_string);
+    $history->save();
+  }
+}
+
+/*
+ * Function that checks if the dd_video_alert nodes have search phrases 
+ * that have been said in a recent utterance, and if so sends an email.
+ */
+function dd_video_alert_run() {
+  $nodes = dd_video_alert_get_nodes();
+
+  $send_alerts = array();
+
+  $names = array();
+  $result = array(); 
+  foreach ($nodes as $node) {
+    $user = $node->getOwner();
+    if (!$user) {
+      \Drupal::logger('dd_video_alert')->warning('No owner for nid=' . $node->id());
+      continue;
+    }
+    $name = $user->getUsername();
+    $uid = $user->id();
+    $email = $user->getEmail();
+
+    $links = dd_video_alert_query_solr($node);
+    if ($links && count($links)) {
+      if (in_array($name, $names)) {
+        foreach ($result as $temp) {
+          if ($temp->username === $name) {
+            $temp->push_new_urls($links);
+          } 
+        }
+      } else {
+        array_push($names, $name);
+        $temp_alert = new sendAlert($name, $uid, $email, $links);
+        array_push($result, $temp_alert);
+      }
+    }
+  }
+
+  if ($result) {
+    dd_video_alert_send_mail($result);
+    dd_video_alert_save_history($result);
+  }
+}
+
+/*
+ * Function to get dd_video_alert nodes.
+ * @return Array nodes. Array of Drupal\node\Entity\Node.
+ */
+function dd_video_alert_get_nodes() {
+  $query = \Drupal::entityQuery('node');
+  $query->condition('type', 'dd_email_subscription');
+  $alerts = $query->execute();
+
+  $nodes = \Drupal\node\Entity\Node::loadMultiple($alerts);
+
+  return $nodes;
+}
+
+/**
+ * Implements hook_cron()
+ */
+function dd_video_alert_cron() {
+  dd_video_alert_run();
+}
+
+/**
+ * Implements hook_theme()
+ */
+function dd_video_alert_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd_video_alerts' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'dd-video-alerts',
+    ),
+  );
+  return $variables;
+}
+
+
+/**
+ * Implements hook_theme_suggestions_alter().
+ */
+function dd_video_alert_theme_suggestions_dd_video_alerts_alter(array &$suggestions, array $variables) {
+  if (\Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+    // Add template suggestion, will look in themes/custom/dd/templates/emails.
+    $suggestions[] = 'dd_video_alerts__' . \Drupal\dd_base\DdBase::getWhiteLabelId();
+  }
+}
+
+function dd_video_alert_test() {
+  //echo \Drupal\dd_base\DdBase::getWhiteLabelId();
+  $links = array();
+  $links['sogata'] = ['randomUrl'];
+  $alert = new sendAlert('kevin', 1, 'kevin@example.com', $links);
+  $result = array();
+  array_push($result, $alert);
+  dd_video_alert_save_history($result);
+}

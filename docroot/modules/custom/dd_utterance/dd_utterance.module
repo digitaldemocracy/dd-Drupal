@@ -1,0 +1,38 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_utterance.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_utterance_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_utterance module.
+    case 'help.page.dd_utterance':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Utterance') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_utterance_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Add State conditions for search_api tracking of entities.
+  if (
+    isset($query->getTables()['base_table']) &&
+    ($query->getTables()['base_table']['table'] == 'currentUtterance' || $query->getTables()['base_table']['table'] == 'currentUtteranceUnsorted') &&
+    \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))
+  ) {
+    $query->condition('base_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+  }
+}

@@ -1,0 +1,47 @@
+uuid: aaeba09d-04f2-4cb3-8b78-132f4f14f2fc
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:724b7c7c-277c-440d-9379-0571c356aec1'
+  module:
+    - block_content
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+  theme:
+    - dd
+id: fororganizations
+theme: dd
+region: home_content_right
+weight: 0
+provider: null
+plugin: 'block_content:724b7c7c-277c-440d-9379-0571c356aec1'
+settings:
+  id: 'block_content:724b7c7c-277c-440d-9379-0571c356aec1'
+  label: 'For Organizations'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

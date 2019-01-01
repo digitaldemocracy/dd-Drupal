@@ -1,0 +1,37 @@
+uuid: 1372e58f-0ada-494c-98f4-e8b68506c0d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hearing_speakers
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__hearing_speakers_block_1
+theme: dd
+region: sidebar_second
+weight: -42
+provider: null
+plugin: 'views_block:hearing_speakers-block_1'
+settings:
+  id: 'views_block:hearing_speakers-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/hearing/*'
+    negate: false
+    context_mapping: {  }

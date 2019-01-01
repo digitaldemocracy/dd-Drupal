@@ -1,0 +1,21 @@
+uuid: 71608312-3c17-430e-a7f6-6fb82fb8ed25
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip_bank_quota.field_quota_in_bytes
+field_name: field_quota_in_bytes
+entity_type: dd_clip_bank_quota
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

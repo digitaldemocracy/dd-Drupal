@@ -1,0 +1,11 @@
+<div class="dd-find-my-legislator">
+  {{ form }}
+  <div class="embed-link hide">
+   <a href="#" title="click to copy the video link" >Copy Link</a>
+  </div>
+  <div class="embed-clip-video hide">
+    <textarea  wrap='off'>{{ items.embed_url }}</textarea>
+  </div>
+  <div id="my-legislators"></div>
+</div>
+{{ attach_library('dd/dd-email-legislator') }}

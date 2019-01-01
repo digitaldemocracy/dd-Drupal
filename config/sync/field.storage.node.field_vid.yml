@@ -1,0 +1,20 @@
+uuid: 6cd6210d-4501-4b67-bf04-2c40a144298d
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_video
+    - node
+id: node.field_vid
+field_name: field_vid
+entity_type: node
+type: entity_reference
+settings:
+  target_type: dd_video
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

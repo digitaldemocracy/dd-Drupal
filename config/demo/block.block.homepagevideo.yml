@@ -1,0 +1,44 @@
+uuid: 0f073e36-c643-48d3-9c37-94befd7b972f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+  theme:
+    - dd
+id: homepagevideo
+theme: dd
+region: home_content_left
+weight: 0
+provider: null
+plugin: 'block_content:e6643417-6345-42b6-90ad-1ebea7642882'
+settings:
+  id: 'block_content:e6643417-6345-42b6-90ad-1ebea7642882'
+  label: 'Introducing Digital Democracy'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

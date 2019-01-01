@@ -1,0 +1,10 @@
+uuid: da44fc62-c405-4969-92d5-f5c003324a8c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_hearing
+id: dd_hearing.token
+label: Token
+targetEntityType: dd_hearing
+cache: true

@@ -1,0 +1,42 @@
+# DD Legislator routing definition
+dd_legislator.settings_tab:
+  route_name: dd_legislator.settings
+  title: 'Settings'
+  base_route: dd_legislator.settings
+entity.dd_legislator.canonical:
+  route_name: entity.dd_legislator.canonical
+  base_route: entity.dd_legislator.canonical
+  title: 'View'
+
+entity.dd_legislator.edit_form:
+  route_name: entity.dd_legislator.edit_form
+  base_route: entity.dd_legislator.canonical
+  title: Edit
+# DD Term routing definition
+dd_term.settings_tab:
+  route_name: dd_term.settings
+  title: 'Settings'
+  base_route: dd_term.settings
+entity.dd_term.canonical:
+  route_name: entity.dd_term.canonical
+  base_route: entity.dd_term.canonical
+  title: 'View'
+
+entity.dd_term.edit_form:
+  route_name: entity.dd_term.edit_form
+  base_route: entity.dd_term.canonical
+  title: Edit
+# DD Legislative Staff routing definition
+dd_legislative_staff.settings_tab:
+  route_name: dd_legislative_staff.settings
+  title: 'Settings'
+  base_route: dd_legislative_staff.settings
+entity.dd_legislative_staff.canonical:
+  route_name: entity.dd_legislative_staff.canonical
+  base_route: entity.dd_legislative_staff.canonical
+  title: 'View'
+
+entity.dd_legislative_staff.edit_form:
+  route_name: entity.dd_legislative_staff.edit_form
+  base_route: entity.dd_legislative_staff.canonical
+  title: Edit

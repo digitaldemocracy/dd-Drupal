@@ -1,0 +1,22 @@
+uuid: 073788c7-8b42-4611-b445-7cf2cf255665
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dd_video_alert_history.field_video_alert_result
+    - node.type.dd_video_alert_history
+  module:
+    - user
+id: node.dd_video_alert_history.teaser
+targetEntityType: node
+bundle: dd_video_alert_history
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_video_alert_result: true

@@ -1,0 +1,48 @@
+uuid: ada246af-0958-4ea0-a83a-ef2092287c12
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_video_editor
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: clipgalleryblockforclipperpage
+theme: dd
+region: sidebar_second
+weight: -39
+provider: null
+plugin: clipper_gallery_block
+settings:
+  id: clipper_gallery_block
+  label: 'Clip Gallery'
+  provider: dd_video_editor
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '*/dd_video_editor/video_clipper/*'
+    negate: false
+    context_mapping: {  }
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

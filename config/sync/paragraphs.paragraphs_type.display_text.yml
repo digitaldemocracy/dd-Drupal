@@ -1,0 +1,6 @@
+uuid: 7b9dcb90-af53-4ab4-935b-42f24e10a101
+langcode: en
+status: true
+dependencies: {  }
+id: display_text
+label: 'Display Text'

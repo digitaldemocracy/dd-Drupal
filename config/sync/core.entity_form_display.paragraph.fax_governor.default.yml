@@ -1,0 +1,37 @@
+uuid: 8836f719-cedd-4c0a-882f-7f872e079896
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fax_governor.field_action_body
+    - field.field.paragraph.fax_governor.field_subject
+    - field.field.paragraph.fax_governor.field_success_message
+    - paragraphs.paragraphs_type.fax_governor
+  module:
+    - text
+id: paragraph.fax_governor.default
+targetEntityType: paragraph
+bundle: fax_governor
+mode: default
+content:
+  field_action_body:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_subject:
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  field_success_message: true
+  status: true
+  uid: true

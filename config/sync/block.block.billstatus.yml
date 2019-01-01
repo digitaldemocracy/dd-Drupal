@@ -1,0 +1,34 @@
+uuid: d15b38c8-361f-4af2-935d-ecfa21dedf03
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.bill_status
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: billstatus
+theme: dd
+region: sidebar_first
+weight: -40
+provider: null
+plugin: 'facet_block:bill_status'
+settings:
+  id: 'facet_block:bill_status'
+  label: 'Bill Status'
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /bills
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,13 @@
+# DD Organization menu items definition
+entity.dd_organization.collection:
+  title: 'DD Organization list'
+  route_name: entity.dd_organization.collection
+  description: 'List DD Organization entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_organization.admin.structure.settings:
+  title: DD Organization settings
+  description: 'Configure DD Organization entities'
+  route_name: dd_organization.settings
+  parent: system.admin_structure

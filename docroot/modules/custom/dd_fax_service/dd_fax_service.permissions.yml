@@ -1,0 +1,57 @@
+administer dd fax service:
+  title: 'Administer DD Fax Service'
+add dd fax service history entities:
+  title: 'Create new Dd fax service history entities'
+
+administer dd fax service history entities:
+  title: 'Administer Dd fax service history entities'
+  description: 'Allow to access the administration form to configure Dd fax service history entities.'
+  restrict access: true
+
+delete dd fax service history entities:
+  title: 'Delete Dd fax service history entities'
+
+edit dd fax service history entities:
+  title: 'Edit Dd fax service history entities'
+
+access dd fax service history overview:
+  title: 'Access the Dd fax service history overview page'
+
+view published dd fax service history entities:
+  title: 'View published Dd fax service history entities'
+
+view unpublished dd fax service history entities:
+  title: 'View unpublished Dd fax service history entities'
+
+view all dd fax service history revisions:
+  title: 'View all Dd fax service history revisions'
+
+revert all dd fax service history revisions:
+  title: 'Revert all Dd fax service history revisions'
+  description: 'Role requires permission <em>view Dd fax service history revisions</em> and <em>edit rights</em> for dd fax service history entities in question or <em>administer dd fax service history entities</em>.'
+
+delete all dd fax service history revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Dd fax service history revisions</em> and <em>delete rights</em> for dd fax service history entities in question or <em>administer dd fax service history entities</em>.'
+add dd fax service history entities:
+  title: 'Create new Dd fax service history entities'
+
+administer dd fax service history entities:
+  title: 'Administer Dd fax service history entities'
+  description: 'Allow to access the administration form to configure Dd fax service history entities.'
+  restrict access: true
+
+delete dd fax service history entities:
+  title: 'Delete Dd fax service history entities'
+
+edit dd fax service history entities:
+  title: 'Edit Dd fax service history entities'
+
+access dd fax service history overview:
+  title: 'Access the Dd fax service history overview page'
+
+view published dd fax service history entities:
+  title: 'View published Dd fax service history entities'
+
+view unpublished dd fax service history entities:
+  title: 'View unpublished Dd fax service history entities'

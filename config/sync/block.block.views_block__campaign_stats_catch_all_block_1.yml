@@ -1,0 +1,52 @@
+uuid: 27428eac-e2c8-471e-8f8a-4f47b5a3b2e1
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaign_stats_catch_all
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__campaign_stats_catch_all_block_1
+theme: dd
+region: content
+weight: 0
+provider: null
+plugin: 'views_block:campaign_stats_catch_all-block_1'
+settings:
+  id: 'views_block:campaign_stats_catch_all-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/node/*/stats'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,56 @@
+uuid: 02b6ed1b-bd63-44ea-97d7-bf3444ff7698
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_bill_alert_history.dd_bill_alert_history.field_bill_id
+    - field.field.dd_bill_alert_history.dd_bill_alert_history.field_result
+    - field.field.dd_bill_alert_history.dd_bill_alert_history.field_user_id
+  module:
+    - dd_bill_alerts
+    - user
+id: dd_bill_alert_history.dd_bill_alert_history.default
+targetEntityType: dd_bill_alert_history
+bundle: dd_bill_alert_history
+mode: default
+content:
+  field_bill_id:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_result:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_user_id:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

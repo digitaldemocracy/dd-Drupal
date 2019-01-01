@@ -1,0 +1,20 @@
+uuid: 6caa230c-8f3f-4d2d-9223-b1e55f623bd0
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+    - node
+id: node.field_committee
+field_name: field_committee
+entity_type: node
+type: entity_reference
+settings:
+  target_type: dd_committee
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

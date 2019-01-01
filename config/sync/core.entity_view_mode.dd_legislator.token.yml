@@ -1,0 +1,10 @@
+uuid: ed32f2ce-02b9-4cc2-aeca-45a7e3aa9316
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_legislator.token
+label: Token
+targetEntityType: dd_legislator
+cache: true

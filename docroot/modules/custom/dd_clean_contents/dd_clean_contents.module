@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_clean_contents.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_clean_contents_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.dd_clean_contents':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Cleanup usears and user contents.') . '</p>';
+      return $output;
+
+    default:
+  }
+}

@@ -1,0 +1,33 @@
+uuid: fe41b6b4-9bdb-4ea5-875c-df90d987c2df
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dd_invoice.field_balance_due
+    - field.field.node.dd_invoice.field_duration_days
+    - field.field.node.dd_invoice.field_expires
+    - field.field.node.dd_invoice.field_total
+    - node.type.dd_invoice
+  module:
+    - user
+id: node.dd_invoice.teaser
+targetEntityType: node
+bundle: dd_invoice
+mode: teaser
+content:
+  field_subscription_message:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_balance_due: true
+  field_duration_days: true
+  field_expires: true
+  field_total: true

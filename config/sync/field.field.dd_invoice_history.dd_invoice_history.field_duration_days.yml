@@ -1,0 +1,24 @@
+uuid: 2d7309fe-fb70-4d6a-9fe0-507fe709c144
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_invoice_history.field_duration_days
+  module:
+    - dd_payment_system
+id: dd_invoice_history.dd_invoice_history.field_duration_days
+field_name: field_duration_days
+entity_type: dd_invoice_history
+bundle: dd_invoice_history
+label: 'duration days'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

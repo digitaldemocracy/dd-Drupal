@@ -1,0 +1,32 @@
+uuid: b7a66030-8495-4578-9c59-4f567c8fdddc
+langcode: en
+status: true
+dependencies:
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+_core:
+  default_config_hash: tQphG05I3vzZ5fym81Futsz2QGQSCajmCfdoCBcf_J0
+id: dd_branding
+theme: dd
+region: header
+weight: -49
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: false
+  use_site_slogan: false
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }

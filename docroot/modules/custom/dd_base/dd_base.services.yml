@@ -1,0 +1,29 @@
+services:
+  path_processor.default_session_date:
+    class: Drupal\dd_base\DdBasePathProcessor
+    tags:
+      - { name: path_processor_inbound, priority: 200 }
+  dd_base_event_subscriber:
+    class: Drupal\dd_base\EventSubscriber\DdBaseSubscriber
+    tags:
+      - {name: event_subscriber}
+
+  dd_base_address_format_subscriber:
+    class: Drupal\dd_base\EventSubscriber\DdBaseAddressFormatSubscriber
+    tags:
+      - {name: event_subscriber}
+  dd_base.twig_extension.unescape:
+    arguments: ['@renderer']
+    class: Drupal\dd_base\TwigExtension\Unescape
+    tags:
+      - { name: twig.extension }
+
+  dd_base.twig_extension.paragraph:
+    arguments: ['@renderer']
+    class: Drupal\dd_base\TwigExtension\DdBaseFirstParagraphFilter
+    tags:
+    - { name: twig.extension }
+  dd_base_finish_response_subscriber:
+    class: Drupal\dd_base\EventSubscriber\DdBaseFinishResponseSubscriber
+    tags:
+      - {name: event_subscriber}

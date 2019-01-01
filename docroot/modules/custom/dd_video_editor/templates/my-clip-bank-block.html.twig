@@ -1,0 +1,34 @@
+
+<div class="my-clip-bank-area">
+  <div class="row">
+    <section class="col-sm-12">
+      <div class="video-editing">	
+        <div class="vc-total-cbs">
+          <span CLASS="clip-bank-size">TOTAL CLIP BANK SIZE: {{ total_usage_size }} / {{ quota_size }} </span>
+        </div>
+      </div>
+      <div class="content-video content-video-vp clip-bank clearfix">
+        <div class="row">
+          <script type="application/json" id="clips-json">
+            {{ clips_json|raw }}
+          </script>
+          <div id="user-tags-csv" data-user-tags="{{ tags_csv }}"></div>
+          <div class="cp-video-tags">
+            <div class="cp-video-tag cp-video-tag-active" data-tag="all">ALL</div>
+            <div class="cp-video-tag" data-tag="none">No Tags</div>
+            {% for tag, rep_tag in rep_tags %}
+            <div class="cp-video-tag" data-tag="tag-{{ rep_tag }}">{{ tag }}</div>
+            {% endfor %}
+            <div class="cp-video-tag-edit">Edit</div>
+            <div class="dialog" style="display:none;" title="Edit Tags">
+              <div id="table-div"></div>
+              {{ form }}
+            </div>
+          </div>
+          {{ items }}
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{{ attach_library('dd/dd-my-clip-bank') }}

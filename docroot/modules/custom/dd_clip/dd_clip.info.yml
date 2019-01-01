@@ -1,0 +1,7 @@
+name: DD Clip 
+type: module
+description: Customizes DD Clip Content Type Node Page Display 
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

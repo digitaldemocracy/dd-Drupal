@@ -1,0 +1,15 @@
+uuid: 2c4b1f1f-a136-4cf7-b10c-f8996ca2ab88
+langcode: en
+status: true
+dependencies: {  }
+name: horizontal_widget_logo_
+label: 'Horizontal widget logo '
+effects:
+  3d1f3b2c-b21d-46fd-8243-30b2ba8d1258:
+    uuid: 3d1f3b2c-b21d-46fd-8243-30b2ba8d1258
+    id: image_scale_and_crop
+    weight: 3
+    data:
+      width: 300
+      height: 300
+      anchor: center-center

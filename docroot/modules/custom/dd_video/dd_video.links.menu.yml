@@ -1,0 +1,13 @@
+# DD Video menu items definition
+entity.dd_video.collection:
+  title: 'DD Video list'
+  route_name: entity.dd_video.collection
+  description: 'List DD Video entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_video.admin.structure.settings:
+  title: DD Video settings
+  description: 'Configure DD Video entities'
+  route_name: dd_video.settings
+  parent: system.admin_structure

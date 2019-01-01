@@ -1,0 +1,21 @@
+uuid: d3defeab-acbb-4403-8565-e6febcc66329
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_hearing_is_before_date
+    - node.type.dd_email_subscription
+  module:
+    - datetime
+id: node.dd_email_subscription.field_hearing_is_before_date
+field_name: field_hearing_is_before_date
+entity_type: node
+bundle: dd_email_subscription
+label: 'Hearing is On or Before'
+description: 'Restrict search to utterances from hearings which took place on or before a date. Date must be of the format ''yyyy-mm-dd''. Leave blank to ignore this restriction.                                       '
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

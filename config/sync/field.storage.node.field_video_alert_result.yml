@@ -1,0 +1,19 @@
+uuid: 06721ffb-e37d-4ed3-acc5-2b970bf21977
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_video_alert_result
+field_name: field_video_alert_result
+entity_type: node
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,25 @@
+uuid: 448276f1-9024-4b4f-8eb2-66600c63c935
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.display_text.field_action_body
+    - paragraphs.paragraphs_type.display_text
+  module:
+    - text
+id: paragraph.display_text.default
+targetEntityType: paragraph
+bundle: display_text
+mode: default
+content:
+  field_action_body:
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

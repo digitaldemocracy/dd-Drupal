@@ -1,0 +1,14 @@
+# DD Utterance routing definition
+dd_utterance.settings_tab:
+  route_name: dd_utterance.settings
+  title: 'Settings'
+  base_route: dd_utterance.settings
+entity.dd_utterance.canonical:
+  route_name: entity.dd_utterance.canonical
+  base_route: entity.dd_utterance.canonical
+  title: 'View'
+
+entity.dd_utterance.edit_form:
+  route_name: entity.dd_utterance.edit_form
+  base_route: entity.dd_utterance.canonical
+  title: Edit

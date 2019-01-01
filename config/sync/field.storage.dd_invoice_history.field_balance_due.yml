@@ -1,0 +1,21 @@
+uuid: 56537710-a2c8-4ebe-ba39-7e0ab2280384
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_payment_system
+id: dd_invoice_history.field_balance_due
+field_name: field_balance_due
+entity_type: dd_invoice_history
+type: dd_pay
+settings:
+  precision: '10'
+  scale: '2'
+  currency: usd
+module: dd_payment_system
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

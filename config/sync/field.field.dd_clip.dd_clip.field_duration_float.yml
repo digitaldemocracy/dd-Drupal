@@ -1,0 +1,24 @@
+uuid: 0e1fe297-6905-4526-b117-9d26ad7feedc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_duration_float
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_duration_float
+field_name: field_duration_float
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Duration Float'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

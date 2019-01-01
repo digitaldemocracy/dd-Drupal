@@ -1,0 +1,7 @@
+dd_video_alert_settings:
+  path: '/admin/structure/dd_video_alert/settings'
+  defaults:
+    _form: '\Drupal\dd_video_alert\Form\DDVideoAlertSettingsForm'
+    _title: 'DD Video Alert'
+  requirements:
+    _permission: 'administer site configuration'

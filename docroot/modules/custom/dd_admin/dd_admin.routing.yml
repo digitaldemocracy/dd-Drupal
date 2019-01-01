@@ -1,0 +1,69 @@
+dd_admin.site_manager:
+  path: '/user/{user}/site-manager'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'DD Site Manager'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_content_settings:
+  path: '/user/{user}/site-manager/content-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminContentSettings'
+    _title: 'DD Site Manager - Content Settings'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_dashboard_settings:
+  path: '/user/{user}/site-manager/dashboard-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminDashboardSettings'
+    _title: 'DD Site Manager - Dashboard Settings'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_email_settings:
+  path: '/user/{user}/site-manager/email-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminEmailSettings'
+    _title: 'DD Site Manager - Email Settings'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_member_settings:
+  path: '/user/{user}/site-manager/member-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminMemberSettings'
+    _title: 'DD Site Manager - Member Settings'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_site_settings:
+  path: '/user/{user}/site-manager/site-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminSiteSettings'
+    _title: 'DD Site Manager - Site Settings'
+  requirements:
+    _permission: 'access administration pages'
+    _user_is_logged_in: 'TRUE'
+    user: \d+
+
+dd_admin.dd_admin_fax_settings:
+  path: '/user/{user}/site-manager/fax-settings'
+  defaults:
+    _form: '\Drupal\dd_admin\Form\DdAdminFaxSettings'
+    _title: 'DD Site Manager - Fax Settings'
+  requirements:
+    _permission: 'administer site manager settings'
+    _user_is_logged_in: 'TRUE'
+    user: \d+

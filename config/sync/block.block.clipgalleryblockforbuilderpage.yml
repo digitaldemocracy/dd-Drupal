@@ -1,0 +1,48 @@
+uuid: e4d93641-0c52-4e75-a06c-837b794e1c70
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_video_editor
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: clipgalleryblockforbuilderpage
+theme: dd
+region: sidebar_second
+weight: -38
+provider: null
+plugin: builder_gallery_block
+settings:
+  id: builder_gallery_block
+  label: 'Clip Gallery'
+  provider: dd_video_editor
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/user/*/dd_video_editor/video_builder'
+    negate: false
+    context_mapping: {  }
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

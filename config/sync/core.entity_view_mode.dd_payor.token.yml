@@ -1,0 +1,10 @@
+uuid: eda5d9ac-df72-4548-ab81-84954ddddd68
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_payor.token
+label: Token
+targetEntityType: dd_payor
+cache: true

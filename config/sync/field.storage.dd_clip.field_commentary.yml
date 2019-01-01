@@ -1,0 +1,19 @@
+uuid: f920b97a-3313-42e7-a549-573c8356e731
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+    - text
+id: dd_clip.field_commentary
+field_name: field_commentary
+entity_type: dd_clip
+type: text_long
+settings: {  }
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

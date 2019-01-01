@@ -1,0 +1,23 @@
+uuid: 30bce2de-8e11-4b84-ba7d-d7ef0a095ab8
+langcode: en
+status: true
+dependencies: {  }
+name: vertical_widget_logo
+label: 'Vertical widget Logo'
+effects:
+  4cb049e0-860f-47df-824f-98f92186b959:
+    uuid: 4cb049e0-860f-47df-824f-98f92186b959
+    id: image_scale
+    weight: 1
+    data:
+      width: 420
+      height: null
+      upscale: true
+  5163ddde-2454-4493-a7b5-da6de045c2bb:
+    uuid: 5163ddde-2454-4493-a7b5-da6de045c2bb
+    id: image_crop
+    weight: 2
+    data:
+      width: 420
+      height: 100
+      anchor: left-top

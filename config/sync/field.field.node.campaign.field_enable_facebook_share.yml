@@ -1,0 +1,23 @@
+uuid: 6e9400b3-ed5a-4ab3-835f-1574b805b4b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_enable_facebook_share
+    - node.type.campaign
+id: node.campaign.field_enable_facebook_share
+field_name: field_enable_facebook_share
+entity_type: node
+bundle: campaign
+label: 'Enable Facebook Share Button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

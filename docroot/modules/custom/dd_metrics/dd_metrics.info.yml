@@ -1,0 +1,7 @@
+name: DD Metrics
+type: module
+description: DigitalDemocracy Metrics / Stats
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

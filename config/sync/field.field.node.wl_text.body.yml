@@ -1,0 +1,22 @@
+uuid: d9a215db-118b-465c-9db0-06c1a4ee6b12
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.wl_text
+  module:
+    - text
+id: node.wl_text.body
+field_name: body
+entity_type: node
+bundle: wl_text
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

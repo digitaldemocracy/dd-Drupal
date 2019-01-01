@@ -1,0 +1,27 @@
+dd_fax_service.get_fax_links:
+ path: '/fax_service/get_links/{state}/{zip}/{city}/{street}/{arg}'
+ defaults:
+   _controller: '\Drupal\dd_fax_service\Controller\DdFaxServiceController::getLinks'
+   _title: 'Legislator Fax Links'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE
+dd_fax_service.fax_form:
+ path: '/fax_service/fax_form/{fax_num}/{arg}'
+ defaults:
+   _controller: '\Drupal\dd_fax_service\Controller\DdFaxServiceController::buildFaxForm'
+   _title: 'Fax Form'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE
+dd_fax_service.admin:
+  path: '/admin/config/services/dd_fax_service'
+  defaults:
+    _form: '\Drupal\dd_fax_service\Form\DdFaxServiceAdminForm'
+    _title: 'DD Fax Service Settings'
+  requirements:
+    _permission: 'administer dd fax service'
+  options:
+    _admin_route: TRUE

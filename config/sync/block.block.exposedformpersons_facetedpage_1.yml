@@ -1,0 +1,36 @@
+uuid: 57060598-473b-49be-a8fd-240972f6adbd
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.persons_faceted
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: exposedformpersons_facetedpage_1
+theme: dd
+region: sidebar_first
+weight: -43
+provider: null
+plugin: 'views_exposed_filter_block:persons_faceted-page_1'
+settings:
+  id: 'views_exposed_filter_block:persons_faceted-page_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /persons
+    negate: false
+    context_mapping: {  }

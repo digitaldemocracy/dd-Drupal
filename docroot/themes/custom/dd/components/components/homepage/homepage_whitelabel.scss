@@ -1,0 +1,53 @@
+@import 'init';
+
+// Homepage for Whitelabel sites, referenced from
+
+main {
+	margin-top: 1rem;
+
+}
+
+// Blocks in primary & secondary columns
+aside div.block {
+
+	&:nth-child(2n+1) {
+		@include dd-block--twotone--yellow;
+		padding-bottom: 1rem;
+		
+	}
+
+	&:nth-child(2n) {
+		@include dd-block--twotone--blue;
+		padding-bottom: 1rem;
+
+		.field-name-body {
+			padding-top: 1rem;
+		}
+	}
+}
+
+aside div.block:not(first-child) {
+	@include dd-box-shadow();
+	margin-top: 2rem;
+}
+
+// This probably deserves its own component eventually.
+.action-center--campaign-teasers {
+	.more-link {
+		@include font-size(l);
+		margin: 1rem 0;
+		text-align: right;
+	}
+}
+
+.is-path-frontpage #states-scroll-bar .states-scroll {
+	display: none;
+}
+
+.clip-detail-container {
+	display: none;
+}
+
+.player1-dimensions {
+	height: 200px;	// @todo not very responsive, and probably belongs in a component.
+}

@@ -1,0 +1,16 @@
+administer dd organization entities:
+  title: 'Administer DD Organization entities'
+  description: 'Allow to access the administration form to configure DD Organization entities.'
+  restrict access: true
+
+edit dd organization entities:
+  title: 'Edit DD Organization entities'
+
+access dd organization overview:
+  title: 'Access the DD Organization overview page'
+
+view published dd organization entities:
+  title: 'View published DD Organization entities'
+
+view unpublished dd organization entities:
+  title: 'View unpublished DD Organization entities'

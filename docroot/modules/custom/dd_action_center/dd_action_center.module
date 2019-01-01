@@ -1,0 +1,1123 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_action_center.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_action_center_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_action_center module.
+    case 'help.page.dd_action_center':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Digital Democracy Action Center') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_action_center_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  $campaign_wizard_forms_ids = ['node_campaign_form', 'node_campaign_edit_form', 'node_campaign_action_form', 'node_campaign_action_edit_form'];
+
+  if (in_array($form['#form_id'], $campaign_wizard_forms_ids)) {
+    // Remove revision/path/extra admin fields from non-admins.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array('administrator', $user_roles)) {
+      unset($form['author']);
+      unset($form['created']);
+      unset($form['uid']);
+      unset($form['options']);
+      unset($form['path']);
+      unset($form['revision']);
+      unset($form['revision_information']);
+      unset($form['revision_log']);
+      unset($form['sticky']);
+      unset($form['field_is_deleted']);
+    }
+
+    $form['#attached']['library'][] = 'dd_action_center/campaign-forms';
+    $form['#attached']['library'][] = 'dd/campaign-admin';
+
+    // Add token help to action text boxes.
+    if (isset($form['field_actions'])) {
+      $campaign_token_help = [
+        [
+          '#type' => 'details',
+          '#title' => t('Available Merge Fields'),
+          '#attributes' => ['class' => ['campaign-token-help']],
+          '#name' => 'campaign_token_help',
+          'first_name' => [
+            '#type' => 'item',
+            '#description' => '[campaign:first_name]',
+            '#title' => t("Visitor's first name"),
+          ],
+          'last_name' => [
+            '#type' => 'item',
+            '#description' => '[campaign:last_name]',
+            '#title' => t("Visitor's last name"),
+          ],
+          'address' => [
+            '#type' => 'item',
+            '#description' => '[campaign:address]',
+            '#title' => t("Visitor's street address"),
+          ],
+          'city' => [
+            '#type' => 'item',
+            '#description' => '[campaign:city]',
+            '#title' => t("Visitor's city"),
+          ],
+          'state' => [
+            '#type' => 'item',
+            '#description' => '[campaign:state]',
+            '#title' => t("Visitor's state"),
+          ],
+          'zip' => [
+            '#type' => 'item',
+            '#description' => '[campaign:zip]',
+            '#title' => t("Visitor's zipcode"),
+          ],
+          'bill_type_number' => [
+            '#type' => 'item',
+            '#description' => '[campaign:bill_type_number]',
+            '#title' => t('Targeted Bill (ie. AB 10)'),
+          ],
+          'bill_subject' => [
+            '#type' => 'item',
+            '#description' => '[campaign:bill_subject]',
+            '#title' => t('Targeted Bill Subject'),
+          ],
+        ]
+      ];
+
+      $uid = \Drupal::currentUser()->id();
+
+      for ($index = 0; $index <= $form['field_actions']['widget']['#max_delta']; $index++) {
+        if (isset($form['field_actions']['widget'][$index]['subform']['field_email_body'])) {
+          if (isset($form['field_actions']['widget'][$index]['subform']['field_video_clip'])) {
+            // Add a video clip token for letter to editor.
+            $campaign_loe_token_help = $campaign_token_help;
+            $campaign_loe_token_help[0]['video_clip'] = [
+              '#type' => 'item',
+              '#description' => '[campaign:video_clip]',
+              '#title' => t('Link to Video Clip'),
+            ];
+            $form['field_actions']['widget'][$index]['subform']['field_email_body']['token_help'] = $campaign_loe_token_help;
+          }
+          else {
+            $form['field_actions']['widget'][$index]['subform']['field_email_body']['token_help'] = $campaign_token_help;
+          }
+        }
+        if (
+          isset($form['field_actions']['widget'][$index]['subform']['field_action_body']) &&
+          $form['field_actions']['widget'][$index]['subform']['field_action_body']['widget']['#title'] == 'Fax Content'
+        ) {
+          $form['field_actions']['widget'][$index]['subform']['field_action_body']['token_help'] = $campaign_token_help;
+        }
+        elseif (isset($form['field_actions']['widget'][$index]['subform']['field_sample_facebook_post'])) {
+          $form['field_actions']['widget'][$index]['subform']['field_sample_facebook_post']['token_help'] = $campaign_token_help;
+        }
+        elseif (isset($form['field_actions']['widget'][$index]['subform']['field_video_clip'])) {
+          $clip_field_id = 'field_actions[' . $index . '][subform][field_video_clip][0][target_id]';
+          $my_clip_select_link = _dd_action_center_my_clip_gallery($uid, $clip_field_id);
+          if ($my_clip_select_link) {
+            $form['field_actions']['widget'][$index]['subform']['field_video_clip']['select_my_clip']
+              = $my_clip_select_link;
+          }
+          $clip_select_link = _dd_action_center_clip_gallery($uid, $clip_field_id);
+          if ($clip_select_link) {
+            $form['field_actions']['widget'][$index]['subform']['field_video_clip']['select_member_clip']
+              = $clip_select_link;
+          }
+        }
+
+        if (isset($form['field_actions']['widget'][$index]['subform']['field_advocacy_message'])) {
+          $form['field_actions']['widget'][$index]['subform']['field_advocacy_message']['token_help'] = $campaign_token_help;
+        }
+        if (isset($form['field_actions']['widget'][$index]['subform']['field_talking_points'])) {
+          $form['field_actions']['widget'][$index]['subform']['field_talking_points']['token_help'] = $campaign_token_help;
+        }
+      }
+    }
+  }
+
+  // Alters for campaign node form displays.
+  if ($form['#form_id'] == 'node_campaign_form' || $form['#form_id'] == 'node_campaign_edit_form') {
+
+    $route = \Drupal::routeMatch();
+    $route_name = $route->getRouteName();
+
+    // Add a submit handler.
+    $form['actions']['submit']['#submit'][] = '_dd_action_center_campaign_form_submit';
+    $form['actions']['publish']['#submit'][] = '_dd_action_center_campaign_form_submit';
+    $form['actions']['unpublish']['#submit'][] = '_dd_action_center_campaign_form_submit';
+
+    // Campaign Wizard Step 1.
+    if ($route_name == 'node.add' || $route_name == 'entity.node.edit_form') {
+      $form['#attached']['drupalSettings']['campaign_wizard_step'] = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+      $form['#title'] = t('Create a Campaign Landing Page');
+      $form['#prefix'] = '<div class="page--description">Here is where you will add the components that you want to display on the Campaign Landing Page. All of the information you add here will be visible to the visitors of the campaign.</div>';
+
+      // Put desc before field. See dd_preprocess_field_multiple_value_form.
+      $form['field_bill_position']['widget']['#description_display'] = 'before';
+      $form['field_bill']['widget'][0]['target_id']['#description_display'] = 'before';
+      $form['field_campaign_desc_location']['widget']['#description_display'] = 'before';
+      $form['field_video_location']['widget']['#description_display'] = 'before';
+      $form['field_bill_location']['widget']['#description_display'] = 'before';
+      $form['field_bill_subject']['widget'][0]['value']['#description_display'] = 'before';
+      $form['field_sample_tweet']['widget'][0]['value']['#placeholder'] = $form['field_sample_tweet']['widget'][0]['value']['#description'];
+      $form['field_sample_tweet']['widget'][0]['value']['#description'] = '';
+
+      // Use the publish_status field instead of action buttons for status.
+      $published_status = TRUE;
+      if ($route_name == 'entity.node.edit_form') {
+        $campaign_node = $route->getParameter('node');
+        $published_status = $campaign_node->isPublished();
+      }
+
+      // Add a class for dd_preprocess_details to add toggle.
+      $details_edit_close_class = ' details-edit-close';
+      $form['#fieldgroups']['group_campaign_details']->format_settings['classes'] .= $details_edit_close_class;
+      $form['#fieldgroups']['group_add_bill_information']->format_settings['classes'] .= $details_edit_close_class;
+      $form['#fieldgroups']['group_add_video_clips']->format_settings['classes'] .= $details_edit_close_class;
+      $form['#fieldgroups']['group_campaign_layout']->format_settings['classes'] .= $details_edit_close_class;
+
+      // Set statewide field and hide.
+      $is_statewide_campaign = \Drupal::request()->get('statewide');
+      if ($is_statewide_campaign == NULL && $route_name == 'entity.node.edit_form') {
+        $is_statewide_campaign = $campaign_node->field_is_statewide_campaign->value == NULL ? 0 : $campaign_node->field_is_statewide_campaign->value;
+      }
+      $form['field_is_statewide_campaign']['widget']['value']['#default_value'] = $is_statewide_campaign;
+      $form['field_is_statewide_campaign']['widget']['value']['#type'] = 'hidden';
+
+      $form['promote']['widget']['value']['#description'] = t('If checked, campaign will be featured on the homepage');
+
+      $form['publish_status'] = [
+        '#type' => 'checkbox',
+        '#title' => 'Publish Campaign',
+        '#description' => t('Campaign will not be viewable to visitors unless this box is checked'),
+        '#default_value' => $published_status,
+      ];
+      $form['#fieldgroups']['group_publishing_settings']->children[] = 'publish_status';
+      $form['#group_children']['publish_status'] = 'group_publishing_settings';
+      $form['actions']['submit']['#value'] = t('Next: Preview Page');
+
+      // Generate a bill preview when autocomplete is triggered.
+      $campaign_bill_preview_fields = [
+        'title' => [
+          '#type' => 'item',
+          '#title' => t('Bill Title'),
+          '#name' => 'Bill Title',
+          '#markup' => '<div id="campaign-bill-preview-title"></div>',
+        ],
+        'subject' => [
+          '#type' => 'item',
+          '#title' => t('Bill Subject'),
+          '#name' => 'Bill Subject',
+          '#markup' => '<div id="campaign-bill-preview-subject"></div>',
+        ],
+        'status' => [
+          '#type' => 'item',
+          '#title' => t('Bill Status'),
+          '#name' => 'Bill Status',
+          '#markup' => '<div id="campaign-bill-preview-status"></div>',
+        ],
+        'digest' => [
+          '#type' => 'item',
+          '#title' => t('Bill Digest'),
+          '#name' => 'Bill Digest',
+          '#markup' => '<div id="campaign-bill-preview-digest"></div>',
+        ],
+
+      ];
+      $campaign_bill_preview_wrapper = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['campaign-bill-preview']],
+        'bill_fields' => $campaign_bill_preview_fields,
+      ];
+      $output = render($campaign_bill_preview_wrapper);
+      $form['field_bill']['#suffix'] = $output;
+
+      // Add clip select modal.
+      $uid = \Drupal::currentUser()->id();
+      if (isset($form['field_video_clips'])) {
+        for ($index = 0; $index <= $form['field_video_clips']['widget']['#max_delta']; $index++) {
+          $clip_field_id = 'field_video_clips[' . $index . '][target_id]';
+          $my_clip_select_link = _dd_action_center_my_clip_gallery($uid, $clip_field_id);
+          if ($my_clip_select_link) {
+            $form['field_video_clips']['widget'][$index]['select_clip'] = $my_clip_select_link;
+          }
+          $clip_select_link = _dd_action_center_clip_gallery($uid, $clip_field_id);
+          if ($clip_select_link) {
+            $form['field_video_clips']['widget'][$index]['select_member_clip'] = $clip_select_link;
+          }
+        }
+      }
+    }
+    elseif ($route_name == 'dd_action_center.dd_campaign_statewide_form') {
+      // Campaign Wizard Step 5.
+      $campaign_node = $route->getParameter('node');
+      $is_statewide_campaign = $campaign_node->field_is_statewide_campaign->value;
+
+      $form['#attached']['drupalSettings']['campaign_wizard_step'] = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+      $form['#title'] = $is_statewide_campaign ? t('Create Statewide Actions') : t('Create Catch-All Actions');
+
+      if ($is_statewide_campaign) {
+        $form['#prefix'] = '<div class="page--description">When a site visitor from anywhere in the state enters their address, they will receive the following actions.</div>';
+        $title = t('Statewide Actions');
+        if (isset($form['field_actions']['widget']['title']['#value'])) {
+          $form['field_actions']['widget']['title']['#value'] = $title;
+        }
+        else {
+          $form['field_actions']['widget']['#title'] = $title;
+
+        }
+        $description = t('Select action(s) for campaign visitors from anywhere in the state');
+        if (isset($form['field_actions']['widget']['description']['value']['#markup'])) {
+          $form['field_actions']['widget']['description']['value']['#markup'] = $description;
+        }
+        else {
+          $form['field_actions']['widget']['#description'] = $description;
+        }
+        unset($form['field_actions']['widget']['add_more']['add_more_button']['#suffix']);
+      }
+      else {
+        $form['#prefix'] = '<div class="page--description">If a campaign visitor inputs an address that does not correspond with any targets, they will receive a general "catch-all" action.</div>';
+      }
+      if ($form['field_actions']['widget']['#max_delta'] == -1) {
+        unset($form['field_actions']['widget']['text']['value']);
+      }
+
+      $form['actions']['submit']['#value'] = $is_statewide_campaign ? t('Next: Review Actions') : t('Next: Review Targeting');
+      if ($is_statewide_campaign) {
+        $back_url = \Drupal\Core\Url::fromRoute('dd_action_center.dd_campaign_preview_form', ['campaign_id' => $campaign_node->id()]);
+      }
+      else {
+        $back_url = \Drupal\Core\Url::fromRoute('dd_action_center.dd_campaign_target_actions_form', ['campaign_id' => $campaign_node->id()]);
+      }
+      $form['statewide_campaign'] = [
+        '#value' => $is_statewide_campaign,
+        '#type' => 'hidden',
+        '#attributes' => ['id' => 'statewide_campaign'],
+      ];
+
+      $form['actions']['nav_buttons_wrapper']['back'] = [
+        '#type' => 'link',
+        '#url' => $back_url,
+        '#attributes' => [
+          'class' => ['button'],
+        ],
+        '#title' => t('Back'),
+      ];
+    }
+
+    $remove_actions_from_routes = [
+      'node.add',
+      'entity.node.edit_form',
+      'dd_action_center.dd_campaign_statewide_form',
+    ];
+    if (in_array($route_name, $remove_actions_from_routes)) {
+      // Only show a submit button.
+      $form['actions']['submit']['#access'] = TRUE;
+      $form['actions']['nav_buttons_wrapper']['#type'] = 'container';
+      $form['actions']['nav_buttons_wrapper']['#attributes'] = ['class' => ['nav-buttons-wrapper']];
+      $form['actions']['nav_buttons_wrapper']['submit_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['submit-wrapper']],
+        '#weight' => 60,
+      ];
+
+      $form['actions']['nav_buttons_wrapper']['submit_wrapper']['submit'] = $form['actions']['submit'];
+      unset($form['actions']['submit']);
+
+      unset($form['actions']['publish']);
+      unset($form['actions']['unpublish']);
+
+      // @todo determine where to add delete campaign button.
+      $form['actions']['delete']['#access'] = FALSE;
+    }
+  }
+  elseif ($form_id == 'node_campaign_action_form') {
+    // Campaign Wizard Step 5.
+    $form['#attached']['drupalSettings']['campaign_wizard_step'] = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+    $route = \Drupal::routeMatch();
+    $route_name = $route->getRouteName();
+
+    // Add submit / validation handlers.
+    $form['actions']['publish']['#submit'][] = array('Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignTargetActionsForm', 'submitFormCallback');
+    $form['#validate'][] = array('Drupal\dd_action_center\Form\DdCampaignWizard\DdCampaignTargetActionsForm', 'validateFormCallback');
+
+    // Set some description for the action dropdown area.
+    $form['field_actions']['widget']['add_more']['add_more_select']['#title'] = t('Add an Action to Selected Targets');
+    $form['field_actions']['widget']['add_more']['add_more_select']['#description'] = t('Choose the type of action you want to assign to the selected targets. You will be able to add multiple actions to the selected targets.');
+    $form['field_actions']['widget']['add_more']['add_more_select']['#description_display'] = 'before';
+    unset($form['field_actions']['widget']['add_more']['add_more_button']['#suffix']);
+
+    // Move the action add to a container.
+    $form['field_actions']['widget']['add_more']['#type'] = 'container';
+    $form['field_actions']['widget']['add_more']['#attributes'] = ['class' => ['add-actions-wrapper']];
+    $form['field_actions']['widget']['add_more']['#prefix'] = '<div class="add-save-actions-wrapper">';
+    $form['field_actions']['widget']['add_more']['add_more_button']['#suffix'] = '</div>';
+
+    // Create the 2nd box, move in publish button.
+    $form['actions']['publish']['#value'] = t('Save and Continue');
+
+    $actions_added = ($form['field_actions']['widget']['#max_delta'] >= 0);
+
+    // Check for existing groups of actions.
+    $campaign_id = $route->getParameter('campaign_id');
+    $campaign_action_nids = \Drupal::entityQuery('node')
+      ->condition('type', 'campaign_action')
+      ->condition('field_campaign.target_id', $campaign_id)
+      ->execute();
+
+    if (!empty($campaign_action_nids)) {
+      $action_group_options = [];
+      $campaign_actions = \Drupal\node\Entity\Node::loadMultiple($campaign_action_nids);
+      foreach ($campaign_actions as $campaign_action) {
+        $action_group_options[$campaign_action->id()] = $campaign_action->getTitle();
+      }
+
+      if (!$actions_added) {
+        // Create the -or- divider.
+        $form['field_actions']['widget']['add_more']['assign_existing_group_divider_wrapper'] = [
+          '#type' => 'container',
+          '#attributes' => ['class' => ['assign-existing-actions-divider']],
+          'text' => [
+            '#type' => 'markup',
+            '#markup' => '- or -',
+          ],
+          '#weight' => 20,
+        ];
+
+        $form['field_actions']['widget']['add_more']['group_tabs_wrapper'] = [
+          '#type' => 'container',
+          '#attributes' => ['id' => 'assign-duplicate-group-tabs'],
+          'tabs' => [
+            '#theme' => 'item_list',
+            '#list_type' => 'ul',
+            '#items' => [t('<a href="#assign-duplicate-group-tabs-1">Assign Existing Group</a>'), t('<a href="#assign-duplicate-group-tabs-2">Duplicate Existing Group</a>')],
+          ],
+          '#weight' => 30,
+        ];
+
+        $targetactions_url = \Drupal\Core\Url::fromRoute('dd_action_center.dd_campaign_target_actions_form', ['campaign_id' => $campaign_id])->toString();
+        $assign_url = \Drupal\Core\Url::fromRoute('dd_action_center.assign_target_campaign_action', [], ['query' => ['destination' => $targetactions_url]]);
+
+        $form['field_actions']['widget']['add_more']['group_tabs_wrapper']['assign_existing_group_wrapper'] = [
+          '#type' => 'container',
+          '#attributes' => ['class' => ['assign-existing-group-wrapper'], 'id' => 'assign-duplicate-group-tabs-1'],
+          'assign_existing_group_title' => [
+            '#type' => 'item',
+            '#markup' => t('Assign Existing Group to Selected Targets'),
+          ],
+          'assign-existing-group-text' => [
+            '#type' => 'item',
+            '#markup' => t('To assign the selected targets to an existing group of actions, select one below.'),
+          ],
+          'action_group_id' => [
+            '#type' => 'select',
+            '#options' => $action_group_options,
+          ],
+          'action_group_assign_button' => [
+            '#type' => 'link',
+            '#url' => $assign_url,
+            '#attributes' => [
+              'class' => ['button'],
+            ],
+            '#title' => t('Assign to Group'),
+          ],
+        ];
+
+        $duplicate_url = \Drupal\Core\Url::fromRoute('dd_action_center.duplicate_campaign_action', [], ['query' => ['destination' => $targetactions_url]]);
+
+        $form['field_actions']['widget']['add_more']['group_tabs_wrapper']['duplicate_existing_group_wrapper'] = [
+          '#type' => 'container',
+          '#attributes' => ['class' => ['duplicate-existing-group-wrapper'], 'id' => 'assign-duplicate-group-tabs-2'],
+          'duplicate_existing_group_title' => [
+            '#type' => 'item',
+            '#markup' => t('Duplicate Existing Group'),
+          ],
+          'duplicate-existing-group-text' => [
+            '#type' => 'item',
+            '#markup' => t('Select a group below to duplicate and assign to selected targets.'),
+          ],
+          'duplicate_action_group_id' => [
+            '#type' => 'select',
+            '#options' => $action_group_options,
+          ],
+          'duplicate_group_name' => [
+            '#type' => 'textfield',
+            '#title' => t('Name the new group name for reference'),
+          ],
+          'duplicate_action_group_assign_button' => [
+            '#type' => 'link',
+            '#url' => $duplicate_url,
+            '#attributes' => [
+              'class' => ['button'],
+            ],
+            '#title' => t('Duplicate Group & Assign'),
+          ],
+        ];
+
+      }
+    }
+
+    if ($actions_added) {
+      // Create the -or- divider.
+      $form['field_actions']['widget']['add_more']['divider_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['add-actions-save-divider']],
+        'text' => [
+          '#type' => 'markup',
+          '#markup' => '- or -',
+        ],
+        '#weight' => 10,
+      ];
+
+      $form['field_actions']['widget']['add_more']['save_continue_wrapper'] = [
+        '#type' => 'container',
+        '#attributes' => ['class' => ['save-actions-wrapper']],
+        'save-actions-text' => [
+          '#type' => '#markup',
+          '#markup' => t('Are you done saving actions to this group of targets? Save this group and continue assigning actions.'),
+          '#weight' => 0,
+        ],
+        'target_group_name' => $form['title'],
+        'publish' => $form['actions']['publish'],
+        '#weight' => 30,
+      ];
+    }
+
+    // Remove "No Actions" text when none selected.
+    if ($form['field_actions']['widget']['#max_delta'] == -1) {
+      unset($form['field_actions']['widget']['text']['value']);
+    }
+    else {
+      for ($index = 0; $index <= $form['field_actions']['widget']['#max_delta']; $index++) {
+        if (isset($form['field_actions']['widget'][$index]['subform']['field_video_link_text'])) {
+          $form['field_actions']['widget'][$index]['subform']['field_video_link_text']['widget'][0]['value']['#description_display'] = 'before';
+        }
+      }
+    }
+
+    unset ($form['title']);
+    $form['field_actions']['widget']['add_more']['save_continue_wrapper']['target_group_name']['#weight'] = 10;
+    $form['field_actions']['widget']['add_more']['save_continue_wrapper']['publish']['#weight'] = 20;
+
+    // Remove extra title fields from the actions fieldset area.
+    unset($form['field_actions']['widget']['title']);
+
+    // Remove action buttons area.
+    unset($form['actions']);
+
+    // Create a hidden field to hold the checkbox values.
+    $target_ids = isset($form_state->getUserInput()['target_ids']) ? $form_state->getUserInput()['target_ids'] : '';
+    $form['target_ids'] = [
+      '#value' => $target_ids,
+      '#type' => 'hidden',
+    ];
+  }
+  elseif ($form_id == 'node_campaign_action_edit_form') {
+    // Remove publish button from dropdown group.
+    $form['#attached']['drupalSettings']['campaign_wizard_step'] = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getCampaignWizardClass();
+    unset($form['actions']['publish']['#dropbutton']);
+    unset($form['actions']['unpublish']);
+    unset($form['field_actions']['widget']['add_more']['add_more_button']['#suffix']);
+    $form['actions']['publish']['#value'] = t('Save');
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function dd_action_center_token_info() {
+  $info = array();
+  $info['types'] = array(
+    'campaign' => array(
+      'name' => t('Campaign'),
+      'description' => t('Campaign tokens.'),
+    ),
+  );
+
+  $info['tokens'] = array(
+    'campaign' => array(
+      // [campaign:first_name]
+      'first_name' => array(
+        'name' => t('First Name'),
+        'description' => t("Campaign Visitor's First Name."),
+      ),
+    ),
+  );
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function dd_action_center_tokens($type, $tokens, array $data = array(), array $options = array()) {
+  $replacements = array();
+
+  // Campaign token replacements.
+  if ($type == 'campaign') {
+    $bill_type_number = '';
+    $bill_subject = '';
+    $address = '';
+    $city = '';
+    $state = '';
+    $zip = '';
+
+    $user = $data['user'];
+    $first_name = $user ? $user->get('field_first_name')->value : null;
+    $last_name = $user ? $user->get('field_last_name')->value : null;
+    $field_address = $user ? $user->get('field_address')[0] : null;
+
+    if ($field_address) {
+      $address = $field_address->get('address_line1')->getValue();
+      $city = $field_address->get('locality')->getValue();
+      $state = $field_address->get('administrative_area')->getValue();
+      $zip = $field_address->get('postal_code')->getValue();
+    }
+
+    // Get bill information for tokens.
+    $bills = $data['campaign']->get('field_bill')->referencedEntities();
+    $bill_version_current = NULL;
+    if ($bills) {
+      $bill = \Drupal\dd_bill\Entity\DdBill::getByBid($bills[0]->getBid());
+      $bill_version_current = \Drupal\dd_bill\Entity\DdBillVersionCurrent::getByBid($bills[0]->getBid());
+      $bill_type = $bill->getType();
+      $bill_number = $bill->getNumber();
+      $bill_type_number = $bill_type . ' ' . $bill_number;
+      $bill_subject = $bill_version_current->getSubject();
+    }
+
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'first_name':
+          $replacements[$original] = $first_name;
+          break;
+
+        case 'last_name':
+          $replacements[$original] = $last_name;
+          break;
+
+        case 'address':
+          $replacements[$original] = $address;
+          break;
+
+        case 'city':
+          $replacements[$original] = $city;
+          break;
+
+        case 'state':
+          $replacements[$original] = $state;
+          break;
+
+        case 'zip':
+          $replacements[$original] = $zip;
+          break;
+
+        case 'bill_type_number':
+          $replacements[$original] = $bill_type_number;
+          break;
+
+        case 'bill_subject':
+          $replacements[$original] = $bill_subject;
+          break;
+
+        case 'video_clip':
+          $replacements[$original] = $data['clip_url'];
+          break;
+      }
+    }
+  }
+
+  return $replacements;
+}
+
+/**
+ * Helper function to generate clip gallery form modal.
+ *
+ * @param int $uid
+ *   User ID
+ * @param string $clip_field_id
+ *   Name of the video clip field <input name="XXX">
+ *
+ * @return array
+ *   Link form array.
+ */
+function _dd_action_center_my_clip_gallery($uid, $clip_field_id) {
+  $clip_select_url = \Drupal\Core\Url::fromRoute('dd_video_editor.clip_select', ['user' => $uid, 'clip_field_id' => $clip_field_id, 'member' => 0]);
+
+  $clip_select_link = [
+    '#type' => 'link',
+    '#url' => $clip_select_url,
+    '#attributes' => [
+      'class' => ['use-ajax', 'clip-select-open', 'button'],
+      'data-dialog-type' => 'dialog',
+      'data-dialog-options' => \Drupal\Component\Serialization\Json::encode([
+        'resizable' => TRUE,
+        'width' => 'auto',
+      ]),
+    ],
+    '#weight' => 10,
+    '#title' => t('Open MY Clip Bank Gallery'),
+  ];
+
+  return $clip_select_link;
+}
+
+/**
+ * Helper function to generate clip gallery form modal.
+ *
+ * @param int $uid
+ *   User ID
+ * @param string $clip_field_id
+ *   Name of the video clip field <input name="XXX">
+ *
+ * @return array
+ *   Link form array.
+ */
+function _dd_action_center_clip_gallery($uid, $clip_field_id) {
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if (in_array('administrator', $user_roles) || in_array('site_manager', $user_roles) || in_array('action_center_admin', $user_roles)) {
+
+    $clip_select_url = \Drupal\Core\Url::fromRoute('dd_video_editor.clip_select', ['user' => $uid, 'clip_field_id' => $clip_field_id, 'member' => 1]);
+
+    $clip_select_link = [
+      '#type' => 'link',
+      '#url' => $clip_select_url,
+      '#attributes' => [
+        'class' => ['use-ajax', 'clip-select-open', 'button'],
+        'data-dialog-type' => 'dialog',
+        'data-dialog-options' => \Drupal\Component\Serialization\Json::encode([
+          'resizable' => TRUE,
+          'width' => 'auto',
+        ]),
+      ],
+      '#weight' => 10,
+      '#title' => t('Open Member Clip Gallery'),
+    ];
+
+    return $clip_select_link;
+  }
+  return null;
+}
+
+/**
+ * Implements hook_node_access().
+/**
+ * Implements hook_node_access().
+ */
+function dd_action_center_node_access(\Drupal\node\NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
+  if ($node->getType() == 'campaign' && $op == 'view') {
+    // Check roles that should see all campaigns.
+    $roles = $account->getRoles();
+    if (in_array('site_manager', $roles) || in_array('action_center_admin', $roles)) {
+      return \Drupal\Core\Access\AccessResult::allowed();
+    }
+    if (!$account->id() && $node->get('field_private_campaign')->value) {
+      return \Drupal\Core\Access\AccessResult::forbidden();
+    }
+    return \Drupal\Core\Access\AccessResult::neutral();
+  }
+}
+
+/**
+ * Implements hook_entity_form_display_alter().
+ */
+function dd_action_center_entity_form_display_alter(&$form_display, $context) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($form_display->id() == 'node.campaign.default') {
+    $storage = \Drupal::entityManager()->getStorage('entity_form_display');
+    switch ($route_name) {
+      case 'node.add':
+      case 'entity.node.edit_form':
+        $form_display = $storage->load('node.campaign.campaign_main');
+        break;
+
+      case 'dd_action_center.dd_campaign_statewide_form':
+        $form_display = $storage->load('node.campaign.campaign_statewide');
+        break;
+    }
+  }
+}
+
+/**
+ * Campaign Wizard Form Submit Callback.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_action_center_campaign_form_submit(array $form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $element = $form_state->getTriggeringElement();
+
+  if ($route_name == 'node.add' || $route_name == 'entity.node.edit_form') {
+    // Campaign Wizard Step 1
+    $campaign_entity = $form_state->getFormObject()->getEntity();
+
+    // Set the publishing status.
+    $campaign_entity->setPublished($form_state->getValue('publish_status'));
+    $campaign_entity->save();
+
+
+    if ($element['#id'] == 'edit-save-for-later') {
+      $url = \Drupal\Core\Url::fromRoute('dd_account_dashboard.campaigns', ['user' => \Drupal::currentUser()->id()]);
+    }
+    else {
+      $url = \Drupal\Core\Url::fromRoute('dd_action_center.dd_campaign_preview_form', ['campaign_id' => $campaign_entity->id()]);
+    }
+    $form_state->setRedirectUrl($url);
+  }
+  elseif ($route_name == 'dd_action_center.dd_campaign_statewide_form') {
+    $campaign_entity = $form_state->getFormObject()->getEntity();
+
+    if ($element['#id'] == 'edit-save-for-later') {
+      $url = \Drupal\Core\Url::fromRoute('dd_account_dashboard.campaigns', ['user' => \Drupal::currentUser()->id()]);
+    }
+    else {
+      $url = \Drupal\Core\Url::fromRoute('dd_action_center.dd_campaign_review_target_actions_form', ['campaign_id' => $campaign_entity->id()]);
+    }
+    $form_state->setRedirectUrl($url);
+  }
+}
+
+/**
+ * Implements hook_entity_predelete().
+ */
+function dd_action_center_entity_predelete(Drupal\Core\Entity\EntityInterface $entity) {
+  // Remove node entity references to entity before delete.
+  if (get_class($entity) == 'Drupal\node\Entity\Node') {
+    if ($entity->getType() == 'target') {
+      $id = $entity->id();
+    }
+    elseif ($entity->getType() == 'campaign_action') {
+      $id = $entity->id();
+
+      // Remove references from Target content type.
+      $nids = \Drupal::entityQuery('node')
+        ->condition('type', 'target')
+        ->condition('field_campaign_action.target_id', $id)
+        ->execute();
+
+      if (!empty($nids)) {
+        $nodes = \Drupal\node\Entity\Node::loadMultiple($nids);
+        foreach ($nodes as $node) {
+          $node->set('field_campaign_action', NULL);
+          $node->save();
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function dd_action_center_menu_local_tasks_alter(&$data, $route_name) {
+  if ($route_name == 'entity.node.canonical' || $route_name == 'entity.node.edit_form') {
+    $node = \Drupal::routeMatch()->getParameter('node');
+    if ($node->getType() == 'campaign') {
+
+      // Removed tabs from campaign view.
+      unset($data['tabs']);
+
+      // Change delete tab on Campaign nodes to use new route.
+      if (isset($data['tabs'][0]['entity.node.delete_form'])) {
+        $data['tabs'][0]['entity.node.delete_form']['#link'] = [
+          'title' => t('Delete'),
+          'url' => \Drupal\Core\Url::fromRoute(
+            'dd_action_center.delete_campaign',
+            ['node' => $node->id()]
+          ),
+        ];
+      }
+
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_operation_alter().
+ */
+function dd_action_center_entity_operation_alter(array &$operations, \Drupal\Core\Entity\EntityInterface $entity) {
+  // Remove ?destination query param from campaign edit links.
+  if ($entity->getEntityTypeId() == 'node' && $entity->getType() == 'campaign') {
+    if (
+      isset($operations['edit']) &&
+      $operations['edit']['url']->getRouteName() == 'entity.node.edit_form' &&
+      isset($operations['edit']['query']['destination'])
+    ) {
+      unset ($operations['edit']['query']['destination']);
+    }
+
+    // Change delete Operation on Campaign nodes to use new route.
+    if (isset($operations['delete'])) {
+      $operations['delete']['url'] = \Drupal\Core\Url::fromRoute(
+        'dd_action_center.delete_campaign',
+        ['node' => $entity->id()]
+      );
+    }
+  }
+}
+
+/**
+ * Implements hook_entity_type_alter().
+ */
+function dd_action_center_entity_type_alter(array &$entity_types) {
+  // Add handler to nodes for delete campaign.
+  $handlers = $entity_types['node']->get('handlers');
+  $handlers['form']['delete_campaign'] = 'Drupal\dd_action_center\Form\DdCampaignDeleteForm';
+  $entity_types['node']->set('handlers', $handlers);
+}
+
+/**
+ * Implements hook_module_implements_alter().
+ */
+function dd_action_center_module_implements_alter(&$implementations, $hook) {
+  if ($hook == 'form_alter') {
+    $group = $implementations['dd_action_center'];
+    unset($implementations['dd_action_center']);
+    $implementations['dd_action_center'] = $group;
+  }
+}
+
+/**
+ * Implements hook_field_widget_form_alter().
+ */
+function dd_action_center_field_widget_form_alter(&$element, \Drupal\Core\Form\FormStateInterface $form_state, $context) {
+  // Add class names to paragraph actions.
+  if (isset($element['#entity_type']) && $element['#bundle'] == 'campaign' && isset($element['top'])) {
+    $element['#attributes']['class'][] = 'paragraph-action-' . strtolower(\Drupal\Component\Utility\Html::cleanCssIdentifier($element['top']['paragraph_type_title']['info']['#markup']));
+  }
+
+  // @todo Paragraphs doesn't seem to have an ID field for fields, using #title.
+  if (isset($element['#entity_type']) && $element['#bundle'] == 'display_video_clip_montage' && isset($element['#title']) &&$element['#title'] == 'Share Video Button Text') {
+    $element['value']['#description_display'] = 'before';
+  }
+  elseif (isset($element['#entity_type']) && $element['#bundle'] == 'display_video_clip_montage' && isset($element['#title']) &&$element['#title'] == 'Sample Tweet') {
+    $element['value']['#placeholder'] = t('This text will be displayed when a visitor tweets the video. 140 character limit');
+  }
+  elseif (isset($element['#entity_type']) && $element['#bundle'] == 'display_video_clip_montage' && isset($element['target_id']) && $element['target_id']['#target_type'] == 'dd_clip') {
+    $element['target_id']['#description_display'] = 'before';
+  }
+  if (isset($element['#entity_type']) && $element['#bundle'] == 'letter_to_editor' && $context['items']->getName() == 'field_targeted_newspapers') {
+    _dd_action_center_update_targeted_newspapers();
+  }
+}
+
+/**
+ * Preprocess Paragraphs.
+ *
+ * @param array $variables
+ *   Variables
+ */
+function dd_preprocess_paragraph(&$variables) {
+  $campaign_id = NULL;
+  $campaign_action_id = 0;
+  $campaign = NULL;
+
+  if (
+    in_array('parent_field_name', array_keys($variables['paragraph']->getFields())) &&
+    $variables['paragraph']->get('parent_field_name')->value == 'field_actions'
+  ) {
+    $node = \Drupal\node\Entity\Node::load($variables['paragraph']->get('parent_id')->value);
+    $campaign_action_paragraphs_id = $variables['paragraph']->id();
+    if ($node->getType() == 'campaign_action') {
+      $campaign_action_id = $node->id();
+      $campaign_id = $node->get('field_campaign')->target_id;
+      $campaign = $node->get('field_campaign')->referencedEntities()[0];
+    }
+    elseif ($node->getType() == 'campaign') {
+      $campaign_action_id = 0;
+      $campaign_id = $node->id();
+      $campaign = $node;
+    }
+    $variables['campaign_id'] = $campaign_id;
+    $variables['campaign_action_id'] = $campaign_action_id;
+    $variables['campaign_action_paragraphs_id'] = $campaign_action_paragraphs_id;
+    if (isset($variables['elements']['#legislator_pid'])) {
+      $variables['legislator_pid'] = $variables['elements']['#legislator_pid'];
+    }
+  }
+
+  if ($variables['paragraph']->getType() == 'letter_to_editor') {
+    // Add visitor variables for twig if available.
+    $user = \Drupal\dd_action_center\Utility\DdActionCenterCampaignHelper::getVisitor();
+    if ($user) {
+      $variables['content']['first_name'] = $user->get('field_first_name')->value;
+      $variables['content']['last_name'] = $user->get('field_last_name')->value;
+      $field_address = $user->get('field_address')[0];
+
+      if ($field_address) {
+        $variables['content']['street'] = $field_address->get('address_line1')
+          ->getValue();
+        $variables['content']['city'] = $field_address->get('locality')
+          ->getValue();
+        $variables['content']['state'] = $field_address->get('administrative_area')
+          ->getValue();
+        $variables['content']['zip'] = $field_address->get('postal_code')
+          ->getValue();
+      }
+    }
+
+    // Add video clip token processing.
+    $clip_url = '';
+    $token = \Drupal::token();
+
+    $video_clip_id = $variables['paragraph']->field_video_clip->target_id;
+    if ($video_clip_id && $campaign) {
+      global $base_url;
+
+      $clip = \Drupal\dd_clip\Entity\DdClip::load($video_clip_id);
+      $video_id = $clip->field_videoid->value;
+      $clip_url = $base_url . '/clip/' . $video_id;
+    }
+
+    $field_email_body = $token->replace(
+      $variables['paragraph']->get('field_email_body')->value,
+      [
+        'user' => $user,
+        'campaign' => $campaign,
+        'clip_url' => $clip_url,
+      ]
+    );
+    $variables['paragraph']->set('field_email_body', $field_email_body);
+
+    $field_email_subject = $token->replace(
+      $variables['paragraph']->get('field_email_subject')->value,
+      [
+        'user' => $user,
+        'campaign' => $campaign,
+      ]
+    );
+    $variables['paragraph']->set('field_email_subject', $field_email_subject);
+  }
+}
+
+/**
+ * Re-order text area description labels.
+ *
+ * @param array $variables
+ *   Form variables.
+ */
+function dd_preprocess_field_multiple_value_form(&$variables) {
+  $fields_to_move_description_before = ['edit-body', 'edit-field-bill-summary'];
+  if (in_array($variables['element']['#id'], $fields_to_move_description_before)) {
+    $variables['elements'][0]['value']['#description'] = $variables['elements'][0]['#description'];
+    $variables['elements'][0]['value']['#description_display'] = 'before';
+    unset($variables['elements'][0]['#description']);
+  }
+}
+
+/**
+ * Add toggle edit/close markup to details.
+ *
+ * @param array $variables
+ *   Form variables.
+ */
+function dd_preprocess_details(&$variables) {
+  // If details-edit-close class exists, add div for toggle to title.
+  if (in_array('details-edit-close', $variables['attributes']['class'])) {
+    $toggle_text = isset($variables['attributes']['open']) ? 'Close' : 'Edit';
+    $toggle_markup = '<div class="details-toggle">' . $toggle_text . '</div>';
+    $variables['title']['#markup'] = t($variables['title']['#markup'] . $toggle_markup);
+  }
+}
+
+/**
+ * Implements hook_preprocess_multiselect().
+ */
+function dd_action_center_preprocess_multiselect(&$variables) {
+  // Add description/label changes to targets form multiselects.
+  // @todo Make a contrib patch for descriptions.
+  if ($variables['element']['#name'] == 'legislators' || $variables['element']['#name'] == 'committee_members') {
+    $variables['multiselect']['available']['label'] = t('Available Targets');
+    $variables['multiselect']['available']['#description'] = t('Select a name at the right and click the Add button to move to Selected Targets');
+    $variables['multiselect']['available']['#description_display'] = 'before';
+    $variables['multiselect']['available']['#id'] = 'available';
+    $variables['multiselect']['selected']['label'] = t('Selected Targets');
+    $variables['multiselect']['selected']['#description'] = t('Select a name at the right and click the Remove button to remove from Selected Targets');
+    $variables['multiselect']['selected']['#description_display'] = 'before';
+    $variables['multiselect']['selected']['#id'] = 'selected';
+
+    $multiselect = &$variables['multiselect'];
+    foreach (array('available', 'selected') as $key) {
+      $multiselect[$key]['description'] = NULL;
+      if (!empty($multiselect[$key]['#description'])) {
+        $multiselect[$key]['description_display'] = $multiselect[$key]['#description_display'];
+        $description_attributes = [];
+        if (!empty($multiselect[$key]['#id'])) {
+
+          $description_attributes['id'] = $multiselect[$key]['#id'] . '--description';
+        }
+        $multiselect[$key]['description']['attributes'] = new \Drupal\Core\Template\Attribute($description_attributes);
+        $multiselect[$key]['description']['content'] = $multiselect[$key]['#description'];
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_action_center_views_data_alter(array &$data) {
+  $data['node_field_data']['phone_log'] = array(
+    'title' => t('Phone Log'),
+    'help' => t('Show a phone log button for campaign if action exists'),
+    'field' => array(
+      'id' => 'dd_phone_log',
+    ),
+  );
+  $data['node_field_data']['dd_campaign_stats'] = array(
+    'title' => t('Campaign Stats'),
+    'help' => t('Show a campaign stat'),
+    'field' => array(
+      'id' => 'dd_campaign_stats',
+    ),
+  );
+  $data['node_field_data']['dd_action_stats'] = array(
+    'title' => t('Campaign Action Stats'),
+    'help' => t('Show campaign action stats'),
+    'field' => array(
+      'id' => 'dd_action_stats',
+    ),
+  );
+}
+
+/**
+ * Update targeted newspapers choices for paragraph type.
+ */
+function _dd_action_center_update_targeted_newspapers() {
+  /** @var \Drupal\field\Entity\FieldStorageConfig $definition */
+  $definition = \Drupal::service('entity_field.manager')->getFieldStorageDefinitions('paragraph')['field_targeted_newspapers'];
+  $newspapers = \Drupal\dd_email_editor\DdEmailEditor::findNewspapersInState(\Drupal\dd_base\DdBase::getCurrentState());
+
+  if ($newspapers) {
+    $options = [];
+    foreach ($newspapers as $newspaper) {
+      $options[$newspaper['name']] = $newspaper['name'];
+    }
+    asort($options);
+    $definition->setSetting('allowed_values', $options);
+    try {
+      $definition->save();
+    }
+    catch (Exception $e) {
+      // @todo Updating the newspaper list can be problematic once targets are being used.
+      drupal_set_message("Available newspaper list could not be updated - A newspaper removed is being used in a campaign's Letter to Editor action.");
+    }
+  }
+}

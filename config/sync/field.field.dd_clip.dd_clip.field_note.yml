@@ -1,0 +1,20 @@
+uuid: c42b47d4-2288-4db0-a715-3d207f1866ac
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_note
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_note
+field_name: field_note
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Private note'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

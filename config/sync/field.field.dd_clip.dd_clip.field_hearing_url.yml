@@ -1,0 +1,20 @@
+uuid: 0916072f-cb59-488e-b60a-74d082b647e5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_hearing_url
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_hearing_url
+field_name: field_hearing_url
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Hearing URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

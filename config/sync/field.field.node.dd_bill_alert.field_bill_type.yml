@@ -1,0 +1,21 @@
+uuid: 08f09539-dd59-4ce0-9ed9-cb96b64d5a5e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill_type
+    - node.type.dd_bill_alert
+  module:
+    - options
+id: node.dd_bill_alert.field_bill_type
+field_name: field_bill_type
+entity_type: node
+bundle: dd_bill_alert
+label: 'Bill Type'
+description: 'Restrict search to utterances concerning bills of a particular type.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

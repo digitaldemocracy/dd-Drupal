@@ -1,0 +1,63 @@
+uuid: 80019235-c6cb-42f2-93f0-4464dc3882ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaign_wizard_targets
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - user
+    - views
+  theme:
+    - dd
+id: views_block__campaign_wizard_targets_block_2
+theme: dd
+region: content
+weight: -50
+provider: null
+plugin: 'views_block:campaign_wizard_targets-block_2'
+settings:
+  id: 'views_block:campaign_wizard_targets-block_2'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/node/*/reviewtargetactions'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      stealth_mode: stealth_mode
+      action_center_admin: action_center_admin
+      site_manager: site_manager
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

@@ -1,0 +1,25 @@
+uuid: 769f4c49-afae-45f8-b9d9-1b9af98c3cfc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_clips
+    - node.type.campaign
+id: node.campaign.field_video_clips
+field_name: field_video_clips
+entity_type: node
+bundle: campaign
+label: 'Add Video Clips or Montages'
+description: 'Search by Clip Title or use Clip Bank Gallery to select a clip. Clips must be set to shared to be used in a campaign.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: views
+  handler_settings:
+    view:
+      view_name: user_clips
+      display_name: entity_reference_2
+      arguments: {  }
+field_type: entity_reference

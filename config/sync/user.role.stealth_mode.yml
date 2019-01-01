@@ -1,0 +1,14 @@
+uuid: 0cf2dac4-eddb-4460-aeb5-b11e3c4ce4af
+langcode: en
+status: true
+dependencies: {  }
+id: stealth_mode
+label: 'Stealth Mode'
+weight: 4
+is_admin: null
+permissions:
+  - 'access dd video annotator'
+  - 'access dd video builder'
+  - 'attach transcripts to clips'
+  - 'view published dd campaign visitor entities'
+  - 'view unpublished dd campaign visitor entities'

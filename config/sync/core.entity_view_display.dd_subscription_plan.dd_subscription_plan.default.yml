@@ -1,0 +1,88 @@
+uuid: a7e03557-db35-45a0-ad38-dffd58b5c873
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_description
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_disable
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_duration_days
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_price
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_recurring
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_role_name
+  module:
+    - dd_payment_system
+    - text
+    - user
+id: dd_subscription_plan.dd_subscription_plan.default
+targetEntityType: dd_subscription_plan
+bundle: dd_subscription_plan
+mode: default
+content:
+  field_description:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_disable:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_duration_days:
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_price:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_recurring:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_role_name:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

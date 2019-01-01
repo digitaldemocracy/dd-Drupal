@@ -1,0 +1,22 @@
+uuid: 04a4e279-353d-408c-886b-bbffce9927b8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.blurb
+  module:
+    - text
+id: node.blurb.body
+field_name: body
+entity_type: node
+bundle: blurb
+label: 'Quoted text'
+description: 'a short blurb of about 15 words that would be the main showcase item in the block. If you go with more words than that, you risk breaking the UI. But there is no harm in trying and seeing how it looks before editing it again.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

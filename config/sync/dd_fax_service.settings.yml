@@ -1,0 +1,8 @@
+test_api_secret: phaxio_test_secret
+test_api_key: phaxio_test_api
+live_api_secret: phaxio_live_secret
+live_api_key: phaxio_live_api
+mode: test
+api_host: 'https://api.phaxio.com/v1/'
+_core:
+  default_config_hash: Itew-3z2faPYIirkEBA6j4zS2MVY5u4DBpB7OopBFnM

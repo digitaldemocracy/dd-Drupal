@@ -1,0 +1,13 @@
+# DD Hearing menu items definition
+entity.dd_hearing.collection:
+  title: 'DD Hearing list'
+  route_name: entity.dd_hearing.collection
+  description: 'List DD Hearing entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_hearing.admin.structure.settings:
+  title: DD Hearing settings
+  description: 'Configure DD Hearing entities'
+  route_name: dd_hearing.settings
+  parent: system.admin_structure

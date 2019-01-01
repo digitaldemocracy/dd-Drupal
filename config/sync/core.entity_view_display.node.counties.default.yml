@@ -1,0 +1,55 @@
+uuid: e54e5f06-3ba9-420a-8aa7-cf39b680bab2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.counties.field_county_fips_code
+    - field.field.node.counties.field_fips_class_code
+    - field.field.node.counties.field_state
+    - field.field.node.counties.field_state_fips_code
+    - node.type.counties
+  module:
+    - user
+id: node.counties.default
+targetEntityType: node
+bundle: counties
+mode: default
+content:
+  field_county_fips_code:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_fips_class_code:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_state:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_state_fips_code:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

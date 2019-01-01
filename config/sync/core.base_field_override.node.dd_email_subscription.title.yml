@@ -1,0 +1,18 @@
+uuid: 8345d6fe-c4ca-42fa-87bf-c0308af10990
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dd_email_subscription
+id: node.dd_email_subscription.title
+field_name: title
+entity_type: node
+bundle: dd_email_subscription
+label: 'Please give alert a name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

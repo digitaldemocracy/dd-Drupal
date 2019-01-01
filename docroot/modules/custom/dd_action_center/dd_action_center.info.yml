@@ -1,0 +1,5 @@
+name: DD Action Center
+type: module
+description: DD Action Center
+core: 8.x
+package: DigitalDemocracy

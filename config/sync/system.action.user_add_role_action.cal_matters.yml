@@ -1,0 +1,14 @@
+uuid: 05a2cfb2-eb18-46c5-8114-e797a440d5f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cal_matters
+  module:
+    - user
+id: user_add_role_action.cal_matters
+label: 'Add the Cal Matters role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: cal_matters

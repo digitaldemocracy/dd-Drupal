@@ -1,0 +1,47 @@
+uuid: 4d43ae8b-2a20-4e29-ac08-f7967c57ff63
+langcode: en
+status: true
+dependencies: {  }
+id: action_center_admin
+label: 'Action Center Admin'
+weight: 14
+is_admin: null
+permissions:
+  - 'add dd clip entities'
+  - 'create campaign content'
+  - 'create campaign_action content'
+  - 'create target content'
+  - 'delete any campaign content'
+  - 'delete any campaign_action content'
+  - 'delete any target content'
+  - 'delete campaign_action revisions'
+  - 'delete own campaign content'
+  - 'delete own campaign_action content'
+  - 'delete own dd clip entities'
+  - 'delete own target content'
+  - 'delete target revisions'
+  - 'edit any campaign content'
+  - 'edit any campaign_action content'
+  - 'edit any target content'
+  - 'edit own campaign content'
+  - 'edit own campaign_action content'
+  - 'edit own dd clip entities'
+  - 'edit own target content'
+  - 'revert campaign revisions'
+  - 'revert campaign_action revisions'
+  - 'revert target revisions'
+  - 'view campaign revisions'
+  - 'view campaign_action revisions'
+  - 'view published dd campaign visitor entities'
+  - 'view published dd clip entities'
+  - 'view published dd legislative staff entities'
+  - 'view published dd legislator entities'
+  - 'view published dd term entities'
+  - 'view published dd_person entities'
+  - 'view target revisions'
+  - 'view unpublished dd campaign visitor entities'
+  - 'view unpublished dd clip entities'
+  - 'view unpublished dd legislative staff entities'
+  - 'view unpublished dd legislator entities'
+  - 'view unpublished dd term entities'
+  - 'view unpublished dd_person entities'

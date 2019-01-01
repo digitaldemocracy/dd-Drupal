@@ -1,0 +1,19 @@
+uuid: bfd8e43d-4cb3-4337-b44e-cc32acf570cc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_county_fips_code
+    - node.type.counties
+id: node.counties.field_county_fips_code
+field_name: field_county_fips_code
+entity_type: node
+bundle: counties
+label: 'County FIPS Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

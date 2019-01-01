@@ -1,0 +1,6 @@
+name: Custom Blocks Module
+description: Creates custom blocks.
+package: DigitalDemocracy 
+
+type: module
+core: 8.x

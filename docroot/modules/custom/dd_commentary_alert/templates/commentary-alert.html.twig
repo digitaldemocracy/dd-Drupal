@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+      <title>{{ elements.site_name }} Email Alert</title>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+
+    <body style="margin: 0; padding: 0;">
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tr>
+          {% if elements.wl_id == "cmta" %}
+            <td bgcolor="#c8b989" style="padding: 3px 30px 3px 30px;">
+          {% elseif elements.wl_id == "demo" %}
+            <td bgcolor="#33729a" style="padding: 3px 30px 3px 30px;">
+          {% else %}
+            <td bgcolor="#f6d437" style="padding: 3px 30px 3px 30px;">
+          {% endif %}
+          </td>
+        </tr>
+
+        <tr>
+          <td bgcolor="#f9f9f9" style="padding: 30px 30px 30px 30px;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%">
+              <tr>
+                <td width="75%">
+                {% if elements.wl_id == "demo" %}
+                  <img src="{{ elements.base_url }}{{ elements.logo }}" alt=""  style="display: block; width: 215px;" />
+                {% else %}
+                  <img src="{{ elements.base_url }}{{ elements.logo }}" alt=""  style="display: block;" />
+                {% endif %}
+                </td>
+                <td align="right">
+                  <table border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td>
+                        <a href="https://www.facebook.com/DigitalDemocracyCalifoia"><img src="{{ elements.base_url }}/themes/custom/dd/components/components/email/icons/fb.png" style="display: block;" border="0" /></a>
+                      </td>
+                      <td style="font-size: 0; line-height: 0;" width="20">
+                      </td>
+                      <td>
+                        <a href="https://twitter.com/ddemocracy_ca"><img src="{{ elements.base_url }}/themes/custom/dd/components/components/email/icons/twitter.png" style="display: block;" border="0" /></a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <tr>
+          {% if elements.wl_id == "cmta" %}
+            <td bgcolor="#bd5000" align="center" style="padding: 30px 30px 30px 30px;">
+            <table align="center" style="color: #000000; font-family: Arial, sans-serif; font-size: 24px;">
+          {% elseif elements.wl_id == "demo" %}
+            <td bgcolor="#eba426" align="center" style="padding: 30px 30px 30px 30px;">
+            <table align="center" style="color: #000000; font-family: Arial, sans-serif; font-size: 24px;">
+          {% else %}
+            <td bgcolor="#b1b1b1" align="center" style="padding: 30px 30px 30px 30px;">
+            <table align="center" style="color: #ffffff; font-family: Arial, sans-serif; font-size: 24px;">
+          {% endif %}
+              <tr>
+                <td>
+                  <img src="{{ elements.base_url }}/themes/custom/dd/components/components/email/icons/info.png" style="display: block;" border="0" />
+                </td>
+                <td>
+                  Alert from {{ elements.site_name }} 
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        
+        <tr>
+          <td bgcolor="#efefee" style="padding: 13px 30px 13px 30px;">
+            <table style="color: #4f4408; font-family: Arial, sans-serif; font-size: 16px;">
+              <tr>
+                <td>{{ elements.user_name }},<br>
+                <p>We found new commentaries by the commentators you are subscribing to on {{ elements.site_name }}:</p>
+                {% for commentary in elements.commentaries %}
+                <p><a href="{{ commentary.url }}" target"_blank">{{ commentary.title }} by {{ commentary.author }}</a></p>
+                {% endfor %} 
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+        
+        <tr>
+          {% if elements.wl_id == "cmta" %}
+            <td bgcolor="#c8b989" style="padding: 13px 30px 13px 30px;">
+          {% elseif elements.wl_id == "demo" %}
+            <td bgcolor="#33729a" style="padding: 13px 30px 13px 30px;">
+          {% else %}
+            <td bgcolor="#f6d437" style="padding: 13px 30px 13px 30px;">
+          {% endif %}
+            <table>
+              <tr>
+                <td style="padding: 0px 15px 0px 0px;">
+                  <img src="{{ elements.base_url }}/themes/custom/dd/components/components/email/icons/ico-envelop.png" style="display: block;" border="0" />
+                </td>
+                <td style="padding: 0px 15px 0px 0px; border-right: 1px solid;">
+                  <a href="{{ elements.base_url }}/contact/">Contact Us</a>
+                </td>
+                <td style="padding: 0px 15px 0px 15px; border-right: 1px solid;">
+                  <a href="{{ elements.base_url }}/about">About</a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </body>
+  </html>

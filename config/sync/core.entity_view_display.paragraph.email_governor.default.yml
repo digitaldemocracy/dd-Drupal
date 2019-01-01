@@ -1,0 +1,31 @@
+uuid: 91fa89d2-a629-4525-83de-4521fe744dfc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.email_governor.field_email_body
+    - field.field.paragraph.email_governor.field_email_subject
+    - paragraphs.paragraphs_type.email_governor
+  module:
+    - text
+id: paragraph.email_governor.default
+targetEntityType: paragraph
+bundle: email_governor
+mode: default
+content:
+  field_email_body:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_email_subject:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+hidden: {  }

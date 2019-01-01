@@ -1,0 +1,49 @@
+uuid: c8b01156-cefe-4cdb-b61c-61cb941d2bf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.search_committee_name
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: searchcommitteename
+theme: dd
+region: sidebar_first
+weight: -28
+provider: null
+plugin: 'facet_block:search_committee_name'
+settings:
+  id: 'facet_block:search_committee_name'
+  label: Committee
+  provider: facets
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,56 @@
+uuid: bea853e1-1b6c-4e0f-a39a-bbbd02f0cc1f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hearings_faceted
+id: hearing_speaker_name
+name: 'Hearing Speaker Name'
+url_alias: hearing_speaker_name
+weight: 0
+show_only_one_result: false
+field_identifier: fullname_lastfirst
+query_type_name: null
+facet_source_id: 'views_page:hearings_faceted__page_1'
+widget:
+  type: checkbox
+  config:
+    show_numbers: true
+    soft_limit: 5
+query_operator: and
+exclude: false
+only_visible_when_facet_source_is_visible: true
+processor_configs:
+  active_widget_order:
+    processor_id: active_widget_order
+    weights:
+      sort: -10
+    settings:
+      sort: ASC
+  count_widget_order:
+    processor_id: count_widget_order
+    weights:
+      sort: -10
+    settings:
+      sort: DESC
+  exclude_specified_items:
+    processor_id: exclude_specified_items
+    weights:
+      build: -10
+    settings:
+      exclude: 'Speaker, Unidentified|Secretary, Committee'
+      regex: true
+  hide_non_narrowing_result_processor:
+    processor_id: hide_non_narrowing_result_processor
+    weights:
+      build: -10
+    settings: {  }
+  url_processor_handler:
+    processor_id: url_processor_handler
+    weights:
+      pre_query: -10
+      build: -10
+    settings: {  }
+empty_behavior:
+  behavior: none
+facet_configs: {  }

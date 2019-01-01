@@ -1,0 +1,19 @@
+uuid: 14673b88-a335-4520-8cf4-f22d96ce971d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_css_override
+    - node.type.widget
+id: node.widget.field_css_override
+field_name: field_css_override
+entity_type: node
+bundle: widget
+label: 'CSS Override'
+description: 'Add valid CSS for advanced widget styles.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

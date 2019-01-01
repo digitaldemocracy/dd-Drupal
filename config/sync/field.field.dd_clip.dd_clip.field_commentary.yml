@@ -1,0 +1,21 @@
+uuid: 9509dbba-045c-4420-af6f-379589de17d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_commentary
+  module:
+    - dd_clip
+    - text
+id: dd_clip.dd_clip.field_commentary
+field_name: field_commentary
+entity_type: dd_clip
+bundle: dd_clip
+label: Commentary
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

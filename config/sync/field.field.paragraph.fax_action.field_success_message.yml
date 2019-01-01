@@ -1,0 +1,21 @@
+uuid: d7c3a796-3365-46ce-ac2d-017b3577362a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_success_message
+    - paragraphs.paragraphs_type.fax_action
+  module:
+    - text
+id: paragraph.fax_action.field_success_message
+field_name: field_success_message
+entity_type: paragraph
+bundle: fax_action
+label: 'Success/Completion Message'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

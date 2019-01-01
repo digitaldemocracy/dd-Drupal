@@ -1,0 +1,279 @@
+<?php
+
+/**
+ * @file
+ * Installation and uninstallation functions.
+ */
+
+use \Drupal\node\Entity\Node;
+use \Drupal\menu_link_content\Entity\MenuLinkContent;
+use Drupal\block\Entity\Block;
+use Drupal\block_content\Entity\BlockContent;
+
+/**
+ * Create analysis node.
+ */
+function dd_base_update_8001() {
+  // Check to see if /analysis node exists already.
+  $path = \Drupal::service('path.alias_manager')->getPathByAlias('/analysis');
+  if (!preg_match('/node\/(\d+)/', $path, $matches)) {
+
+    drush_print('Creating /analysis node and menu...');
+
+    // Create Analysis Node.
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'Analysis',
+      'path' => '/analysis'
+    ]);
+    $node->save();
+
+    $menu_link = [
+      'menu_name' => 'main',
+      'title' => 'Analysis',
+      'weight' => 80,
+      'link' => [
+        "uri" => 'entity:node/' . $node->id(),
+      ],
+    ];
+
+    $menu_link = MenuLinkContent::create($menu_link);
+    $menu_link->save();
+
+    $analysis_parent = $menu_link->getPluginId();
+
+    // Create Gift Nodes.
+    $nodes = [
+      [
+        'type' => 'page',
+        'title' => 'Gifts',
+        'body' => '',
+        'path' => '/analysis/gifts',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Legislator Gifts',
+        'body' => '',
+        'path' => '/analysis/gifts/legislator',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Staff Gifts',
+        'body' => '',
+        'path' => '/analysis/gifts/staff',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Office Gifts',
+        'body' => '',
+        'path' => '/analysis/gifts/office',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Donor Gifts',
+        'body' => '',
+        'path' => '/analysis/gifts/donor',
+      ],
+    ];
+
+    $menu_links = [
+      [
+        'menu_name' => 'main',
+        'title' => 'Gifts',
+        'weight' => 10,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Legislator',
+        'weight' => 10,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Staff',
+        'weight' => 20,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Office',
+        'weight' => 30,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Donor',
+        'weight' => 40,
+      ],
+    ];
+
+    $parent = $analysis_parent;
+    for ($i = 0; $i < count($nodes); $i++) {
+      $node = Node::create($nodes[$i]);
+      $node->save();
+      $menu_links[$i]['parent'] = $parent;
+      $menu_links[$i]['link'] = [
+        "uri" => 'entity:node/' . $node->id(),
+      ];
+      $menu_link = MenuLinkContent::create($menu_links[$i]);
+      $menu_link->save();
+      if ($parent == $analysis_parent) {
+        $parent = $menu_link->getPluginId();
+      }
+    }
+
+    // Create Contribution nodes.
+    $nodes = [
+      [
+        'type' => 'page',
+        'title' => 'Contributions',
+        'body' => '',
+        'path' => '/analysis/contributions',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Legislator Contributions',
+        'body' => '',
+        'path' => '/analysis/contributions/legislator',
+      ],
+      [
+        'type' => 'page',
+        'title' => 'Donor Contributions',
+        'body' => '',
+        'path' => '/analysis/contributions/donor',
+      ],
+    ];
+
+    $menu_links = [
+      [
+        'menu_name' => 'main',
+        'title' => 'Contributions',
+        'weight' => 20,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Legislator',
+        'weight' => 10,
+      ],
+      [
+        'menu_name' => 'main',
+        'title' => 'Donor',
+        'weight' => 20,
+      ],
+    ];
+
+    $parent = $analysis_parent;
+    for ($i = 0; $i < count($nodes); $i++) {
+      $node = Node::create($nodes[$i]);
+      $node->save();
+      $menu_links[$i]['parent'] = $parent;
+      $menu_links[$i]['link'] = [
+        "uri" => 'entity:node/' . $node->id(),
+      ];
+      $menu_link = MenuLinkContent::create($menu_links[$i]);
+      $menu_link->save();
+      if ($parent == $analysis_parent) {
+        $parent = $menu_link->getPluginId();
+      }
+    }
+
+    // @todo Add menu items for alignment meter.
+  }
+  else {
+    drush_print('/analysis node exists, not re-recreating...');
+  }
+}
+
+/**
+ * Create footer menu items.
+ */
+function dd_base_update_8002() {
+  // Check to see if /about node exists already.
+  $path = \Drupal::service('path.alias_manager')->getPathByAlias('/about');
+  if (!preg_match('/node\/(\d+)/', $path, $matches)) {
+
+    drush_print('Creating footer and social menu items');
+
+    // Create Analysis Node.
+    $node = Node::create([
+      'type' => 'page',
+      'title' => 'About',
+      'path' => '/about'
+    ]);
+
+    $node->save();
+
+    $menu_links = [
+      [
+        'menu_name' => 'footer',
+        'title' => 'About',
+        'weight' => 80,
+        'link' => [
+          'uri' => 'entity:node/' . $node->id(),
+        ],
+      ],
+      [
+        'menu_name' => 'footer',
+        'title' => 'Contact',
+        'weight' => -50,
+        'link' => [
+          'uri' => 'internal:/contact',
+          'options' => [
+            'attributes' => [
+              'class' => 'contact',
+            ],
+          ],
+        ],
+      ],
+      [
+        'menu_name' => 'footer',
+        'title' => 'Report an error',
+        'weight' => 10,
+        'link' => [
+          'uri' => 'internal:/contact',
+        ],
+      ],
+      [
+        'menu_name' => 'footer',
+        'title' => 'Donate',
+        'weight' => 20,
+        'link' => [
+          'uri' => 'internal:/donate',
+        ],
+      ],
+      [
+        'menu_name' => 'social',
+        'title' => 'Twitter',
+        'weight' => 20,
+        'link' => [
+          'uri' => 'https://twitter.com/DDemocracy_ca',
+          'options' => [
+            'attributes' => [
+              'class' => 'twitter',
+              'target' => '_blank',
+            ],
+          ],
+        ],
+      ],
+      [
+        'menu_name' => 'social',
+        'title' => 'Facebook',
+        'weight' => 20,
+        'link' => [
+          'uri' => 'https://www.facebook.com/DigitalDemocracyCalifornia',
+          'options' => [
+            'attributes' => [
+              'class' => 'facebook',
+              'target' => '_blank',
+            ],
+          ],
+        ],
+      ],
+    ];
+
+    for ($i = 0; $i < count($menu_links); $i++) {
+      $menu_link = MenuLinkContent::create($menu_links[$i]);
+      $menu_link->save();
+    }
+  }
+  else {
+    drush_print('/about node exists, not creating footer menu items...');
+  }
+}

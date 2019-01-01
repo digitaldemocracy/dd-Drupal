@@ -1,0 +1,71 @@
+uuid: 7b844403-d781-4468-8437-132591e72419
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.call_governor.field_advocacy_message
+    - field.field.paragraph.call_governor.field_advocacy_message_label
+    - field.field.paragraph.call_governor.field_capture_info
+    - field.field.paragraph.call_governor.field_capture_staff
+    - field.field.paragraph.call_governor.field_legislator_position
+    - field.field.paragraph.call_governor.field_talking_points
+    - paragraphs.paragraphs_type.call_governor
+  module:
+    - text
+id: paragraph.call_governor.default
+targetEntityType: paragraph
+bundle: call_governor
+mode: default
+content:
+  field_advocacy_message:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_advocacy_message_label:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_capture_info:
+    weight: 4
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_capture_staff:
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_legislator_position:
+    weight: 3
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_talking_points:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden: {  }

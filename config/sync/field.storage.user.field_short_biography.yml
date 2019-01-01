@@ -1,0 +1,21 @@
+uuid: 10d6860e-46d0-49b9-81ef-8ed82039071b
+langcode: und
+status: true
+dependencies:
+  module:
+    - user
+id: user.field_short_biography
+field_name: field_short_biography
+entity_type: user
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

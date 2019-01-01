@@ -1,0 +1,21 @@
+uuid: 94050061-41cb-4c38-be78-63a3f131692d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_action_body
+    - paragraphs.paragraphs_type.fax_action
+  module:
+    - text
+id: paragraph.fax_action.field_action_body
+field_name: field_action_body
+entity_type: paragraph
+bundle: fax_action
+label: 'Fax Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,20 @@
+uuid: 2a2b3fc2-88ef-426d-8610-6a069a71b187
+langcode: en
+status: true
+dependencies: {  }
+id: migrate_drupal_7
+label: 'Import from Drupal 7'
+description: 'Migrations originally generated from drush migrate-upgrade --configure-only'
+source_type: 'Drupal 7'
+module: null
+shared_configuration:
+  source:
+    key: drupal_7
+    database:
+      driver: mysql
+      username: monty
+      password: p1thon
+      host: dddb.chzg5zpujwmo.us-west-2.rds.amazonaws.com
+      port: ''
+      database: Drupal_2
+      prefix: null

@@ -1,0 +1,57 @@
+# DD Person routing definition
+dd_person.settings_tab:
+  route_name: dd_person.settings
+  title: 'Settings'
+  base_route: dd_person.settings
+entity.dd_person.canonical:
+  route_name: entity.dd_person.canonical
+  base_route: entity.dd_person.canonical
+  title: 'View'
+
+entity.dd_person.edit_form:
+  route_name: entity.dd_person.edit_form
+  base_route: entity.dd_person.canonical
+  title: Edit
+# DD Authors routing definition
+dd_authors.settings_tab:
+  route_name: dd_authors.settings
+  title: 'Settings'
+  base_route: dd_authors.settings
+entity.dd_authors.canonical:
+  route_name: entity.dd_authors.canonical
+  base_route: entity.dd_authors.canonical
+  title: 'View'
+
+entity.dd_authors.edit_form:
+  route_name: entity.dd_authors.edit_form
+  base_route: entity.dd_authors.canonical
+  title: Edit
+# DD Combined Alignments routing definition
+dd_combined_alignments.settings_tab:
+  route_name: dd_combined_alignments.settings
+  title: 'Settings'
+  base_route: dd_combined_alignments.settings
+entity.dd_combined_alignments.canonical:
+  route_name: entity.dd_combined_alignments.canonical
+  base_route: entity.dd_combined_alignments.canonical
+  title: 'View'
+
+entity.dd_combined_alignments.edit_form:
+  route_name: entity.dd_combined_alignments.edit_form
+  base_route: entity.dd_combined_alignments.canonical
+  title: Edit
+# DD General Public routing definition
+dd_general_public.settings_tab:
+  route_name: dd_general_public.settings
+  title: 'Settings'
+  base_route: dd_general_public.settings
+entity.dd_general_public.canonical:
+  route_name: entity.dd_general_public.canonical
+  base_route: entity.dd_general_public.canonical
+  title: 'View'
+
+entity.dd_general_public.edit_form:
+  route_name: entity.dd_general_public.edit_form
+  base_route: entity.dd_general_public.canonical
+  title: Edit
+

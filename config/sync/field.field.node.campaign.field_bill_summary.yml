@@ -1,0 +1,21 @@
+uuid: 20c9b3ca-27a6-4f85-a3e8-f806492b8e7d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill_summary
+    - node.type.campaign
+  module:
+    - text
+id: node.campaign.field_bill_summary
+field_name: field_bill_summary
+entity_type: node
+bundle: campaign
+label: 'Add a Bill Summary'
+description: 'Enter a bill synopsis to be displayed under the Bill Title on the campaign'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

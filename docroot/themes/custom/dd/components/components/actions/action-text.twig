@@ -1,0 +1,5 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+<div class="action-link--text action-icon" title="Display Text"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+{{ text }}
+{% endif %}

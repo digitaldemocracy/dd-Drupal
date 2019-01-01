@@ -1,0 +1,574 @@
+@import 'init';
+// Styling the User Account pages
+
+.is-path-user {
+  #block-dd-local-tasks {
+    @include menu-tabs;
+    padding: 1px;
+    // Hide the first views tab
+    &:first-child { display: none; }
+
+    ul.tabs--primary {
+      .tabs__tab {
+        width: 50%;
+
+        @include zen-respond-to(m) {
+          width: 33%;
+        }
+
+        @include zen-respond-to(xl) {
+          width: auto;
+        }
+        // Hide the first views tab
+        &:first-child { display: none; }
+      }
+
+    }
+  }
+}
+
+.page--user--register {
+  #edit-mail--description,
+  #edit-field-first-name-0-value--description,
+  #edit-field-last-name-0-value--description {
+    @include visually-hidden;
+  }
+
+  #block-homepagevideo-2 {
+    @include dd-box-shadow();
+    padding: 1em;
+  }
+
+  #block-dd-local-tasks {
+    @include menu-tabs;
+    padding: 1px;
+    // Hide the first views tab
+    &:first-child { display: none; }
+
+    ul.tabs--primary {
+      .tabs__tab {
+        width: 50%;
+
+      }
+    }
+  }
+}
+
+// ============= The My account view =================
+.view-my-account {
+  // External wrapper
+  .views-row {
+    @include dd-simple-borders($dd-silver);
+    margin: 1rem 0;
+
+    @include zen-respond-to(m) {
+      padding: 0 1rem;
+    }
+
+    @include zen-respond-to(m) {
+      @include flex-container();
+      justify-content: space-between;
+      width: 80%;
+      margin: 1rem auto;
+      padding: 0 1.5rem;
+    }
+
+    .dd-label {
+      @include typeface(headings);
+      background-color: $dd-charcoal;
+      color: $white;
+      display: block;
+      padding: .3rem .5rem;
+      width: 100%;
+    }
+
+    > .views-field {
+
+      @include zen-respond-to(m) {
+        margin: 1rem 0;
+      }
+     // background-color: $dd-offwhite;
+
+      .field-content {
+        padding: .5rem;
+        display: block;
+      }
+    }
+
+    // Feature Sections
+    .feature {
+      @include dd-bottom-border($dd-silver);
+      margin: .5rem 0;
+      padding: .5rem 0;
+
+      &:first-child { margin-top: 0; }
+      &:last-child { border-bottom: 0;}
+
+      //Feature Title
+      &--title {
+        font-weight: bold;
+      }
+
+      span,
+      .account-details-text {
+        display: inline-block;
+        width: 87%;
+
+        &.fa {
+          color: $dd-yellow-darkest;
+          width: 10%;
+          font-size: 1.3rem;
+          vertical-align: top;
+          padding: .2rem .5rem;
+          margin-right: 4px;
+        }
+      }
+
+      // Fields in the account details section
+      &--field {
+        span { display: inline; }
+      }
+
+      // Update settings links
+      &-links {
+        margin: 0;
+      }
+    }
+
+    .my-account {
+      // the welcome block
+      &--welcome {
+
+        @include zen-respond-to(m) {
+          @include flex-item;
+          width: 100%;
+        }
+
+        // Make header for the welcome block blue
+        .dd-label {
+          background-color: $dd-blue;
+        }
+      }
+
+      // ========== Individual block styles ===========
+      // Helpful Tips
+      &--tips {
+
+        @include zen-respond-to(m) {
+          @include flex-item();
+          width: 48%;
+          height: 390px;
+          overflow-y: scroll;
+        }
+      }
+
+      // Account Details
+      &--details {
+
+        @include zen-respond-to(m) {
+          @include flex-item();
+          width: 48%;
+          height: 390px;
+          overflow-y: scroll;
+        }
+
+        // Style user profile picture
+        img {
+          @include dd-simple-borders($dd-silver);
+          display: block;
+          border-width: 3px;
+        }
+      }
+    }
+  }
+}
+
+.is-path-frontpage {
+  .view-my-account {
+    a,
+    a:link,
+    a:visited {
+      color: color(text);
+      text-decoration: underline;
+      transition: all .5s;
+    }
+
+    a:hover {
+      color: $dd-blue-darker;
+      font-weight: bold;
+    }
+
+    .views-row {
+      margin: 0;
+      padding: 0;
+      border: 0;
+
+      .feature {
+        border-bottom: 1px solid $dd-charcoal;
+      }
+    }
+
+
+
+
+    // ========== Individual block styles ===========
+
+    .my-account--details {
+      background-color: transparent;
+      height: auto;
+      @include zen-respond-to(m) {
+        width: 100%;
+        overflow-y: scroll;
+      }
+
+      .field-content {
+        padding: 0;
+      }
+
+      .feature--title {
+        display: none;
+      }
+
+    }
+
+    ul.feature-links {
+      padding-left: 0;
+      list-style-type: none;
+      font-size: .875rem;
+    }
+  }
+}
+
+//=============== The Bill Alerts view ===========
+.view-users-alerts {
+  .view-content {
+    margin-top: 1rem;
+  }
+
+  .create-alert {
+    @include button-style($dd-charcoal, $white, $dd-yellow);
+  }
+}
+
+
+//@todo Some of this is left over from the old design and should be adapted or removed.
+
+form.node-dd-bill-alert-form,
+form.node-dd-email-subscription-form {
+
+  .description {
+    display: none;
+  }
+
+  .info-icon {
+    background: url(../../../images/information-icon.png) 0 0 no-repeat;
+    background-size: 13px 13px;
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-left: 7px;
+  }
+  .form-item-field-restrict-phrase-to-speaker-0-value {
+    display: none;
+  }
+  #edit-field-key-phrase-wrapper {
+    margin-left: 15px;
+    td.field-multiple-drag {
+      display: none;
+    }
+  }
+  .and-label {
+    color: $dd-yellow-darkest;
+  }
+
+  .field--name-field-bill-type,
+  .field--name-field-bill-number-is {
+
+    @include zen-respond-to(m) {
+      display: inline-block;
+      width: 48%;
+    }
+  }
+
+  .key-phrase-heading {
+    @include dd-bottom-border($dd-silver);
+  }
+}
+
+.form-item-alert-state label {
+  display: inline-block;
+  padding-right: 0.5em;
+}
+
+.is-page-node-type-dd-email-subscription,
+.is-page-node-type-dd-bill-alert
+{
+  // @todo check if this should be sitewide.
+  .content {
+    overflow: visible; // Allows long Chosen select lists to be seen, when they go past the height of .content--main.
+  }
+
+  #block-dd-local-tasks {
+    display: none;
+  }
+}
+
+//============= The Saved Content view =============
+.view-id-saved_content {
+  .dropbutton-wrapper.dropbutton-multiple {
+    padding-right: 1rem;
+  }
+
+  .views-table {
+    tr {
+      @include flex-container;
+    }
+
+    td,
+    th {
+      @include flex-item;
+      flex: 1 0 auto;
+    }
+
+
+    //=== Hide Headers at breakpoints
+    th {
+      padding: .3rem;
+
+      &.views-field {
+        &-field-description,
+        &-field-type,
+        &-field-state,
+        &-created,
+        &-operations
+        {
+          display: block;
+          @include zen-respond-to(xs-and-below) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    // Individual fields
+    td,
+    th {
+      &.views-field {
+        &-field-description {
+          width: 20%;
+          @include zen-respond-to(xs-and-below) {
+            width: 100%;
+            border-top: 1px dashed $dd-silver;
+          }
+        }
+
+        &-field-type {
+          width: 20%;
+          @include zen-respond-to(xs-and-below) {
+            width: 100%;
+            border-top: 1px dashed $dd-silver;
+            &:before {
+              content: 'Type: ';
+              font-weight: bold;
+            }
+          }
+
+        }
+
+        &-field-state {
+          width: 20%;
+          @include zen-respond-to(xs-and-below) {
+            width: 100%;
+            border-top: 1px dashed $dd-silver;
+            &:before {
+              content: 'State: ';
+              font-weight: bold;
+            }
+          }
+
+        }
+
+        &-created {
+          width: 20%;
+          @include zen-respond-to(xs-and-below) {
+            width: 100%;
+            border-top: 1px dashed $dd-silver;
+            &:before {
+              content: 'Created: ';
+              font-weight: bold;
+            }
+
+          }
+        }
+
+        &-operations {
+          width: 100%;
+
+          @include zen-respond-to(l) {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
+}
+
+// ============= Bill Alerts Tab ============
+.view-users-alerts {
+  .dropbutton-wrapper.dropbutton-multiple {
+    padding-right: 1rem;
+  }
+
+  .views-table {
+    tr {
+      @include flex-container;
+    }
+
+    td,
+    th {
+      @include flex-item;
+      flex: 1 0 auto;
+      width: 7%;
+    }
+  }
+
+  td,
+  th {
+    &.views-field {
+      // ALert Title
+      &-title {
+        width: 20%;
+      }
+
+      // Scheduled Hearing Alerts
+      &-field-receive-alerts-for-schedul { // Not a typo. Actual class
+        @include zen-respond-to(xs-and-below) {
+          width: 100%;
+          border-top: 1px dashed $dd-silver;
+
+          &:before {
+            content: 'Scheduled hearing Alerts: ';
+            font-weight: bold;
+          }
+        }
+
+      }
+
+      // Video Alerts and votes
+      &-field-receive-alerts-for-videos,
+      &-field-receive-alerts-for-votes {
+        @include zen-respond-to(s-and-below) {
+          width: 100%;
+
+          &:before {
+            font-weight: bold;
+          }
+        }
+      }
+
+      &-field-receive-alerts-for-videos {
+        @include zen-respond-to(s-and-below){
+          border-top: 1px dashed $dd-silver;
+
+          &:before {
+            content: 'Video alerts: ';
+          }
+        }
+
+        @include zen-respond-to(xs-and-below) { border-top: 0; }
+      }
+
+      &-field-receive-alerts-for-votes {
+        @include zen-respond-to(s-and-below){
+          &:before {
+            content: 'Vote alerts: ';
+          }
+        }
+      }
+
+      // Alert When Amended
+      &-field-alert-me-when-bill-is-amen {
+        @include zen-respond-to(m-and-below) {
+          width: 100%;
+          border-top: 1px dashed $dd-silver;
+
+          &:before {
+            content: 'Alert when Amended: ';
+            font-weight: bold;
+          }
+        }
+
+        @include zen-respond-to(s-and-below) { border-top: 0; }
+      }
+
+      // Edit and Delete Links
+      &-operations {
+        width: 100%;
+        @include zen-respond-to(l) {
+          width: auto;
+        }
+      }
+    }
+  }
+
+  //=== Hide Headers at breakpoints
+  th {
+    padding: .3rem;
+
+    &.views-field {
+      // Scheduled Hearing Alerts
+      &-field-receive-alerts-for-schedul { // Not a typo. Actual class
+        @include zen-respond-to(xs-and-below) {
+          display: none;
+        }
+      }
+
+      // Video Alerts
+      &-field-receive-alerts-for-videos,
+      // Vote Alerts
+      &-field-receive-alerts-for-votes {
+        @include zen-respond-to(s-and-below) {
+          display: none;
+        }
+      }
+
+      // Alert When Amended
+      &-field-alert-me-when-bill-is-amen {
+        display: none;
+
+        @include zen-respond-to(m) {
+          display: block;
+        }
+      }
+
+      // Edit and Delete Links
+      &-operations {
+        display: none;
+
+        @include zen-respond-to(l) {
+          display: block;
+        }
+      }
+    }
+  }
+
+}
+
+.view-users-alerts {
+  .dropbutton-wrapper.dropbutton-multiple {
+    padding-right: 1rem;
+  }
+
+  //============== Video Alerts Tab ===========
+  &.view-display-id-block_2 {
+    .views-field-nothing,
+    .views-field-nothing-1,
+    .views-field-field-restrict-phrase-to-speaker {
+      width: 15%;
+    }
+
+    .views-field-title {
+      width: 25%
+    }
+  }
+}

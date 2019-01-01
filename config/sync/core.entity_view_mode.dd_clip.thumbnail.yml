@@ -1,0 +1,12 @@
+uuid: 16521ae0-e33d-43a3-8b3f-1e8a2cd034b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+_core:
+  default_config_hash: heCh3mWPlv0nHKqDGXWEZKJQ6nY-JmDwJGvdT3K5SA0
+id: dd_clip.thumbnail
+label: Thumbnail
+targetEntityType: dd_clip
+cache: true

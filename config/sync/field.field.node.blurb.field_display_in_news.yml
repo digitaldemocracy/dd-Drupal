@@ -1,0 +1,23 @@
+uuid: 9b729db3-a095-40f8-99e4-4420e84d3157
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_display_in_news
+    - node.type.blurb
+id: node.blurb.field_display_in_news
+field_name: field_display_in_news
+entity_type: node
+bundle: blurb
+label: 'display in news'
+description: 'check this if you want the item to be displayed in the "In the News" box on the front page.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

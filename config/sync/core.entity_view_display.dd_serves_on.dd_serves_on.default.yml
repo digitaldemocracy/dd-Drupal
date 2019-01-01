@@ -1,0 +1,106 @@
+uuid: b9f327cb-96a7-47a5-a77d-f59364193583
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_serves_on.dd_serves_on.default
+targetEntityType: dd_serves_on
+bundle: dd_serves_on
+mode: default
+content:
+  cid:
+    type: entity_reference_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  house:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  pid:
+    type: number_unformatted
+    weight: 0
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  position:
+    label: inline
+    type: string
+    weight: 5
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  year:
+    label: inline
+    type: number_integer
+    weight: 3
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    region: content
+hidden:
+  current_flag: true
+  first: true
+  last: true
+  middle: true
+  servesOn_dr_ids: true

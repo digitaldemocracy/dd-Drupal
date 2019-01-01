@@ -1,0 +1,10 @@
+uuid: bd2a23ef-ad8c-4587-aba0-3a635c759077
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_hearing
+id: dd_hearing_agenda.token
+label: Token
+targetEntityType: dd_hearing_agenda
+cache: true

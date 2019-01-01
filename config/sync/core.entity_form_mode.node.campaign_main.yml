@@ -1,0 +1,10 @@
+uuid: bc9342e9-3298-471d-8010-803452137c3b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.campaign_main
+label: 'Campaign Main'
+targetEntityType: node
+cache: true

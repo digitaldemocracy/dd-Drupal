@@ -1,0 +1,22 @@
+@import 'init';
+
+#video-editor-menu {
+  margin-left: 15px;
+  padding: 10px;
+
+  .video-editor-menu-list {
+    ul {
+      list-style-type: none;
+    }
+
+    li {
+      display: inline;
+      margin-right: 10px;
+    }
+
+    a.active {
+      background-color: #356e7e;
+      color: white;
+    }
+  }
+}

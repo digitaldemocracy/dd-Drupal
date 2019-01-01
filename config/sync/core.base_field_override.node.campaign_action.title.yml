@@ -1,0 +1,18 @@
+uuid: 9ccb1a5e-7f53-4eb9-a495-65d82dcc4b02
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.campaign_action
+id: node.campaign_action.title
+field_name: title
+entity_type: node
+bundle: campaign_action
+label: 'Name the group for future reference'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

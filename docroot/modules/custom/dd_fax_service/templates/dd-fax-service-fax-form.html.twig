@@ -1,0 +1,21 @@
+<div class="fax-data" style="
+    background-color: white;
+    width: 612px;
+    height: 792px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 10px;
+">
+  <h1>Fax</h1>
+  <h2>To: {{ to }} </h2>
+  <h2>Fax #: {{ fax_num }} </h2>
+  <h3>Subject: {{ subject }} </h3>
+  <p>Dear {{ to }}</p>
+  <p>{{ body }}</p>
+  <p>Sincerely,<br>
+  {{ sender.first }} {{ sender.last }} <br>
+  {{ sender.street }} <br>
+  {{ sender.city }}, {{ sender.state }} {{ sender.zip }} <br>
+  {{ sender.contact }}
+  </p>
+</div>

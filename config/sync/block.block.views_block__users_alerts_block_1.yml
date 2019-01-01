@@ -1,0 +1,60 @@
+uuid: 1f3a22ef-053c-4dfc-9fd1-5c6d9bc88306
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.users_alerts
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - user
+    - views
+  theme:
+    - dd
+id: views_block__users_alerts_block_1
+theme: dd
+region: content
+weight: -25
+provider: null
+plugin: 'views_block:users_alerts-block_1'
+settings:
+  id: 'views_block:users_alerts-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/user/*/bill-alerts'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

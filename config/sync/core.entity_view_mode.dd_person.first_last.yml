@@ -1,0 +1,12 @@
+uuid: f555f5a6-97d2-4fa8-9ed9-1ade26b1bd26
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+_core:
+  default_config_hash: 8UTgUPaZxjF5DXwhfHdNyT-iRXpRVCMYfUSiT8U0mX8
+id: dd_person.first_last
+label: 'First Last Name'
+targetEntityType: dd_person
+cache: true

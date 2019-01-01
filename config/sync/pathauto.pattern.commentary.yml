@@ -1,0 +1,22 @@
+uuid: fd56876d-7782-4e80-bfc0-a4a6baeebfda
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: commentary
+label: Commentary
+type: 'canonical_entities:node'
+pattern: 'commentary/[node:author]/[node:title]'
+selection_criteria:
+  b1a11bb5-d96a-4190-a1af-e499ca4bdc6a:
+    id: node_type
+    bundles:
+      blog: blog
+    negate: false
+    context_mapping:
+      node: node
+    uuid: b1a11bb5-d96a-4190-a1af-e499ca4bdc6a
+selection_logic: and
+weight: -5
+relationships: {  }

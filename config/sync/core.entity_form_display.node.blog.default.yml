@@ -1,0 +1,95 @@
+uuid: f81f1b2d-86f3-4269-be68-da48a1b1cc68
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.blog.body
+    - field.field.node.blog.field_end_time
+    - field.field.node.blog.field_pid
+    - field.field.node.blog.field_speaker
+    - field.field.node.blog.field_speaker_pid
+    - field.field.node.blog.field_start_time
+    - field.field.node.blog.field_text
+    - field.field.node.blog.field_thumbnail_image
+    - field.field.node.blog.field_vid
+    - field.field.node.blog.field_videoid
+    - image.style.thumbnail
+    - node.type.blog
+  module:
+    - image
+    - text
+id: node.blog.default
+targetEntityType: node
+bundle: blog
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 2
+    settings:
+      rows: 20
+      placeholder: ''
+      summary_rows: 3
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_end_time:
+    weight: 26
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_start_time:
+    weight: 27
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_thumbnail_image:
+    type: image_image
+    weight: 10
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    region: content
+  field_videoid:
+    type: string_textfield
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_pid: true
+  field_speaker: true
+  field_speaker_pid: true
+  field_text: true
+  field_vid: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

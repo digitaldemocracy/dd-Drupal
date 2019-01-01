@@ -1,0 +1,57 @@
+uuid: e9aba704-e473-4423-a152-04636c83c581
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.dd_clip.thumbnail
+    - field.field.dd_clip.dd_clip.field_annotations
+    - field.field.dd_clip.dd_clip.field_clip_source
+    - field.field.dd_clip.dd_clip.field_clips
+    - field.field.dd_clip.dd_clip.field_commentary
+    - field.field.dd_clip.dd_clip.field_display_transcript
+    - field.field.dd_clip.dd_clip.field_duration_float
+    - field.field.dd_clip.dd_clip.field_file_size
+    - field.field.dd_clip.dd_clip.field_hearing_url
+    - field.field.dd_clip.dd_clip.field_note
+    - field.field.dd_clip.dd_clip.field_promote
+    - field.field.dd_clip.dd_clip.field_transcript
+    - field.field.dd_clip.dd_clip.field_video_tags
+    - field.field.dd_clip.dd_clip.field_videoid
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.thumbnail
+targetEntityType: dd_clip
+bundle: dd_clip
+mode: thumbnail
+content:
+  field_videoid:
+    type: string
+    weight: 1
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_annotations: true
+  field_clip_source: true
+  field_clips: true
+  field_commentary: true
+  field_display_transcript: true
+  field_duration_float: true
+  field_file_size: true
+  field_hearing_url: true
+  field_note: true
+  field_promote: true
+  field_transcript: true
+  field_video_tags: true
+  status: true
+  user_id: true

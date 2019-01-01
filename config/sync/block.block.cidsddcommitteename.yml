@@ -1,0 +1,34 @@
+uuid: f99899be-b927-4285-af03-5d840f2260bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.cids_dd_committee_name
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: cidsddcommitteename
+theme: dd
+region: sidebar_first
+weight: -32
+provider: null
+plugin: 'facet_block:cids_dd_committee_name'
+settings:
+  id: 'facet_block:cids_dd_committee_name'
+  label: 'Committee Name'
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /hearings
+    negate: false
+    context_mapping: {  }

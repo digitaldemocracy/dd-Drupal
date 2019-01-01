@@ -1,0 +1,16 @@
+administer dd campaign visitor entities:
+  title: 'Administer DD Campaign visitor entities'
+  description: 'Allow to access the administration form to configure DD Campaign visitor entities.'
+  restrict access: true
+
+edit dd campaign visitor entities:
+  title: 'Edit DD Campaign visitor entities'
+
+access dd campaign visitor overview:
+  title: 'Access the DD Campaign visitor overview page'
+
+view published dd campaign visitor entities:
+  title: 'View published DD Campaign visitor entities'
+
+view unpublished dd campaign visitor entities:
+  title: 'View unpublished DD Campaign visitor entities'

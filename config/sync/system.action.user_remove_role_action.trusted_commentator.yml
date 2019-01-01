@@ -1,0 +1,14 @@
+uuid: 89dc7fff-2b27-40e3-857e-d4971c6255d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.trusted_commentator
+  module:
+    - user
+id: user_remove_role_action.trusted_commentator
+label: 'Remove the Trusted Commentator role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: trusted_commentator

@@ -1,0 +1,28 @@
+uuid: db242e8a-9bc1-4e28-b929-b7786a1d04f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.counties.field_county_fips_code
+    - field.field.node.counties.field_fips_class_code
+    - field.field.node.counties.field_state
+    - field.field.node.counties.field_state_fips_code
+    - node.type.counties
+  module:
+    - user
+id: node.counties.teaser
+targetEntityType: node
+bundle: counties
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_county_fips_code: true
+  field_fips_class_code: true
+  field_state: true
+  field_state_fips_code: true

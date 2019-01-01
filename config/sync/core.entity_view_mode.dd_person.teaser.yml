@@ -1,0 +1,12 @@
+uuid: e4cbc99c-0997-4efc-8c6c-e2729ff7ff93
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+_core:
+  default_config_hash: A6q6cnNXvJuBEKDrCsjFvOnrEL3xSU8OtPLg8m53HqE
+id: dd_person.teaser
+label: Teaser
+targetEntityType: dd_person
+cache: true

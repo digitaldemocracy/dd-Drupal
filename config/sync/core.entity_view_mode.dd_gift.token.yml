@@ -1,0 +1,10 @@
+uuid: 6c231003-60a9-4030-8c4b-02cc4450ffef
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_gift.token
+label: Token
+targetEntityType: dd_gift
+cache: true

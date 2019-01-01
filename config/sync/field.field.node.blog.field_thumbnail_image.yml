@@ -1,0 +1,38 @@
+uuid: ca55b3a1-8672-458e-9f44-66918d475e3a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_thumbnail_image
+    - node.type.blog
+  module:
+    - image
+id: node.blog.field_thumbnail_image
+field_name: field_thumbnail_image
+entity_type: node
+bundle: blog
+label: 'Thumbnail image'
+description: 'Use this image to override the default video thumbnail image. Optional.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: thumbnails
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: false
+  title_field: false
+  default_image:
+    alt: ''
+    title: ''
+    width: null
+    height: null
+    uuid: ''
+  alt_field_required: true
+  title_field_required: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

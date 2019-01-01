@@ -1,0 +1,28 @@
+uuid: f61621f1-cbb5-4102-bb2c-fbca7a39850f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_campaign
+    - node.type.campaign
+    - node.type.phone_action_response
+id: node.phone_action_response.field_campaign
+field_name: field_campaign
+entity_type: node
+bundle: phone_action_response
+label: Campaign
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      campaign: campaign
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

@@ -1,0 +1,281 @@
+@import 'init';
+
+// Styling individual Bill pages
+.is-path-bill {
+  // Page title
+  .field--name-number,
+  .field--name-type {
+    @include typeface(headings);
+    @include font-size(xl);
+    font-weight: bold;
+    display: inline-block;
+    padding: 0 2px;
+  }
+
+  .field--name-type {
+    margin-left: 45%;
+  }
+
+  .view-showhide {
+    > .view-content {
+      @include dd-complex-borders($dd-offwhite, 0, 1px, 0, 1px);
+      padding: 0 1em 1em;
+
+      p { margin: 1rem 0;}
+    }
+  }
+
+  //------- Bill Digest --------
+  .bill-digest__label {
+    border-bottom: 1px solid $dd-silver;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-top: 1em;
+  }
+
+  // Earlier Versions
+  .view-bill-earlier-digests,
+  .view-id-bill_earlier_versions {
+    // Only display table caption for screenreaders
+    caption { @include visually-hidden; }
+
+    table {
+      tr.bill-digest__earlier--row {
+        @include dd-simple-borders($dd-offwhite);
+
+        &:nth-child(even) {
+          background-color: $dd-offwhite;
+        }
+      }
+
+      td {
+        padding: .1rem .3rem;
+
+        &.view-link,
+        &.views-field-view-dd-bill-version {
+          @include button-style($dd-charcoal, $white, $dd-yellow);
+          display: table-cell;
+          a { color: $white; }
+        }
+      }
+    }
+  }
+
+  //---------- Bill Votes --------------
+  .view-display-id-bill_votes_block {
+    .bill-votes__row {
+      padding: 0 1rem 1rem;
+      border: 1px solid $dd-silver;
+      margin: 1rem 0;
+    }
+
+    .bill-votes__date-name {
+      @include font-size(l);
+      @include typeface(headings);
+      font-weight: bold;
+      text-transform: uppercase;
+      margin: 1rem 0;
+
+      span { // Add a thick right border to the date.
+        padding-right: 1rem;
+        margin-right: .9rem; // About .1 rem goes to the border.
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          right: 0;
+          top: .5em;
+          bottom: .3em;
+          width: 3px;
+          background-color: color(text); // To match the text.
+        }
+
+        &:last-child::after {
+          display: none;
+        }
+      }
+    }
+
+    .bill-votes__vote-stats {
+      // @include highlight-result;
+      margin-bottom: 1rem;
+      max-width: 300px;
+      font-weight: bold;
+
+      span {
+        display: inline-block;
+        padding-right: 1rem;
+      }
+    }
+  }
+
+  .view-id-bill_vote_details {
+    .bill-vote-details {
+
+      h3 {
+        @include dd-bottom-border;
+        @include font-size(m);
+        margin: 0;
+        color: $dd-charcoal;
+
+      }
+
+      ul {
+        columns: 3 auto;
+        padding-left: 0;
+        -webkit-perspective: 1;
+        margin: .5rem 0;
+
+        @include zen-respond-to(s) {
+          columns: 4 auto;
+        }
+
+        @include zen-respond-to(l) {
+          columns: 6 auto;
+        }
+      }
+
+      li.bill-vote-details__row {
+        list-style: none;
+      }
+    }
+  }
+
+  //--------- Bill History -----------
+  .view-bill-history {
+    th {
+      @include font-size(m);
+      text-transform: uppercase;
+      text-align: left;
+      font-weight: normal;
+      padding: .3rem .5rem;
+      background: $dd-charcoal;
+      color: $dd-offwhite;
+    }
+
+    tbody {
+      @include dd-simple-borders($dd-offwhite);
+    }
+
+    .bill-history__row {
+      @include dd-bottom-border;
+
+      &:nth-child(even) {
+        background-color: $dd-offwhite;
+      }
+
+      td {
+        padding: .3rem .5rem;
+        min-width: 100px;
+      }
+    }
+  }
+
+  //-------- Bill Top Block ----------
+  .bill__top-block {
+    margin-top: 1rem;
+    padding: .5rem;
+
+    @include zen-respond-to(s) {
+      @include flex-container;
+      flex-wrap: nowrap;
+    }
+
+    &--image,
+    &--text {
+
+      @include zen-respond-to(s) {
+        @include flex-item;
+      }
+    }
+
+    &--text {
+      padding: 0rem 1rem 0 2rem;
+      flex-grow: 2;
+    }
+
+    // Applies to &--image
+    @include dd-round-headshots(125px);
+
+    &--author {
+      .dd-person { display: inline-block; }
+    }
+  }
+
+  #block-sharetoolbarblock-2 {
+    text-align: right;
+  }
+
+
+  .view-id-bill_info {
+    .views-row { position: relative; }
+  }
+
+  .discussed-in-hearings-teaser {
+    font-size: 90%;
+    padding-left: 2em;
+    padding-bottom: 1em;
+    border-bottom: 1px solid color(border);
+
+    > .view-content > .views-row {
+      @include clearfix();
+      margin: .5em 0;
+      min-width: 290px;
+      max-width: 350px;
+      border-top: 1px solid $dd-silver;
+      padding: 15px 0;
+
+      &:first-child {
+        border-top: 0;
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      > .views-field { // add a margin to all fields except image thumbnail.
+        // margin-left: 23%;
+      }
+
+      > .views-field-name {
+        font-weight: bold;
+        float: right;
+        width: 55%;
+      }
+
+      > .views-field-view {
+
+        div,
+        span {
+          @include block-to-inline();
+        }
+      }
+
+      // Contains thumbnail.
+      > .views-field-nothing {
+        float: left;
+        margin-left: 0;
+        width: 45%;
+      }
+    }
+
+    nav.pager {
+      text-align: right;
+    }
+  }
+  //-------- Bill Analysis Block ----------
+  .view-bill-analysis {
+    .views-field-nothing {
+      margin: .5em 0;
+
+    }
+  }
+
+}
+
+// Hide Bill Analysis for NY
+.dd-state-ny.is-path-bill {
+  .view-bill-analysis {
+    display: none;
+  }
+}
+

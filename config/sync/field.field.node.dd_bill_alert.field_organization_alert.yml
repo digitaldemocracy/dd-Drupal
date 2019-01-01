@@ -1,0 +1,23 @@
+uuid: 218543f0-3c3b-4738-869c-0c329071b228
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organization_alert
+    - node.type.dd_bill_alert
+id: node.dd_bill_alert.field_organization_alert
+field_name: field_organization_alert
+entity_type: node
+bundle: dd_bill_alert
+label: 'Send Alerts To All Action Center Admins'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

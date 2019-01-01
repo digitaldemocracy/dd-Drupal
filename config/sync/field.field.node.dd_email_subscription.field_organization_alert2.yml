@@ -1,0 +1,23 @@
+uuid: 173bcc30-6ba7-4ad5-932b-8bc1095a5f14
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_organization_alert2
+    - node.type.dd_email_subscription
+id: node.dd_email_subscription.field_organization_alert2
+field_name: field_organization_alert2
+entity_type: node
+bundle: dd_email_subscription
+label: 'Send Alerts To All Action Center Admins'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

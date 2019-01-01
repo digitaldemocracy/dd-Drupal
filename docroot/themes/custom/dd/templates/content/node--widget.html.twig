@@ -1,0 +1,11 @@
+{% extends "node.html.twig" %}
+
+{% block content %}
+
+  {{ attach_library('dd/dd-widget') }}
+  {% if (content.field_widget_layout_style.0['#markup'] == "0") %}
+    {% include "@dd/components/widget/horizontal--layout.html.twig" %}
+  {% else %}
+    {% include "@dd/components/widget/vertical--layout.html.twig" %}
+  {% endif %}
+{% endblock %}

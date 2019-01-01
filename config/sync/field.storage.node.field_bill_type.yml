@@ -1,0 +1,111 @@
+uuid: ff3b3ec4-a51a-41a6-9dbe-eeaf1a298a93
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_bill_type
+field_name: field_bill_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: AB
+      label: AB
+    -
+      value: ABX1
+      label: ABX1
+    -
+      value: ABX2
+      label: ABX2
+    -
+      value: ACA
+      label: ACA
+    -
+      value: ACR
+      label: ACR
+    -
+      value: ACRX2
+      label: ACRX2
+    -
+      value: AJR
+      label: AJR
+    -
+      value: HR
+      label: HR
+    -
+      value: SCRX1
+      label: SCRX1
+    -
+      value: SCRX2
+      label: SCRX2
+    -
+      value: SB
+      label: SB
+    -
+      value: SBX1
+      label: SBX1
+    -
+      value: SBX2
+      label: SBX2
+    -
+      value: SCA
+      label: SCA
+    -
+      value: SCAX1
+      label: SCAX1
+    -
+      value: SJR
+      label: SJR
+    -
+      value: SR
+      label: SR
+    -
+      value: SRX1
+      label: SRX1
+    -
+      value: SRX2
+      label: SRX2
+    -
+      value: SCR
+      label: SCR
+    -
+      value: BUD
+      label: BUD
+    -
+      value: A
+      label: A
+    -
+      value: C
+      label: C
+    -
+      value: E
+      label: E
+    -
+      value: K
+      label: K
+    -
+      value: L
+      label: L
+    -
+      value: B
+      label: B
+    -
+      value: J
+      label: J
+    -
+      value: R
+      label: R
+    -
+      value: S
+      label: S
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

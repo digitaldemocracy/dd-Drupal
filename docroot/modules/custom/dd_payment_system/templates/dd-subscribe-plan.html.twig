@@ -1,0 +1,17 @@
+<div class="dd-subscribe-plan">
+  <h1>{{ title }}</h1>
+  <div class="plans">
+    <ul class="subscription-plans">
+    {% for plan in items.plans %}
+      <ul class="plan">
+        <li class="plan-item"><p>{{ plan.description|raw }}</p></li>
+        <li class="plan-item">Price: ${{ plan.price }} for {{ plan.duration }} days</li>
+      </ul>
+    {% endfor %}
+    </ul>
+  </div>
+  <div class="form">
+  {{ form }}
+  </div>
+</div>
+{{ attach_library('dd/dd-payment-system-subscribe') }}

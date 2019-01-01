@@ -1,0 +1,49 @@
+uuid: 96a4fee6-cbd9-4868-9912-195a04e7c3a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.full_name_last_first
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: searchfullnamelastfirst
+theme: dd
+region: sidebar_first
+weight: -27
+provider: null
+plugin: 'facet_block:full_name_last_first'
+settings:
+  id: 'facet_block:full_name_last_first'
+  label: Speaker
+  provider: facets
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /search
+    negate: false
+    context_mapping: {  }

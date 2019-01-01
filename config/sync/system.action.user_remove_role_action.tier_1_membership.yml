@@ -1,0 +1,14 @@
+uuid: 020869f0-6fa4-4c77-a259-514270ed09f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tier_1_membership
+  module:
+    - user
+id: user_remove_role_action.tier_1_membership
+label: 'Remove the Tier 1 Membership role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: tier_1_membership

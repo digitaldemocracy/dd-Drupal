@@ -1,0 +1,93 @@
+uuid: 5d091b95-7119-4cdd-9d5d-939b4dbaa2cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_behests.dd_behests.default
+targetEntityType: dd_behests
+bundle: dd_behests
+mode: default
+content:
+  amount:
+    type: number_integer
+    weight: 5
+    label: inline
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    region: content
+  datePaid_ts:
+    type: timestamp
+    weight: 3
+    label: inline
+    settings:
+      date_format: custom
+      custom_date_format: Y-m-d
+      timezone: ''
+    third_party_settings: {  }
+    region: content
+  description:
+    type: string
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  noticeReceived_ts:
+    type: timestamp
+    weight: 7
+    label: inline
+    settings:
+      date_format: custom
+      custom_date_format: Y-m-d
+      timezone: ''
+    third_party_settings: {  }
+    region: content
+  official:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  payee:
+    type: entity_reference_entity_view
+    weight: 2
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  payor:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  purpose:
+    type: string
+    weight: 6
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  sessionYear: true

@@ -1,0 +1,10 @@
+uuid: eb1f50f3-1bd7-4214-88fe-a6ec37e28084
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_general_public.token
+label: Token
+targetEntityType: dd_general_public
+cache: true

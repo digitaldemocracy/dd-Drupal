@@ -1,0 +1,6 @@
+test_api_secret: ''
+test_api_key: ''
+live_api_secret: ''
+live_api_key: ''
+mode: 'test'
+api_host: 'https://api.phaxio.com/v1/'

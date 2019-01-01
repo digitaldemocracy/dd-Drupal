@@ -1,0 +1,23 @@
+uuid: d0ddc44e-9177-4eed-9d19-abea8f1a672b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_enable_twitter_share
+    - node.type.campaign
+id: node.campaign.field_enable_twitter_share
+field_name: field_enable_twitter_share
+entity_type: node
+bundle: campaign
+label: 'Enable Twitter Share Button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

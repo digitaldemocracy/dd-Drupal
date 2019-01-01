@@ -1,0 +1,36 @@
+@import 'init';
+
+// Action center
+//
+// Style guide: Actions.action-center
+
+.action-center--campaign-teasers {
+  .view-content {
+  }
+
+  .campaign--teaser {
+    padding-bottom: 0;
+
+    h2 {
+      @include font-size(l);
+      margin: .5rem 0;
+      text-transform: uppercase;
+    }
+
+    p {
+      margin: .5rem 0;
+    }
+  }
+}
+
+.is-path-action-center{
+  .action-center--campaign-teasers {
+    .campaign-teaser--item {
+      max-width: 500px;
+      min-width: 300px;
+      width: 30%;
+      margin: 1%;
+    }
+  }
+}
+

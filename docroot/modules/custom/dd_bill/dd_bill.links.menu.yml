@@ -1,0 +1,40 @@
+# DD Bill menu items definition
+entity.dd_bill.collection:
+  title: 'DD Bill list'
+  route_name: entity.dd_bill.collection
+  description: 'List DD Bill entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_bill.admin.structure.settings:
+  title: DD Bill settings
+  description: 'Configure DD Bill entities'
+  route_name: dd_bill.settings
+  parent: system.admin_structure
+
+# DD Bill Version menu items definition
+entity.dd_bill_version.collection:
+  title: 'DD Bill - DD Bill Version list'
+  route_name: entity.dd_bill_version.collection
+  description: 'List DD Bill Version entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_bill_version.admin.structure.settings:
+  title: DD Bill - DD Bill Version settings
+  description: 'Configure DD Bill Version entities'
+  route_name: dd_bill_version.settings
+  parent: system.admin_structure
+# DD Bill Discussion menu items definition
+entity.dd_bill_discussion.collection:
+  title: 'DD Bill - DD Bill Discussion list'
+  route_name: entity.dd_bill_discussion.collection
+  description: 'List DD Bill Discussion entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_bill_discussion.admin.structure.settings:
+  title: DD Bill - DD Bill Discussion settings
+  description: 'Configure DD Bill Discussion entities'
+  route_name: dd_bill_discussion.settings
+  parent: system.admin_structure

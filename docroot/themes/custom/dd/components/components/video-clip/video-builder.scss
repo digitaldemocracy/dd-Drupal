@@ -1,0 +1,308 @@
+@import 'init';
+
+// Change the default sub-directory for the image-image-url() mixin.
+$image-url-subdirectory: 'components/video-clip/icons';
+
+body {
+  margin: 25px;
+}
+
+
+.left-wrapper {
+  float: left;
+  max-width: 761px;
+  min-width: 620px;
+  background-color: #404040;
+  padding: 35px 25px;
+  margin-right: 35px;
+}
+
+.left-wrapper .selected-clip-wrapper {
+  background-color: #838383;
+  padding: 13px;
+}
+
+.left-wrapper .selected-clip-wrapper .video-label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area {
+  width: 100%;
+  padding: 20px 36px;
+  background-color: #747474;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area.clip-added {
+  padding: 20px;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area span {
+  font-size: 20px;
+  font-weight: bold;
+  color: #0c0c0c;
+  display: none;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area .empty-drop span {
+  display: block;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area .button {
+  display: none;
+  height: 57px;
+  width: 178px;
+  border: 0;
+  color: #fff;
+  background: #353535 image-url('combine.png') no-repeat scroll 17px 17px;
+  padding-left: 35px;
+  margin-top: 30px;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area.clip-added .button {
+  display: block;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area #drop-placeholder .cp-video {
+  float: left;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area #drop-placeholder .cp-video-details {
+  float: left;
+}
+
+.left-wrapper .selected-clip-wrapper  #video-builder-drop-area #drop-placeholder .cp-video img {
+  width: 80px;
+  height: 48px;
+}
+
+.right-wrapper {
+  width: 375px;
+  float: left;
+}
+
+.left-wrapper .video-wrapper {
+  width: 100%;
+  margin: 10px auto 5px;
+}
+
+.left-wrapper .selected-clip-wrapper .video-js {
+  margin: 60px auto 20px;
+}
+
+.left-wrapper .selected-clip-wrapper form .form-item-clip-name input {
+  height: 50px;
+}
+
+.left-wrapper .selected-clip-wrapper form button.form-submit {
+    float: left;
+  margin-top: 19px;
+  height: 50px;
+  width: 137px;
+  background: #353535 image-url('save-clip.png') no-repeat scroll 10px 10px;
+  padding-left: 20px;
+  font-size: 16px;
+}
+
+.left-wrapper .selected-clip-wrapper .cp-video-close {
+  position: absolute;
+  top: -3px;
+  right: -8px;
+  background: rgba(0, 0, 0, 0) image-url('cp-close.png') no-repeat scroll 0 0;
+  width: 25px;
+  height: 25px;
+  display: block;
+}
+
+.view-myclip-bank .pagination {
+  display: block !important;
+}
+
+.cliping-wrapper .drag-handler {
+  background: rgba(0, 0, 0, 0) image-url('cp-plus.png') no-repeat scroll 0 0;
+  width: 34px;
+  height: 34px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 40px;
+}
+
+.selected-clip-wrapper .drag-handler {
+  background: rgba(0, 0, 0, 0) image-url('cp-drag-handle.png') no-repeat scroll 0 0;
+  width: 20px;
+  height: 20px;
+  float: left;
+  margin: 20px 20px 0 13px;
+}
+
+
+.selected-clip-wrapper {
+  .bank-clip {
+    width: 377px;
+    border-bottom: 1px solid #686868;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    position: relative;
+
+    .video-item {
+      background-color: #d0d0d0;
+      width: 320px;
+      height: auto;
+      float: left;
+      padding: 5px;
+    }
+  }
+}
+
+#video-builder-drop-area .cp-video-title a {
+  color: #272626;
+  text-decoration: none;
+  padding: 10px 20px 10px 10px;
+}
+
+.cliping-wrapper .cp-video img {
+  width: 80px;
+  height: 42px;
+}
+
+.cliping-wrapper .bank-clip {
+  padding: 10px 20px 10px 8px;
+  background-color: #444746;
+}
+
+.cliping-wrapper .views-row-even .bank-clip {
+background-color: #636363;
+}
+
+.cliping-wrapper .bank-clip.light {
+   background: #636363 none repeat scroll 0 0;
+}
+
+.cliping-wrapper .bank-clip.dark {
+   background: #444746 none repeat scroll 0 0;
+}
+
+.cliping-wrapper .views-row .video-item {
+  background-color: #d0d0d0;
+  width: 270px;
+  height: 115px;
+  float: left;
+  padding: 13px 10px;
+  position: relative;
+}
+
+.right-wrapper .video-item .cp-video {
+    float: left;
+  margin-right: 10px;
+  width: 80px;
+}
+
+.right-wrapper .video-item .cp-video-details {
+  float: left;
+  width: 160px;
+  color: #0e0e0e;
+}
+
+.right-wrapper .video-item .cp-video-details .cp-video-title {
+  min-height: 70px;
+}
+
+.right-wrapper .video-item .cp-video-details .cp-video-title a {
+  text-decoration: none;
+  font-size: 14px;
+  color: #0e0e0e;
+}
+
+.right-wrapper .video-item .cp-video-size {
+  position: absolute;
+  right: 10px;
+  bottom: 13px;
+}
+
+.right-wrapper .video-item .cp-video-op {
+  position: absolute;
+  left: 10px;
+  bottom: 13px;
+}
+
+.right-wrapper .video-item .cp-video-op a {
+  background: rgba(0, 0, 0, 0) image-url('cp-play-grey.png') no-repeat scroll 0 0;
+  width: 24px;
+  height: 24px;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin-top: 5px;
+}
+
+.right-wrapper .video-item .cp-video-op a.cb-edit-video {
+  background: rgba(0, 0, 0, 0) image-url('cp-edit-grey.png') no-repeat scroll 0 0;
+  margin-left: 3px;
+}
+
+.right-wrapper .video-item .cp-video-op a.cb-cut-video {
+  background: rgba(0, 0, 0, 0) image-url('cp-cut-grey.png') no-repeat scroll 0 0;
+  margin-left: 3px;
+}
+
+.right-wrapper .video-item .cp-video-op a.cb-annotate-video {
+  background: rgba(0, 0, 0, 0) image-url('cp-annotate-grey.png') no-repeat scroll 0 0;
+  margin-left: 3px;
+}
+
+.right-wrapper .video-item .cp-video-op a.clip_delete {
+  background: rgba(0, 0, 0, 0) image-url('cp-delete-grey.png') no-repeat scroll 0 0;
+  margin-left: 3px;
+}
+
+/*.right-wrapper .block-title {
+  width: 375px;
+  padding: 20px;
+  background: #F8DB19 none repeat scroll 0 0;
+  margin: 0;
+  color: #3c3e3d;
+  font-weight: bold;
+  font-size: 19px;
+}*/
+
+.right-wrapper .transitions-wrapper {
+  margin-top: 25px;
+}
+
+.right-wrapper .transitions-wrapper .drag-handler {
+  background: rgba(0, 0, 0, 0) image-url('cp-plus.png') no-repeat scroll 0 0;
+  width: 34px;
+  height: 34px;
+  float: left;
+  margin-right: 5px;
+  margin-top: 10px;
+}
+
+.right-wrapper .transitions-wrapper .view-content {
+  padding: 10px;
+  background-color: #585858;
+}
+
+.right-wrapper .transitions-wrapper .views-row {
+  height: 45px;
+  margin-bottom: 5px;
+}
+
+.right-wrapper .transitions-wrapper .views-row .text {
+  float: left;
+  margin-top: 16px;
+  font-size: 19px;
+  color: #b9b9b9;
+  margin-right: 25px;
+}
+
+#edit-submit, #edit-submit--2 {
+  box-shadow: none;
+}
+
+fieldset > legend {
+  display: none;
+}

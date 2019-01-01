@@ -1,0 +1,27 @@
+{% extends "page.html.twig" %}
+
+{# This hides the main menu in the header in inner base pages #}
+{% block banner %}
+  {# Intentionally left empty. Used in home templates #}
+{% endblock %}
+
+{% block header %}
+  <header class="header header__region" role="banner">
+    {% if page.top %}
+      <section class ="top__region layout-center"> {{ page.top }} </section>
+    {% endif %}
+    <section class = "layout-center branding__region">
+      <div class = "page-header__region"> {{ page.header }} </div>
+    </section>
+  </header>
+{% endblock %}
+
+  {% block scrollbar %}
+    {% if page.states_scrollbar %}
+      <div id = "states-scroll-bar">
+        <div class = "layout-center">{{ page.states_scrollbar }}</div>
+      </div>
+    {% endif %}
+  {% endblock %}
+
+

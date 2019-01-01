@@ -1,0 +1,33 @@
+{% extends "node.html.twig" %}
+
+{% set modifier_class = attributes.class %}
+{% set attributes = attributes.addClass('campaign','campaign--' ~ view_mode|clean_class, 'dd-box-shadow') %}
+
+{% block heading %}
+  <!-- Hides the label -->
+{% endblock heading %}
+
+{% block content %}
+
+  {{ attach_library('dd/modal') }}
+  {{ attach_library('dd/dd-video-player') }}
+  {{ attach_library('dd/campaign') }}
+
+  {% include "@dd/components/campaigns/campaign-teaser.twig"
+    with {
+      title: node.label,
+      body: content.body,
+      clips: content.field_video_clips.0,
+      video_location: 'Top',
+      campaign_description_location: 'Bottom',
+      path: path('entity.node.canonical', {'node': node.id})
+    }
+  %}
+
+{% endblock %}
+
+
+
+
+
+

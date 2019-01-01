@@ -1,0 +1,23 @@
+uuid: fdf6f8b4-8dbb-4a69-8759-a7fa8bfdb88b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_phone_targets
+    - paragraphs.paragraphs_type.phone_action
+  module:
+    - options
+id: paragraph.phone_action.field_phone_targets
+field_name: field_phone_targets
+entity_type: paragraph
+bundle: phone_action
+label: 'Phone Targets'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: capitol_office
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,10 @@
+uuid: 12e673cd-7fe3-44df-8acf-0ca6089c0bd9
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill_version.token
+label: Token
+targetEntityType: dd_bill_version
+cache: true

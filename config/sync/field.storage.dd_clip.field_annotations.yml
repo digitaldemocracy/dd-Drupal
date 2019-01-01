@@ -1,0 +1,19 @@
+uuid: afacb657-e6de-43b2-bc05-a4d8ad39cc5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_annotations
+field_name: field_annotations
+entity_type: dd_clip
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

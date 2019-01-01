@@ -1,0 +1,145 @@
+uuid: 7a9e2bde-dcb9-448a-a292-cf9b0851464c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_utterance
+id: dd_utterance.dd_utterance.default
+targetEntityType: dd_utterance
+bundle: dd_utterance
+mode: default
+content:
+  alignment:
+    type: string
+    weight: 5
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  did:
+    type: entity_reference_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  endTime:
+    type: number_unformatted
+    weight: 3
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  first:
+    label: inline
+    type: string
+    weight: 7
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 10
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 11
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  last:
+    label: inline
+    type: string
+    weight: 9
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  middle:
+    label: inline
+    type: string
+    weight: 8
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  text:
+    type: string
+    weight: 0
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  time:
+    type: number_unformatted
+    weight: 2
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  type:
+    type: string
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  vid:
+    type: entity_reference_entity_view
+    weight: 1
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  current: true
+  finalized: true
+  lastTouched_ts: true
+  pid: true
+  servesOn_dr_ids: true

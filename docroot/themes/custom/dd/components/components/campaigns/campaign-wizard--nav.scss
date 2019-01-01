@@ -1,0 +1,194 @@
+@import 'init';
+
+// SVG background mixins
+@mixin yellow-double-circle {
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g figma:type="frame"><use fill ="%23EFEFEF" xlink:href="%23a" transform="translate(3.046 2.015)" figma:type="ellipse"/><use fill ="%23F7D519" xlink:href="%23b" transform="translate(2 1)" figma:type="ellipse"/><use fill ="%23F7D519" xlink:href="%23c" transform="translate(5.136 4.044)" figma:type="ellipse"/></g><defs><path id="a" d="M23 11.1618c0 6.1644-5.1487 11.1617-11.5 11.1617-6.35127 0-11.5-4.9973-11.5-11.1617C0 4.9973 5.14873 0 11.5 0 17.8513 0 23 4.9973 23 11.1618z"/><path id="b" d="M22 11.1618c0 5.5842-4.6727 10.1617-10.5 10.1617v2c6.8752 0 12.5-5.417 12.5-12.1617h-2zM11.5 21.3235C5.67266 21.3235 1 16.746 1 11.1618h-2c0 6.7447 5.6248 12.1617 12.5 12.1617v-2zM1 11.1618C1 5.5775 5.67266 1 11.5 1v-2C4.6248-1-1 4.41708-1 11.1618h2zM11.5 1C17.3273 1 22 5.5775 22 11.1618h2C24 4.41708 18.3752-1 11.5-1v2z"/><path id="c" d="M16.7273 8.11765c0 4.48325-3.7446 8.11765-8.36366 8.11765C3.74454 16.2353 0 12.6009 0 8.11765 0 3.6344 3.74453 0 8.36364 0c4.61906 0 8.36366 3.6344 8.36366 8.11765z"/></defs></svg>'),
+  url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23C9C8C9"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+  background-repeat: no-repeat, repeat-y;
+  background-size: 20px, auto;
+  background-position: left 0;
+  padding: 0 .5em 1.5em 1.7em;
+
+  &:last-child {
+    padding-bottom: 0;
+    margin-bottom: 1.5em;
+  }
+}
+
+@mixin solid-circle {
+  background-size: 8px;
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" version="1.1" xmlns:figma="http://www.figma.com/figma/ns" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16"><title>grey-circle-solid</title><desc>Created using Figma</desc><g id="Canvas" figma:type="canvas" transform="translate(123 240)"><mask id="mask0_alpha" mask-type="alpha"><path d="m-123-240h16v16h-16v-16z" fill ="%23fff"/></mask><g id="grey-circle-solid" figma:type="frame" mask="url(%23mask0_alpha)"><g figma:type="ellipse"><use xlink:href="%23path0_fill" transform="translate(-123 -240)" fill ="%23C9C8C9"/></g></g></g><defs><path id="path0_fill" d="m16 8c0 4.4-3.6 8-8 8-4.42 0-8-3.6-8-8 0-4.42 3.58-8 8-8 4.4 0 8 3.58 8 8z"/></defs></svg>');
+}
+
+@mixin solid-circle-yellow {
+  background-size: 8px;
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" version="1.1" xmlns:figma="http://www.figma.com/figma/ns" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16"><title>grey-circle-solid</title><desc>Created using Figma</desc><g id="Canvas" figma:type="canvas" transform="translate(123 240)"><mask id="mask0_alpha" mask-type="alpha"><path d="m-123-240h16v16h-16v-16z" fill ="%23fff"/></mask><g id="grey-circle-solid" figma:type="frame" mask="url(%23mask0_alpha)"><g figma:type="ellipse"><use xlink:href="%23path0_fill" transform="translate(-123 -240)" fill ="%23f7d519"/></g></g></g><defs><path id="path0_fill" d="m16 8c0 4.4-3.6 8-8 8-4.42 0-8-3.6-8-8 0-4.42 3.58-8 8-8 4.4 0 8 3.58 8 8z"/></defs></svg>');
+}
+
+@mixin solid-circle-yellow-line {
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" height="16" width="16" version="1.1" xmlns:figma="http://www.figma.com/figma/ns" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 16 16"><title>yellow-circle-solid</title><desc>Created using Figma</desc><g id="Canvas" figma:type="canvas" transform="translate(123 240)"><mask id="mask0_alpha" mask-type="alpha"><path d="m-123-240h16v16h-16v-16z" fill ="%23fff"/></mask><g id="grey-circle-solid" figma:type="frame" mask="url(%23mask0_alpha)"><g figma:type="ellipse"><use xlink:href="%23path0_fill" transform="translate(-123 -240)" fill ="%23F7D519"/></g></g></g><defs><path id="path0_fill" d="m16 8c0 4.4-3.6 8-8 8-4.42 0-8-3.6-8-8 0-4.42 3.58-8 8-8 4.4 0 8 3.58 8 8z"/></defs></svg>'),
+                    url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23F7D519"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+  background-repeat: no-repeat, repeat-y;
+  background-size: 14px, 17px;
+  background-position: 2px 5px, 1px 0;
+  padding: 0 0 1.5em 1.7em;
+}
+
+@mixin white-solid-circle-line {
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g transform="translate(80 231)" figma:type="canvas"><mask id="a"><path fill ="%23FFF" d="M-80-231h10v10h-10v-10z"/></mask><g mask="url(%23a)" figma:type="frame"><g figma:type="ellipse"><use fill ="%23FFF" xlink:href="%23b" transform="translate(-80 -231)"/><mask id="c"><use fill ="%23fff" xlink:href="%23b" transform="translate(-80 -231)"/></mask><g mask="url(%23c)"><use fill ="%23c9c8c9" xlink:href="%23d" transform="translate(-80 -231)"/></g></g></g></g><defs><path id="b" d="M10 5c0 2.76-2.24 5-5 5S0 7.76 0 5s2.24-5 5-5 5 2.24 5 5z"/><path id="d" d="M9 5c0 2.21-1.79 4-4 4v2c3.314 0 6-2.686 6-6H9zM5 9C2.79 9 1 7.21 1 5h-2c0 3.314 2.686 6 6 6V9zM1 5c0-2.21 1.79-4 4-4v-2C1.686-1-1 1.686-1 5h2zm4-4c2.21 0 4 1.79 4 4h2c0-3.314-2.686-6-6-6v2z"/></defs></svg>'),
+                    url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23C9C8C9"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+  background-repeat: no-repeat, repeat-y;
+  background-size: 14px, 17px;
+  background-position: 2px 5px, 1px 0;
+  padding: 0 .5em 1.5em 1.7em;
+}
+
+@mixin white-solid-circle {
+  background-image: url('data:image/svg+xml;utf8, <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g transform="translate(80 231)" figma:type="canvas"><mask id="a"><path fill ="%23FFF" d="M-80-231h10v10h-10v-10z"/></mask><g mask="url(%23a)" figma:type="frame"><g figma:type="ellipse"><use fill ="%23FFF" xlink:href="%23b" transform="translate(-80 -231)"/><mask id="c"><use fill ="%23fff" xlink:href="%23b" transform="translate(-80 -231)"/></mask><g mask="url(%23c)"><use fill ="%23c9c8c9" xlink:href="%23d" transform="translate(-80 -231)"/></g></g></g></g><defs><path id="b" d="M10 5c0 2.76-2.24 5-5 5S0 7.76 0 5s2.24-5 5-5 5 2.24 5 5z"/><path id="d" d="M9 5c0 2.21-1.79 4-4 4v2c3.314 0 6-2.686 6-6H9zM5 9C2.79 9 1 7.21 1 5h-2c0 3.314 2.686 6 6 6V9zM1 5c0-2.21 1.79-4 4-4v-2C1.686-1-1 1.686-1 5h2zm4-4c2.21 0 4 1.79 4 4h2c0-3.314-2.686-6-6-6v2z"/></defs></svg>'),
+url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23C9C8C9"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+}
+
+@mixin info {
+  background-image: url('data:image/svg+xml;utf8,<svg width="22" height="21" viewBox="0 0 22 21" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>info-icon</title><desc>Created using Figma</desc><g transform="translate(288 242)" figma:type="canvas"><mask id="a"><path d="M-288-242h22v21h-22v-21z" fill ="%23FFF"/></mask><g figma:type="symbol" mask="url(%23a)"><use xlink:href="%23b" transform="translate(-285 -240)" fill ="%23E67E21" figma:type="ellipse"/><use xlink:href="%23c" transform="translate(-279 -244)" fill ="%23FFF" figma:type="text"/></g></g><defs><path id="b" d="M17 8.5c0 4.694-3.806 8.5-8.5 8.5S0 13.194 0 8.5 3.806 0 8.5 0 17 3.806 17 8.5z"/><path id="c" d="M.475 17.462l1.24-.264V11.3l-1.372-.263V9.49H4.28v7.708l1.23.264V19H.476v-1.538zM4.28 7.214H1.714V5.29H4.28v1.924z"/></defs></svg>')
+}
+
+@mixin line {
+  background-image: url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23C9C8C9"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+  background-repeat: repeat-y;
+  background-size: auto;
+  padding: 0 .5em 0 1.5em;
+}
+
+// Campaign Wizard navigation Block
+.block-dd-campaign-wizard-nav-block {
+  margin-top: 1.5em;
+
+  .item-list {
+    ul {
+      margin-bottom: 0;
+    }
+    li {
+      @include solid-circle;
+      list-style: none;
+      padding: .5em 0 .5em 1em;
+      background-repeat: no-repeat;
+      background-position: left 15px;
+      margin-bottom: 0;
+      margin-left: 0;
+      a { color: $dd-charcoal; }
+
+      li {
+        color: $dd-greylight;
+
+        a {
+          color: $dd-charcoal;
+        }
+      }
+
+    // First level Li's only
+      &.parent.active-item {
+        @include yellow-double-circle;
+        font-weight: bold;
+        li {
+          font-weight: normal;
+
+          &.active-item {
+            @include solid-circle-yellow;
+            font-weight: bold;
+            color: $dd-charcoal;
+          }
+      }
+
+        // Style last-child differently to compensate for bottom extra line
+        &:last-child{
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="27" height="27" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g figma:type="frame"><use fill ="%23EFEFEF" xlink:href="%23a" transform="translate(3.046 2.015)" figma:type="ellipse"/><use fill ="%23F7D519" xlink:href="%23b" transform="translate(2 1)" figma:type="ellipse"/><use fill ="%23F7D519" xlink:href="%23c" transform="translate(5.136 4.044)" figma:type="ellipse"/></g><defs><path id="a" d="M23 11.1618c0 6.1644-5.1487 11.1617-11.5 11.1617-6.35127 0-11.5-4.9973-11.5-11.1617C0 4.9973 5.14873 0 11.5 0 17.8513 0 23 4.9973 23 11.1618z"/><path id="b" d="M22 11.1618c0 5.5842-4.6727 10.1617-10.5 10.1617v2c6.8752 0 12.5-5.417 12.5-12.1617h-2zM11.5 21.3235C5.67266 21.3235 1 16.746 1 11.1618h-2c0 6.7447 5.6248 12.1617 12.5 12.1617v-2zM1 11.1618C1 5.5775 5.67266 1 11.5 1v-2C4.6248-1-1 4.41708-1 11.1618h2zM11.5 1C17.3273 1 22 5.5775 22 11.1618h2C24 4.41708 18.3752-1 11.5-1v2z"/><path id="c" d="M16.7273 8.11765c0 4.48325-3.7446 8.11765-8.36366 8.11765C3.74454 16.2353 0 12.6009 0 8.11765 0 3.6344 3.74453 0 8.36364 0c4.61906 0 8.36366 3.6344 8.36366 8.11765z"/></defs></svg>'),
+          url('data:image/svg+xml;utf8,<svg width="19" height="19" viewBox="0 0 19 19" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><title>line</title><desc>Created using Figma</desc><g id="Canvas" transform="translate(310 189)" figma:type="canvas"><mask id="mask0_alpha" mask-type="alpha"><path d="M -310 -189L -291 -189L -291 -170L -310 -170L -310 -189Z" fill ="%23FFFFFF"/></mask><g id="line" mask="url(%23mask0_alpha)" figma:type="frame"><g id="Line 2" figma:type="line"><use xlink:href="%23path0_stroke" transform="matrix(6.12323e-17 1 -1 6.12323e-17 -301 -204)" fill ="%23F7D519"/></g></g></g><defs><path id="path0_stroke" d="M 0 0L 44 0L 44 -1L 0 -1L 0 0Z"/></defs></svg>');
+
+          background-repeat: no-repeat, repeat-y;
+          background-position: 0px 76%, 0px 0px;
+          &:after {
+            content: '';
+            height: 10px;
+            width: 28px;
+            display: block;
+            background: $dd-offwhite;
+            margin-left: -2em;
+            margin-top: -3px;
+          }
+        }
+      }
+
+      // White solid circle for inactive parent li's
+      &.parent.inactive-item {
+        @include white-solid-circle-line;
+        color: $dd-greylight;
+
+        a { color: $dd-greylight; }
+
+        // Crop out the extra long lines showing up under the last LI element.
+        &:last-child {
+          @include white-solid-circle;
+          padding-bottom: 0;
+          background-repeat: no-repeat, repeat-y;
+          background-position: 2px 65%, 1px 0px;
+
+          &:after {
+            content: '';
+            height: 15px;
+            width: 28px;
+            display: block;
+            background: $dd-offwhite;
+            margin-left: -2em;
+            margin-top: -5px;
+          }
+        }
+      }
+
+
+      // Completed items get a yellow cirle and yellow line.
+      &.parent.completed-item {
+        @include solid-circle-yellow-line;
+        color: $dd-charcoal;
+
+          a {
+            color: $dd-charcoal;
+          }
+
+        &:first-of-type {
+            // Square Element before topmost li's to hide the top of the yellow line that shows up over the yellow circle.
+            &:before {
+              content: '';
+              height: 5px;
+              width: 28px;
+              display: block;
+              background: $dd-offwhite;
+              margin-left: -1em;
+              background-image: image-url('icons/info-icon.svg');
+            }
+
+            a {
+              margin-top: -4px;
+              display: block;
+            }
+        }
+
+        &:last-child {
+          @include solid-circle-yellow;
+          background-size: 14px;
+          margin-top: -6px;
+          padding-bottom: 0;
+
+          &:after {
+            content: '';
+            height: 25px;
+            width: 28px;
+            display: block;
+            background: $dd-offwhite;
+            margin-left: -2em;
+            margin-top: -9px;
+          }
+        }
+      }
+    }
+  }
+}

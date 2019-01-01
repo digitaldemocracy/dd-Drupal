@@ -1,0 +1,10 @@
+uuid: 8db5b524-7925-4212-bb99-cafa93795878
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 5rOnjIF_aDyGBmfXNhJnkPXxQMlem0CmVmggV-TF3Fg
+id: global
+label: Global
+tags:
+  fb_app_id: '1681471935454385'

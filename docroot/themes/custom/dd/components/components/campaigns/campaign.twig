@@ -1,0 +1,39 @@
+{% include "@dd/components/campaigns/campaign-social.twig"
+ with { 
+     enable_facebook_share: enable_facebook_share,
+     enable_twitter_share: enable_twitter_share}
+%}
+{# Top Campaign Region#}
+{% if bill_location == 'Top' %}
+  {{ campaign_bill_teaser }}
+{% endif %}
+{% if video_location == 'Top' %}
+  {{ clips }}
+{% endif %}
+{% if campaign_description_location == 'Top' %}
+  {{ body }}
+{% endif %}
+
+{# Middle Campaign Region#}
+{% if bill_location == 'Middle' %}
+  {{ campaign_bill_teaser }}
+{% endif %}
+{% if video_location == 'Middle' %}
+  {{ clips }}
+{% endif %}
+{% if campaign_description_location == 'Middle' %}
+  {{ body }}
+{% endif %}
+{# Bottom Campaign Region#}
+
+{% if bill_location == 'Bottom' %}
+  {{ campaign_bill_teaser }}
+{% endif %}
+{% if video_location == 'Bottom' %}
+  {{ clips }}
+{% endif %}
+{% if campaign_description_location == 'Bottom' %}
+  {{ body }}
+{% endif %}
+
+<a href="{{ path }}" class="button button--large">Take Action</a>

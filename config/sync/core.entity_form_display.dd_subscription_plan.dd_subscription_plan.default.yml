@@ -1,0 +1,83 @@
+uuid: 69d8ca4f-db1a-4a0b-8acd-3fab953276c0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_description
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_disable
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_duration_days
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_price
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_recurring
+    - field.field.dd_subscription_plan.dd_subscription_plan.field_role_name
+  module:
+    - dd_payment_system
+    - text
+id: dd_subscription_plan.dd_subscription_plan.default
+targetEntityType: dd_subscription_plan
+bundle: dd_subscription_plan
+mode: default
+content:
+  field_description:
+    weight: 6
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea_with_summary
+    region: content
+  field_disable:
+    weight: 11
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_duration_days:
+    weight: 7
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_price:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_recurring:
+    weight: 10
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_role_name:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

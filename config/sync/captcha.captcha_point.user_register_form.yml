@@ -1,0 +1,7 @@
+uuid: 6d1a7921-9cc2-4240-9717-950f44ba808d
+langcode: en
+status: true
+dependencies: {  }
+formId: user_register_form
+captchaType: recaptcha/reCAPTCHA
+label: user_register_form

@@ -1,0 +1,20 @@
+uuid: 000bbb75-c09b-4364-b8c6-e523ba16e1fd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_annotations
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_annotations
+field_name: field_annotations
+entity_type: dd_clip
+bundle: dd_clip
+label: annotations
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

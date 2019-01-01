@@ -1,0 +1,24 @@
+uuid: 2d060884-f028-4dc1-8d7e-b00e7c25e8e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_history.field_limit
+  module:
+    - dd_fax_service
+id: dd_fax_service_history.dd_fax_service_history.field_limit
+field_name: field_limit
+entity_type: dd_fax_service_history
+bundle: dd_fax_service_history
+label: Limit
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

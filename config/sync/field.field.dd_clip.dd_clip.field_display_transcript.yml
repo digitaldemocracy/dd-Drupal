@@ -1,0 +1,22 @@
+uuid: 9858c991-5b56-4c74-b440-9b48a5f49b92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_display_transcript
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_display_transcript
+field_name: field_display_transcript
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Display Transcript'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

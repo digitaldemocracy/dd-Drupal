@@ -1,0 +1,31 @@
+@import 'init';
+
+// Video thumb wrapper
+//
+// Style a Video thumb wrapper with an overlay play button image.
+//
+// Markup: video-thumb-wrapper.twig
+//
+// Style guide: components.video-thumb-wrapper
+
+$image-url-subdirectory: 'components/video-thumb-wrapper';
+
+.video-thumb-wrapper a {
+  position: relative;
+  display: inline-block;
+}
+
+.video-thumb-wrapper a::before {
+  content: ' ';
+  @include playicon;
+  background-position: center;
+
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 2;
+  display: block;
+  background-size: 35px;
+}

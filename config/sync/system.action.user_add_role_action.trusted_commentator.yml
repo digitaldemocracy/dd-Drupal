@@ -1,0 +1,14 @@
+uuid: 76952ae2-243e-45fe-b291-68ca056c4ab4
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.trusted_commentator
+  module:
+    - user
+id: user_add_role_action.trusted_commentator
+label: 'Add the Trusted Commentator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: trusted_commentator

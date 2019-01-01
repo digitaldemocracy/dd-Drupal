@@ -1,0 +1,432 @@
+@import 'init';
+
+// Mixins
+@mixin multiselect-add {
+  background-image: url('data:image/svg+xml;utf,<svg xmlns="http://www.w3.org/2000/svg" width="95" height="28" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g figma:type="canvas"><g figma:type="vector-operation" transform="translate(317 362)"><mask id="b"><use fill ="%23fff" xlink:href="%23a" transform="translate(-317 -362)"/></mask><g mask="url(%23b)"><use fill ="%23137177" xlink:href="%23c" transform="translate(-317 -362)"/></g></g></g><defs><path id="a" fill-rule="evenodd" d="M78 .09623C78 .04308 77.9569 0 77.9038 0H3C1.34315 0 0 1.34315 0 3v22c0 1.6569 1.34315 3 3 3h74.9038c.0531 0 .0962-.0431.0962-.0962 0-.0299.0139-.0581.0375-.0763l14.8744-11.4503c1.56-1.2009 1.56-3.5535 0-4.7544L78.0375.17248C78.0139.15426 78 .12608 78 .09623z"/><path id="c" d="M92.9119 16.3772l-1.22-1.5848 1.22 1.5848zM78.0375.17248l1.22-1.58482-1.22 1.5848zm0 27.65502l1.22 1.5848-1.22-1.5848zm14.8744-16.2047l-1.22 1.5848 1.22-1.5848zM3 2h74.9038v-4H3v4zM2 25V3h-4v22h4zm75.9038 1H3v4h74.9038v-4zm13.7881-11.2076L76.8175 26.2427l2.44 3.1696L94.1319 17.962l-2.44-3.1696zM76.8175 1.7573l14.8744 11.4503 2.44-3.1696L79.2575-1.41234l-2.44 3.16963zM3-2C.23858-2-2 .23858-2 3h4c0-.55228.44772-1 1-1v-4zm74.9038 4C76.8523 2 76 1.14765 76 .09623h4C80-1.0615 79.0615-2 77.9038-2v4zM-2 25c0 2.7614 2.23858 5 5 5v-4c-.55228 0-1-.4477-1-1h-4zm79.9038 5C79.0615 30 80 29.0615 80 27.9038h-4C76 26.8523 76.8523 26 77.9038 26v4zM80 27.9038c0 .5908-.2743 1.1481-.7425 1.5085l-2.44-3.1696C76.302 26.6395 76 27.2532 76 27.9038h4zm14.1319-9.9418c2.6-2.0015 2.6-5.9225 0-7.924l-2.44 3.1696c.52.4003.52 1.1845 0 1.5848l2.44 3.1696zM79.2575-1.41234c.4682.3604.7425.91774.7425 1.50857h-4c0 .65054.302 1.26422.8175 1.66106l2.44-3.16964z"/></defs></svg>');
+}
+
+@mixin multiselect-remove {
+  background-image: url('data:image/svg+xml;utf,<svg xmlns="http://www.w3.org/2000/svg" width="95" height="28" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns"><desc>Created using Figma</desc><g figma:type="canvas"><g figma:type="vector-operation" transform="translate(316 362)"><mask id="b"><use fill ="%23fff" xlink:href="%23a" transform="matrix(-1 0 0 1 -221 -362)"/></mask><g mask="url(%23b)"><use fill ="%234EB8BF" xlink:href="%23c" transform="matrix(-1 0 0 1 -221 -362)"/></g></g></g><defs><path id="a" fill-rule="evenodd" d="M78 .09623C78 .04308 77.9569 0 77.9038 0H3C1.34315 0 0 1.34315 0 3v22c0 1.6569 1.34315 3 3 3h74.9038c.0531 0 .0962-.0431.0962-.0962 0-.0299.0139-.0581.0375-.0763l14.8744-11.4503c1.56-1.2009 1.56-3.5535 0-4.7544L78.0375.17248C78.0139.15426 78 .12608 78 .09623z"/><path id="c" d="M92.9119 16.3772l-1.22-1.5848 1.22 1.5848zM78.0375.17248l1.22-1.58482-1.22 1.5848zm0 27.65502l1.22 1.5848-1.22-1.5848zm14.8744-16.2047l-1.22 1.5848 1.22-1.5848zM3 2h74.9038v-4H3v4zM2 25V3h-4v22h4zm75.9038 1H3v4h74.9038v-4zm13.7881-11.2076L76.8175 26.2427l2.44 3.1696L94.1319 17.962l-2.44-3.1696zM76.8175 1.7573l14.8744 11.4503 2.44-3.1696L79.2575-1.41234l-2.44 3.16963zM3-2C.23858-2-2 .23858-2 3h4c0-.55228.44772-1 1-1v-4zm74.9038 4C76.8523 2 76 1.14765 76 .09623h4C80-1.0615 79.0615-2 77.9038-2v4zM-2 25c0 2.7614 2.23858 5 5 5v-4c-.55228 0-1-.4477-1-1h-4zm79.9038 5C79.0615 30 80 29.0615 80 27.9038h-4C76 26.8523 76.8523 26 77.9038 26v4zM80 27.9038c0 .5908-.2743 1.1481-.7425 1.5085l-2.44-3.1696C76.302 26.6395 76 27.2532 76 27.9038h4zm14.1319-9.9418c2.6-2.0015 2.6-5.9225 0-7.924l-2.44 3.1696c.52.4003.52 1.1845 0 1.5848l2.44 3.1696zM79.2575-1.41234c.4682.3604.7425.91774.7425 1.50857h-4c0 .65054.302 1.26422.8175 1.66106l2.44-3.16964z"/></defs></svg>
+')
+}
+
+.campaign-wizard {
+
+  //================ Campaign Preview Step ============
+
+  .campaign-preview-wrapper {
+    @include dd-box-shadow;
+    padding: 1em;
+  }
+
+  // ================ Choose Targets Step =============
+  .form-item-legislators-filter-by-house,
+  .form-item-legislators-filter-by-party,
+  .form-item-committee-members-filter-by-house,
+  .form-item-committee-members-filter-by-committee {
+    display: inline-block;
+    width: 35%;
+
+    select,
+    .chosen-container {
+      width: 90% !important;
+
+      .chosen-results,
+      a.chosen-single{
+        color: darken($dd-greylight, 10%);
+      }
+    }
+  }
+
+  // Multiselect blocks
+  .multiselect-wrapper {
+    @include flex-container($flex-wrap: nowrap);
+
+    > .multiselect-available,
+    > .multiselect-btns,
+    > .multiselect-selected {
+      @include flex-item;
+      width: 50%;
+      align-self: center;
+
+      label {
+        @include font-size(l);
+        display: block;
+        color: $dd-blue;
+        text-transform: uppercase;
+      }
+
+      select {
+        display: block;
+        width: 100%;
+        min-height: 150px;
+        padding: .5em;
+        color: darken($dd-greylight, 10%);
+      }
+    }
+
+    > .multiselect-selected {
+      select {
+        color: darken($dd-greylight, 10%);
+      }
+    }
+  }
+
+  .multiselect-btns {
+    width: 150px !important;
+    > ul {
+      > li {
+        &.multiselect-add,
+        &.multiselect-remove {
+          @include multiselect-add;
+          width: 100px;
+          text-indent: 0;
+          color: $dd-blue;
+          margin-left: 1em;
+          padding: 3px 0;
+          text-align: center;
+          text-transform: uppercase;
+          font-weight: bold;
+
+          &:hover {
+            background-position: 0 0;
+            color: $dd-yellow;
+          }
+        }
+
+        &.multiselect-remove {
+          @include multiselect-remove;
+          color: $dd-blue-lightest;
+
+          &:hover {
+            color: $dd-yellow;
+          }
+        }
+      }
+    }
+  }
+
+  //================== Assign Targets Step ==================
+
+  table.views-table {
+    margin: 0;
+
+    thead {
+      tr {
+        background-color: $white;
+        border: 0;
+        box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.13);
+        padding: 5px;
+      }
+
+      th {
+        padding: .5rem .3rem;
+        text-transform: uppercase;
+        border-right: 1px solid $dd-offwhite;
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid #fff;
+        &:nth-child(even) {
+          background-color: lighten($dd-offwhite, 3%);
+        }
+      }
+
+      td {
+        &.campaign-wizard__committee {
+          max-width: 120px;
+          white-space: nowrap;
+          // @todo This is supposed to be overflow:auto so long text can scroll but it causes a weird bug
+          // where the it flips the table striping to odd instead of even for the committee column only.
+          //overflow: auto;
+          overflow: hidden;
+          text-overflow: ellipsis;
+
+          a {
+            margin-left: 0;
+
+            &:hover {
+              margin-left: -400px;
+              //@todo might redo ^ in javascript;
+              // Ideally there should be a way to determine the width of the cell and apply that width here.
+
+            }
+          }
+        }
+
+        &.views-field-name,
+        &.views-field-name a {
+          transition: 4s;
+          transition-timing-function: ease, step-end;
+        }
+
+        &.views-field-district {
+          width: 7%;
+        }
+
+        &.views-field-last {
+          width: 20%;
+        }
+
+        &.views-field-nid {
+          width: 5%;
+        }
+
+        &.campaign-wizard__actions--group {
+
+          a {
+            color: $dd-blue;
+            text-transform: uppercase;
+            text-decoration: underline;
+            font-weight: bold;
+            margin-left: 3%;
+          }
+        }
+
+        &.campaign-wizard__actions--assign {
+          h2 {
+            display: none;
+          }
+
+          article {
+            display: inline-block;
+            vertical-align: middle;
+          }
+
+          span.plus {
+            font-size: 1.5rem;
+            color: $dd-grey;
+            padding: 0 .3rem;
+            vertical-align: middle;
+          }
+
+          .unassign-action {
+            font-size: .8rem;
+            text-transform: uppercase;
+            color: $dd-roman;
+            display: block;
+          }
+          .action-icon:hover {
+            background-color: $dd-blue;
+          }
+        }
+      }
+    }
+  }
+
+  &.campaign-wizard--target-actions {
+    // Use absolute positioning to move the page description to the top of the page.
+    .content--main.dd-rounded-corners {
+      position: relative;
+
+      #block-views-block-campaign-wizard-targets-block-1 {
+        background: $white;
+
+        > h2 {
+          margin-top: 7em;
+          margin-bottom: 0;
+          background-color: $dd-blue;
+          color: $white;
+          font-weight: normal;
+          padding: 1rem 1.5rem 1rem 2rem;
+          position: relative;
+          font-size: 1.5rem;
+        }
+      }
+
+      .page--description {
+        top: 1px;
+        position: absolute;
+
+        &:before {
+          @include font-size(xxl);
+          @include typeface(headings);
+          font-weight: 300;
+          height: 40px;
+          content: 'Assign Actions';
+          display: block;
+          margin-bottom: .5em;
+        }
+      }
+
+    }
+
+    input[type="checkbox"] {
+      margin-left: .5rem;
+    }
+  }
+
+  .dd-campaign-target-actions-form {
+    .messages {
+      margin: 0;
+    }
+  }
+
+  .form-item-catch-all-description {
+    font-style: italic;
+  }
+
+
+  // Add Save Actions Block
+  &.campaign-wizard--target-actions .block-page-title-block {
+
+    h1.page-title {
+      background-color: $dd-blue;
+      color: $white;
+      font-weight: normal;
+      padding: 1rem 1.5rem 1rem 2rem;
+      position: relative;
+      font-size: 1.5rem;
+    }
+  }
+
+  .add-save-actions-wrapper {
+    @include flex-container();
+    margin-bottom: 2em;
+
+    .add-actions-wrapper,
+    .assign-existing-actions-divider,
+    #assign-duplicate-group-tabs,
+    .save-actions-wrapper {
+      @include flex-item();
+      align-self: stretch;
+
+      label,
+      // @todo Yikes! Need to change this class.
+      .form-item-field-actions-add-more-group-tabs-wrapper-assign-existing-group-wrapper-assign-existing-group-title,
+      .form-item-field-actions-add-more-group-tabs-wrapper-duplicate-existing-group-wrapper-duplicate-existing-group-title  {
+        font-size: 1.15rem;
+        color: $dd-blue;
+        font-weight: bold;
+      }
+    }
+
+    .assign-existing-actions-divider,
+    .add-actions-save-divider {
+      width: 10%;
+      text-align: center;
+      font-weight: bold;
+      color: $dd-blue;
+    }
+
+    .add-actions-wrapper {
+      @include dd-simple-borders($dd-blue);
+      padding: 1em;
+      width: 45%;
+    }
+
+
+    #assign-duplicate-group-tabs {
+      width: 45%;
+
+      .ui-widget-content {
+        border-color: $dd-blue;
+      }
+    }
+
+    .save-actions-wrapper {
+      @include dd-simple-borders($dd-blue);
+      padding: 1em;
+      width: 45%;
+    }
+
+    .ui-tabs .ui-tabs-nav li {
+      width: 50%;
+      border-color: $dd-blue;
+    }
+
+  }
+
+  #edit-field-actions-wrapper {
+    padding: 1em;
+    background: $white;
+
+  }
+
+  // Draggable multiple item fields
+
+  .field--name-field-actions {
+    .field-multiple-table {
+      td {
+        padding-top: 0;
+
+        &.field-multiple-drag {
+          background-color: transparent;
+          padding: 0;
+
+          a {
+            padding: .5em 0;
+            background-color: $dd-blue;
+            height: 55px;
+          }
+
+          .handle {
+            width: 30px;
+            background-image: url('data:image/svg+xml;utf,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill ="%23fff" d="M63.875 31.203c-.102-.246-.248-.467-.435-.652l-6.837-6.838c-.783-.783-2.051-.783-2.834 0-.781.781-.781 2.05 0 2.832l3.42 3.42-23.16-.001.002-23.155 3.568 3.57c.393.392.904.588 1.418.588.512 0 1.025-.196 1.416-.588.783-.781.783-2.051 0-2.834L33.445.555c-.186-.186-.406-.332-.652-.434-.49-.203-1.041-.203-1.531 0-.244.101-.463.246-.646.429 0 0-.002.002-.004.003l-6.844 6.84c-.781.783-.781 2.051 0 2.834.393.391.904.587 1.418.587.512 0 1.025-.196 1.416-.587l3.422-3.42-.002 23.157-23.15-.001 3.417-3.418c.781-.782.781-2.051 0-2.832-.783-.783-2.051-.783-2.834 0l-6.838 6.84c-.393.391-.588.903-.588 1.416s.195 1.025.588 1.417l6.988 6.989c.392.393.904.588 1.417.588s1.025-.195 1.417-.588c.782-.783.782-2.051 0-2.833l-3.571-3.571 23.153.001-.001 23.153-3.418-3.417c-.783-.78-2.051-.782-2.834.001-.781.783-.781 2.052 0 2.834l6.844 6.839c.391.392.904.587 1.416.587.513 0 1.025-.195 1.416-.587l6.99-6.991c.783-.783.783-2.053 0-2.834-.783-.783-2.051-.783-2.834 0l-3.572 3.574.002-23.159 23.16.001-3.57 3.569c-.781.782-.781 2.05 0 2.833.393.393.904.588 1.418.588.512 0 1.025-.195 1.416-.588l6.989-6.989c.004-.005.006-.012.012-.017.177-.182.321-.396.421-.633.102-.246.154-.506.154-.768-.001-.259-.053-.52-.155-.765z"/></svg>');
+          }
+        }
+      }
+    }
+
+
+    .form-item {
+      //margin-bottom: 1rem
+    }
+
+    .form-type-textarea,
+    .form-type-textfield,
+    .form-type-entity-autocomplete {
+      width: 95%;
+    }
+
+    .form-type-textarea {
+      margin-bottom: 0;
+    }
+
+    .paragraph-type-top {
+      padding: .7em 1em 0;
+      margin-bottom: 1rem;
+      background-color: $dd-blue;
+      color: $white;
+      font-size: 1.15em;
+      text-transform: uppercase;
+      height: 55px;
+      font-weight: bold;
+    }
+
+    // Fix for paragraph titles adding elipsis in modals.
+    .paragraph-type-title {
+      overflow: visible;
+    }
+
+    details {
+      width: 95%;
+      box-shadow: none;
+
+      &[open] {
+        summary:before {
+          background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307.053 307.053"><g><g><g><path fill ="%23656565" d="M302.445 80.796l-11.101-11.103c-6.123-6.131-16.074-6.131-22.209 0L153.67 183.707 37.907 67.959c-6.134-6.13-16.08-6.13-22.209 0L4.597 79.06c-6.129 6.133-6.129 16.067 0 22.201l137.83 137.829c6.129 6.136 16.067 6.136 22.203 0l137.815-136.096c6.144-6.13 6.144-16.068 0-22.198z"/></g></g></g></svg>');
+        }
+      }
+    }
+
+    summary {
+      background-color: $white;
+      font-size: 1.1rem;
+      color: $dd-dimgray;
+
+      &:before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307.046 307.046"><g><g><g><path fill ="%23656565" d="M239.087 142.427L101.259 4.597c-6.133-6.129-16.073-6.129-22.203 0L67.955 15.698c-6.129 6.133-6.129 16.076 0 22.201l115.621 115.626-115.621 115.61c-6.129 6.136-6.129 16.086 0 22.209l11.101 11.101c6.13 6.136 16.07 6.136 22.203 0l137.828-137.831c6.135-6.127 6.135-16.058 0-22.187z"/></g></g></g></svg>');
+        background-size: 15px;
+        top: 22px;
+      }
+
+      &:focus {
+        outline: none;
+        //border: 1px solid $dd-blue;
+      }
+    }
+  }
+}

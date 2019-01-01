@@ -1,0 +1,38 @@
+# DD Person menu items definition
+entity.dd_person.collection:
+  title: 'DD Person list'
+  route_name: entity.dd_person.collection
+  description: 'List DD Person entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_person.admin.structure.settings:
+  title: DD Person settings
+  description: 'Configure DD Person entities'
+  route_name: dd_person.settings
+  parent: system.admin_structure
+# DD Authors menu items definition
+dd_authors.admin.structure.settings:
+  title: DD Person - DD Authors settings
+  description: 'Configure DD Authors entities'
+  route_name: dd_authors.settings
+  parent: system.admin_structure
+# DD Combined Alignments menu items definition
+dd_combined_alignments.admin.structure.settings:
+  title: DD Person - DD Combined Alignment settings
+  description: 'Configure DD Combined Alignment entities'
+  route_name: dd_combined_alignments.settings
+  parent: system.admin_structure
+# DD General Public menu items definition
+entity.dd_general_public.collection:
+  title: 'DD Person - DD General Public list'
+  route_name: entity.dd_general_public.collection
+  description: 'List DD General Public entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_general_public.admin.structure.settings:
+  title: DD Person - DD General Public settings
+  description: 'Configure DD General Public entities'
+  route_name: dd_general_public.settings
+  parent: system.admin_structure

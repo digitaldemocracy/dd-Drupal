@@ -1,0 +1,69 @@
+uuid: 951eaf58-3255-4758-8343-7f3c718c4fb5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_current_limit
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_end_date
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_faxes_sent
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_limit
+    - field.field.dd_fax_service_history.dd_fax_service_history.field_start_date
+  module:
+    - datetime
+    - dd_fax_service
+id: dd_fax_service_history.dd_fax_service_history.default
+targetEntityType: dd_fax_service_history
+bundle: dd_fax_service_history
+mode: default
+content:
+  field_current_limit:
+    weight: 10
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_end_date:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_faxes_sent:
+    weight: 8
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_limit:
+    weight: 9
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_start_date:
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

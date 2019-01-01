@@ -1,0 +1,57 @@
+uuid: 88b26d14-da18-4c98-b4dc-e146a5e75715
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.dd_person.first_last
+  module:
+    - dd_person
+id: dd_person.dd_person.first_last
+targetEntityType: dd_person
+bundle: dd_person
+mode: first_last
+content:
+  fullname_firstlast:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  affiliation_dr_ids: true
+  affiliation_oids: true
+  affiliations: true
+  biography: true
+  classification_dr_ids: true
+  classifications: true
+  current_affiliation_dr_ids: true
+  current_affiliation_oids: true
+  current_affiliations: true
+  current_classification_dr_ids: true
+  current_classifications: true
+  first: true
+  fullname_lastfirst: true
+  has_spoken: true
+  image: true
+  last: true
+  last_name_alpha: true
+  middle: true
+  servesOn_dr_ids: true

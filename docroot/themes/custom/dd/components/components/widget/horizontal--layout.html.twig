@@ -1,0 +1,116 @@
+{% block heading %}
+{% endblock %}
+
+ {% block content %}
+   {# Set color variables #}
+   {% set background_color = content.field_widget_background_color.value %}
+   <div class = "dd-widget--content horizontal-layout"
+        style = "background-color: #{{ background_color }}">
+
+     {% if label and node.field_show_title.value %}
+       <h2 class = "dd-widget--title">{{ label }}</h2>
+     {% endif %}
+     <div class = "dd-widget--top">
+
+       {% if content.field_widget_top_logo %}
+         <div class = "dd-widget--top-logo">{{ content.field_widget_top_logo }}</div>
+       {% endif %}
+
+     {% if content.field_widget_description %}
+       {{ content.field_widget_description }}
+     {% endif %}
+   </div>
+
+     <div class = "dd-widget--search-fields">
+     {% if node.field_show_search_statements.value %}
+       <form class = "dd-widget--search" action="{{ url('<front>') }}search?" method="get">
+         {% if node.field_show_search_statements_lab.value %}
+           <label for="search_by_lawmakers"> Search Statements by Lawmakers and Speakers</label>
+         {% else %}
+           <label for="search_by_lawmakers" class = "widget-screenreader-only"> Search Statements by Lawmakers and Speakers</label>
+         {% endif %}
+         <div class = "form--inner">
+           <input type="search" id = "search_by_lawmakers" name = "fulltext" placeholder = "Search Statements by Lawmakers and Speakers">
+           <input id="submit" type="submit" value="search">
+         </div>
+       </form>
+     {% endif %}
+
+       {% if node.field_show_search_speakers.value %}
+         <form class = "dd-widget--search" action="{{ url('<front>') }}persons?" method="get">
+           {% if node.field_show_search_speakers_label.value %}
+             <label for="search_for_speakers"> Search Speakers by Name</label>
+           {% else %}
+             <label for="search_for_speakers" class = "widget-screenreader-only"> Search Speakers by Name</label>
+           {% endif %}
+           <div class = "form--inner">
+             <input type="search" id = "search_for_speakers" name = "fullname_firstlast" placeholder = "Search Speakers by Name">
+             <input id="submit" type="submit" value="search">
+           </div>
+         </form>
+       {% endif %}
+
+     {% if node.field_show_search_organizations.value %}
+       <form class = "dd-widget--search" action="{{ url('<front>') }}organizations?" method="get">
+         {% if node.field_show_search_orgs_label.value %}
+           <label for="search_for_organizations"> Search Organizations by Name</label>
+         {% else %}
+           <label for="search_for_organizations" class = "widget-screenreader-only"> Search Organizations by Name</label>
+         {% endif %}
+         <div class = "form--inner">
+           <input type="search" id = "search_for_organizations" name = "name" placeholder = "Search Organizations by Name">
+           <input id="submit" type="submit" value="search">
+         </div>
+       </form>
+     {% endif %}
+
+     {% if node.field_show_search_bills.value %}
+       <form class = "dd-widget--search" action="{{ url('<front>') }}bills?" method="get">
+         {% if node.field_show_search_bills_label.value %}
+           <label for="search_by_lawmakers"> Search Bills by #</label>
+         {% else %}
+           <label for="search_by_lawmakers" class = "widget-screenreader-only"> Search Bills by Number</label>
+         {% endif %}
+         <div class = "form--inner">
+           <input type="search" id = "search_for_bills" name = "bid" placeholder = "Search Bills by #">
+           <input id="submit" type="submit" value="search">
+         </div>
+       </form>
+     {% endif %}
+     </div>
+
+     <div class = "dd-widget--action-buttons">
+
+
+     {# Find button style and colors in the page--node--widget.html.twig template #}
+     {% if node.field_show_create_alerts_button.value %}
+       <a href="{{ url('<front>') }}user/login" class = "button btn">
+         Create Alerts
+       </a>
+     {% endif %}
+
+     {% if node.field_show_take_action_button.value %}
+       <a href="{{ url('<front>') }}action-center" class = "button btn">
+         Take Action
+       </a>
+     {% endif %}
+
+     {% if node.field_show_advanced_search_butto.value %}
+       <a href="{{ url('<front>') }}search" class = "button btn">
+         Advanced Search
+       </a>
+     {% endif %}
+   </div>
+
+     <div class = "dd-widget--bottom">
+       <div class = "dd-widget--sponsored">
+         {{ content.field_widget_sponsored_text }}
+         {{ content.field_widget_sponsored_logo }}
+       </div>
+       <div class = "dd-widget--powered-by">
+         <span class = "dd-widget--powered-by--text">Powered by</span>
+         {% include "@dd/components/widget/logo.html.twig" %}
+       </div>
+     </div>
+   </div>
+ {% endblock %}

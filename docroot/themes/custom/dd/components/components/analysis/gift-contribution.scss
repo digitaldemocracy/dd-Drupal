@@ -1,0 +1,561 @@
+@import 'init';
+
+.is-path-analysis { // @todo do we want this site-wide?
+  .content {
+    overflow: visible; // Allows long Chosen select lists to be seen, when they go past the height of .content--main.
+  }
+
+  // Hide the embedded node's <h2> title on each of the gifts/contributions/alignment pages.
+  .view-header {
+    article h2 {
+      display: none;
+    }
+  }
+}
+
+.view-alignments {
+  th,
+  td.views-field {
+    vertical-align: top;
+  }
+
+  .alignments-org-name {
+    @include typeface(headings);
+  }
+
+  .legislator-name {
+    @include typeface(headings);
+  }
+
+  .legislator-party, .legislator-house {
+    @include block-to-inline;
+  }
+
+  .about-our-methodology {
+    float: right;
+  }
+
+  .download-csv {
+    float: right;
+    clear: right;
+  }
+
+  .form-item-no-abstain-votes {
+    clear: left;
+  }
+
+  .form-item-sort-by {
+    clear: left;
+  }
+
+  #edit-oid {
+    // To match chosen.css value.
+    font-size: 13px;
+  }
+}
+
+.is-path-analysis .views-exposed-form {
+  .form-item.form-item-recipientpid {
+    display: none;
+  }
+}
+
+.dd-contentonly {
+  width:894px;
+  ul.menu.navbar {
+    display: none;
+  }
+}
+
+// Gift views
+.view-id-gifts {
+  // Exposed form
+  .views-exposed-form {
+    margin: 0 auto;
+    select[name = 'pid'],
+    select[name = 'pid'] option {
+      @include zen-respond-to(xs-and-below) {
+        width: 100% !important;
+        white-space: pre-wrap;
+      }
+    }
+
+    .chosen-container {
+      @include zen-respond-to(xs-and-below) {
+        width: 250px !important;
+        white-space: pre-wrap;
+      }
+
+      @include zen-respond-to(xxxs-and-below) {
+        width: 180px !important;
+      }
+    }
+
+    // Submit & Clear buttons
+    input[type='submit'] {
+      width: 25%;
+    }
+  }
+
+  .form-item {
+    float: none;
+    display: inline-block;
+  }
+
+  .view-content { margin-top: 1.5rem;}
+
+  // Results
+  .gifts--total {
+    @include highlight-result;
+    margin: 0 auto;
+    background: $dd-grey;
+    width: 65%;
+
+
+    &-value {
+      font-weight: bold;
+      color: lighten($dd-yellow, 10%);
+    }
+
+    @include zen-respond-to(xs) {
+      width: 35%;
+    }
+  }
+
+  // Grouped Table Header
+  .view-grouping-header {
+    @include typeface(headings);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+  }
+
+  // Table
+  table.views-table {
+    @include dd-simple-borders($dd-offwhite);
+    width: 100%;
+    margin: .5rem 0;
+
+    // Table head
+    thead tr {
+      @include dd-bottom-border($dd-silver);
+      @include flex-container;
+      background-color: $dd-offwhite;
+      text-align: left;
+      flex-wrap: nowrap;
+
+      th {
+        @include flex-item;
+        padding: .3rem;
+
+        .tablesort {
+          vertical-align: middle;
+        }
+      }
+    }
+
+    // Table Body
+    tbody {
+
+      tr {
+        @include flex-container;
+        @include dd-bottom-border($dd-silver);
+
+        @include zen-respond-to(m) {
+          flex-wrap: nowrap;
+          border: 0;
+        }
+
+      }
+
+      td {
+        @include flex-item;
+        padding: .3rem;
+
+        &.is-active {
+          background-color: transparent;
+        }
+      }
+
+      tr:nth-child(even) {
+        background-color: $dd-offwhite;
+      }
+    }
+  }
+
+  // General fields styles for all view displays
+  .gift {
+    &--contributor {
+      width: 50%;
+    }
+
+    &--description {
+      width: 50%;
+    }
+
+    &--recipient {
+      width: 15%;
+    }
+
+    &--recipient-class {
+      width: 15%;
+    }
+
+    &--date {
+      width: 10%;
+      letter-spacing: -.5px;
+
+      @include zen-respond-to(m-and-below) {
+        font-size: .78rem;
+      }
+    }
+
+    &--value {
+      width: 10%;
+    }
+  }
+
+  //------ Table styles for individual view displays in the gift view-----
+  // 1. ============================ Legislator ==============================
+  &.view-display-id-page_1 {
+    @include zen-respond-to(m-and-below) {
+
+      .gift {
+        &--contributor {
+          width: 60%;
+        }
+
+        &--description {
+          width: 100%;
+          order: 4;
+          border-top: 1px dashed $dd-silver;
+          font-style: italic;
+        }
+
+        &--date {
+          width: 20%;
+        }
+
+        &--value {
+          width: 20%;
+        }
+      }
+
+      // Hide headers for medium to small screens
+
+      th:nth-child(2) {
+        display: none;
+      }
+
+      // widen visible headers
+      th:nth-child(1) {
+        width: 60%;
+      }
+
+      th:nth-child(3),
+      th:nth-child(4) {
+        width: 20%;
+      }
+    }
+
+    // cells for medium and up screens
+    @include zen-respond-to(m) {
+      .gift {
+
+        &--contributor {
+          width: 40%;
+        }
+
+        &--description {
+          width: 40%;
+        }
+
+        &--date {
+          width: 10%;
+        }
+
+        &--value {
+          width: 10%;
+        }
+      }
+
+      // Headers for medium and up screens
+      th:nth-child(1) {width: 40%; }
+      th:nth-child(2) {width: 40%; }
+      th:nth-child(3) {width: 10%; }
+      th:nth-child(4) {width: 10%; }
+    }
+
+  }
+
+  // 2.============================= Staff ====================================
+  &.view-display-id-page_2 {
+    @include zen-respond-to(m-and-below) {
+      .gift {
+
+        &--contributor {
+          width: 60%;
+        }
+
+        &--description {
+          width: 100%;
+          order: 4;
+          border-top: 1px dashed $dd-silver;
+          font-style: italic;
+        }
+
+        &--date {
+          width: 20%;
+        }
+
+        &--value {
+          width: 20%;
+        }
+      }
+
+      // Hide headers for medium to small screens
+
+      th:nth-child(2) {
+        display: none;
+      }
+
+      // widen visible headers
+      th:nth-child(1) {
+        width: 60%;
+      }
+
+      th:nth-child(3),
+      th:nth-child(4) {
+        width: 20%;
+      }
+    }
+
+    // cells for medium and up screens
+    @include zen-respond-to(m) {
+      .gift {
+        &--contributor {
+          width: 40%;
+        }
+
+        &--description {
+          width: 40%;
+        }
+
+        &--date {
+          width: 10%;
+        }
+
+        &--value {
+          width: 10%;
+        }
+      }
+
+      // Headers for medium and up screens
+      th:nth-child(1) {width: 40%; }
+      th:nth-child(2) {width: 40%; }
+      th:nth-child(3) {width: 10%; }
+      th:nth-child(4) {width: 10%; }
+    }
+
+
+  }
+
+  // 3.============================= Office ===================================
+  &.view-display-id-page_3 {
+    @include zen-respond-to(m-and-below) {
+      .gift {
+        &--contributor {
+          width: 60%;
+          order: 1;
+        }
+
+        &--description {
+          width: 100%;
+          order: 4;
+          border-top: 1px dashed $dd-silver;
+          font-style: italic;
+        }
+
+        &--recipient {
+          width: 100%;
+          order: 5;
+
+          &::before {
+            content: 'Gift Recipient: ';
+            font-weight: bold;
+          }
+        }
+
+        &--date {
+          width: 20%;
+          order: 2;
+
+        }
+
+        &--value {
+          width: 20%;
+          order: 3;
+        }
+      }
+    // Hide headers for medium to small screens
+
+      th:nth-child(2),
+      th:nth-child(3) {
+        display: none;
+      }
+
+      // widen visible headers
+      th:nth-child(1) {
+        width: 60%;
+      }
+
+      th:nth-child(4),
+      th:nth-child(5) {
+        width: 20%;
+      }
+    }
+
+    // Full table displays above 777px
+    @include zen-respond-to(m) {
+      .gift {
+        &--contributor {
+          width: 30%;
+          order: 1;
+        }
+
+        &--description {
+          width: 30%;
+          order: 2;
+        }
+
+        &--recipient {
+          width: 20%;
+          order: 3;
+        }
+
+        &--date {
+          width: 10%;
+          order: 5;
+        }
+
+        &--value {
+          width: 10%;
+          order: 6;
+        }
+      }
+
+      .gift--description,
+      .gift--contributor,
+      th:nth-child(1),
+      th:nth-child(2) {
+        width: 30%;
+      }
+
+      th:nth-child(3) {
+         width: 20%;
+       }
+
+      th:nth-child(4),
+      th:nth-child(5) {
+        width: 10%;
+      }
+    }
+  }
+
+  // 4. ----------------- Donor ------------------
+  &.view-display-id-page_4 {
+
+    caption {
+      text-align: left;
+      margin-bottom: .5rem;
+      letter-spacing: -.5px;
+      color: $dd-dimgray;
+
+    }
+
+    table.views-table {
+      margin-top: 0;
+    }
+
+
+    @include zen-respond-to(m) {
+      // table header columns
+      th:nth-child(1) {width: 50%; }
+      th:nth-child(2) {width: 25%; }
+      th:nth-child(3) {width: 15%; }
+      th:nth-child(4) {width: 10%; }
+
+      .gift {
+        &--description {
+          width: 50%;
+          order: 1;
+        }
+
+        &--recipient {
+          width: 25%;
+          order: 2;
+        }
+
+        &--date {
+          width: 15%;
+          order: 4;
+        }
+
+        &--value {
+          width: 10%;
+          order: 5;
+        }
+      }
+    }
+
+    @include zen-respond-to(m-and-below) {
+      .gift {
+        &--description {
+          width: 60%;
+          order: 1;
+        }
+
+        &--recipient {
+          width: 100%;
+          order: 4;
+          border-top: 1px dashed $dd-silver;
+
+          &::before {
+            content: 'Recipient: ';
+            font-weight: bold;
+          }
+        }
+
+        &--date {
+          width: 20%;
+          order: 2;
+        }
+
+        &--value {
+          width: 20%;
+          order: 3;
+        }
+      }
+
+      // Hide some headers for medium to small screens
+
+      th:nth-child(2) {
+        display: none;
+      }
+
+      // widen visible headers
+      th:nth-child(1) {
+        width: 60%;
+      }
+
+      th:nth-child(3),
+      th:nth-child(4) {
+        width: 20%;
+      }
+    }
+  }
+}
+
+
+
+

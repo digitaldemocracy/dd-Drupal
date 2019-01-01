@@ -1,0 +1,19 @@
+uuid: dbb02f14-6a09-4742-a4ae-5c4c157e5734
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_advocacy_message_label
+    - paragraphs.paragraphs_type.phone_action
+id: paragraph.phone_action.field_advocacy_message_label
+field_name: field_advocacy_message_label
+entity_type: paragraph
+bundle: phone_action
+label: 'Instructions to be Published Above Script'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

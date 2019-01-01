@@ -1,0 +1,37 @@
+uuid: 5f31546a-89d5-4988-b9be-ae2064a433e4
+langcode: en
+status: false
+dependencies:
+  config:
+    - views.view.hearing_components
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__hearing_components_agendized_bills
+theme: dd
+region: states_scrollbar
+weight: -52
+provider: null
+plugin: 'views_block:hearing_components-agendized_bills'
+settings:
+  id: 'views_block:hearing_components-agendized_bills'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/hearing/*'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,21 @@
+uuid: 104b357b-6d5d-4147-b209-e8bc3f88ec89
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_email_body
+    - paragraphs.paragraphs_type.email_governor
+  module:
+    - text
+id: paragraph.email_governor.field_email_body
+field_name: field_email_body
+entity_type: paragraph
+bundle: email_governor
+label: 'Email Body'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

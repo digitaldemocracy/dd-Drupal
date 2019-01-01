@@ -1,0 +1,39 @@
+# DD Legislator menu items definition
+entity.dd_legislator.collection:
+  title: 'DD Legislator list'
+  route_name: entity.dd_legislator.collection
+  description: 'List DD Legislator entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_legislator.admin.structure.settings:
+  title: DD Legislator settings
+  description: 'Configure DD Legislator entities'
+  route_name: dd_legislator.settings
+  parent: system.admin_structure
+# DD Term menu items definition
+entity.dd_term.collection:
+  title: 'DD Legislator - DD Term list'
+  route_name: entity.dd_term.collection
+  description: 'List DD Term entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_term.admin.structure.settings:
+  title: DD Legislator - DD Term settings
+  description: 'Configure DD Term entities'
+  route_name: dd_term.settings
+  parent: system.admin_structure
+# DD Legislative Staff menu items definition
+entity.dd_legislative_staff.collection:
+  title: 'DD Legislator - DD Legislative Staff list'
+  route_name: entity.dd_legislative_staff.collection
+  description: 'List DD Legislative Staff entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_legislative_staff.admin.structure.settings:
+  title: DD Legislator - DD Legislative Staff settings
+  description: 'Configure DD Legislative Staff entities'
+  route_name: dd_legislative_staff.settings
+  parent: system.admin_structure

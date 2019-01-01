@@ -1,0 +1,301 @@
+uuid: 1b30e4db-c08b-48be-be5e-f6802f8a04a9
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+    - dd_hearing
+    - dd_video
+    - dd_person
+    - dd_committee
+    - search_api
+    - search_api_solr
+  config:
+    - search_api.server.bills_discussion_server
+id: billdiscussion_index
+name: 'BillDiscussion Index'
+description: ''
+read_only: false
+field_settings:
+  bid:
+    label: 'Bill ID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: bid
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  billState:
+    label: 'Bill Drupal ID » DD Bill » Bill Version Current Drupal ID » DD Bill Version Current » Bill State'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:bill_version_current_dr_id:entity:billState'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  cids:
+    label: 'Hearing ID » DD Hearing » CIDs'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:cids'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+  date_ts:
+    label: 'Hearing ID » DD Hearing » Date'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:date_ts'
+    type: date
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+  did:
+    label: ID
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: did
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  fileId:
+    label: 'Start Video » DD Video » File ID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'startVideo:entity:fileId'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_video
+        - dd_video
+  first:
+    label: 'Speakers » DD Person » First Name'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'speakers:entity:first'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_firstlast:
+    label: 'Bill Drupal ID » DD Bill » Primary Author PID » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:primary_author_pid:entity:fullname_firstlast'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_firstlast_1:
+    label: 'Speakers » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'speakers:entity:fullname_firstlast'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_lastfirst:
+    label: 'Speakers » DD Person » Full Name - Last, First'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'speakers:entity:fullname_lastfirst'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  hid:
+    label: 'Hearing ID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: hid
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  house:
+    label: 'Hearing ID » DD Hearing » CIDs » DD Committee » House'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:cids:entity:house'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  last:
+    label: 'Speakers » DD Person » Last Name'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'speakers:entity:last'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  name:
+    label: 'Hearing ID » DD Hearing » CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:cids:entity:name'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  name_1:
+    label: 'Hearing ID » DD Hearing » CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:cids:entity:name'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  number:
+    label: 'Bill Drupal ID » DD Bill » Number'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:number'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  pid:
+    label: 'Speakers » DD Person » ID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'speakers:entity:pid'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  primary_author_pid:
+    label: 'Bill Drupal ID » DD Bill » Primary Author PID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:primary_author_pid'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  session_year:
+    label: 'Hearing ID » DD Hearing » Session Year'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:session_year'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+  startTime:
+    label: 'Start Time'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: startTime
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  subject:
+    label: 'Bill Drupal ID » DD Bill » Bill Version Current Drupal ID » DD Bill Version Current » Subject'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:bill_version_current_dr_id:entity:subject'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  type:
+    label: 'Hearing ID » DD Hearing » CIDs » DD Committee » Type'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'hid:entity:cids:entity:type'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_hearing
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  type_1:
+    label: 'Bill Drupal ID » DD Bill » Type'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:type'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  type_number:
+    label: 'Bill Drupal ID » DD Bill » Bill Type / Number'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:type_number'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  type_number_1:
+    label: 'Bill Drupal ID » DD Bill » Bill Type / Number'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:type_number'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  vid:
+    label: 'Bill Drupal ID » DD Bill » Bill Version Current Drupal ID » DD Bill Version Current » Version ID'
+    datasource_id: 'entity:dd_bill_discussion'
+    property_path: 'bid_dr_id:entity:bill_version_current_dr_id:entity:vid'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+datasource_settings:
+  'entity:dd_bill_discussion': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 0
+server: bills_discussion_server

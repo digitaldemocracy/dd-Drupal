@@ -1,0 +1,38 @@
+uuid: aa36853d-789f-4bca-913c-e19c7dbb768c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_logo_vertical
+    - node.type.widget
+  module:
+    - image
+id: node.widget.field_logo_vertical
+field_name: field_logo_vertical
+entity_type: node
+bundle: widget
+label: 'Top Logo (For Vertical Layouts)'
+description: 'This logo will be resized to 420(w) x 200(h)'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: 600KB
+  max_resolution: 420x200
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

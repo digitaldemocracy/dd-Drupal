@@ -1,0 +1,5 @@
+name: DD Admin
+type: module
+description: DD Admin
+core: 8.x
+package: DigitalDemocracy

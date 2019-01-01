@@ -1,0 +1,27 @@
+uuid: cc704c07-dd14-4591-b5d2-8a1ff2f41b7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_commentary_alert_history.field_commentary_alert_result
+    - node.type.dd_commentary_alert_history
+  module:
+    - user
+id: node.dd_commentary_alert_history.default
+targetEntityType: node
+bundle: dd_commentary_alert_history
+mode: default
+content:
+  field_commentary_alert_result:
+    weight: 101
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

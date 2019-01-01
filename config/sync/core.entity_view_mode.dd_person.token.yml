@@ -1,0 +1,10 @@
+uuid: 711f377e-c434-462e-aedd-2c4e99a2a677
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_person.token
+label: Token
+targetEntityType: dd_person
+cache: true

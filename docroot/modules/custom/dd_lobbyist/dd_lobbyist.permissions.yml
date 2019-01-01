@@ -1,0 +1,16 @@
+administer dd lobbyist entities:
+  title: 'Administer DD Lobbyist entities'
+  description: 'Allow to access the administration form to configure DD Lobbyist entities.'
+  restrict access: true
+
+edit dd lobbyist entities:
+  title: 'Edit DD Lobbyist entities'
+
+access dd lobbyist overview:
+  title: 'Access the DD Lobbyist overview page'
+
+view published dd lobbyist entities:
+  title: 'View published DD Lobbyist entities'
+
+view unpublished dd lobbyist entities:
+  title: 'View unpublished DD Lobbyist entities'

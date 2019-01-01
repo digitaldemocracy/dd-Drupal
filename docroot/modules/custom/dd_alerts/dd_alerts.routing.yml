@@ -1,0 +1,21 @@
+dd_alerts.blog_subscribe:
+  path: '/blog/{user}/subscribe'
+  defaults:
+    _controller: '\Drupal\dd_alerts\Controller\BlogSubscriptionController::subscribe'
+    _title: 'Blog Subscribe'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    user: ^[0-9_]+
+  options:
+    no_cache: TRUE
+
+dd_alerts.blog_unsubscribe:
+  path: '/blog/{user}/unsubscribe'
+  defaults:
+    _controller: '\Drupal\dd_alerts\Controller\BlogSubscriptionController::unsubscribe'
+    _title: 'Blog Unsubscribe'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    user: ^[0-9_]+
+  options:
+    no_cache: TRUE

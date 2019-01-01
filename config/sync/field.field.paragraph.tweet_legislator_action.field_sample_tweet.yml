@@ -1,0 +1,19 @@
+uuid: 75d22096-0b53-4f92-a932-5a1fbdb16f02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_sample_tweet
+    - paragraphs.paragraphs_type.tweet_legislator_action
+id: paragraph.tweet_legislator_action.field_sample_tweet
+field_name: field_sample_tweet
+entity_type: paragraph
+bundle: tweet_legislator_action
+label: 'Sample Tweet'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

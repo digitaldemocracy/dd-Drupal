@@ -1,0 +1,74 @@
+uuid: 0abace18-6739-4f02-bfc4-a65c748fa0e3
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_video
+id: dd_video.dd_video.default
+targetEntityType: dd_video
+bundle: dd_video
+mode: default
+content:
+  duration:
+    type: number
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  fileId:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  hid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  position:
+    type: number
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  source:
+    type: string_textfield
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  srtFlag:
+    type: number
+    weight: 1
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  startOffset:
+    type: number
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  state:
+    type: string_textfield
+    weight: 50
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  lastTouched_ts: true

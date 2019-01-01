@@ -1,0 +1,205 @@
+@import 'init';
+
+// Search
+//
+// Markup: search.twig
+//
+// Style guide: components.search
+
+.search,
+%search {
+  input {
+    padding: 5px 10px;
+  }
+
+  &__sitewide {
+    display: inline-block;
+
+    input {
+      max-width: 120px;
+    }
+  }
+}
+
+/*
+ * Drupal Selectors
+ */
+
+// Make exposed views filters look more like the site-wide search.
+.views-exposed-form.block {
+  label {
+    margin-bottom: .5rem;
+  }
+
+  .form-item {
+    margin: .5rem;
+    float: none;
+
+    &.form-item-date-ts {
+      margin-top: .5rem;
+    }
+  }
+
+  &.form-item-search-api-fulltext {
+    @extend %search;
+    margin: 0;
+  }
+}
+
+// Temporary override for autocomplete width.
+.ui-autocomplete.ui-widget-content {
+  max-width: none;
+  font-size: .8em;
+}
+
+// ======= Search Autocomplete.
+.dd-search-action {
+  @include font-size(s);
+  color: color(text);
+  margin-left: 5px;
+}
+
+.dd-search-text {
+  @include font-size(s);
+  font-weight: bold;
+}
+
+.ui-autocomplete .ui-menu-item {
+  @include line-height(16px);
+
+  &:hover,
+  &.ui-state-focus {
+    border: 0;
+  }
+
+  a:hover {text-decoration: underline;}
+}
+
+// ============= Advanced search block ==============
+#block-exposedformsite-searchsite-search {
+
+  .form-item {
+    margin-right: 10px;
+    min-height: 4rem;
+  }
+
+  //========== Grouping form fields ============
+  .form--inline {
+
+    .form-item,
+    .form-actions {
+      width: 100%;
+    }
+
+    .form-actions { text-align: center;}
+
+
+    // Chosen field
+    .chosen-container-single .chosen-single {
+      padding: 5px 1rem 27px;
+    }
+  }
+
+  // Restricting the committees box
+  .form-type-select.form-item-committee {
+    @include flex-container;
+    text-align: left;
+
+    @include zen-respond-to(m) {
+      justify-content: center;
+    }
+  }
+
+  .chosen-container,
+  select,
+  label[for = 'edit-committee'] {
+    @include flex-item;
+    width: 100% !important;
+  }
+
+  .form-type-textfield.form-item-lasttouched-ts {
+    display: none;
+  }
+}
+
+// ============= Advanced search page ==============
+
+.is-path-search {
+  h1.page-title {
+    @include dd-bottom-border($dd-silver);
+    margin-top: 0;
+    margin-bottom: .5rem;
+    text-align: center;
+
+    .dd-share-toolbar-group {
+      float: right;
+      .fa-2x {
+        font-size: 1em;
+      }
+    }
+  }
+
+  select {
+    width: 100%;
+  }
+
+  .layout-3col.has-facets .layout-3col__left-sidebar {
+    margin-top: 0;
+  }
+
+  // Overriding hearings teaser styles
+  .hearings-teaser {
+    > .view-content {
+       .views-field-nothing {
+        width: 20%;
+      }
+
+      // Style search result fields
+      > .views-row > .views-field-nothing-1 {
+        @include font-size(m);
+        font-weight: normal;
+      }
+
+      // Responsive styles above medium width
+      @include zen-respond-to(m) {
+
+        .views-field {
+          margin-left: 16%;
+        }
+
+        .views-field-nothing {
+          width: 15%;
+          margin-left: 0;
+        }
+      }
+    }
+  }
+}
+
+//============= Search block in speaker profile pages =========
+#dd-speaker-search-box-form {
+  label {
+    @include font-size(20px);
+    font-weight: normal;
+    color: $dd-blue;
+    margin-bottom: .25rem;
+  }
+
+  input[type = 'text'] {
+    @include input-search-icon-small;
+  }
+}
+
+//============ Search Block in /organizations page======
+#block-exposedformorganizationsorganizations-page {
+  .form-item {
+    &.form-item-sort-by {
+      margin-right: .5rem;
+    }
+  }
+
+  select {
+    width: 100%;
+  }
+}
+

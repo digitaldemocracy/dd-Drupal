@@ -1,0 +1,47 @@
+{% extends "block.html.twig" %}
+{#
+/**
+ * @file
+ * Theme override for a branding block.
+ *
+ * Each branding element variable (logo, name, slogan) is only available if
+ * enabled in the block configuration.
+ *
+ * Available variables:
+ * - site_logo: Logo for site as defined in Appearance or theme settings.
+ * - site_name: Name for site as defined in Site information settings.
+ * - site_slogan: Slogan for site as defined in Site information settings.
+ */
+#}
+{% block content %}
+  {% if not is_front and dd_site_type == 'state' %}
+  <div class="state-selection">
+    <label for="state-select">Select State</label>
+    <select name="state" class="state-select" id="state-select">
+        <option value="CA~{{ dd_state_domain_urls.CA }}" {% if dd_state == 'CA' %}SELECTED{% endif %}>California</option>
+        <option value="FL~{{ dd_state_domain_urls.FL }}" {% if dd_state == 'FL' %}SELECTED{% endif %}>Florida</option>
+        <option value="NY~{{ dd_state_domain_urls.NY }}" {% if dd_state == 'NY' %}SELECTED{% endif %}>New York</option>
+        <option value="TX~{{ dd_state_domain_urls.TX }}" {% if dd_state == 'TX' %}SELECTED{% endif %}>Texas</option>
+    </select>
+  </div>
+  {% endif %}
+  {% if site_logo %}
+    <div class="site-logo">
+      {% if dd_whitelabel_id == 'cmta' %}
+      <a href="http://www.cmta.net/" title="{{ 'Home'|t }}" rel="home" class="site-logo" target='_blank'>
+      {% else %}
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home" class="site-logo">
+      {% endif %}
+        <img src="{{ site_logo }}" alt="{{ 'Home'|t }}" />
+      </a>
+    </div>
+  {% endif %}
+  {% if site_name %}
+    <div class="site-name">
+      <a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ site_name }}</a>
+    </div>
+  {% endif %}
+  {% if site_slogan %}
+    <div class="site-slogan">{{ site_slogan }}</div>
+  {% endif %}
+{% endblock %}

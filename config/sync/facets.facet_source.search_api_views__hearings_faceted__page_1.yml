@@ -1,0 +1,8 @@
+uuid: fe9fbca7-5523-4d8c-8777-d1e0fa7a6f22
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_views__hearings_faceted__page_1
+name: 'search_api_views:hearings_faceted:page_1'
+filter_key: null
+url_processor: query_string

@@ -1,0 +1,14 @@
+uuid: b0d27bff-dd00-4719-bb54-7d926d11bf0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tier_1_membership
+  module:
+    - user
+id: user_add_role_action.tier_1_membership
+label: 'Add the Tier 1 Membership role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: tier_1_membership

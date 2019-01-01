@@ -1,0 +1,16 @@
+{% extends "node.html.twig" %}
+
+{{ attach_library('dd/target-action') }}
+
+{% block content %}
+
+  {% include "@dd/components/target-action/target-action.twig"
+    with {
+      body: content.body,
+      clips: content.field_video_clips.0
+    }
+  %}
+{% endblock %}
+
+
+

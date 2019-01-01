@@ -1,0 +1,18 @@
+uuid: 83ca671c-68bb-4f13-a4f0-f45257ec0925
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.tweet_legislator_action.field_sample_tweet
+    - paragraphs.paragraphs_type.tweet_legislator_action
+id: paragraph.tweet_legislator_action.icon
+targetEntityType: paragraph
+bundle: tweet_legislator_action
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_sample_tweet: true
+  uid: true

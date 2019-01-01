@@ -1,0 +1,20 @@
+uuid: 8e5426b3-bce7-4d46-8239-dce089c7c971
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_cid
+  module:
+    - user
+id: user.user.field_cid
+field_name: field_cid
+entity_type: user
+bundle: user
+label: cid
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

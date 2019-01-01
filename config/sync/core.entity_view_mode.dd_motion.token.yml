@@ -1,0 +1,10 @@
+uuid: 4f7f8028-1fbf-434f-889f-a4a3a03d6709
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_motion.token
+label: Token
+targetEntityType: dd_motion
+cache: true

@@ -1,0 +1,109 @@
+<?php
+/**
+ * @file
+ * Code for the DD Account Dashboard Module.
+ */
+
+/**
+ * Implements hook_theme().
+ */
+function dd_account_dashboard_theme($existing, $type, $theme, $path) {
+  return array(
+    'dd_account_dashboard' =>
+    array(
+      'variables' => array(
+        'userid' => NULL,
+        'showdashboard' => FALSE,
+      ),
+      'template' => 'ddaccountblock',
+    ),
+  );
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_account_dashboard_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'dd_saved_content_add_form' || $form_id == 'dd_saved_content_edit_form') {
+    // Disable fields for non-admins
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array("administrator", $user_roles)) {
+      $admin_only_fields = [
+        'field_url',
+        'field_type',
+        'field_state',
+      ];
+      foreach ($admin_only_fields as $field) {
+        unset($form[$field]);
+      }
+    }
+  } elseif ($form_id === "user_form") {
+    // Check for admin user, otherwise disable extra fields for user settings form.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array("administrator", $user_roles)) {
+      $admin_only_fields = [
+        'status',
+        'contact',
+        'field_cid',
+        'field_expiration_date',
+        'field_receive_email_notification',
+        'field_sku',
+        'field_short_biography',
+        'field_biography',
+        'user_picture',
+      ];
+      foreach ($admin_only_fields as $admin_only_field) {
+        unset($form[$admin_only_field]);
+      }
+    }
+  }
+  elseif ($form_id == 'node_widget_edit_form' || $form_id == 'node_widget_form') {
+    $form['actions']['publish']['#submit'][] = '_dd_account_dashboard_widget_form_submit';
+    $form['actions']['unpublish']['#submit'][] = '_dd_account_dashboard_widget_form_submit';
+  }
+}
+
+/**
+ * Implements hook_menu_local_tasks_alter().
+ */
+function dd_account_dashboard_menu_local_tasks_alter(&$data, $route_name) {
+  if (
+    isset(
+      $data['tabs'][0]) &&
+      in_array('dd_account_dashboard.my_account', array_keys($data['tabs'][0]))
+  ) {
+    $data['tabs'][0]['entity.user.edit_form']['#link']['title'] = 'My Settings';
+    $data['tabs'][0]['entity.user.edit_form']['#weight'] = 100;
+  }
+
+  if (
+    isset(
+      $data['tabs'][0]) &&
+    in_array('dd_account_dashboard.my_account', array_keys($data['tabs'][0])) &&
+    isset($data['tabs'][0]['shortcut.set_switch'])
+  ) {
+    unset($data['tabs'][0]['shortcut.set_switch']);
+
+  }
+
+  //remove bill alerts & widgets tab from white label site for normal users
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if (\Drupal\dd_base\DdBase::getSiteType() ==
+      \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL &&
+      !in_array("administrator", $user_roles) &&
+      !in_array("stealth_mode", $user_roles) &&
+      !in_array("site_manager", $user_roles)) {
+    if (isset($data['tabs'][0]['dd_account_dashboard.video_builder']))
+      unset($data['tabs'][0]['dd_account_dashboard.video_builder']);
+    if (isset($data['tabs'][0]['dd_account_dashboard.widgets']))
+      unset($data['tabs'][0]['dd_account_dashboard.widgets']);
+  }
+}
+
+/**
+ * Custom submit handler for widget node form.
+ */
+function _dd_account_dashboard_widget_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Set redirect to widgets tab.
+  $form_state->setRedirect('dd_account_dashboard.widgets', ['user' => \Drupal::currentUser()->id()]);
+}

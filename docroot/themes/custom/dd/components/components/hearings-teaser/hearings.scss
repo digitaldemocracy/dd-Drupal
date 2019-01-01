@@ -1,0 +1,224 @@
+@import 'init';
+
+/* Styling the hearings page */
+.is-path-hearing {
+  h1 {
+    margin-top: 0;
+  }
+
+  // Styling inner region wrapper
+  .region__inner-wrapper {
+    //@include dd-simple-borders($dd-silver);
+    margin-top: 4.4rem;
+  }
+
+
+  .block-dd-hearing-district-map-block {
+    .mapbox {
+      height: 300px;
+      margin: 0 auto;
+    }
+  }
+
+  .js-showhide-block-header {
+
+    .dd-hearing-map__toggle-button {
+      @include font-size(s);
+      @include typeface(body);
+      font-weight: normal;
+      float: right;
+      padding-right: 15px;
+      display: inline-block;
+      color: $dd-black;
+    }
+  }
+
+  .js-showhide-block-content {
+    margin: .5em;
+    // Set width to auto to override maps js behavior which pushes map image outside the container.
+    width: auto !important;
+  }
+
+  // Responsive video
+  .video-js {
+    width: auto !important;
+  }
+
+  // The Share toolbar
+  .dd-share-toolbar-group {
+    padding-left: .5rem;
+    padding-top: 1em;
+    text-align: right;
+  }
+}
+
+//---- Sidebar ----
+
+aside .view-showhide {
+  @include view-showhide;
+
+  .view-header {
+    &.expanded {
+      background-image: url('../../components/showhide/minus-solid.svg');
+    }
+  }
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: $dd-charcoal;
+    font-weight: 300;
+    font-size: 1em;
+    display: inline-block;
+  }
+
+  .view-content {
+    padding-left: 1em;
+  }
+}
+
+
+
+
+//---- Styling Individual blocks in the sidebar -------
+// Bill Votes
+.bill_votes {
+  &.hide {
+    display: none;
+  }
+
+  .vote-summary {
+    background: $dd-charcoal;
+    color: $dd-offwhite;
+    text-align: center;
+    padding: .3em;
+    border-radius: 5px;
+    margin: 1em 0;
+  }
+
+  .vote-summary-label {
+    display: inline-block;
+    padding-left: 10px;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .view-grouping-content {
+    caption {
+      font-weight: bold;
+      text-align: left;
+      text-decoration: underline;
+    }
+  }
+
+}
+
+// Hearing Speaker List
+.speaker-list {
+  &__name {
+    columns: 2 auto;
+    // Hack for chrome incorrectly calculating container heights
+    // http://caniuse.com/#feat=multicolumn
+    -webkit-perspective: 1;
+  }
+}
+
+//--------- Styling the search form -------------
+.dd-hearing-search-box-form {
+  position: relative;
+
+  .form-text {
+    width: 100%;
+  }
+
+  .form-submit {
+    @include input-search-icon;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-bottom: 0;
+    width: 15%;
+    text-indent: -99999px;
+
+    &:hover {
+      box-shadow: none;
+      background-color: $dd-yellow;
+    }
+
+    @include zen-respond-to(l) {
+      width: 10%;
+    }
+  }
+}
+
+//---------- Video Transcript (Utterances) -----------
+.utterances {
+  td {
+    @include dd-bottom-border;
+
+    &.views-field-first {
+      padding-top: 1rem;
+    }
+
+    .utterance-text {
+      padding: 1rem .5rem;
+    }
+  }
+}
+
+//---------- Agendized Bills-----------
+#agendized-bills {
+  // Limit block height
+  max-height: 400px;
+  overflow: scroll;
+
+  a {
+    margin-top: .5rem;
+  }
+
+  tr.bill :hover {
+    background-color: $dd-silver;
+  }
+
+  .views-table {
+    margin-top: 0;
+
+    .bill {
+       @include dd-bottom-border;
+
+      td {
+        padding: .5rem .2rem;
+      }
+    }
+  }
+
+  //---------- Bill Votes --------------
+
+  .view-id-bill_votes .view-content {
+    overflow: auto;
+    max-height: none;
+  }
+
+  .bill-votes__row {
+    padding: 1rem 0;
+  }
+
+  .bill-votes__vote-stats {
+    @include highlight-result;
+    max-width: 300px;
+    background-color: $dd-charcoal !important;
+
+    .votes-ayes,
+    .votes-noes,
+    .votes-abstain {
+      background-color: $dd-charcoal !important;
+    }
+
+    span {
+      display: inline-block;
+      padding: 0 10px;
+    }
+  }
+}

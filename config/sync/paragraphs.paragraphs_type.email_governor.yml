@@ -1,0 +1,7 @@
+uuid: 310a60c6-a88c-4783-9f7f-49368bc7b117
+langcode: en
+status: true
+dependencies: {  }
+id: email_governor
+label: 'Email Governor'
+behavior_plugins: {  }

@@ -1,0 +1,47 @@
+diff --git a/STARTERKIT/gulpfile.js b/STARTERKIT/gulpfile.js
+index da3eac6..2c7d119 100644
+--- a/STARTERKIT/gulpfile.js
++++ b/STARTERKIT/gulpfile.js
+@@ -147,7 +147,8 @@ var gulp      = require('gulp'),
+   del         = require('del'),
+   // gulp-load-plugins will report "undefined" error unless you load gulp-sass manually.
+   sass        = require('gulp-sass'),
+-  kss         = require('kss');
++  kss         = require('kss'),
++  cache       = require('gulp-cached');
+ 
+ // The default task.
+ gulp.task('default', ['build']);
+@@ -168,9 +169,10 @@ var sassFiles = [
+   '!' + options.theme.components + 'style-guide/kss-example-chroma.scss'
+ ];
+ 
+-gulp.task('styles', ['clean:css'], function () {
++gulp.task('styles', function () {
+   return gulp.src(sassFiles)
+     .pipe($.sourcemaps.init())
++    .pipe(cache())
+     .pipe(sass(options.sass).on('error', sass.logError))
+     .pipe($.autoprefixer(options.autoprefixer))
+     .pipe($.rename({dirname: ''}))
+@@ -261,7 +263,7 @@ gulp.task('browser-sync', ['watch:css'], function () {
+   });
+ });
+ 
+-gulp.task('watch:css', ['styles'], function () {
++gulp.task('watch:css', ['clean:css', 'styles'], function () {
+   return gulp.watch(options.theme.components + '**/*.scss', options.gulpWatchOptions, ['styles']);
+ });
+ 
+diff --git a/STARTERKIT/package.json b/STARTERKIT/package.json
+index 2e16fdb..68a6d55 100644
+--- a/STARTERKIT/package.json
++++ b/STARTERKIT/package.json
+@@ -12,6 +12,7 @@
+     "eslint": "^2.9.0",
+     "gulp": "^3.9.1",
+     "gulp-autoprefixer": "^3.1.0",
++    "gulp-cached": "^1.1.0",
+     "gulp-eslint": "^2.0.0",
+     "gulp-if": "^2.0.0",
+     "gulp-load-plugins": "^1.2.2",

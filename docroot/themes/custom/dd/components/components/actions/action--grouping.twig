@@ -1,0 +1,37 @@
+
+<div class="actions--no-recipients">
+
+
+</div>
+
+<div class="actions--recipients">
+
+<h3>Senator Jim Lahey</h3>
+
+{% include 'action-links.twig' with {
+    action_type: 'fax',
+    action: 'Fax'
+  }
+%}
+
+{% include 'action-links.twig' with {
+    action_type: 'email',
+    action: 'Email'
+  }
+%}
+
+{% include 'action-links.twig' with {
+    action_type: 'tweet',
+    action: 'Tweet at'
+  }
+%}
+
+<h3>Legislator Randy</h3>
+
+{% include 'action-links.twig' with {
+    action_type: 'phone',
+    action: 'Phone'
+  }
+%}
+
+</div>

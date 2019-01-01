@@ -1,0 +1,43 @@
+# DD Committee routing definition
+dd_committee.settings_tab:
+  route_name: dd_committee.settings
+  title: 'Settings'
+  base_route: dd_committee.settings
+entity.dd_committee.canonical:
+  route_name: entity.dd_committee.canonical
+  base_route: entity.dd_committee.canonical
+  title: 'View'
+
+entity.dd_committee.edit_form:
+  route_name: entity.dd_committee.edit_form
+  base_route: entity.dd_committee.canonical
+  title: Edit
+
+# DD Committee Authors routing definition
+dd_committee_authors.settings_tab:
+  route_name: dd_committee_authors.settings
+  title: 'Settings'
+  base_route: dd_committee_authors.settings
+entity.dd_committee_authors.canonical:
+  route_name: entity.dd_committee_authors.canonical
+  base_route: entity.dd_committee_authors.canonical
+  title: 'View'
+
+entity.dd_committee_authors.edit_form:
+  route_name: entity.dd_committee_authors.edit_form
+  base_route: entity.dd_committee_authors.canonical
+  title: Edit
+# DD ServesOn routing definition
+dd_serves_on.settings_tab:
+  route_name: dd_serves_on.settings
+  title: 'Settings'
+  base_route: dd_serves_on.settings
+entity.dd_serves_on.canonical:
+  route_name: entity.dd_serves_on.canonical
+  base_route: entity.dd_serves_on.canonical
+  title: 'View'
+
+entity.dd_serves_on.edit_form:
+  route_name: entity.dd_serves_on.edit_form
+  base_route: entity.dd_serves_on.canonical
+  title: Edit

@@ -1,0 +1,21 @@
+uuid: 1ea1608c-f89c-4693-a8f3-53abaf9dc811
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_description
+    - paragraphs.paragraphs_type.display_video_clip_montage
+  module:
+    - text
+id: paragraph.display_video_clip_montage.field_video_description
+field_name: field_video_description
+entity_type: paragraph
+bundle: display_video_clip_montage
+label: 'Video Description'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

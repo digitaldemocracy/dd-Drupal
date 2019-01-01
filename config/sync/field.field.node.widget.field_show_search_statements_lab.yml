@@ -1,0 +1,23 @@
+uuid: 5ee4f561-d6f2-48e7-acb6-4001be3ffe66
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_search_statements_lab
+    - node.type.widget
+id: node.widget.field_show_search_statements_lab
+field_name: field_show_search_statements_lab
+entity_type: node
+bundle: widget
+label: 'Show Search Statements Label'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'Yes'
+field_type: boolean

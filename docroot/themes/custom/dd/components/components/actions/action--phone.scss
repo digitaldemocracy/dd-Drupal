@@ -1,0 +1,41 @@
+@import "init";
+// Styles for the phone action modal popup
+.dd-phone-action-form {
+  p {
+    margin: .5em 0;
+  }
+
+  .form-item-campaign-title {
+    margin-top: 0;
+
+    h3 {
+      font-family: $roboto;
+      margin-top: 0;
+      text-align: center;
+      text-transform: uppercase;
+      color: $dd-charcoal;
+    }
+  }
+
+  .call-legislator--info {
+    h4 {
+      margin: 0;
+      text-decoration: underline;
+    }
+
+    .call-legislator--name {
+      display: inline-block;
+      padding-right: 1em;
+    }
+  }
+
+  .legislator-phone--submit {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  input[type = "submit"] {
+    font-size: 1em;
+    font-weight: bold;
+  }
+}

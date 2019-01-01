@@ -1,0 +1,10 @@
+uuid: 5a9e7768-270f-4f2a-95c1-ed97b2d03367
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.icon_label
+label: 'Icon with label'
+targetEntityType: paragraph
+cache: true

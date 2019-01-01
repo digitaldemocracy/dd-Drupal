@@ -1,0 +1,37 @@
+uuid: 0684a4db-e201-4d51-a1f8-633dc17126f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bill_info
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__bill_info_block_1
+theme: dd
+region: content_top
+weight: -45
+provider: null
+plugin: 'views_block:bill_info-block_1'
+settings:
+  id: 'views_block:bill_info-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/bill/*'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,32 @@
+@import 'init';
+
+.profile {
+  margin-bottom: 2rem;
+  @include zen-respond-to(s) {
+    > * {
+      margin-left: 180px;
+    }
+    &__picture {
+      margin-left: 0;
+    }
+  }
+
+  &__picture {
+    @include dd-round-headshots(150px);
+    @include zen-respond-to(s) {
+      float: left;
+      padding-right: 2rem;
+    }
+  }
+}
+
+// ----- Hide the second username on /user/UID pages. ----
+.is-path-user {
+  .profile__username {
+    display: none;
+  }
+
+  .profile__bio {
+    margin-top: 1rem;
+  }
+}

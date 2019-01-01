@@ -1,0 +1,10 @@
+uuid: a4175364-35ac-48ea-bf46-22eb654d6775
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_lobbyist
+id: dd_lobbying_firm.token
+label: Token
+targetEntityType: dd_lobbying_firm
+cache: true

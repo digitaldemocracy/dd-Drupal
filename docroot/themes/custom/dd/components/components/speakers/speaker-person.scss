@@ -1,0 +1,481 @@
+@import 'init';
+
+// Styling individual speaker pages
+//.block-dd-person-top-block {
+//  //.ui-tabs {
+//  //  padding: 0;
+//  //}
+//}
+
+.is-path-person {
+  aside {
+    .region__inner-wrapper {
+      margin-top: 1.8rem;
+    }
+  }
+
+  .dd-person {
+    // The Biography fields
+    &__bio {
+      &-expand {
+        display: block;
+        text-align: right;
+        color: $dd-black;
+        text-decoration: underline;
+        font-weight: bold;
+      }
+    }
+  }
+
+  //Styling the testimonies
+  .views-element-container .dd-person--bottom-block {
+    .view-hearings-faceted {
+      .field--name-fullname-firstlast {
+        @include typeface(body);
+        font-weight: normal;
+      }
+
+      .views-row {
+        border-bottom: 0;
+      }
+
+      .view-showhide {
+        .view-header.expanded {
+          background-color: $dd-blue;
+          color: $white;
+          font-weight: bold;
+        }
+
+        .view-content {
+          background-color: lighten($dd-offwhite, 3%);
+        }
+
+        // From feedback3 Hide testimony Authors & Speakers with css.
+        .views-field-BillDiscussionSpeakers,
+        .hearings-teaser .views-field-view {
+          display: none;
+        }
+      }
+    }
+
+  }
+
+  // The Share toolbar
+  .dd-share-toolbar-group {
+    padding-right: 0;
+
+    .fa-2x {
+      font-size: 1.5rem;
+    }
+
+    @include zen-respond-to(s) {
+      text-align: right;
+    }
+  }
+}
+
+.views-element-container {
+  .dd-person--bottom-block {
+
+    > .view-content {
+      padding: 1em;
+
+      h3 { margin: 0; }
+    }
+
+    .views-row {
+      //padding: .5rem 0;
+      border-bottom: 1px solid #eee;
+
+      &:last-child { border-bottom: 0; }
+    }
+
+    .views-table {
+      margin-top: 0;
+
+      thead {
+        border-bottom: 1px solid $dd-silver;
+      }
+
+      th { text-align: left; }
+
+      &.cols-2,
+      &.cols-5 {
+        tbody {
+          tr {
+            @include dd-simple-borders($dd-offwhite);
+          }
+        }
+      }
+
+      td.views-field {
+        padding: .3em .6em;
+      }
+    }
+
+    // Remove table border from the behest details view
+    &.view-person-behest-details-years,
+    &.view-display-id-person_contributions {
+      .views-table {
+        border: 0;
+      }
+    }
+  }
+
+  .view-testimony-teaser,
+  .view-id-person_testimony_per_year {
+    .views-row {
+      border-bottom: 0;
+    }
+  }
+}
+
+
+// Person Page Sidebar
+.block-views-blockperson-contributions-top-person-contributions,
+.block-views-blockperson-gifts-received-years-block-2 {
+
+  .ui-tabs .ui-tabs-panel {
+    padding: 0;
+  }
+
+  .views-row {
+    padding: .5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .views-table {
+    margin-top: 0;
+    border: 0;
+
+    &.cols-2 {
+      tbody {
+        tr {
+          @include dd-simple-borders($dd-offwhite);
+          padding: .5rem;
+        }
+      }
+    }
+
+    td.views-field,
+    th.views-field {
+      padding: .5rem;
+    }
+  }
+
+}
+
+a.js--scroll-to-block {
+  display: inline-block;
+  padding: .3rem .8rem;
+  margin-top: .5rem;
+}
+
+// Responsive table styles for both gift blocks
+@include zen-respond-to(s-and-below) {
+  .view-id-person_gifts_received_per_year {
+    tr {
+      @include flex-container;
+    }
+
+    td,
+    th {
+      @include flex-item;
+
+      //First column
+      &:nth-child(1) {
+        width: 75%;
+        order: 1;
+      }
+
+      // 2nd column: Description
+      &:nth-child(2) {
+        width: 100%;
+        order: 4;
+      }
+
+      &:nth-child(3) {
+        order: 2;
+      }
+
+      &:nth-child(4) {
+        order: 3;
+        width: 25%;
+      }
+    }
+
+    th:nth-child(2),
+    th#view-giftdate-ts-table-column {
+      display: none;
+    }
+
+    // Description
+    td.views-field-description {
+      font-style: italic;
+      width: 100%;
+      border-top: 1px dashed $dd-silver;
+    }
+  }
+
+  // Styles for the bottom block gifts view.
+  .view-id-person_gifts_received_per_year.view-display-id-block_1 {
+    // Value
+    td {
+      &.views-field-value {
+        order: 2;
+      }
+
+      // Date
+      &.views-field-giftDate-ts {
+        font-style: italic;
+        order: 3;
+        width: 100%;
+        border-top: 1px dashed $dd-silver;
+      }
+
+      &.views-field-description {
+        border-top: 0;
+      }
+    }
+  }
+}
+
+// Styles specific to the gifts view in the bottom block for all breakpoints
+.is-path-person #block-views-block-person-gifts-received-years-block-1 {
+  .ui-tabs .ui-tabs-panel {
+    padding: 0;
+    border: 0;
+  }
+
+  thead tr {
+    border-bottom: 0;
+  }
+
+  th.views-field {
+    padding: .5rem;
+  }
+}
+
+
+// Hearing teaser replace Pass with checkmark icon
+span.field-content.committee-action__-HearingCommitteeAction {
+  background: url('../../components/organizations/checkmark-green.svg') no-repeat left;
+  background-size: 31px;
+  display: inline-block;
+  padding: 10px 2px 5px 30px;
+  text-indent: -10000px;
+  font-size: 1px;
+  height: 39px;
+  vertical-align: middle;
+}
+
+// Sidebar search block.
+#block-speakersearchblock {
+  margin-bottom: 1.5em;
+}
+
+//============ The Person Top Block ===========
+// Make top-block styles specific to the person pages
+.is-path-person {
+  // Wrap entire block in flex container
+  .layout-3col__left-content {
+    .content--top {
+      @include flex-container;
+    }
+
+    h1.person__firstlastname,
+    h2.person__classifications {
+      margin-top: 0;
+      margin-bottom: .25rem;
+      display: inline-block;
+
+      @include zen-respond-to(l) {
+      }
+    }
+
+    h1.person__firstlastname {
+      padding-right: 1rem;
+    }
+
+    h2.person__classifications {
+      font-weight: 300;
+      margin-bottom: .5rem;
+    }
+
+    h3.person-classification {
+      margin: 0;
+    }
+
+    #block-sharetoolbarblock, // Share toolbar
+    #block-views-block-person-top-block-current-block-2, // name and role
+    #block-views-block-person-top-block-current-block-3, // Profile image
+    #block-views-block-person-top-block-current-block-1 { // Map and details
+      @include flex-item;
+      width: 100%;
+    }
+
+    // Share toolbar
+    #block-sharetoolbarblock {
+      order: 2;
+      border-top: 1px solid $dd-silver;
+      padding-top: .25rem;
+
+      @include zen-respond-to(xs) {
+        width: 50%;
+        border-top: 0;
+        text-align: right;
+        margin-top: 12px;
+        margin-bottom: 1.5rem;
+      }
+
+      @include zen-respond-to(m) {
+        width: 26%;
+      }
+
+      @include zen-respond-to(xl) {
+        width: 39%;
+      }
+
+      @include zen-respond-to(xxl) {
+        width: 26%;
+      }
+
+      .dd-share-toolbar-group-item {
+        display: inline-block;
+        padding: 0;
+      }
+    }
+
+    // Name and role
+    #block-views-block-person-top-block-current-block-2 {
+      order: 1;
+
+      @include zen-respond-to(xs) {
+        width: 50%;
+      }
+
+      @include zen-respond-to(m) {
+        width: 73%;
+      }
+
+      @include zen-respond-to(xl) {
+        width: 60%;
+      }
+
+      @include zen-respond-to(xxl) {
+        width: 73%;
+      }
+    }
+
+    // Profile Image
+    #block-views-block-person-top-block-current-block-3 {
+      order: 3;
+      width: 40%;
+
+      @include zen-respond-to(s) {
+        width: 25%;
+      }
+    }
+
+    // Map & Details wrapper block
+    #block-views-block-person-top-block-current-block-1 {
+      order: 4;
+
+      .view-id-person_top_block_current > .view-content {
+        > div:last-child {
+          > h3 {
+            @include visually-hidden;
+          }
+        }
+      }
+
+      @include zen-respond-to(xs) {
+        width: 56%;
+      }
+
+      @include zen-respond-to(s) {
+        width: 72%;
+
+        .view-id-person_top_block_current > .view-content {
+          @include flex-container($flex-wrap: no-wrap, $justify-content: space-between);
+
+          // The nested flex container for map and info
+           > div:first-child, // info
+           > div:last-child { // map
+            @include flex-item;
+          }
+
+          > div:last-child {
+            width: 50%;
+            padding-left: .5rem;
+          }
+
+          > div:first-child {
+            width: 60%;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+.dd-person--top-block {
+  margin: 1rem 0;
+  .dd-person__top-block--party,
+  .dd-person__top-block--district,
+  .views-field {
+  }
+
+}
+
+.dd-person__top-block--party,
+.dd-person__top-block--district {
+  margin: 0;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 0 5px;
+}
+
+.dd-person__top-block--party {
+  border-right: 2px solid $dd-charcoal;
+  padding-left: 0;
+}
+
+
+.person__photo {
+  @include dd-round-headshots(75px);
+
+  @include zen-respond-to(xs) {
+    @include dd-round-headshots(150px);
+  }
+}
+
+#block-views-block-person-top-block-current-block-3 { // Person photo
+  margin-right: 1em;
+}
+
+.dd-person--details { // Person details and map
+  > .view-content {
+
+  }
+}
+
+// Style person known lists
+
+a.js-toggle-people-list {
+  @include font-size(s);
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.person-known-lists {
+  .item-list {
+    li {
+      @include font-size(s);
+      margin: 0 0 0 1.5em;
+    }
+  }
+}
+
+

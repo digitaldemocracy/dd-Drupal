@@ -1,0 +1,14 @@
+uuid: bffc23e4-e641-4ddb-b01e-9f759b57a27c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.stealth_mode
+  module:
+    - user
+id: user_remove_role_action.stealth_mode
+label: 'Remove the Stealth Mode role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: stealth_mode

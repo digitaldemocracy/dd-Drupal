@@ -1,0 +1,11 @@
+uuid: 045c2041-7a87-48ea-86dc-1fbe2cc2e3a7
+langcode: en
+status: true
+dependencies: {  }
+id: journalist
+label: Journalist
+weight: 11
+is_admin: null
+permissions:
+  - 'access dd video builder'
+  - 'attach transcripts to clips'

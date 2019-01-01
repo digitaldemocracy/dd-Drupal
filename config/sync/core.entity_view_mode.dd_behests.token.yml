@@ -1,0 +1,10 @@
+uuid: 805da319-a5ff-48eb-884d-d03e5c7b8e99
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_behests.token
+label: Token
+targetEntityType: dd_behests
+cache: true

@@ -1,0 +1,9 @@
+name: Email NY Legislator Module
+type: module
+description: 'Module for emailing NY legislators.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base
+

@@ -1,0 +1,38 @@
+uuid: 65134aaa-a93f-452d-9a54-935c5432c86a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_graphic
+    - node.type.blurb
+  module:
+    - image
+id: node.blurb.field_graphic
+field_name: field_graphic
+entity_type: node
+bundle: blurb
+label: graphic
+description: 'a small logo to be placed underneath the main quote in the endorsement / news boxes. PLEASE make you size the image correctly, so that it is non-distorted at the correct size. The width should be NO WIDER THAN 240 pixels. The Height should be NO HIGHER THAN 55 pixels.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: blurbgraphics
+  file_extensions: 'png gif jpg jpeg'
+  max_filesize: ''
+  max_resolution: 240x60
+  min_resolution: 10x10
+  alt_field: false
+  title_field: false
+  default_image:
+    alt: ''
+    title: ''
+    width: null
+    height: null
+    uuid: ''
+  alt_field_required: true
+  title_field_required: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: image

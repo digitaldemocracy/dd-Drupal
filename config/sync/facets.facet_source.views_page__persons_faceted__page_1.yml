@@ -1,0 +1,8 @@
+uuid: c0db4696-2d8c-43de-aef9-bee57e9c4a62
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__persons_faceted__page_1
+name: 'views_page:persons_faceted__page_1'
+filter_key: ''
+url_processor: query_string

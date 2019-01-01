@@ -1,0 +1,10 @@
+uuid: 21ddc0e3-389c-4a3f-b271-148bd59681ce
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_organization
+id: dd_organizationalignment.token
+label: Token
+targetEntityType: dd_organizationalignment
+cache: true

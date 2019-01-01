@@ -1,0 +1,5 @@
+services:
+  dd_search.commands:
+    class: \Drupal\dd_search\Commands\DdSearchCommands
+    tags:
+      - { name: drush.command }

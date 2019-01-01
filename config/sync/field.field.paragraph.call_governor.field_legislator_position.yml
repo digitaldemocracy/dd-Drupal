@@ -1,0 +1,23 @@
+uuid: 11795ed0-355d-4629-b8f5-11af9384cffe
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_legislator_position
+    - paragraphs.paragraphs_type.call_governor
+id: paragraph.call_governor.field_legislator_position
+field_name: field_legislator_position
+entity_type: paragraph
+bundle: call_governor
+label: 'Include checkboxes to capture Governor''s Position'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

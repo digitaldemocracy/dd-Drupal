@@ -1,0 +1,127 @@
+uuid: 261d6972-c915-4f75-ab8d-40ac995c056a
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill_version.dd_bill_version.default
+targetEntityType: dd_bill_version
+bundle: dd_bill_version
+mode: default
+content:
+  appropriation:
+    type: string
+    weight: 8
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  bid:
+    label: inline
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  bid_dr_id:
+    type: entity_reference_entity_view
+    weight: 10
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  billState:
+    type: string
+    weight: 6
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  date:
+    type: string
+    weight: 9
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  date_ts:
+    type: timestamp
+    weight: 9
+    label: inline
+    settings:
+      date_format: custom
+      custom_date_format: Y-m-d
+      timezone: ''
+    third_party_settings: {  }
+    region: content
+  digest:
+    type: string
+    weight: 2
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  subject:
+    type: string
+    weight: 7
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  substantive_changes:
+    type: string
+    weight: 5
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  text:
+    type: string
+    weight: 3
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  vid:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  vid_dr_id:
+    type: entity_reference_entity_id
+    weight: 11
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  lastTouched_ts: true

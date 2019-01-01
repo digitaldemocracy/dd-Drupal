@@ -1,0 +1,43 @@
+@import 'init';
+
+$image-url-subdirectory: 'components/blocks/homepage-audiences';
+
+.block--homepageaudiences {
+  h3 {
+    margin: 1rem 0 0;
+    font-family: $roboto;
+    font-size: 1.5rem;
+    color: $dd-blue;
+  }
+
+  p {
+    margin: .5rem 0;
+  }
+
+  padding-left: 85px;
+  -webkit-background-size: 80px;
+  background-size: 80px;
+  background-repeat: no-repeat;
+
+  &#block {
+    &-forcitizens {
+      background-image: image-url('ballot-box.svg');
+
+    }
+
+    &-forjournalists {
+      background-image: image-url('journalist.svg');
+      background-size: 60px;
+      background-position: 12px 7px;
+    }
+
+    &-forresearchers {
+      background-image: image-url('researcher.svg');
+    }
+
+    &-fororganizations {
+      background-image: image-url('organization-2.svg');
+    }
+  }
+}
+

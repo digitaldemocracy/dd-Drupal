@@ -1,0 +1,26 @@
+uuid: 5d5cda8b-791b-44e7-b560-e5f7386e12da
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - system
+id: campaign_wizard_nav
+label: 'Campaign Wizard Nav'
+logic: or
+conditions:
+  964d881a-8a03-4e83-810e-a89273cc9484:
+    id: 'entity_bundle:node'
+    bundles:
+      campaign: campaign
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+    uuid: 964d881a-8a03-4e83-810e-a89273cc9484
+  9e202767-bd08-4ad4-bdb5-7dd8512c4417:
+    id: request_path
+    pages: "/node/*/preview\r\n/node/*/targets-edit\r\n/node/*/targetactions-edit\r\n/node/*/statewide-edit\r\n/node/*/reviewtargetactions"
+    negate: false
+    context_mapping: {  }
+    uuid: 9e202767-bd08-4ad4-bdb5-7dd8512c4417
+allow_other_conditions: false

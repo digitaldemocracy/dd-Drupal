@@ -1,0 +1,14 @@
+uuid: 4f662e62-45e8-48fd-b87c-2218cb916dd9
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tier_2_membership
+  module:
+    - user
+id: user_remove_role_action.tier_2_membership
+label: 'Remove the Tier 2 Membership role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: tier_2_membership

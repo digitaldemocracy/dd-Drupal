@@ -1,0 +1,37 @@
+uuid: 0794b2b5-61e6-465d-80fa-383f0f1adcda
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.committee_contact_info
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__committee_contact_info_block_1
+theme: dd
+region: content
+weight: -45
+provider: null
+plugin: 'views_block:committee_contact_info-block_1'
+settings:
+  id: 'views_block:committee_contact_info-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/committee/*'
+    negate: false
+    context_mapping: {  }

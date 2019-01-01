@@ -1,0 +1,23 @@
+uuid: 76bb0cd6-58d5-48c0-9797-817624ae4ad1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_receive_alerts_for_videos
+    - node.type.dd_bill_alert
+id: node.dd_bill_alert.field_receive_alerts_for_videos
+field_name: field_receive_alerts_for_videos
+entity_type: node
+bundle: dd_bill_alert
+label: 'Receive alerts for videos'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

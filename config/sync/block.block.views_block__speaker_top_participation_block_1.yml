@@ -1,0 +1,53 @@
+uuid: c4518235-d176-4c55-99fe-5b4ecbe2de16
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_visibility_groups.block_visibility_group.person_block_request_parameter
+    - views.view.speaker_top_participation
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__speaker_top_participation_block_1
+theme: dd
+region: content_top
+weight: -49
+provider: null
+plugin: 'views_block:speaker_top_participation-block_1'
+settings:
+  id: 'views_block:speaker_top_participation-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: '10'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: person_block_request_parameter
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/persons\r\n"
+    negate: false
+    context_mapping: {  }

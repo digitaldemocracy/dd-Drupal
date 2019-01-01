@@ -1,0 +1,34 @@
+{#
+/**
+ * @file dd_hearing.html.twig
+ * Default theme implementation to present DD Hearing data.
+ *
+ * This template is used when viewing DD Hearing pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_hearing()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('dd/dd-hearing-page') }}
+<div class="dd-hearing--title">
+  <h1>{{ title }}</h1>
+</div>
+<div{{ attributes.addClass('dd_hearing') }}>
+  <div class="player-area">
+    {{ video_markup }}
+    <video id="player" class="video-js vjs-default-skin"
+           controls preload="auto" width="685" height="390">
+    </video>
+  </div>
+  {{ dd_share_toolbar }}
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+
+</div>

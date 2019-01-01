@@ -1,0 +1,20 @@
+uuid: 187b041b-3c2b-4c50-a601-c2c62e2a751c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_fax_service
+id: dd_fax_service_history.field_limit
+field_name: field_limit
+entity_type: dd_fax_service_history
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

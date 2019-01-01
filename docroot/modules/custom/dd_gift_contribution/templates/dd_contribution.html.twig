@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_contribution.html.twig
+ * Default theme implementation to present DD Contribution data.
+ *
+ * This template is used when viewing DD Contribution pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_contribution()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_contribution') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

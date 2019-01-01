@@ -1,0 +1,37 @@
+uuid: 76e81dba-b514-4b1a-85a1-99037ce7f3f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.person_gifts_received_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__person_gifts_received_years_block_2
+theme: dd
+region: sidebar_second
+weight: -45
+provider: null
+plugin: 'views_block:person_gifts_received_years-block_2'
+settings:
+  id: 'views_block:person_gifts_received_years-block_2'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

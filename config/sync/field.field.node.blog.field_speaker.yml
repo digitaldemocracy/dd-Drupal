@@ -1,0 +1,19 @@
+uuid: e6f82821-e0bd-436f-b242-c37cf92f91b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speaker
+    - node.type.blog
+id: node.blog.field_speaker
+field_name: field_speaker
+entity_type: node
+bundle: blog
+label: Speaker
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

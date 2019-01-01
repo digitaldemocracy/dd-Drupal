@@ -1,0 +1,23 @@
+uuid: 1e609040-c532-43bd-aec3-e1a556dc36ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_capture_staff
+    - paragraphs.paragraphs_type.call_governor
+id: paragraph.call_governor.field_capture_staff
+field_name: field_capture_staff
+entity_type: paragraph
+bundle: call_governor
+label: "Include field to capture name of staff person who answered the call\t"
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

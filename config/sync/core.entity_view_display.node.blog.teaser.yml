@@ -1,0 +1,48 @@
+uuid: 53fcfa26-5eb6-462f-9e52-63b570489241
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.blog.body
+    - field.field.node.blog.field_pid
+    - field.field.node.blog.field_speaker
+    - field.field.node.blog.field_speaker_pid
+    - field.field.node.blog.field_text
+    - field.field.node.blog.field_thumbnail_image
+    - field.field.node.blog.field_vid
+    - field.field.node.blog.field_videoid
+    - node.type.blog
+  module:
+    - text
+    - user
+id: node.blog.teaser
+targetEntityType: node
+bundle: blog
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 0
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    region: content
+  field_videoid:
+    type: text_default
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_end_time: true
+  field_pid: true
+  field_speaker: true
+  field_speaker_pid: true
+  field_start_time: true
+  field_text: true
+  field_thumbnail_image: true
+  field_vid: true
+  links: true

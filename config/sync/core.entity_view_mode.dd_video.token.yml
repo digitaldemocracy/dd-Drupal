@@ -1,0 +1,10 @@
+uuid: 56865501-0f78-4765-a847-be909d6177b7
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_video
+id: dd_video.token
+label: Token
+targetEntityType: dd_video
+cache: true

@@ -1,0 +1,71 @@
+uuid: f5fc6b57-ab8c-4646-b3f9-c07f85772e55
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_blurb
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Blurb)'
+source:
+  plugin: d7_node
+  node_type: blurb
+process:
+  nid: nid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  body: body
+  field_byline:
+    plugin: iterator
+    source: field_byline
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - d6_filter_format
+            - d7_filter_format
+          source: format
+  field_graphic:
+    plugin: iterator
+    source: field_graphic
+    process:
+      target_id: fid
+      alt: alt
+      title: title
+      width: width
+      height: height
+  field_display_in_news: field_display_in_news
+  field_display_in_endorsements: field_display_in_endorsements
+destination:
+  plugin: 'entity:node'
+  default_bundle: blurb
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

@@ -1,0 +1,20 @@
+uuid: 07e6e96a-e362-49b1-bdc3-73d52c90ac42
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_payment_system
+id: dd_invoice_history.field_duration_days
+field_name: field_duration_days
+entity_type: dd_invoice_history
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

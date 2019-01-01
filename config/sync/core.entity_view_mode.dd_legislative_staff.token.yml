@@ -1,0 +1,10 @@
+uuid: c30bab22-6b2c-4727-bb39-9e793821d29f
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_legislative_staff.token
+label: Token
+targetEntityType: dd_legislative_staff
+cache: true

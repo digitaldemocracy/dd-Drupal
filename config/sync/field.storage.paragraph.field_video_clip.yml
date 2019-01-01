@@ -1,0 +1,20 @@
+uuid: 18377691-a0a1-4c1d-a834-2afdcb2c9038
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+    - paragraphs
+id: paragraph.field_video_clip
+field_name: field_video_clip
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: dd_clip
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

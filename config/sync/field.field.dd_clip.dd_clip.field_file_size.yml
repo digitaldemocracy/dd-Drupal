@@ -1,0 +1,20 @@
+uuid: 95a26c88-147b-4f7d-afa2-a97b5d9ac026
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_file_size
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_file_size
+field_name: field_file_size
+entity_type: dd_clip
+bundle: dd_clip
+label: 'File Size'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

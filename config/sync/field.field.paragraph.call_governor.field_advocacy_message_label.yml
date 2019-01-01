@@ -1,0 +1,19 @@
+uuid: 710f53b1-db2f-4777-bf93-ee211d6f63b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_advocacy_message_label
+    - paragraphs.paragraphs_type.call_governor
+id: paragraph.call_governor.field_advocacy_message_label
+field_name: field_advocacy_message_label
+entity_type: paragraph
+bundle: call_governor
+label: 'Instructions to be Published Above Script'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

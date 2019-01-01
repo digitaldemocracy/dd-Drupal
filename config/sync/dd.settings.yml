@@ -1,0 +1,13 @@
+zen_rebuild_registry: 0
+_core:
+  default_config_hash: P5V06zRKs-pLgT92nugyuXkhg3tCsItyIcJqjLrjmaM
+features:
+  node_user_picture: 0
+  comment_user_picture: 0
+  comment_user_verification: 0
+  favicon: 1
+logo:
+  use_default: 1
+  path: themes/custom/dd/digital-democracy__needs-svg.png
+favicon:
+  use_default: 1

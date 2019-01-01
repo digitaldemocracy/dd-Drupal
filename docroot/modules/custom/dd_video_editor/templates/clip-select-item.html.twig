@@ -1,0 +1,13 @@
+<div class="bank-clip" data-tag="{{ elements.tags }}">
+  <div class='my-cp-video'>
+    <div class='cp-video'>
+      <a href='{{ elements.url }}' target="_videopreview" title="Click to play clip"><img alt="Clip Preview" width='260' height='161' src='{{ elements.source_thumbnail }}'></a>
+    </div>
+    <div class="cp-video-details">
+      <div class="clip-title"><a href="{{ elements.url }}" target="_videopreview" title="Click to play clip">{{ elements.title_clip }}</a></div>
+      <div class="clip-action-area">
+        <input type="button" value="Select Clip" data-clip-id="{{ elements.title_clip }} ({{  elements.nid }})" class="select-clip-button">
+      </div>
+    </div>
+  </div>
+</div>

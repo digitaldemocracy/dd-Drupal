@@ -1,0 +1,76 @@
+uuid: 8c8437c5-43c0-423b-901e-6b24d4f254d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.phone_action.field_advocacy_message
+    - field.field.paragraph.phone_action.field_advocacy_message_label
+    - field.field.paragraph.phone_action.field_capture_info
+    - field.field.paragraph.phone_action.field_capture_staff
+    - field.field.paragraph.phone_action.field_legislator_position
+    - field.field.paragraph.phone_action.field_phone_targets
+    - field.field.paragraph.phone_action.field_talking_points
+    - paragraphs.paragraphs_type.phone_action
+  module:
+    - text
+id: paragraph.phone_action.default
+targetEntityType: paragraph
+bundle: phone_action
+mode: default
+content:
+  field_advocacy_message:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_advocacy_message_label:
+    weight: 0
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_capture_info:
+    weight: 8
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_capture_staff:
+    weight: 9
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_legislator_position:
+    weight: 7
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_phone_targets:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_buttons
+    region: content
+  field_talking_points:
+    weight: 2
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  status: true
+  uid: true

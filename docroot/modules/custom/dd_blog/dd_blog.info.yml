@@ -1,0 +1,7 @@
+name: DD Blog 
+type: module
+description: Enables commentators to create blogs with hearing video 
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

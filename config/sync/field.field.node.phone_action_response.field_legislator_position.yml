@@ -1,0 +1,19 @@
+uuid: 74031ec9-e761-4e0d-a840-f2fbaf3cf310
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legislator_position
+    - node.type.phone_action_response
+id: node.phone_action_response.field_legislator_position
+field_name: field_legislator_position
+entity_type: node
+bundle: phone_action_response
+label: 'Legislator Position'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,30 @@
+@import 'init';
+
+form.dd-email-ca-legislator-form {
+  #edit-txtareacode {
+    width: 100px;
+  }
+
+  #edit-txtphone1 {
+    width: 100px;
+  }
+
+  #edit-txtphone2 {
+    width: 100px;
+  }
+
+  #edit-txtext {
+    width: 100px;
+  }
+
+  #edit-txtfirstname {
+    width: 45%;
+  }
+
+  #edit-txtlastname {
+    width: 45%;
+  }
+  span.fieldset-legend.js-form-required.form-required {
+    color:#464746;
+  }
+}

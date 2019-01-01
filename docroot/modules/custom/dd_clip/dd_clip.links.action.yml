@@ -1,0 +1,10 @@
+entity.dd_clip.add_form:
+  route_name: entity.dd_clip.add_form
+  title: 'Add DD Clip'
+  appears_on:
+    - entity.dd_clip.collection
+entity.dd_clip_bank_quota.add_form:
+  route_name: entity.dd_clip_bank_quota.add_form
+  title: 'Add DD Clip Bank Quota'
+  appears_on:
+    - entity.dd_clip_bank_quota.collection

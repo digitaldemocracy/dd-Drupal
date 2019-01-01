@@ -1,0 +1,51 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_committee.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_committee_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_committee module.
+    case 'help.page.dd_committee':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Committee Entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_committee_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Add State conditions for search_api tracking of entities.
+  if (
+    isset($query->getTables()['base_table']) &&
+    $query->getTables()['base_table']['table'] == 'Committee' &&
+    \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))
+  ) {
+    $query->condition('base_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_committee_views_data_alter(array &$data) {
+  $data['search_api_datasource_committees_index_entity_dd_committee']['committee_name_id'] = array(
+    'title' => t('Committee Name ID'),
+    'help' => t('Committee Name ID'),
+    'field' => array(
+      'id' => 'dd_committee_name_id',
+    ),
+  );
+}

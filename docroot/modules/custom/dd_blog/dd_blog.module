@@ -1,0 +1,190 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_blog.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+use \Drupal\dd_video\Entity\DdVideo;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
+/**
+ * Implements hook_help().
+ */
+function dd_blog_help($route_name, RouteMatchInterface $route_match) {
+  $output = '';
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_blog':
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Customizes DD Blog Content Type Node Page') . '</p>';
+      return $output;
+
+    default:
+  }
+  return $output;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function dd_blog_preprocess_node(&$variables) {
+  global $base_url;
+  if (isset($variables['node']) && $variables['node']->getType() === "blog") {
+    $videoid = $variables['node']->field_videoid->first() ?
+                 $variables['node']->field_videoid->first()->value : '';
+
+    // @todo needs to be a globally accessible constant.
+    $s3url = "https://videostorage-us-west.s3.amazonaws.com";
+    $thumbnail = $s3url . '/videos/' . $videoid . '/thumbnails/large.jpg';
+    $current_path = $base_url . \Drupal::request()->getRequestUri();
+
+    $variables['s3url'] = $s3url;
+    $variables['videoid'] = $videoid;
+    $variables['video_url']
+      = $s3url . '/videos/' . $videoid . '/' . $videoid . '.mp4';
+    $variables['thumbnail'] = $thumbnail;
+    $variables['encoded_url'] = urlencode($current_path);
+    $variables['blog_date']
+      = date("F jS, Y", $variables['node']->getCreatedTime());
+    $variables['encoded_text']
+      = urlencode("Read this hearing commentary on Digital Democracy");
+    $variables['embed_url']
+      = $base_url . '/node/' . $variables['node']->id() . '?contentonly=true';
+
+    $user = $variables['node']->getOwner();
+    $variables['blog_author_link'] = Link::createFromRoute($user->getUserName(),
+      'entity.user.canonical', ['user' => $user->id()]);
+
+    $variables['subscribe_url'] = Url::fromRoute('dd_alerts.blog_subscribe',
+      ['user' => $user->id()])->toString();
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_blog_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id !== 'node_blog_form' && $form_id !== 'node_blog_edit_form') {
+    return;
+  }
+  $q = $parameters = \Drupal::request()->getQueryString();
+  parse_str($q, $output);
+
+  $is_edit = FALSE;
+  if ($form_id === "node_blog_edit_form") {
+    // Is node edit form.
+    $output = array();
+    $output['vid'] = $form['field_videoid']['widget'][0]['value']['#default_value'];
+    $is_edit = TRUE;
+  }
+
+  if (!isset($output['vid'])) {
+    return;
+  }
+
+  $vnode = DdVideo::load(current(\Drupal::entityQuery('dd_video')
+             ->condition('fileId', $output['vid'])
+             ->execute()));
+
+  $s3url = "https://videostorage-us-west.s3.amazonaws.com";
+
+  $thumbnail = '';
+  if ($is_edit &&
+      isset($form['field_thumbnail_image']['widget'][0]['#default_value']['target_id'])) {
+    $tid = $form['field_thumbnail_image']['widget'][0]['#default_value']['target_id'];
+    $file = File::load($tid);
+    if ($file) {
+      $thumbnail = file_create_url($file->getFileUri());
+    }
+  }
+  else {
+    $thumbnail = $s3url . '/videos/' . $output['vid'] . '/thumbnails/large.jpg';
+  }
+
+  $videoid = $output['vid'];
+
+  $duration = $vnode->getDuration();
+
+  $form['s3url'] = array(
+    '#type' => 'hidden',
+    '#value' => $s3url,
+  );
+
+  $form['videoid'] = array(
+    '#type' => 'hidden',
+    '#value' => $videoid,
+  );
+
+  $form['thumbnail'] = array(
+    '#type' => 'hidden',
+    '#value' => $thumbnail,
+  );
+
+  $form['duration'] = array(
+    '#type' => 'hidden',
+    '#value' => $duration,
+  );
+
+  $form['start_min'] = array(
+    '#type' => 'hidden',
+    '#value' => floor($is_edit ?
+      $form['field_start_time']['widget'][0]['value']['#default_value'] / 60 : $output['startTime'] / 60),
+  );
+
+  $form['start_sec'] = array(
+    '#type' => 'hidden',
+    '#value' => round($is_edit ?
+      fmod($form['field_start_time']['widget'][0]['value']['#default_value'], 60) : fmod($output['startTime'], 60), 1),
+  );
+
+  $form['end_min'] = array(
+    '#type' => 'hidden',
+    '#value' => floor($is_edit ?
+      $form['field_end_time']['widget'][0]['value']['#default_value'] / 60 : $output['endTime'] / 60),
+  );
+
+  $form['end_sec'] = array(
+    '#type' => 'hidden',
+    '#value' => round($is_edit ?
+      fmod($form['field_end_time']['widget'][0]['value']['#default_value'], 60) : fmod($output['endTime'], 60), 1),
+  );
+
+  $form['start'] = array(
+    '#type' => 'hidden',
+    '#value' => $is_edit ? $form['field_start_time']['widget'][0]['value']['#default_value'] : $output['startTime']);
+
+  $form['end'] = array(
+    '#type' => 'hidden',
+    '#value' => $is_edit ? $form['field_end_time']['widget'][0]['value']['#default_value'] : $output['endTime']);
+
+  if (!$is_edit) {
+    $form['field_start_time']['widget'][0]['value']['#default_value'] = $output['startTime'];
+  }
+
+  if (!$is_edit) {
+    $form['field_end_time']['widget'][0]['value']['#default_value'] = $output['endTime'];
+  }
+
+  $form['field_videoid']['widget'][0]['value']['#value'] = $videoid;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_blog_theme($existing, $type, $theme, $path) {
+  return array(
+    'node_blog_form' => array(
+      'render element' => 'form',
+      'file' => 'dd_blog.page.inc',
+    ),
+    'node_blog_edit_form' => array(
+      'render element' => 'form',
+      'file' => 'dd_blog.page.inc',
+    ),
+  );
+}

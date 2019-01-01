@@ -1,0 +1,38 @@
+uuid: ef871fc2-09b5-4486-a3c9-b3a7b2aab2b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.email_action.field_email_body
+    - field.field.paragraph.email_action.field_email_subject
+    - field.field.paragraph.email_action.field_success_message
+    - paragraphs.paragraphs_type.email_action
+  module:
+    - text
+id: paragraph.email_action.default
+targetEntityType: paragraph
+bundle: email_action
+mode: default
+content:
+  field_email_body:
+    weight: 1
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_email_subject:
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  field_success_message: true
+  status: true
+  uid: true

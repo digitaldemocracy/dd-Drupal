@@ -1,0 +1,20 @@
+uuid: d97f1720-d2f1-4250-bcda-995a0a9b5a33
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_house
+field_name: field_house
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

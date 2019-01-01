@@ -1,0 +1,21 @@
+<?php
+
+/**
+ * @file
+ * Module file for views_summary_rows.
+ */
+
+/**
+ * Implements hook_views_data().
+ */
+function views_summary_rows_views_data() {
+  $data['views']['summary_row'] = array(
+    'title' => t('Summary data row'),
+    'help' => t('Shows a row of summary data, for example the sum of a numerical field value.'),
+    'area' => array(
+      'id' => 'summary_row',
+    ),
+  );
+
+  return $data;
+}

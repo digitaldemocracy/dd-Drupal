@@ -1,0 +1,52 @@
+uuid: 3c8c1de0-915a-4876-be96-8e6989934097
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.display_video_clip_montage.field_sample_tweet
+    - field.field.paragraph.display_video_clip_montage.field_video_clip
+    - field.field.paragraph.display_video_clip_montage.field_video_description
+    - field.field.paragraph.display_video_clip_montage.field_video_link_text
+    - paragraphs.paragraphs_type.display_video_clip_montage
+  module:
+    - text
+id: paragraph.display_video_clip_montage.default
+targetEntityType: paragraph
+bundle: display_video_clip_montage
+mode: default
+content:
+  field_sample_tweet:
+    type: basic_string
+    weight: 2
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_video_clip:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: video_only
+      link: false
+    third_party_settings: {  }
+    type: entity_reference_entity_view
+    region: content
+  field_video_description:
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_video_link_text:
+    type: string
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

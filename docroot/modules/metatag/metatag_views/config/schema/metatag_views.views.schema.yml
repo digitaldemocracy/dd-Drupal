@@ -1,0 +1,2 @@
+views.display_extender.metatag_display_extender:
+  type: views_display_extender

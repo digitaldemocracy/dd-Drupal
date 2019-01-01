@@ -1,0 +1,21 @@
+uuid: ef08ddf9-ab68-4e50-bb00-d4fc061c6f4e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill_position
+    - node.type.campaign
+  module:
+    - options
+id: node.campaign.field_bill_position
+field_name: field_bill_position
+entity_type: node
+bundle: campaign
+label: 'Add a Bill Position'
+description: 'What is your campaign''s position on this bill?'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

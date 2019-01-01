@@ -1,0 +1,28 @@
+uuid: 8caf89b5-7557-40bc-88d9-ca484352087e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.target.field_campaign
+    - field.field.node.target.field_campaign_action
+    - field.field.node.target.field_committee
+    - field.field.node.target.field_legislator
+    - node.type.target
+  module:
+    - user
+id: node.target.teaser
+targetEntityType: node
+bundle: target
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_campaign: true
+  field_campaign_action: true
+  field_committee: true
+  field_legislator: true

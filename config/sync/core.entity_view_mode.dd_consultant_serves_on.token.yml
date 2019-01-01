@@ -1,0 +1,10 @@
+uuid: 44049d56-b02d-4035-814c-8d43dd9985e5
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_consultant_serves_on.token
+label: Token
+targetEntityType: dd_consultant_serves_on
+cache: true

@@ -1,0 +1,7 @@
+//For bill replacement text. Insertions and deletions. Makes strikethrough and underline appear.
+.insertion {
+    text-decoration: underline;
+}
+.deletion {
+    text-decoration: line-through;
+}

@@ -1,0 +1,49 @@
+administer dd gift entities:
+  title: 'Administer DD Gift entities'
+  description: 'Allow to access the administration form to configure DD Gift entities.'
+  restrict access: true
+
+edit dd gift entities:
+  title: 'Edit DD Gift entities'
+
+access dd gift overview:
+  title: 'Access the DD Gift overview page'
+
+view published dd gift entities:
+  title: 'View published DD Gift entities'
+
+view unpublished dd gift entities:
+  title: 'View unpublished DD Gift entities'
+administer dd contribution entities:
+  title: 'Administer DD Contribution entities'
+  description: 'Allow to access the administration form to configure DD Contribution entities.'
+  restrict access: true
+
+edit dd contribution entities:
+  title: 'Edit DD Contribution entities'
+
+access dd contribution overview:
+  title: 'Access the DD Contribution overview page'
+
+view published dd contribution entities:
+  title: 'View published DD Contribution entities'
+
+view unpublished dd contribution entities:
+  title: 'View unpublished DD Contribution entities'
+
+administer dd behests entities:
+  title: 'Administer DD Behests entities'
+  description: 'Allow to access the administration form to configure DD Behests entities.'
+  restrict access: true
+
+edit dd behests entities:
+  title: 'Edit DD Behests entities'
+
+access dd behests overview:
+  title: 'Access the DD Behests overview page'
+
+view published dd behests entities:
+  title: 'View published DD Behests entities'
+
+view unpublished dd behests entities:
+  title: 'View unpublished DD Behests entities'

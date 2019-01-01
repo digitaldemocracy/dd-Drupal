@@ -1,0 +1,64 @@
+@import 'init';
+// Organizations search views page
+//
+// Markup: organizations-search.twig
+//
+// Style guide: components.organizations
+
+// Styles specific to the organizations search views page
+.organizations--search {
+  @include glossary-anchors;
+
+  h3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+
+
+    // Override base line-height
+    @include zen-respond-to(s) {
+      line-height: 1;
+    }
+
+    // Center text within circle for all breakpoints
+    @include zen-respond-to(l) {
+      padding: 2%;
+    }
+  }
+
+  .view-content {
+    column-count: 2;
+  }
+}
+
+.organizations__search {
+
+  &--row {
+    padding: 0 .5em .5em;
+  }
+
+  //Styling links
+  &--link {
+    a {
+      text-decoration: none;
+    }
+  }
+
+  // Results count
+  &--results {
+    font-style: italic;
+    color: $dd-greylight;
+
+    &-count {
+      color: $dd-charcoal;
+      font-weight: bold;
+    }
+  }
+}
+
+// Styling the Glossary Links
+.organizations__glossary {
+  @include dd-glossary;
+}
+
+

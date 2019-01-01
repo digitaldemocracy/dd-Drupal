@@ -1,0 +1,240 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_commentary_alert.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function dd_commentary_alert_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_commentary_alert':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Alert users on new commentaries.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_commentary_alert_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-commentary-alert' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'commentary-alert',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function dd_commentary_alert_cron() {
+  dd_commentary_alert_run();
+}
+
+/**
+ * Implements hook_mail().
+ */
+function dd_commentary_alert_mail($key, &$message, $params) {
+  $options = array(
+    'langcode' => $message['langcode'],
+  );
+
+  switch ($key) {
+  case 'commentary_alert':
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+    $message['from'] = \Drupal::config('system.site')->get('mail');
+    $message['subject'] = t('New commentaries posted on Digital Democracy', $options);
+    $message['body'][] = SafeMarkup::checkPlain($params['message']);
+    break;
+  }
+}
+
+/**
+ * a main function which runs the alerting process.
+ *
+ * @param string $timezone
+ *   timezone to use. This is mainly used when the module is called from drush.
+ */
+function dd_commentary_alert_run($timezone=null) {
+  if ($timezone) {
+    date_default_timezone_set($timezone);
+  }
+  $back_date_text = \Drupal::configFactory()
+    ->getEditable('dd_commentary_alert.settings')
+    ->get('datetime.back_date_text');
+  $last_time = date("Y-m-d H:m:s", strtotime($back_date_text));
+  $alertables = dd_commentary_alert_get_alertables($last_time);
+  dd_commentary_alert_generate_alerts($alertables);
+}
+
+
+/**
+ * a function to get alertable commentaries and their subscribers.
+ *
+ * @param string $last_time
+ *   A string indicating the oldest alertable commentaries in datetime.
+ *
+ * @return array
+ *   Associative array holding list of blogs per each user.
+ */
+function dd_commentary_alert_get_alertables($last_time) {
+  $alertables = array();
+  $query = \Drupal::entityQuery('node');
+  $ids = $query->condition('type', 'blog')
+               ->condition('created', strtotime($last_time), '>')
+               ->sort('uid', 'ASC')
+               ->sort('created', 'DESC')
+               ->execute();
+  $nodes = Node::loadMultiple($ids);
+  foreach ($nodes as $node) {
+    //retrieve user subscriptions
+    dd_commentary_alert_get_subscribers($node, $alertables);
+  }
+  return $alertables; 
+}
+
+/**
+ * a function to get subscribers for each blog.
+ *
+ * @param object $blog
+ *   A blog node object.
+ *
+ * @param array reference $alertables
+ *   A reference to an array for storing alertable blogs.
+ *   Alertable blogs are stored in the array per user.
+ *
+ */
+function dd_commentary_alert_get_subscribers($blog, &$alertables) {
+  $blogger_id = $blog->getOwnerId();
+  $query = \Drupal::entityQuery('node');
+  $ids = $query->condition('type', 'dd_commentary_alert')
+               ->condition('field_user', $blogger_id)
+               ->sort('uid', 'ASC')
+               ->execute();
+  $nodes = Node::loadMultiple($ids);
+  foreach ($nodes as $node) {
+    $user = $node->getOwner();
+    if (!isset($alertables[$user->id()])) {
+      $alertables[$user->id()] = array('user' => $user, 'blogs' => array());
+    }
+    array_push($alertables[$user->id()]['blogs'],
+      array('id' => $blog->id(), 'title' => $blog->getTitle(),
+            'author' => $blog->getOwner()->getUsername()));
+  }
+}
+
+/**
+ * a function to generate alerts and send them to users.
+ *
+ * @param array $alertables 
+ *   An array holding list of alertable blogs per user.
+ *
+ */
+function dd_commentary_alert_generate_alerts($alertables) {
+  global $base_url;
+  $msg_data = array(
+    '#theme' => 'dd-commentary-alert',
+    '#elements' => array(),
+  );
+  // Get whitelabel id
+  $wl_id = \Drupal\dd_base\DdBase::getWhiteLabelId();
+  // Get logo path
+  $logo = theme_get_setting('logo.url', 'dd');
+  foreach ($alertables as $uid => $alertable) {
+    $user = $alertable['user'];
+    $commentaries = array();
+    foreach ($alertable['blogs'] as $blog) {
+      $commentaries[] = array('title' => $blog['title'],
+                              'author' => $blog['author'],
+                              'url' => $base_url . '/node/' . $blog['id']);
+    }
+    $msg_data['#elements']['user_name'] = $user->getUsername();
+    $msg_data['#elements']['commentaries'] = $commentaries;
+    $msg_data['#elements']['base_url'] = $base_url;
+    $msg_data['#elements']['site_name'] = \Drupal::config('system.site')->get('name');
+    $msg_data['#elements']['wl_id'] = $wl_id;
+    $msg_data['#elements']['logo'] = $logo;
+    $content = \Drupal::service('renderer')->renderRoot($msg_data);
+    $langcode = $user->getPreferredLangCode();
+    dd_commentary_alert_send_mail($user->getEmail(),
+                                  $content->__toString(), $langcode);
+    dd_commentary_alert_save_history($user, $commentaries);
+    \Drupal::logger('dd_commentary_alert')->notice("Alert sent to " . $user->getEmail());
+  }
+}
+
+/**
+ * a function to send alerts to users via email.
+ *
+ * @param string $recipient 
+ *   The recipient's email address.
+ *
+ * @param string $msg 
+ *   A message to be sent via email.
+ *
+ * @param string $langcode 
+ *   A language code.
+ */
+function dd_commentary_alert_send_mail($recipient, $msg, $langcode) {
+  $mailManager = \Drupal::service('plugin.manager.mail');
+  $module = 'dd_commentary_alert';
+  $key = 'commentary_alert';
+  $params['message'] = $msg;
+  $result = $mailManager->mail($module, $key, $recipient, $langcode,
+                               $params, NULL, true);
+}
+
+/**
+ * a function to save the history of commentary alerts. The history is saved
+ * on a content type on the Drupal site.
+ */
+function dd_commentary_alert_save_history($user, $commentaries) {
+  $title = $user->getUsername() . "_" . date("Y-m-d H:i:s");
+  $result_string = "";
+  foreach ($commentaries as $commentary) {
+    $result_string .= "Title: " . $commentary['title'] . ", ";
+    $result_string .= "Author: " . $commentary['author'] . ", ";
+    $result_string .= "URL: " . $commentary['url'] . "\n";  
+  }
+  $history = \Drupal\node\Entity\Node::create(
+    array(
+      'type' => 'dd_commentary_alert_history',
+      'uid' => $user->id(),
+      'status' => 0,
+      'title' => $title,
+      'language' => 'und',
+    )
+  );
+
+  $history->set('field_commentary_alert_result', $result_string);
+  $history->save();
+}
+
+/**
+ * function for the purposes of testing with drush.
+ */
+function dd_commentary_alert_test() {
+  $commentaries = array();
+  $commentaries[] = array('title' => 'kevin is awesome',
+                        'author' => 'kevin',
+                        'url' => 'randomURL');
+  $user = user_load(1);
+  dd_commentary_alert_save_history($user, $commentaries);
+}

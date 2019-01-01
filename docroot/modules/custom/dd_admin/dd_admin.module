@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_admin.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_admin_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_admin module.
+    case 'help.page.dd_admin':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Admin') . '</p>';
+      return $output;
+
+    default:
+  }
+}

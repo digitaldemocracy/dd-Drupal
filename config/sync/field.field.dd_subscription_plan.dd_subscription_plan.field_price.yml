@@ -1,0 +1,20 @@
+uuid: 56219ecf-c26f-4c29-8813-60753a2ebbf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_subscription_plan.field_price
+  module:
+    - dd_payment_system
+id: dd_subscription_plan.dd_subscription_plan.field_price
+field_name: field_price
+entity_type: dd_subscription_plan
+bundle: dd_subscription_plan
+label: 'Price ($, must be whole dollar, no cents)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

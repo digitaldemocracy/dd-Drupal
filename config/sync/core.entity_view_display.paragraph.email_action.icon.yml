@@ -1,0 +1,22 @@
+uuid: 690f3c42-3b06-4d95-9f79-1b3f9f5a4a72
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.email_action.field_email_body
+    - field.field.paragraph.email_action.field_email_subject
+    - field.field.paragraph.email_action.field_success_message
+    - paragraphs.paragraphs_type.email_action
+id: paragraph.email_action.icon
+targetEntityType: paragraph
+bundle: email_action
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_email_body: true
+  field_email_subject: true
+  field_success_message: true
+  uid: true

@@ -1,0 +1,20 @@
+uuid: 61cc7690-06bc-4bb7-b27a-80545e2c58b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_subscription_plan.field_role_name
+  module:
+    - dd_payment_system
+id: dd_subscription_plan.dd_subscription_plan.field_role_name
+field_name: field_role_name
+entity_type: dd_subscription_plan
+bundle: dd_subscription_plan
+label: Role
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

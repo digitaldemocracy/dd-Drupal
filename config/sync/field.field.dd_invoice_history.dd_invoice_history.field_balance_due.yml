@@ -1,0 +1,24 @@
+uuid: e8e0c98c-5a53-495f-b897-10c66f5ed71c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_invoice_history.field_balance_due
+  module:
+    - dd_payment_system
+id: dd_invoice_history.dd_invoice_history.field_balance_due
+field_name: field_balance_due
+entity_type: dd_invoice_history
+bundle: dd_invoice_history
+label: 'balance due'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: ''
+  max: ''
+  prefix: ''
+  suffix: ''
+field_type: dd_pay

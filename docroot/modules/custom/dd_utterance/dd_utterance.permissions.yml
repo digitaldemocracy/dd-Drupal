@@ -1,0 +1,16 @@
+administer dd utterance entities:
+  title: 'Administer DD Utterance entities'
+  description: 'Allow to access the administration form to configure DD Utterance entities.'
+  restrict access: true
+
+edit dd utterance entities:
+  title: 'Edit DD Utterance entities'
+
+access dd utterance overview:
+  title: 'Access the DD Utterance overview page'
+
+view published dd utterance entities:
+  title: 'View published DD Utterance entities'
+
+view unpublished dd utterance entities:
+  title: 'View unpublished DD Utterance entities'

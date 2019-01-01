@@ -1,0 +1,15 @@
+@import 'init';
+
+// Clip
+//
+// Markup: clip.twig
+//
+// Style guide: components.clip
+
+.dd-clip-thumbnail {
+  @include playbutton;
+
+  img {
+    width: 100%;
+  }
+}

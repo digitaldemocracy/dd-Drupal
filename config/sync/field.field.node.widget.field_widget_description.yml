@@ -1,0 +1,21 @@
+uuid: 2c839b93-2b60-41ae-9f84-80b65c4044ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_description
+    - node.type.widget
+  module:
+    - text
+id: node.widget.field_widget_description
+field_name: field_widget_description
+entity_type: node
+bundle: widget
+label: 'Widget Description'
+description: 'Appears at top, under title in widget'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

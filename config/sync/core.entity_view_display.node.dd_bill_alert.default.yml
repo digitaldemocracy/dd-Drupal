@@ -1,0 +1,93 @@
+uuid: 17d614da-542e-41c5-b435-024b5fcf0c25
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_bill_alert.field_alert_me_when_bill_is_amen
+    - field.field.node.dd_bill_alert.field_bill_number
+    - field.field.node.dd_bill_alert.field_bill_type
+    - field.field.node.dd_bill_alert.field_organization_alert
+    - field.field.node.dd_bill_alert.field_receive_alerts_for_schedul
+    - field.field.node.dd_bill_alert.field_receive_alerts_for_videos
+    - field.field.node.dd_bill_alert.field_receive_alerts_for_votes
+    - node.type.dd_bill_alert
+  module:
+    - text
+    - user
+id: node.dd_bill_alert.default
+targetEntityType: node
+bundle: dd_bill_alert
+mode: default
+content:
+  field_alert_me_when_bill_is_amen:
+    type: boolean
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_bill_number:
+    type: number_integer
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    region: content
+  field_bill_type:
+    type: text_default
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_organization_alert:
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_receive_alerts_for_schedul:
+    type: boolean
+    weight: 5
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_receive_alerts_for_videos:
+    type: boolean
+    weight: 3
+    label: above
+    settings:
+      format: default
+      format_custom_true: ''
+      format_custom_false: ''
+    third_party_settings: {  }
+    region: content
+  field_receive_alerts_for_votes:
+    type: boolean
+    weight: 4
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

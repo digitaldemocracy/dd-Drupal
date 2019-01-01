@@ -1,0 +1,12 @@
+<svg width="200" height="200" viewBox="0 0 200 200" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>green-minus-icon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" figma:type="canvas">
+<g id="green-minus-icon" style="mix-blend-mode:normal;" figma:type="vector-operation">
+<use xlink:href="#path0_fill" transform="translate(0 -54.4492)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+<defs>
+<path id="path0_fill" fill-rule="evenodd" d="M 100 254.449C 155.228 254.449 200 209.678 200 154.449C 200 99.2207 155.228 54.4492 100 54.4492C 44.7715 54.4492 0 99.2207 0 154.449C 0 209.678 44.7715 254.449 100 254.449ZM 157 145.949L 43 145.949L 43 162.949L 157 162.949L 157 145.949Z"/>
+</defs>
+</svg>

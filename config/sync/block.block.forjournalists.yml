@@ -1,0 +1,47 @@
+uuid: e7ebdaf4-8be7-46a8-9bc5-db3cd2af9881
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:925582c7-fc1d-4327-a097-190089b2df14'
+  module:
+    - block_content
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+  theme:
+    - dd
+id: forjournalists
+theme: dd
+region: home_content_right
+weight: 0
+provider: null
+plugin: 'block_content:925582c7-fc1d-4327-a097-190089b2df14'
+settings:
+  id: 'block_content:925582c7-fc1d-4327-a097-190089b2df14'
+  label: 'For Journalists'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

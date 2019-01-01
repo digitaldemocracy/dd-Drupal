@@ -1,0 +1,131 @@
+@import 'init';
+
+.is-path-analysis {
+
+  // Gifts tabs
+  #block-dd-local-tasks {
+    @include menu-tabs;
+    //Override drupal tab styles
+
+    ul.tabs--primary {
+      border-top: 0;
+
+      @include zen-respond-to(s) {
+        flex-wrap: nowrap;
+      }
+    }
+
+    .tabs__tab {
+      width: 50%;
+
+      // Responsive styles
+      @include zen-respond-to(s) {
+        width: auto;
+      }
+
+      // The Anchor links
+      &-link {
+
+        &.is-active {
+          background-color: $dd-charcoal;
+          color: $white;
+          font-weight: bold;
+        }
+
+        &:hover {
+          background-color: $dd-yellow;
+        }
+      }
+    }
+  }
+}
+
+// The top ALignments and gifts  menu
+#block-analysisnavigation {
+  ul.menu.navbar {
+    @include dd-bottom-border($dd-silver);
+    margin-left: 0;
+
+    > li.menu-item {
+      @include font-size(l);
+      @include dd-simple-borders;
+      text-transform: uppercase;
+      border-radius:3px 3px 0 0;
+      border-bottom: 0;
+      padding: 0;
+
+      > a {
+        @include typeface(headings);
+        color: $dd-blue;
+        padding: .2rem 1rem;
+        display: inline-block;
+        text-align: center;
+
+        &:hover {
+          background-color: $dd-blue;
+          color: $white;
+        }
+      }
+
+      &.menu-item--active-trail {
+        a {
+          background-color: $dd-blue;
+          color: $white;
+        }
+      }
+    }
+  }
+
+  > ul:not(.contextual-links) ul {
+    @include dd-bottom-border($dd-silver);
+    @include flex-container;
+    position: absolute;
+    top: 31px;
+    left: -1px;
+    margin-left: 0;
+
+    @include zen-respond-to(xs-and-below) {
+      li {
+        width: 50%;
+        border-bottom: 1px solid $dd-silver;
+
+        &:nth-child(2) {
+          border-right: 1px solid $dd-silver;
+        }
+      }
+    }
+
+    li {
+      @include flex-item;
+      @include dd-complex-borders($dd-silver, 1px, 0, 0, 1px);
+
+      a {
+        padding: .5em 1em .4em;
+        display: inline-block;
+        width: 100%;
+      }
+
+      &:last-child {
+        border-right: 1px solid $dd-silver;
+      }
+
+      // Active menu item
+      &.menu-item--active-trail {
+        background: $dd-blue;
+
+        a.is-active {
+          color: $white;
+        }
+      }
+    }
+  }
+}
+
+// Clear blocks below menu
+#block-analysisnavigation + div {
+  clear: both;
+}
+
+.view-display-id-page_1 {
+  margin-top: 1rem;
+}

@@ -1,0 +1,38 @@
+uuid: ccb7735d-fec1-43fb-a84f-13c1d2e86eb7
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: j5zLMOdJBqC0bMvSdth5UebkprJB8g_2FXHqhfpJzow
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access site-wide contact form'
+  - 'access user profiles'
+  - 'search content'
+  - 'use text format restricted_html'
+  - 'view published dd authors entities'
+  - 'view published dd behests entities'
+  - 'view published dd bill discussion entities'
+  - 'view published dd bill entities'
+  - 'view published dd bill version entities'
+  - 'view published dd clip entities'
+  - 'view published dd committee authors entities'
+  - 'view published dd committee entities'
+  - 'view published dd contribution entities'
+  - 'view published dd general public entities'
+  - 'view published dd gift entities'
+  - 'view published dd hearing entities'
+  - 'view published dd legislative staff entities'
+  - 'view published dd legislator entities'
+  - 'view published dd lobbyist entities'
+  - 'view published dd organization entities'
+  - 'view published dd serveson entities'
+  - 'view published dd term entities'
+  - 'view published dd utterance entities'
+  - 'view published dd video entities'
+  - 'view published dd_person entities'

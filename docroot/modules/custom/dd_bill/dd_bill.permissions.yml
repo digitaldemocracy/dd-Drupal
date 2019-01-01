@@ -1,0 +1,50 @@
+administer dd bill entities:
+  title: 'Administer DD Bill entities'
+  description: 'Allow to access the administration form to configure DD Bill entities.'
+  restrict access: true
+
+edit dd bill entities:
+  title: 'Edit DD Bill entities'
+
+access dd bill overview:
+  title: 'Access the DD Bill overview page'
+
+view published dd bill entities:
+  title: 'View published DD Bill entities'
+
+view unpublished dd bill entities:
+  title: 'View unpublished DD Bill entities'
+
+administer dd bill version entities:
+  title: 'Administer DD Bill Version entities'
+  description: 'Allow to access the administration form to configure DD Bill Version entities.'
+  restrict access: true
+
+edit dd bill version entities:
+  title: 'Edit DD Bill Version entities'
+
+access dd bill version overview:
+  title: 'Access the DD Bill Version overview page'
+
+view published dd bill version entities:
+  title: 'View published DD Bill Version entities'
+
+view unpublished dd bill version entities:
+  title: 'View unpublished DD Bill Version entities'
+
+administer dd bill discussion entities:
+  title: 'Administer DD Bill Discussion entities'
+  description: 'Allow to access the administration form to configure DD Bill Discussion entities.'
+  restrict access: true
+
+edit dd bill discussion entities:
+  title: 'Edit DD Bill Discussion entities'
+
+access dd bill discussion overview:
+  title: 'Access the DD Bill Discussion overview page'
+
+view published dd bill discussion entities:
+  title: 'View published DD Bill Discussion entities'
+
+view unpublished dd bill discussion entities:
+  title: 'View unpublished DD Bill Discussion entities'

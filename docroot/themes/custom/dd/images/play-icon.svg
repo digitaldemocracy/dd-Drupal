@@ -1,0 +1,27 @@
+<svg width="45" height="45" viewBox="0 0 45 45" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>small-play-icon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(156 -73)" figma:type="canvas">
+<mask id="mask0_alpha" mask-type="alpha">
+<path d="M -156 73L -111 73L -111 117.062L -156 117.062L -156 73Z" fill="#FFFFFF"/>
+</mask>
+<g id="small-play-icon" style="mix-blend-mode:normal;" mask="url(#mask0_alpha)" figma:type="frame">
+<g id="Component" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Ellipse" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;isolation:isolate;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(-153.5 75.4777)" fill="#F7D519" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+<g id="Polygon" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;isolation:isolate;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="matrix(1.80411e-16 1 -1 1.80411e-16 -122 85.0313)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 40 19.5536C 40 30.3527 31.0457 39.1071 20 39.1071C 8.9543 39.1071 0 30.3527 0 19.5536C 0 8.75443 8.9543 0 20 0C 31.0457 0 40 8.75443 40 19.5536Z"/>
+<path id="path1_fill" d="M 8.75924 0.71991C 9.30117 -0.23997 10.6988 -0.23997 11.2407 0.71991L 19.8179 15.9123C 20.3463 16.848 19.6616 18 18.5771 18L 1.42277 18C 0.3384 18 -0.346231 16.848 0.182049 15.9123L 8.75924 0.71991Z"/>
+</defs>
+</svg>

@@ -1,0 +1,29 @@
+uuid: d200220a-3fda-46cc-bf06-4ac740c3cb6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.campaign_action.field_actions
+    - field.field.node.campaign_action.field_campaign
+    - node.type.campaign_action
+  module:
+    - entity_reference_revisions
+    - user
+id: node.campaign_action.teaser
+targetEntityType: node
+bundle: campaign_action
+mode: teaser
+content:
+  field_actions:
+    type: entity_reference_revisions_entity_view
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_campaign: true
+  links: true

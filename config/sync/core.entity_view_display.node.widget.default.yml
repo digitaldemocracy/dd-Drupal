@@ -1,0 +1,251 @@
+uuid: a29ad20e-a8be-447f-9c76-ab9ca699237b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.widget.field_button_text_color
+    - field.field.node.widget.field_css_override
+    - field.field.node.widget.field_logo_vertical
+    - field.field.node.widget.field_show_advanced_search_butto
+    - field.field.node.widget.field_show_create_alerts_button
+    - field.field.node.widget.field_show_search_bills
+    - field.field.node.widget.field_show_search_bills_label
+    - field.field.node.widget.field_show_search_organizations
+    - field.field.node.widget.field_show_search_orgs_label
+    - field.field.node.widget.field_show_search_speakers
+    - field.field.node.widget.field_show_search_speakers_label
+    - field.field.node.widget.field_show_search_statements
+    - field.field.node.widget.field_show_search_statements_lab
+    - field.field.node.widget.field_show_take_action_button
+    - field.field.node.widget.field_show_title
+    - field.field.node.widget.field_widget_background_color
+    - field.field.node.widget.field_widget_button_color
+    - field.field.node.widget.field_widget_description
+    - field.field.node.widget.field_widget_font_color
+    - field.field.node.widget.field_widget_layout_style
+    - field.field.node.widget.field_widget_sponsored_logo
+    - field.field.node.widget.field_widget_sponsored_text
+    - field.field.node.widget.field_widget_top_logo
+    - image.style.medium
+    - node.type.widget
+  module:
+    - image
+    - jquery_colorpicker
+    - options
+    - text
+    - user
+id: node.widget.default
+targetEntityType: node
+bundle: widget
+mode: default
+content:
+  field_button_text_color:
+    weight: 26
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: jquery_colorpicker_color_display
+    region: content
+  field_css_override:
+    type: basic_string
+    weight: 19
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_logo_vertical:
+    weight: 25
+    label: hidden
+    settings:
+      image_style: vertical_widget_logo
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_show_advanced_search_butto:
+    type: boolean
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_create_alerts_button:
+    type: boolean
+    weight: 7
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_search_bills:
+    weight: 21
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_show_search_bills_label:
+    type: boolean
+    weight: 9
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_search_organizations:
+    weight: 22
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_show_search_orgs_label:
+    type: boolean
+    weight: 11
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_search_speakers:
+    type: boolean
+    weight: 14
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_search_speakers_label:
+    type: boolean
+    weight: 13
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_search_statements:
+    weight: 20
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_show_search_statements_lab:
+    type: boolean
+    weight: 15
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_take_action_button:
+    type: boolean
+    weight: 8
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  field_show_title:
+    weight: 23
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_widget_background_color:
+    type: jquery_colorpicker_color_display
+    weight: 16
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_widget_button_color:
+    type: jquery_colorpicker_color_display
+    weight: 17
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_widget_description:
+    weight: 24
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_widget_font_color:
+    type: jquery_colorpicker_color_display
+    weight: 18
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_widget_layout_style:
+    type: list_key
+    weight: 5
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_widget_sponsored_logo:
+    weight: 4
+    label: hidden
+    settings:
+      image_style: thumbnail
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  field_widget_sponsored_text:
+    weight: 3
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_widget_top_logo:
+    weight: 1
+    label: hidden
+    settings:
+      image_style: medium
+      image_link: ''
+    third_party_settings: {  }
+    type: image
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

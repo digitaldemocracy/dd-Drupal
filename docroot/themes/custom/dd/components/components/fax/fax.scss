@@ -1,0 +1,14 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/fax/icons';
+
+div.dd-fax-service-preview-form {
+  background-color: lightgray;
+  padding: 10px 10px 10px 10px;
+
+  .form {
+    width: 100px;
+    margin: 10px auto 10px;
+  }
+}

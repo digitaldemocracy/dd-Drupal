@@ -1,0 +1,64 @@
+dd_video_editor.video_clipper:
+  path: '/user/{user}/dd_video_editor/video_clipper/{arg1}'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\VideoClipperController::generateContent'
+    _title: 'Video Clipper Page'
+  requirements:
+    _permission: 'add dd clip entities'
+dd_video_editor.video_builder:
+  path: '/user/{user}/dd_video_editor/video_builder'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\VideoBuilderController::generateContent'
+    _title: 'Video Builder Page'
+  requirements:
+    _permission: 'access dd video builder'
+dd_video_editor.tag_autocomplete:
+  path: '/dd_video_editor/tag_autocomplete'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\CommonUtilityController::videoTagAutocomplete'
+    _title: 'video tags autocomplete'
+  requirements:
+    _permission: 'add dd clip entities'
+dd_video_editor.set_video_status:
+  path: '/dd_video_editor/set_video_status/{clip_id}'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\CommonUtilityController::setVideoStatus'
+    _title: 'set video status'
+  requirements:
+    _permission: 'add dd clip entities'
+dd_video_editor.video_annotator:
+  path: '/user/{user}/dd_video_editor/video_annotator/{clip_id}'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\VideoAnnotatorController::generateContent'
+    _title: 'Video Annotator Page'
+  requirements:
+    _permission: 'access dd video annotator'
+dd_video_editor.get_annotations:
+  path: '/user/{user}/dd_video_editor/get_annotations'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\CommonUtilityController::getAnnotations'
+    _title: 'get annotations'
+  requirements:
+    _permission: 'access content'
+dd_video_editor.my_clip_bank_page:
+ path: '/user/{user}/dd_video_editor/my_clip_bank'              
+ defaults:           
+   _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+   _title: 'My Clip Bank'            
+ requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+ options:            
+   no_cache: TRUE
+dd_video_editor.clip_select:
+  path: '/user/{user}/dd_video_editor/clip_select/{clip_field_id}/{member}'
+  defaults:
+    _controller: '\Drupal\dd_video_editor\Controller\CommonUtilityController::clipSelectBlock'
+    _title: 'Video Clip Selection'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE

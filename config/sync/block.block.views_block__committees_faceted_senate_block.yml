@@ -1,0 +1,37 @@
+uuid: f72c78f6-c843-4441-b25a-1a2addad6567
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.committees_faceted
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__committees_faceted_senate_block
+theme: dd
+region: content
+weight: -32
+provider: null
+plugin: 'views_block:committees_faceted-senate_block'
+settings:
+  id: 'views_block:committees_faceted-senate_block'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /committees
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,20 @@
+uuid: cc698cfa-7b9a-409f-9594-c8022c8878dc
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_fax_service
+id: dd_fax_service_history.field_faxes_sent
+field_name: field_faxes_sent
+entity_type: dd_fax_service_history
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,203 @@
+uuid: e1276077-e320-4d41-8970-587380dad560
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_gift.dd_gift.default
+targetEntityType: dd_gift
+bundle: dd_gift
+mode: default
+content:
+  activity:
+    type: string
+    weight: 3
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  city:
+    type: string
+    weight: 4
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  cityState:
+    type: string
+    weight: 5
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  description:
+    type: string
+    weight: 11
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  first:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  giftDate_ts:
+    type: timestamp
+    weight: 7
+    label: inline
+    settings:
+      date_format: custom
+      custom_date_format: Y-m-d
+      timezone: ''
+    third_party_settings: {  }
+    region: content
+  giftIncomeFlag:
+    type: boolean
+    weight: 9
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 5
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  last:
+    label: inline
+    type: string
+    weight: 3
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  middle:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  oid:
+    type: entity_reference_entity_view
+    weight: 12
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  pid:
+    type: entity_reference_entity_view
+    weight: 0
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  reimbursed:
+    type: boolean
+    weight: 8
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  schedule:
+    type: string
+    weight: 1
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  sourceName:
+    type: string
+    weight: 2
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  speechFlag:
+    type: boolean
+    weight: 10
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  value:
+    type: number_decimal
+    weight: 6
+    label: inline
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    region: content
+hidden:
+  servesOn_dr_ids: true
+  sessionYear: true

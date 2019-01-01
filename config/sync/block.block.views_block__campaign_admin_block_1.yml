@@ -1,0 +1,70 @@
+uuid: 8543f8ad-fcb6-42af-ad65-870d046cf69a
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaign_admin
+  module:
+    - block_visibility_groups
+    - facets
+    - node
+    - request_parameter_condition
+    - system
+    - user
+    - views
+  theme:
+    - dd
+id: views_block__campaign_admin_block_1
+theme: dd
+region: breadcrumb
+weight: -50
+provider: null
+plugin: 'views_block:campaign_admin-block_1'
+settings:
+  id: 'views_block:campaign_admin-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      campaign: campaign
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      action_center_admin: action_center_admin
+      site_manager: site_manager
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/node/*/edit\r\n/node/*/delete\r\n/node/*/bill-edit\r\n/node/*/statewide-edit"
+    negate: true
+    context_mapping: {  }

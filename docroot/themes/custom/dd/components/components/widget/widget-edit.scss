@@ -1,0 +1,14 @@
+@import 'init';
+// Stop 100% width images.
+.is-page-node-type-edit.is-page-node-type-widget,
+.node-add-form.is-page-node-type-widget {
+  .dd-rounded-corners.content--main img {
+    width: auto;
+  }
+
+  .description {
+    @include font-size(s);
+    color: $dd-dimgray;
+    font-style: italic;
+  }
+}

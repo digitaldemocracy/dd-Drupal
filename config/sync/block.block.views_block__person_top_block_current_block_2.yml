@@ -1,0 +1,52 @@
+uuid: f25fa22f-9c1c-4a47-9e14-1a30805ef1c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.person_top_block_current
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__person_top_block_current_block_2
+theme: dd
+region: content_top
+weight: -50
+provider: null
+plugin: 'views_block:person_top_block_current-block_2'
+settings:
+  id: 'views_block:person_top_block_current-block_2'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

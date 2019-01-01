@@ -1,0 +1,78 @@
+uuid: ba804ed3-6839-4072-9d16-af649d8fd5d7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_saved_content.dd_saved_content.field_description
+    - field.field.dd_saved_content.dd_saved_content.field_path
+    - field.field.dd_saved_content.dd_saved_content.field_state
+    - field.field.dd_saved_content.dd_saved_content.field_type
+    - field.field.dd_saved_content.dd_saved_content.field_url
+  module:
+    - dd_account_dashboard
+    - link
+    - options
+    - user
+id: dd_saved_content.dd_saved_content.default
+targetEntityType: dd_saved_content
+bundle: dd_saved_content
+mode: default
+content:
+  field_description:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_path:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_state:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_type:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_url:
+    weight: 2
+    label: above
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    type: link
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

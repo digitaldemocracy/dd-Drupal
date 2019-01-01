@@ -1,0 +1,6 @@
+{% extends "page.html.twig" %}
+{% block body %}
+  {{ attach_library('dd/dd-widget-edit') }}
+  {{ parent() }}
+{% endblock %}
+{# Template for the edit page so widget styles do not affect the edit page styles#}

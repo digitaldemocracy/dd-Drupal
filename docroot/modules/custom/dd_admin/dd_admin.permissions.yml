@@ -1,0 +1,4 @@
+administer site manager settings:
+  title: 'Administer DD Site Manager Settings'
+  description: 'Allow to access the DD Site Manager administration settings forms.'
+  restrict access: true

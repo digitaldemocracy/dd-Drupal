@@ -1,0 +1,23 @@
+uuid: 81b370e1-9010-47f4-b96b-f849a62d3f6a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_start_time
+    - node.type.blog
+id: node.blog.field_start_time
+field_name: field_start_time
+entity_type: node
+bundle: blog
+label: start_time
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

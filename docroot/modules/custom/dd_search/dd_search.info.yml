@@ -1,0 +1,5 @@
+name: Dd Search
+type: module
+description: DD Search Components
+core: 8.x
+package: DigitalDemocracy

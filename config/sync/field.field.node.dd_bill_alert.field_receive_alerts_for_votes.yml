@@ -1,0 +1,23 @@
+uuid: f65a2fcf-733c-4ca9-b7e6-3156f8c684b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_receive_alerts_for_votes
+    - node.type.dd_bill_alert
+id: node.dd_bill_alert.field_receive_alerts_for_votes
+field_name: field_receive_alerts_for_votes
+entity_type: node
+bundle: dd_bill_alert
+label: 'Receive alerts for votes'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

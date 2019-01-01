@@ -1,0 +1,349 @@
+@import 'init';
+
+
+// ---------- Campaign Wizard Redesign. General styles
+.campaign-wizard {
+  color: $dd-dimgray;
+
+  .content--main {
+    &.dd-rounded-corners {
+      border: none;
+      background: transparent;
+      padding-top: 0;
+    }
+
+    h1.page-title {
+      font-weight: normal;
+      color: $dd-dimgray;
+      margin: 0;
+    }
+
+    .page--description {
+      font-size: 1.15rem;
+      padding: .5em 0;
+      color: $dd-dimgray;
+    }
+  }
+
+  // The Campaign Form Elements
+
+  form.node-campaign-form {
+    margin-top: 1rem;
+
+    //======= TITLE ========
+    label,
+    label.form-required {
+      color: $dd-blue;
+      padding: .5rem 0;
+    }
+  }
+
+  // Collapsible Sections.
+  details {
+    summary {
+      font-weight: normal;
+      background-color: $dd-blue;
+      color: $white;
+      padding: 1rem 1.5rem 1rem 2rem;
+      position: relative;
+      // hide the default dropdown triangle in firefox only;
+      list-style: none;
+
+      &:before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307.046 307.046"><g><g><g><path fill ="%23FFF" d="M239.087 142.427L101.259 4.597c-6.133-6.129-16.073-6.129-22.203 0L67.955 15.698c-6.129 6.133-6.129 16.076 0 22.201l115.621 115.626-115.621 115.61c-6.129 6.136-6.129 16.086 0 22.209l11.101 11.101c6.13 6.136 16.07 6.136 22.203 0l137.828-137.831c6.135-6.127 6.135-16.058 0-22.187z"/></g></g></g></svg>');
+        background-size: 18px;
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px;
+        content: " ";
+        position: absolute;
+        left: 9px;
+        top: 25px;
+      }
+
+      // hide the default dropdown triangle in webkit only;
+      &::-webkit-details-marker {
+        display: none;
+      }
+    }
+
+    &[open] {
+      summary:before {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307.053 307.053"><g><g><g><path fill ="%23FFF" d="M302.445 80.796l-11.101-11.103c-6.123-6.131-16.074-6.131-22.209 0L153.67 183.707 37.907 67.959c-6.134-6.13-16.08-6.13-22.209 0L4.597 79.06c-6.129 6.133-6.129 16.067 0 22.201l137.83 137.829c6.129 6.136 16.067 6.136 22.203 0l137.815-136.096c6.144-6.13 6.144-16.068 0-22.198z"/></g></g></g></svg>');
+      }
+    }
+  }
+
+  // Campaign Dates
+  .campaign__dates {
+    h3 {
+      padding: 0 0 2rem;
+
+      &:after {
+        @include font-size(s);
+        content: 'How long do you want this campaign to run for?';
+        display: block;
+        color: $dd-greylight;
+        background-image: none;
+        width: 100%;
+        font-weight: normal;
+        height: initial;
+      }
+    }
+
+    .form-required {
+      color: $dd-blue;
+    }
+  }
+
+  // Form labels
+  .form-wrapper {
+    h3 {
+      @include wizard-labels;
+
+    }
+  }
+
+  &.campaign-wizard--details {
+    label:not(.option),
+    .label {
+      @include wizard-labels;
+      display: inline-block;
+    }
+  }
+
+  h4 {
+    @include typeface(body);
+    font-size: 1rem;
+    color: $dd_dimgray;
+
+    &.form-required {
+      color: $dd-dimgray !important;
+    }
+  }
+
+  // Style Input types to remove default focus and browser styles
+
+  input[type = "date"] {
+    @include input-style;
+    color: $dd-greylight;
+  }
+
+  // Custom styles for the Checkboxes
+  input[type="checkbox"] {
+    -webkit-appearance: none;
+    // -moz-appearance: none; // Commented out because FF doesn't do well with custom form controls
+    // Read: https://coderwall.com/p/a7tbrq/protip-if-you-want-to-style-checkboxes-radio-buttons-or-select-menus-in-firefox-don-t-bother
+    background: $white;
+    border: 1px solid $dd-silver;
+    border-radius: 3px;
+    padding: 10px;
+    margin-right: .5rem;
+    margin-top: 2px;
+
+    &:focus {
+      border-color: $dd-blue-lighter;
+      outline: 0;
+      box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(102, 175, 233, .6);
+    }
+
+    &:checked {
+      background-color: $dd-yellow;
+      border: none;
+      position: relative;
+
+      &:after {
+        content: '';
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612.005 612.005"><path fill ="%23FFF" d="M595.601 81.553c-21.892-21.891-57.362-21.891-79.253 0L183.03 414.87l-88.629-76.133c-21.592-21.593-56.596-21.593-78.207 0-21.592 21.592-21.592 56.614 0 78.206l132.412 113.733c21.592 21.593 56.596 21.593 78.207 0 2.167-2.166 3.979-4.576 5.716-6.985.317-.299.672-.505.99-.804l362.083-362.101c21.871-21.872 21.871-57.361-.001-79.233z"/></svg>');
+        font-size: 15px;
+        position: absolute;
+        top: 0;
+        left: 3px;
+        color: $white;
+        height: 100%;
+        width: 100%;
+        background-size: 14px;
+        background-repeat: no-repeat;
+        background-position: 0 center;
+      }
+    }
+  }
+
+  .form-type-checkbox {
+    margin: 0 0 1rem;
+
+    .description {
+      margin-left: 2.3em;
+    }
+
+    label {
+      vertical-align: top;
+    }
+  }
+
+  textarea {
+    @include input-style;
+    height: auto;
+  }
+
+  // Draggable Multiple field widgets
+  .field-multiple-table {
+    border-collapse: separate;
+    border-spacing: 0 2em;
+
+    + .description {
+      margin-top: -2em;
+    }
+    // Draggable field header
+    th {
+      padding-bottom: 0;
+      border-bottom: 0;
+
+      h4 {
+        font-weight: bold;
+      }
+    }
+
+    tbody {
+      border-top: 0;
+
+      tr {
+        border-bottom: 0;
+        background-color: $dd-offwhite;
+
+        &.draggable {
+
+        }
+      }
+    }
+
+    td {
+      padding: 2em 0 1em;
+
+      // Style the Drag icon wrapper
+      &.field-multiple-drag {
+        padding: 1em 0 1em .8em;
+        background-color: darken($dd-offwhite, 5%);
+      }
+    }
+
+    a.clip-select-open {
+      margin: 1em 1em;
+    }
+
+    .form-type-textarea label {
+      margin-bottom: 1em;
+    }
+  }
+
+  // Drag icons
+  a.tabledrag-handle {
+    display: block;
+    float: none;
+    height: auto;
+
+    .handle {
+      background-image: url('data:image/svg+xml;utf,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><path fill ="%237b7b7b" d="M63.875 31.203c-.102-.246-.248-.467-.435-.652l-6.837-6.838c-.783-.783-2.051-.783-2.834 0-.781.781-.781 2.05 0 2.832l3.42 3.42-23.16-.001.002-23.155 3.568 3.57c.393.392.904.588 1.418.588.512 0 1.025-.196 1.416-.588.783-.781.783-2.051 0-2.834L33.445.555c-.186-.186-.406-.332-.652-.434-.49-.203-1.041-.203-1.531 0-.244.101-.463.246-.646.429 0 0-.002.002-.004.003l-6.844 6.84c-.781.783-.781 2.051 0 2.834.393.391.904.587 1.418.587.512 0 1.025-.196 1.416-.587l3.422-3.42-.002 23.157-23.15-.001 3.417-3.418c.781-.782.781-2.051 0-2.832-.783-.783-2.051-.783-2.834 0l-6.838 6.84c-.393.391-.588.903-.588 1.416s.195 1.025.588 1.417l6.988 6.989c.392.393.904.588 1.417.588s1.025-.195 1.417-.588c.782-.783.782-2.051 0-2.833l-3.571-3.571 23.153.001-.001 23.153-3.418-3.417c-.783-.78-2.051-.782-2.834.001-.781.783-.781 2.052 0 2.834l6.844 6.839c.391.392.904.587 1.416.587.513 0 1.025-.195 1.416-.587l6.99-6.991c.783-.783.783-2.053 0-2.834-.783-.783-2.051-.783-2.834 0l-3.572 3.574.002-23.159 23.16.001-3.57 3.569c-.781.782-.781 2.05 0 2.833.393.393.904.588 1.418.588.512 0 1.025-.195 1.416-.588l6.989-6.989c.004-.005.006-.012.012-.017.177-.182.321-.396.421-.633.102-.246.154-.506.154-.768-.001-.259-.053-.52-.155-.765z"/></svg>');
+      height: 24px;
+      margin: 0;
+      padding: 0.42em 0.5em;
+      width: 19px;
+      background-size: 25px;
+    }
+  }
+
+  // Field for adding more items in paragraphs
+  .field--name-field-video-clips input.field-add-more-submit {
+    @include font-size(l);
+    background-color: transparent;
+    background-size: .9em;
+    background-position: left;
+    padding-left: 1.3em;
+    border: 0;
+    box-shadow: none;
+    color: #137177;
+    text-shadow: none;
+    background-image: url('data:image/svg+xml;utf,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 357 357"><path fill ="%23137177" d="M357 204H204v153h-51V204H0v-51h153V0h51v153h153v51z"/></svg>');
+  }
+
+  // Form description
+  .description {
+    color: $dd-greylight;
+  }
+
+  // Form Labels
+  label {
+    margin-bottom: .5em;
+  }
+
+  // CKEditor
+  .cke_top,
+  .cke_bottom {
+    background-image: none;
+    box-shadow: none;
+    background-color: $dd-offwhite;
+    border-top: 0;
+  }
+
+  .chosen-container-single .chosen-single {
+    background: transparent;
+    padding: .5em;
+    height: auto;
+
+    div b {
+      background-size: 94px 63px !important;
+      background-repeat: no-repeat !important;
+    }
+
+    span {
+      font-size: 1.25em;
+    }
+  }
+
+  // ================ Choose Campaign Type ===============
+  &.campaign-wizard--newcampaign {
+    .content--main {
+      @include dd-box-shadow;
+      width: 70%;
+      margin: 0 auto;
+      padding: 2em;
+      background: #fff;
+
+      h1.page-title {
+        margin-bottom: 2rem;
+      }
+
+      a.button {
+        margin-right: 2rem;
+        padding: .5em 1em;
+        width: 43%;
+        margin-top: 2rem;
+        font-weight: normal;
+        font-size: 1.15rem;
+        margin-bottom: 2rem;
+      }
+    }
+  }
+
+  // Fix for bill digest with P tag in content.
+  div#campaign-bill-preview-digest p:first-of-type {
+    margin: 0;
+  }
+
+  // Add a bit of spacing to description classes.
+  div[id*="--description"] {
+    margin-bottom: 0.5rem;
+  }
+
+  .field--name-field-actions .paragraphs-subform .form-wrapper {
+    margin-bottom: 1rem;
+  }
+
+  // Forms General wrapper style
+  form {
+    &.dd-campaign-target-actions-form {
+      background: #fff;
+      padding: 1rem;
+    }
+  }
+}

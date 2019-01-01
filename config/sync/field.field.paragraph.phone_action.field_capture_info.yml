@@ -1,0 +1,23 @@
+uuid: dc4a94a0-f29e-4faa-adc2-404f0354598c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_capture_info
+    - paragraphs.paragraphs_type.phone_action
+id: paragraph.phone_action.field_capture_info
+field_name: field_capture_info
+entity_type: paragraph
+bundle: phone_action
+label: "Include field to capture information conveyed by the staff\t"
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

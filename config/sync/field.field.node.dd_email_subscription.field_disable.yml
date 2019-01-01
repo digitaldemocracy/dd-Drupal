@@ -1,0 +1,23 @@
+uuid: 6c2730ff-a313-4559-8508-3489de9dc813
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_disable
+    - node.type.dd_email_subscription
+id: node.dd_email_subscription.field_disable
+field_name: field_disable
+entity_type: node
+bundle: dd_email_subscription
+label: Disable
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: Disable
+  off_label: Enable
+field_type: boolean

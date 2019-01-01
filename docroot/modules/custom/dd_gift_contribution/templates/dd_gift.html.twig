@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_gift.html.twig
+ * Default theme implementation to present DD Gift data.
+ *
+ * This template is used when viewing DD Gift pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_gift()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_gift') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_person.first_last
+label: First Last Name
+targetEntityType: dd_person
+cache: true

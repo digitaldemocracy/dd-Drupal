@@ -1,0 +1,38 @@
+uuid: a7a14d88-d569-49c7-9e17-55aa3035d949
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_clip_bank_quota.dd_clip_bank_quota.field_quota_in_bytes
+  module:
+    - dd_clip
+    - user
+id: dd_clip_bank_quota.dd_clip_bank_quota.default
+targetEntityType: dd_clip_bank_quota
+bundle: dd_clip_bank_quota
+mode: default
+content:
+  field_quota_in_bytes:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

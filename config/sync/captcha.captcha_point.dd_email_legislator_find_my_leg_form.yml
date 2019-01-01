@@ -1,0 +1,7 @@
+uuid: 3273dedd-d318-46ed-94f0-8abb9c6f8902
+langcode: en
+status: true
+dependencies: {  }
+formId: dd_email_legislator_find_my_leg_form
+captchaType: recaptcha/reCAPTCHA
+label: dd_email_legislator_find_my_leg_form

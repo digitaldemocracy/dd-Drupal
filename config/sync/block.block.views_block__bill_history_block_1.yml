@@ -1,0 +1,37 @@
+uuid: 2f362923-9423-4b0e-890c-8c97ad9ef4f0
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bill_history
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__bill_history_block_1
+theme: dd
+region: content
+weight: -28
+provider: null
+plugin: 'views_block:bill_history-block_1'
+settings:
+  id: 'views_block:bill_history-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/bill/*'
+    negate: false
+    context_mapping: {  }

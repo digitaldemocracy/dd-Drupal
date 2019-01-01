@@ -1,0 +1,37 @@
+uuid: 3414ca26-0f4e-4ea6-9296-2689308545b2
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.person_top_block_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__person_top_block_former_block
+theme: dd
+region: content
+weight: -42
+provider: null
+plugin: 'views_block:person_top_block_years-block_former_classifications_block'
+settings:
+  id: 'views_block:person_top_block_years-block_former_classifications_block'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

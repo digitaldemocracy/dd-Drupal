@@ -1,0 +1,23 @@
+uuid: 1946a250-b990-4dc7-be92-1ae4e63d0bf1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_is_statewide_campaign
+    - node.type.campaign
+id: node.campaign.field_is_statewide_campaign
+field_name: field_is_statewide_campaign
+entity_type: node
+bundle: campaign
+label: 'Is Statewide Campaign'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,91 @@
+{
+    "name": "drupal/drupal",
+    "description": "Drupal is an open source content management platform powering millions of websites and applications.",
+    "type": "project",
+    "license": "GPL-2.0+",
+    "require": {
+        "drupal/core": "^8.6",
+        "drupal/address": "^1.4",
+        "drupal/views_slideshow": "^4.6",
+        "drupal/search_api_solr": "^2.3"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "preferred-install": "dist",
+        "autoloader-suffix": "Drupal8"
+    },
+    "extra": {
+        "patches": {
+            "drupal/views_field_view": {
+                "Allow per row display override": "https://www.drupal.org/files/issues/views_field_view-view_display_row_override-2819945-2.patch",
+                "Token caps, non-token args": "../patches/views_field_view-2793785-4-2824359-2.patch"
+            },
+            "drupal/facets": {
+                "Adding date facet": "https://www.drupal.org/files/issues/create_a_date_query_type-2611812-27.patch",
+                "Dropdown Chosen behavior": "https://www.drupal.org/files/issues/dropdown-chosen-2815271-2.patch",
+                "Dropdown HTML": "https://www.drupal.org/files/issues/dropdown-html-2815269-2.patch"
+            },
+            "drupal/field_group": {
+              "Fix undefined index": "https://www.drupal.org/files/issues/field_group-fix_settings_validation-2849759-3.patch"
+            },
+            "drupal/google_analytics": {
+              "Temp patch for bad config value on install": "https://www.drupal.org/files/issues/broken_admin_form_on_load-2664518-7.patch"
+            },
+            "drupal/metatag": {
+                "Views": "https://www.drupal.org/files/issues/views_integration-2563647-44.patch"
+            },
+            "drupal/multiselect": {
+                "custom form": "https://www.drupal.org/files/issues/custom-form-multiselect-2852654-1.patch",
+                "CSS": "https://www.drupal.org/files/issues/css-wrapping-2852660-2.patch"
+            },
+            "drupal/search_api": {
+                "Computed fields": "https://www.drupal.org/files/issues/computed_fields_custom_storage-2814925-2.patch",
+                "Highlighted Fields": "../patches/search-api-highlight.patch"
+            },
+            "drupal/search_api_solr": {
+                "Sort String Length": "https://www.drupal.org/files/issues/sort_fulltext-2809429-4.patch"
+            },
+            "drupal/stage_file_proxy": {
+                "Image convert style": "https://www.drupal.org/files/issues/convert-2833845-4.patch"
+            },
+            "drupal/core": {
+                "Grouped filters": "https://www.drupal.org/files/issues/2369119-145.patch",
+                "Quickedit js errors": "https://www.drupal.org/files/issues/quickedit__prevent_js_error__Uncaught_TypeError__Cannot_read_property__getAttribute__of_un.patch"
+            }
+        },
+        "_readme": [
+            "By default Drupal loads the autoloader from ./vendor/autoload.php.",
+            "To change the autoloader you can edit ./autoload.php."
+        ],
+        "merge-plugin": {
+            "include": [
+                "core/composer.json"
+            ],
+            "recurse": false,
+            "replace": false,
+            "merge-extra": false
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Drupal\\Core\\Composer\\": "core/lib/Drupal/Core/Composer"
+        }
+    },
+    "scripts": {
+        "pre-autoload-dump": "Drupal\\Core\\Composer\\Composer::preAutoloadDump",
+        "post-autoload-dump": "Drupal\\Core\\Composer\\Composer::ensureHtaccess",
+        "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
+        "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup"
+    },
+    "repositories": {
+        "drupal": {
+            "type": "composer",
+            "url": "https://packages.drupal.org/8"
+        }
+    },
+    "require-dev": {
+        "symfony/dom-crawler": "~2.8.13",
+        "drupal/console": "~1.0"
+    }
+}

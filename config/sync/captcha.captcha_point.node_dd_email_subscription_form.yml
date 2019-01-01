@@ -1,0 +1,7 @@
+uuid: 302c9c79-22e1-48a5-ae35-38d65648044e
+langcode: en
+status: false
+dependencies: {  }
+formId: node_dd_email_subscription_form
+captchaType: default
+label: null

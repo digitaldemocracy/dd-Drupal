@@ -1,0 +1,113 @@
+uuid: 953909b2-8012-4436-a030-f162848d0310
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_email_subscription.field_bill_number_is
+    - field.field.node.dd_email_subscription.field_bill_type
+    - field.field.node.dd_email_subscription.field_committee_is
+    - field.field.node.dd_email_subscription.field_disable
+    - field.field.node.dd_email_subscription.field_hearing_is_after_date
+    - field.field.node.dd_email_subscription.field_hearing_is_before_date
+    - field.field.node.dd_email_subscription.field_key_phrase
+    - field.field.node.dd_email_subscription.field_organization_alert2
+    - field.field.node.dd_email_subscription.field_restrict_phrase_to_speaker
+    - field.field.node.dd_email_subscription.field_speaker_pid
+    - node.type.dd_email_subscription
+  module:
+    - datetime
+    - options
+    - text
+    - user
+id: node.dd_email_subscription.default
+targetEntityType: node
+bundle: dd_email_subscription
+mode: default
+content:
+  field_bill_number_is:
+    type: text_default
+    weight: 7
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_bill_type:
+    weight: 10
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_committee_is:
+    type: text_default
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_disable:
+    weight: 11
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_hearing_is_after_date:
+    type: datetime_custom
+    weight: 4
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: 'Y-m-d\TH:i:s'
+    third_party_settings: {  }
+    region: content
+  field_hearing_is_before_date:
+    type: datetime_custom
+    weight: 5
+    label: above
+    settings:
+      date_format: 'Y-m-d\TH:i:s'
+      timezone_override: ''
+    third_party_settings: {  }
+    region: content
+  field_key_phrase:
+    type: text_default
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_organization_alert2:
+    weight: 9
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+    region: content
+  field_restrict_phrase_to_speaker:
+    type: text_default
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_speaker_pid:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

@@ -1,0 +1,206 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_person.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dd_person\Entity\DdPerson;
+use Drupal\dd_committee\Entity\DdServesOn;
+use Drupal\dd_person\Entity\DdCombinedAlignments;
+
+/**
+ * Implements hook_help().
+ */
+function dd_person_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_person':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Person Entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Checks the table to see if it's PIDs match the entities.
+ *
+ * @param string $table
+ *   Table name
+ * @param array $entities
+ *   Array of entities with IDs.
+ *
+ * @return array
+ *   Array of matching entities PIDs in table.
+ */
+function _dd_person_check_table_pids_exist($table, $entities) {
+  $query = \Drupal\Core\Database\Database::getConnection('default', \Drupal\dd_base\DdBase::getDddbName())->select($table, 't');
+  $query->fields('t', ['pid']);
+  $query->condition('t.pid', array_keys($entities), 'IN');
+  $results = $query->execute()->fetchAllKeyed(0, 0);
+  return $results;
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_person_theme($existing, $type, $theme, $path) {
+  $theme = array(
+    'dd_person' => array(
+      'render element' => 'elements',
+      'file' => 'dd_person.page.inc',
+      'template' => 'dd-person'
+    ),
+  );
+
+  return $theme;
+}
+
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_person_views_data_alter(array &$data) {
+  $data['search_api_index_persons_index']['PersonAffiliations'] = array(
+    'title' => t('Person Affiliations'),
+    'help' => t('Show a list of person organization affiliations'),
+    'field' => array(
+      'id' => 'dd_person_affiliations',
+    ),
+  );
+  $data['search_api_index_persons_index']['person_classifications_field'] = array(
+    'title' => t('Person Classifications Custom Field'),
+    'help' => t('Person Classifications Custom Field'),
+    'field' => array(
+      'id' => 'dd_person_classifications',
+    ),
+  );
+
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_person_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && ($form['#id'] == 'views-exposed-form-persons-faceted-page-1' || $form['#id'] == 'views-exposed-form-persons-faceted-page-2')) {
+    $form['fullname_firstlast']['#autocomplete_route_name'] = 'dd_person.person_autocomplete';
+    $form['#attached']['library'][] = 'dd/dd-autocomplete';
+    $form['#submit'][] = '_dd_person_search_submit';
+
+  }
+
+  // Alignment exposed filters.
+  if ($form_id == 'views_exposed_form' && ($form['#id'] == 'views-exposed-form-alignments-page-2' || \Drupal::routeMatch())) {
+    // Organization field.
+    $field_id = 'oid';
+    if (isset($form[$field_id])) {
+      $options = DdCombinedAlignments::buildOrganizationList();
+      // Alter the field.
+      $form[$field_id] = array(
+        '#type' => 'select',
+        '#options' => $options,
+        '#chosen' => TRUE,
+      );
+
+      unset($form[$field_id]['#size']);
+    }
+
+    // Legislator field.
+    $field_id = 'pid_house_party';
+    if (isset($form[$field_id])) {
+      $options = DdCombinedAlignments::buildLegislatorList();
+      // Alter the field.
+      $form[$field_id] = array(
+        '#type' => 'select',
+        '#options' => $options,
+        '#chosen' => TRUE,
+        '#validated' => TRUE,
+      );
+
+      unset($form[$field_id]['#size']);
+    }
+
+    $field_id = 'session_year';
+    if (isset($form[$field_id])) {
+      //$options = ['1' => '1', '2'=> '2'];
+      $options = DdCombinedAlignments::buildSessionYearList();
+      $form[$field_id] = array(
+        '#type' => 'select',
+        '#options' => $options,
+        '#chosen' => TRUE,
+        '#validated' => TRUE,
+      );
+    }
+
+    $vote_options = ['no_abstain_votes', 'no_unanimous', 'no_resolutions'];
+
+    foreach ($vote_options as $field_id) {
+      if (isset($form[$field_id])) {
+        foreach ($form[$field_id]['#options'] as $key => &$option) {
+          if ($key === 1) {
+            $option = 'Yes';
+          } else if ($key === 0) {
+            $option = 'No';
+          } else {
+            $option = NULL;
+          }
+        }
+      }
+    }
+
+    $field_id = 'sort_order';
+    if (isset($form[$field_id])) {
+      foreach ($form[$field_id]['#options'] as $key => &$option) {
+        if ($key === 'ASC') {
+          $option = 'Ascending';
+        }
+        if ($key === 'DESC') {
+          $option = 'Descending';
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_person_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Add State conditions for search_api tracking of entities.
+  if (
+    isset($query->getTables()['base_table']) &&
+    $query->getTables()['base_table']['table'] == 'Person' &&
+    \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))
+  ) {
+    $query->join('PersonStateAffiliation', 'psa_table', 'base_table.pid = psa_table.pid');
+    $query->condition('psa_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+  }
+}
+
+/**
+ * Person Search Form Submit Handler.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_person_search_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $view = $form_state->get('view');
+  $input = $view->getExposedInput();
+  $name = $form_state->getValue('fullname_firstlast');
+
+  // Strip out (#) PID from name.
+  if ($name != '') {
+    $name = trim(preg_replace("/[()\d]/", "", $name));
+    $input['fullname_firstlast'] = $name;
+    $view->exposed_data['fullname_firstlast'] = $name;
+  }
+
+  $view->setExposedInput($input);
+}

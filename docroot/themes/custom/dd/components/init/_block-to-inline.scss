@@ -1,0 +1,15 @@
+// sass-lint:disable no-important
+
+// block-to-inline()
+//
+// Recursively convery block styling to inline.
+//
+//
+// Style guide: sass.mixins.visually-hidden
+@mixin block-to-inline {
+  display: inline;
+
+  span.field-content * {
+    display: inline;
+  }
+}

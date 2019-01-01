@@ -1,0 +1,144 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_email_editor.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\node\Entity\Node;
+use Drupal\dd_email_editor\Utility\CommonHelper;
+
+/**
+ * Implements hook_help().
+ */
+function dd_email_editor_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_email_editor':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module helps you find your editors');
+      $output .= t(' and email them.');
+      $output .= '</p>';
+      return $output;
+    
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_email_editor_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-find-newspapers' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-find-newspapers',
+    ),
+    'dd-email-editor-contact-links' => array(
+      'variables' => array(
+        'links' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-email-editor-contact-links',
+    ),
+    'dd-find-newspapers-by-address' => array(
+      'variables' => array(
+        'form' => NULL,
+      ),
+      'template' => 'dd-find-newspapers-by-address',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * a helper function to get list of newspapers 
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param int $range_in_miles
+ *   the search range in miles from the address 
+ *
+ * @return assoc array
+ *   the array including newspapers with email address. 
+ */
+function dd_email_editor_get_newspapers($state, $zip, $city, $street, $range_in_miles=0) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+             );
+ 
+  $result = CommonHelper::findNewspapers($address, $range_in_miles); 
+  if (!isset($result['data'])) {
+    return null;
+  } 
+  return $result['data'];
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ * @param string $newspapers
+ *   assoc array of newspapers
+ *
+ * @return renderable array
+ *   the array including editors with email link. 
+ */
+function dd_email_editor_contact_links($body, $subject = null, $newspapers, $bcc=null) {
+  return CommonHelper::convertToEmailLinks($body, $subject, $newspapers, $bcc);
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param int $range_in_miles
+ *   the search range in miles from the address 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ * @param string $newspapers
+ *   assoc array of newspapers
+ *
+ * @return renderable array
+ *   the array including editors with email link. 
+ */
+function dd_email_editor_get_contact_links($state, $zip=null, $city=null, $street=null, $range_in_miles=0, $body, $subject=null, $bcc=null) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+             );
+ 
+  $result = CommonHelper::findNewspapers($address, $range_in_miles);
+  if (!isset($result['data'])) {
+    return null;
+  } 
+  return CommonHelper::convertToEmailLinks($body, $subject, $result['data'], $bcc);
+}
+

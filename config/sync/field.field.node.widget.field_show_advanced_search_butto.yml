@@ -1,0 +1,23 @@
+uuid: a842be2d-cdc6-46b8-9ddf-565822e7fc02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_advanced_search_butto
+    - node.type.widget
+id: node.widget.field_show_advanced_search_butto
+field_name: field_show_advanced_search_butto
+entity_type: node
+bundle: widget
+label: 'Show Advanced Search Button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

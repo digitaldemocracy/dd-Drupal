@@ -1,0 +1,35 @@
+dd_clip.clip_view:
+  path: '/clip/{videoid}'
+  defaults:
+    _controller: '\Drupal\dd_clip\Controller\DdClipViewController::viewClipByVideoId'
+    _title: 'View Clip by Video ID'
+  requirements:
+    _permission: 'access content+view unpublished dd clip entities'
+dd_clip.clip_campaign_view:
+  path: '/campaignclip/{videoid}/{campaign_id}/{action_id}'
+  defaults:
+    _controller: '\Drupal\dd_clip\Controller\DdClipViewController::viewClipByVideoId'
+    _title: 'View Campaign Clip by Video ID'
+  requirements:
+    _permission: 'access content'
+dd_clip.clip_edit:
+  path: '/clip/{videoid}/edit'
+  defaults:
+    _controller: '\Drupal\dd_clip\Controller\DdClipViewController::editClipByVideoId'
+    _title: 'Edit Clip by Video ID'
+  requirements:
+    _permission: 'edit own dd clip entities+edit any dd clip entities'
+dd_clip.clip_delete:
+  path: '/clip/{videoid}/delete'
+  defaults:
+    _controller: '\Drupal\dd_clip\Controller\DdClipViewController::deleteClipByVideoId'
+    _title: 'Delete Clip by Video ID'
+  requirements:
+    _permission: 'delete own dd clip entities+delete any dd clip entities'
+dd_clip.clip_default_view:
+  path: '/dd_clip/{id}'
+  defaults:
+    _controller: '\Drupal\dd_clip\Controller\DdClipViewController::viewClipById'
+    _title: 'Ovrride Access via dd_clip path'
+  requirements:
+    _permission: 'administer content+view unpublished dd clip entities'

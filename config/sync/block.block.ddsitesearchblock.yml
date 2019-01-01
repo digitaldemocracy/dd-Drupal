@@ -1,0 +1,33 @@
+uuid: bb30e3d5-79ca-456c-82c7-8b3c5de0871a
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_search
+    - facets
+    - system
+  theme:
+    - dd
+id: ddsitesearchblock
+theme: dd
+region: states_scrollbar
+weight: -48
+provider: null
+plugin: dd_site_search
+settings:
+  id: dd_site_search
+  label: 'Dd Site Search Block'
+  provider: dd_search
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

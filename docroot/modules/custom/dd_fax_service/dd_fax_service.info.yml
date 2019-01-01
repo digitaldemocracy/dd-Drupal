@@ -1,0 +1,7 @@
+name: Fax Service Module
+type: module
+description: 'Module which enable users to send fax.'
+package: DigitalDemocracy
+configure: dd_fax_service.admin
+core: 8.x
+hidden: false

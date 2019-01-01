@@ -1,0 +1,8 @@
+name: DD Gift Contribution
+type: module
+description: DD Gift Contribution
+core: 8.x
+package: DigitalDemocracy
+version: 8.0.0
+dependencies:
+  - dd_base

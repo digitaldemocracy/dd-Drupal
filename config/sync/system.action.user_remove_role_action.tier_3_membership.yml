@@ -1,0 +1,14 @@
+uuid: 3231cecd-e417-4146-8327-32f374b691e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tier_3_membership
+  module:
+    - user
+id: user_remove_role_action.tier_3_membership
+label: 'Remove the Tier 3 Membership role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: tier_3_membership

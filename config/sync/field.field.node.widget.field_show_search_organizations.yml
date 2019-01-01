@@ -1,0 +1,23 @@
+uuid: a6f67310-de82-4cab-8e77-336e668a155d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_search_organizations
+    - node.type.widget
+id: node.widget.field_show_search_organizations
+field_name: field_show_search_organizations
+entity_type: node
+bundle: widget
+label: 'Show Search Organizations'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

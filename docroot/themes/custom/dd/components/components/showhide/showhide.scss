@@ -1,0 +1,85 @@
+@import 'init';
+
+// Show/hide functionality.
+//
+// Markup: showhide.twig
+//
+// Style guide: components.showhide
+
+// Collapsed:
+
+// .views-row:last-child {
+//   .view-header.collapsed {
+//   }
+// }
+
+$image-url-subdirectory: 'components/showhide';
+
+// Currently just for blocks with H3.
+.view-showhide {
+  @include view-showhide;
+}
+
+// The larger, blue version, used on .dd-person--bottom-block, bill pages, etc.
+
+.content.dd-rounded-corners .view-showhide {
+  > .view-header {
+    background-size: 30px;
+    background-position: 20px;
+    background-repeat: no-repeat;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    padding-left: 3em;
+    color: $dd-blue;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-bottom: 1px solid $dd-greylight;
+
+    &.collapsed {
+      @if $whitelabel-id == 'cmta' { background-image: url('../../components/showhide/plus-solid.svg'); }
+      @else { background-image: url('../../components/showhide/green-plus-icon.svg'); }
+    }
+
+    &.expanded {
+      background-image: url('../../components/showhide/white-minus-icon.svg');
+      background-color: $dd-blue;
+      color: white;
+
+      h3 {
+        color: white;
+      }
+    }
+
+    h3 {
+      margin: 0;
+      display: inline-block;
+    }
+  }
+
+  .view-content .view-showhide {
+    @include view-showhide; // Resets it to mixin defaults when contained within another showhide .view-content.
+  }
+}
+
+// Sidebar variant
+aside .view-showhide  {
+  border-bottom: 1px solid $dd-grey;
+  > .view-header,
+  .dd-showhide-group {
+    border-bottom: 0 !important;
+    padding: 1.5em 0 1.5em 3em;
+
+    &.expanded {
+      background-image: url('../../components/showhide/minus-solid.svg');
+    }
+  }
+
+  > .view-content {
+    padding-bottom: 2.5em;
+  }
+
+  // Commenting this out because it's not working correctly. Hides all borders instead of the last.
+ // &:last-child {
+  //  border: 0;
+ // }
+}

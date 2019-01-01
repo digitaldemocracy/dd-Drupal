@@ -1,0 +1,26 @@
+<svg width="448" height="438" viewBox="0 0 448 438" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:figma="http://www.figma.com/figma/ns">
+<title>Play-icon</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="matrix(2 0 0 2 390 430)" figma:type="canvas">
+<g id="Group" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Canvas" style="mix-blend-mode:normal;" figma:type="frame">
+<g id="Component" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Ellipse" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;isolation:isolate;" figma:type="vector">
+<use xlink:href="#path0_fill" transform="translate(-195 -215)" fill="#DC9E12" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+<g id="Polygon" style="mix-blend-mode:normal;isolation:isolate;" figma:type="frame">
+<g id="Vector" style="mix-blend-mode:normal;isolation:isolate;" figma:type="vector">
+<use xlink:href="#path1_fill" transform="matrix(1.80411e-16 1 -1 1.80411e-16 -17.4214 -161.809)" fill="#FFFFFF" style="mix-blend-mode:normal;"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 224 109.5C 224 169.975 173.856 219 112 219C 50.1441 219 0 169.975 0 109.5C 0 49.0248 50.1441 0 112 0C 173.856 0 224 49.0248 224 109.5Z"/>
+<path id="path1_fill" d="M 49.3225 4.10264C 52.3741 -1.36754 60.2439 -1.36754 63.2955 4.10264L 111.593 90.6812C 114.568 96.0136 110.713 102.579 104.606 102.579L 8.0115 102.579C 1.9055 102.579 -1.9496 96.0136 1.0251 90.6812L 49.3225 4.10264Z"/>
+</defs>
+</svg>

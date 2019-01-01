@@ -1,0 +1,7 @@
+stripe_name: 'Digital Democracy'
+stripe_description: 'Premium Membership Fee'
+stripe_zip_code: 'true'
+stripe_image: 'https://s3-us-west-2.amazonaws.com/dd-drupal-files/images/icons/dd_mini_logo.jpg'
+default_alert_days: 3
+_core:
+  default_config_hash: qsMJ-T-tnillLnjj1tjvqsWXmjSD3L1UWOfrwL-FheM

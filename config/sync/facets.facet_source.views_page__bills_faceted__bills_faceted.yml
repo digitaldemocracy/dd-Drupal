@@ -1,0 +1,8 @@
+uuid: 4a306556-625f-4b26-8fc8-fa1def61fefe
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__bills_faceted__bills_faceted
+name: 'views_page:bills_faceted__bills_faceted'
+filter_key: ''
+url_processor: query_string

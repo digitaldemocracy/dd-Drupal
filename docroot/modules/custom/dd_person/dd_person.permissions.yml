@@ -1,0 +1,75 @@
+administer dd_person entities:
+  title: 'Administer DD Person entities'
+  description: 'Allow to access the administration form to configure DD Person entities.'
+  restrict access: true
+
+edit dd_person entities:
+  title: 'Edit DD Person entities'
+
+access dd_person overview:
+  title: 'Access the DD Person overview page'
+
+view published dd_person entities:
+  title: 'View published DD Person entities'
+
+view unpublished dd_person entities:
+  title: 'View unpublished DD Person entities'
+
+administer dd authors entities:
+  title: 'Administer DD Authors entities'
+  description: 'Allow to access the administration form to configure DD Authors entities.'
+  restrict access: true
+
+edit dd authors entities:
+  title: 'Edit DD Authors entities'
+
+access dd authors overview:
+  title: 'Access the DD Authors overview page'
+
+view published dd authors entities:
+  title: 'View published DD Authors entities'
+
+view unpublished dd authors entities:
+  title: 'View unpublished DD Authors entities'
+
+# Combined Alignments
+administer dd combined alignments entities:
+  title: 'Administer DD Combined Alignments entities'
+  description: 'Allow to access the administration form to configure DD Combined Alignments entities.'
+  restrict access: true
+
+edit dd combined alignments entities:
+  title: 'Edit DD Combined Alignments entities'
+
+access dd combined alignments overview:
+  title: 'Access the DD Combined Alignments overview page'
+
+view published dd combined alignments entities:
+  title: 'View published DD Combined Alignments entities'
+
+view unpublished dd combined alignments entities:
+  title: 'View unpublished DD Combined Alignments entities'
+# End Combined Alignments
+
+add dd general public entities:
+  title: 'Create new DD General Public entities'
+
+administer dd general public entities:
+  title: 'Administer DD General Public entities'
+  description: 'Allow to access the administration form to configure DD General Public entities.'
+  restrict access: true
+
+delete dd general public entities:
+  title: 'Delete DD General Public entities'
+
+edit dd general public entities:
+  title: 'Edit DD General Public entities'
+
+access dd general public overview:
+  title: 'Access the DD General Public overview page'
+
+view published dd general public entities:
+  title: 'View published DD General Public entities'
+
+view unpublished dd general public entities:
+  title: 'View unpublished DD General Public entities'

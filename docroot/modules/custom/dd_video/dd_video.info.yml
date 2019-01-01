@@ -1,0 +1,7 @@
+name: DD Video
+type: module
+description: DD Video
+core: 8.x
+package: DigitalDemocracy
+dependencies:
+  - dd_base

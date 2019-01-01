@@ -1,0 +1,20 @@
+uuid: 3652997f-6618-44ff-8f30-e7124301053b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_bill_alert_history.field_bill_id
+  module:
+    - dd_bill_alerts
+id: dd_bill_alert_history.dd_bill_alert_history.field_bill_id
+field_name: field_bill_id
+entity_type: dd_bill_alert_history
+bundle: dd_bill_alert_history
+label: 'Bill id'
+description: 'Bill id from database.'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: 77ee7916-6b96-4e4d-a387-d33948a18bd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_video_tags
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_video_tags
+field_name: field_video_tags
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Video Tags'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_video_tags'
+  handler_settings: {  }
+field_type: entity_reference

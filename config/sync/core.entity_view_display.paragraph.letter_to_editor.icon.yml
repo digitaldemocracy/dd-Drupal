@@ -1,0 +1,26 @@
+uuid: b6a6c252-f471-4913-8f9b-1755cfd5d5e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.letter_to_editor.field_email_body
+    - field.field.paragraph.letter_to_editor.field_email_subject
+    - field.field.paragraph.letter_to_editor.field_override_newspapers
+    - field.field.paragraph.letter_to_editor.field_targeted_newspapers
+    - field.field.paragraph.letter_to_editor.field_video_clip
+    - paragraphs.paragraphs_type.letter_to_editor
+id: paragraph.letter_to_editor.icon
+targetEntityType: paragraph
+bundle: letter_to_editor
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_email_body: true
+  field_email_subject: true
+  field_override_newspapers: true
+  field_targeted_newspapers: true
+  field_video_clip: true
+  uid: true

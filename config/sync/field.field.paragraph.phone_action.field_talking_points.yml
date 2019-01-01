@@ -1,0 +1,21 @@
+uuid: b0e28d6a-4284-486f-9aad-fdf3a1534688
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_talking_points
+    - paragraphs.paragraphs_type.phone_action
+  module:
+    - text
+id: paragraph.phone_action.field_talking_points
+field_name: field_talking_points
+entity_type: paragraph
+bundle: phone_action
+label: 'Sample Phone Script'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Component for fields.
+ *
+ * Variables:
+ * - modifier_class: [string] Classes to modify the default component styling.
+ * - attributes: [string] HTML attributes for the wrapping element.
+ * - content: [string] The component contents.
+ * @todo needs markup.
+ */
+#}
+{{ attach_library('dd/footer') }}
+
+<div>
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</div>

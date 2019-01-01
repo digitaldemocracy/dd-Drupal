@@ -1,0 +1,454 @@
+<script src="https://lcmspubcontact.lc.ca.gov/PublicLCMS/Common.js" type="text/javascript"></script>
+<SCRIPT language=JavaScript>
+
+	function check_length(jv_form)
+	{
+		maxLen = 2000; 
+		if (jv_form.jv_text.value.length > maxLen) {
+			jv_form.jv_text.value = jv_form.jv_text.value.substring(0, maxLen);
+			alert("You have reached your maximum limit of characters allowed.");
+			jv_form.text_num.value = maxLen - jv_form.jv_text.value.length;			
+		} else {
+			jv_form.text_num.value = maxLen - jv_form.jv_text.value.length;
+		}		
+	}
+
+
+var issueStances = new Array("none","none","none","none","support","support","both","both");
+
+var validateZip = "N";
+	var zips = new Array(93210,93252,93254,93401,93402,93403,93405,93406,93407,93408,93410,93420,93422,93423,93424,93426,93428,93430,93432,93433,93435,93442,93444,93445,93446,93447,93449,93450,93451,93452,93453,93454,93458,93461,93465,93906,93907,93908,93920,93921,93923,93924,93927,93928,93930,93932,93933,93940,93943,93944,93950,93953,93954,93955,93960,94060,95003,95004,95005,95006,95007,95010,95012,95013,95017,95018,95019,95020,95023,95033,95037,95039,95041,95046,95060,95062,95064,95065,95066,95073,95076,95111,95119,95120,95123,95135,95136,95138,95139,95141);
+	var submitcount=0;
+	function zipCheck(testField,zipArray)
+	{
+		for (var i=0; i<zipArray.length; i++)
+			{if (zipArray[i]==testField.value){return true;}}
+		return false;
+	}
+
+	function submitFunction() {
+		if (submitcount == 0) { 
+	   		submitcount++;
+		} else {
+	 		alert('Cannot Submit Form Twice');
+	 		submitcount=0;	
+	 		return false;
+ 		}
+	
+	var browserType=navigator.appName;
+	var browserVersion=parseInt(navigator.appVersion);
+
+	if ( ((browserType=="Microsoft Internet Explorer") 
+			&& (browserVersion>=4.0)) || ( ((browserType=="Netscape") 
+			&& (browserVersion>=5.0)) && (!(navigator.appVersion.indexOf("Macintosh")!=-1)) ) )
+	{
+		var errorStatus = false;		
+		if (NameFieldCheck(document.ContactForm.txtFirstName)){
+			(document.getElementById("spanFirstName")).style.visibility='hidden';
+		}else {			
+			(document.getElementById("spanFirstName")).style.visibility='visible'; 
+			errorStatus = true;			
+		}
+		if (NameFieldCheck(document.ContactForm.txtLastName)){
+			(document.getElementById("spanLastName")).style.visibility='hidden';
+		} else {
+			(document.getElementById("spanLastName")).style.visibility='visible'; 
+			errorStatus = true;
+		}
+		
+		if (AddressFieldCheck(document.ContactForm.txtAddress)){
+			(document.getElementById("spanAddress")).style.visibility='hidden';
+		} else {
+			(document.getElementById("spanAddress")).style.visibility='visible'; 
+			errorStatus = true;
+		}	
+	
+		if (NameFieldCheck(document.ContactForm.txtCity)) {
+			(document.getElementById("spanCity")).style.visibility='hidden';
+		} else {
+			(document.getElementById("spanCity")).style.visibility='visible'; 
+			errorStatus = true;
+		}
+			
+		if (ZipFieldCheck(document.ContactForm.txtZip))
+			{(document.getElementById("spanZip")).style.visibility='hidden';}
+		else
+			{(document.getElementById("spanZip")).style.visibility='visible'; errorStatus = true;}
+			
+		if ( ((!BlankFieldCheck(document.ContactForm.txtAreaCode))&&(!BlankFieldCheck(document.ContactForm.txtPhone1)))&&(!BlankFieldCheck(document.ContactForm.txtPhone2)) || ((PhoneField3Check(document.ContactForm.txtAreaCode))&&(PhoneField3Check(document.ContactForm.txtPhone1))&&(PhoneField4Check(document.ContactForm.txtPhone2))&&( (PhoneExtFieldCheck(document.ContactForm.txtExt))||(!BlankFieldCheck(document.ContactForm.txtExt)))) )
+			{(document.getElementById("spanPhone")).style.visibility='hidden';}
+		else
+			{(document.getElementById("spanPhone")).style.visibility='visible'; errorStatus = true;}
+			
+		if (EmailFieldCheck(document.ContactForm.txtEmail))
+			{(document.getElementById("spanEmail")).style.visibility='hidden';}
+		else
+			{(document.getElementById("spanEmail")).style.visibility='visible'; errorStatus = true;}
+		
+		// stance required only for stanced issues - if no stance selected error
+		var index = document.ContactForm.IssueListBox.selectedIndex;
+		
+		if ((issueStances[index] == 'none')) {
+			(document.getElementById("spanStance")).style.visibility='hidden';
+		} else {
+			if ((document.ContactForm.stanceRadioButtonList[0].checked==true)
+					||(document.ContactForm.stanceRadioButtonList[1].checked==true)){
+				(document.getElementById("spanStance")).style.visibility='hidden';
+			} else {
+				(document.getElementById("spanStance")).style.visibility='visible'; 
+				errorStatus = true;
+			}
+		}
+				
+		if (document.ContactForm.jv_text.value.length>2000) {
+			(document.getElementById("spanComments")).style.visibility='visible';
+			errorStatus = true;
+		} else {
+			(document.getElementById("spanComments")).style.visibility='hidden'; 
+			
+		}
+		if ((!BlankFieldCheck(document.ContactForm.jv_text))
+				&&(document.ContactForm.IssueListBox.selectedIndex == 0)) {
+			(document.getElementById("spanOr")).style.visibility='visible'; 
+			errorStatus = true;						
+		} else {
+			(document.getElementById("spanOr")).style.visibility='hidden';			 
+		}
+	
+		
+		if (errorStatus) {
+			document.getElementById("messageHolder").innerHTML = "Please correct the fields" + 
+				" with asterisks(*)<br>" +
+				"Punctuation is not allowed in address fields.  "
+				+ "Please use only appropriate characters and complete all required fields.";
+		 	submitcount=0;
+		 	return false;
+		 } else if ((validateZip!="N")&&(!(zipCheck(document.ContactForm.txtZip,zips)))) {
+			 document.getElementById("messageHolder").innerHTML = "Address is not in District. <br>"
+		 	 	+ "Please contact your District Representative."; 
+		 	 submitcount=0;
+			 return false;
+		 } else {
+			 document.ContactForm.jv_text.value = InputFilter(document.ContactForm.jv_text);
+		  	 return true;		  
+		  }	
+	}else {
+		document.ContactForm.jv_text.value = InputFilterNonIE(document.ContactForm.jv_text);
+	  	return true;		
+	  }	
+	}
+	
+	
+	function issueListChange() {
+
+		//Deselect Stance
+		if (document.ContactForm.IssueListBox.selectedIndex == 0) {
+			document.ContactForm.stanceRadioButtonList[0].checked=false;
+			document.ContactForm.stanceRadioButtonList[1].checked=false;
+			(document.getElementById("spanStance")).style.visibility='hidden';
+		 }
+
+		//Check stance for issue and unfocus no stance issues
+		document.ContactForm.stanceRadioButtonList[0].checked=false;
+		document.ContactForm.stanceRadioButtonList[1].checked=false;
+		document.ContactForm.stanceRadioButtonList[0].disabled = false;
+		document.ContactForm.stanceRadioButtonList[1].disabled = false;
+		
+		if (issueStances[document.ContactForm.IssueListBox.selectedIndex] == 'none') {
+			document.ContactForm.stanceRadioButtonList[0].disabled = true;
+			document.ContactForm.stanceRadioButtonList[1].disabled = true;
+		}
+	}
+	
+	function additionalReset()
+	{
+		document.getElementById("messageHolder").innerHTML = "* Indicates required fields";
+		
+		document.getElementById("spanFirstName").style.visibility='visible';
+		document.getElementById("spanLastName").style.visibility='visible';
+		document.getElementById("spanAddress").style.visibility='visible';
+		document.getElementById("spanCity").style.visibility='visible';
+		document.getElementById("spanZip").style.visibility='visible';
+		document.getElementById("spanPhone").style.visibility='hidden';
+		document.getElementById("spanEmail").style.visibility='visible';
+		document.getElementById("spanOr").style.visibility='hidden';
+		document.getElementById("spanStance").style.visibility='hidden';
+		document.ContactForm.txtFirstName.focus();
+	}   
+
+    function validateZipRep(){
+        if(validateZip!="N") {
+        	var zip = document.ContactForm.txtZip;
+            if (zip.value != null && zip.value.trim() != "" && !(zipCheck(zip,zips))) {
+                document.getElementById("zipErrorMessage").innerHTML = "Zip entered is outside of the District. Please use the <a href='http://findyourrep.legislature.ca.gov/' target='_blank'> Find Your Rep</a> webpage to find your District Representatives.";                                    } else {
+                document.getElementById("zipErrorMessage").innerHTML = "";
+            }
+        }        
+    }
+	
+
+</script>
+<style>label {display: inline;}</style>
+<div
+	onload="document.ContactForm.txtFirstName.focus(); window.history.forward(1); 
+      if (navigator.appName=='Microsoft Internet Explorer'){
+      document.ContactForm.resetButton.style.visibility='visible'};">
+
+<form name="ContactForm" method="post" action="https://lcmspubcontact.lc.ca.gov/PublicLCMS/ContactPopupSubmit.php"
+	id="ContactForm" OnSubmit="return submitFunction();" method="post"><input
+	type="hidden" name="district"
+	value="{{ items.district }}"></input> 
+	<input type="hidden" name="inframe" value="Y" />
+	<input type="hidden" name="headerimg" value="Y" />
+
+<table border="0" align="left" width="100%">
+		<tr>
+		<td colspan="2" align="center">
+		<div
+			style="WIDTH: 550px; Padding-bottom: 3px; BORDER-BOTTOM: black thin solid;">
+			<span style="FONT-SIZE: 17pt; FONT-FAMILY: Arial; FONT-WEIGHT: normal;">{{ items.title }}&nbsp;</span> <span style="FONT-SIZE: 17pt; FONT-FAMILY: Arial; FONT-WEIGHT: normal;">{{ items.leg_name }} </span><span style="FONT-SIZE: 12pt; FONT-FAMILY: Arial; FONT-WEIGHT: normal;"> -&nbsp;District&nbsp;{{ items.district }}</span></b> <br /></div>
+		</td>
+	</tr>
+		<tr>
+		<td colspan="2">
+		<div id="messageHolder"
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: red;">
+			 * Indicates required fields</div>
+		</td>
+	</tr>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right; width: 20%;">
+		<span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: visible;"
+			id="spanFirstName"><span id="labelFirstName">*</span></span>&nbsp; <label
+			for="txtFirstName">First Name:</label></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left; width: 80%;"
+			>&nbsp;&nbsp;<input name="txtFirstName" type="text"
+			maxlength="25" id="txtFirstName" tabindex="1" size="25"
+			style="width: 150px;" value="{{ items.address.first }}"/></td>
+	</tr>
+	
+	<TR width="100%">
+		<TD
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right;">
+		<span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: visible;"
+			id="spanLastName"><span id="labelLastName">*</span></span>&nbsp; <label
+			for="txtLastName">Last Name:</label></TD>
+		<TD
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			>&nbsp; <input name="txtLastName" type="text"
+			maxlength="25" id="txtLastName" tabindex="2" size="25"
+			style="width: 200px;" value="{{ items.address.last }}"/></TD>
+	</TR>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normald; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right;">
+		<span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: visible;"
+			id="spanAddress"><span id="labelAddress">*</span></span>&nbsp; <label
+			for="txtAddress">Address:</label></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			>&nbsp; <input name="txtAddress" type="text"
+			maxlength="50" id="txtAddress" tabindex="3" size="50"
+			style="width: 343px;" value="{{ items.address.street }}" /></td>
+	</tr>
+	
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right;"
+			width="30%"><span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: visible;"
+			id="spanCity"><span id="labelCity">*</span></span>&nbsp; <label
+			for="txtCity">City:</label></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			width="70%" >&nbsp; <input name="txtCity" type="text"
+			maxlength="30" id="txtCity" tabindex="4" size="40"
+			style="width: 252px;" value="{{ items.address.city }}" /> 
+			 
+			&nbsp;State:&nbsp;
+			<select
+			name="listboxStates" size="1" id="listboxStates" value="{{ items.address.state }}">
+			<option value="CA">CA</option>
+			<option value="AK">AK</option>
+			<option value="AL">AL</option>
+			<option value="AR">AR</option>
+			<option value="AZ">AZ</option>
+			<option value="CO">CO</option>
+			<option value="CT">CT</option>
+			<option value="DE">DE</option>
+			<option value="FL">FL</option>
+			<option value="GA">GA</option>
+			<option value="HI">HI</option>
+			<option value="IA">IA</option>
+			<option value="ID">ID</option>
+			<option value="IL">IL</option>
+			<option value="IN">IN</option>
+			<option value="KS">KS</option>
+			<option value="KY">KY</option>
+			<option value="LA">LA</option>
+			<option value="MA">MA</option>
+			<option value="MD">MD</option>
+			<option value="ME">ME</option>
+			<option value="MI">MI</option>
+			<option value="MN">MN</option>
+			<option value="MO">MO</option>
+			<option value="MS">MS</option>
+			<option value="MT">MT</option>
+			<option value="NC">NC</option>
+			<option value="ND">ND</option>
+			<option value="NE">NE</option>
+			<option value="NH">NH</option>
+			<option value="NJ">NJ</option>
+			<option value="NM">NM</option>
+			<option value="NV">NV</option>
+			<option value="NY">NY</option>
+			<option value="OH">OH</option>
+			<option value="OK">OK</option>
+			<option value="OR">OR</option>
+			<option value="PA">PA</option>
+			<option value="RI">RI</option>
+			<option value="SC">SC</option>
+			<option value="SD">SD</option>
+			<option value="TN">TN</option>
+			<option value="TX">TX</option>
+			<option value="UT">UT</option>
+			<option value="VA">VA</option>
+			<option value="VT">VT</option>
+			<option value="WA">WA</option>
+			<option value="WI">WI</option>
+			<option value="WV">WV</option>
+			<option value="WY">WY</option>
+		</select> 
+		</td>
+	</tr>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right;">
+		<span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: visible;"
+			id="spanZip"><span id="labelZip">*</span></span>&nbsp; <label
+			for="txtZip">Zip Code:</label></td>
+		            <td style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left" >
+            &nbsp; <input name="txtZip" type="text" maxlength="5" onblur="validateZipRep()" id="txtZip" tabindex="6" style="width: 79px;" value="{{ items.address.zipcode }}" />&nbsp;
+            <span style="FONT-SIZE: 8pt; COLOR: red;" id="zipErrorMessage"></span>
+        </td>
+			
+	</tr>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right">
+		<span id="labelPhone" style="color: Red;"></span><span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: hidden;"
+			id="spanPhone">*</span> <label for="txtAreaCode">Phone:</label>&nbsp;
+		</td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			>&nbsp; ( <input name="txtAreaCode" type="text"
+			maxlength="3" id="txtAreaCode" tabindex="7" size="3"
+			onKeyUp="moveToNextField( this, 3, txtPhone1 );" style="width: 30px;" />
+		) <input name="txtPhone1" type="text" maxlength="3" id="txtPhone1"
+			tabindex="8" size="3"
+			onKeyUp="moveToNextField( this, 3, txtPhone2 );" style="width: 30px;" />
+		- <input name="txtPhone2" type="text" maxlength="4" id="txtPhone2"
+			tabindex="9" size="4" onKeyUp="moveToNextField( this, 4, txtExt );"
+			style="width: 40px;" /> &nbsp;&nbsp;<label for="txtExt">ext:</label>&nbsp;
+		<input name="txtExt" type="text" maxlength="4" id="txtExt"
+			tabindex="10" size="4" style="width: 40px;" /> &nbsp;&nbsp;<label
+			for="phoneTypeListbox">type:</label>&nbsp; <select
+			name="phoneTypeListbox" size="1" id="phoneTypeListbox" tabindex="11"
+			style="width: 65px;">
+			<option value="home">home</option>
+			<option value="work">work</option>
+			<option value="cell">cell</option>
+		</select></td>
+	</tr>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right">
+		<span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; VISIBILITY: visible; COLOR: red"
+			id="spanEmail"><span id="labelEmail">*</span></span>&nbsp; <label
+			for="txtEmail">E-mail:</label></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			>&nbsp; <input name="txtEmail" type="text" maxlength="45"
+			id="txtEmail" tabindex="12" size="50" style="width: 343px;" value="{{ items.address.email }}"/></td>
+	</tr>
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right">
+		&nbsp; <label for="IssueListBox">Issue:</label></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left"
+			>&nbsp; <input name="IssueListBox" size="1"
+			id="IssueListBox" tabindex="13" onChange="issueListChange();"
+			style="width: 425px;">
+			</input></td>
+	</tr>
+	<tr align="center" width="100%">
+		<!--<td style="HEIGHT: 36px" width="25%">-->
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; HEIGHT: 15px; text-align: left;"
+			colspan="2"><!--colspan="2"  width="25%"   width=75%"--> <span
+			style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: red; FONT-FAMILY: sans-serif; VISIBILITY: hidden;"
+			id="spanOr"> Please make an Issue Selection OR fill in a Comment </span>
+		<span
+			style="FONT-WEIGHT: normal; FONT-SIZE: 8pt; COLOR: red; FONT-FAMILY: sans-serif; vertical-align: top;"><span
+			id="labelOr"></span></span> 
+		<span id="labelStance" style="color: Red;"></span><span
+			style="FONT-WEIGHT: bold; FONT-SIZE: 12pt; COLOR: red; VISIBILITY: hidden;"
+			id="spanStance">*</span> <input id="Y" type="radio"
+			name="stanceRadioButtonList" value="Y" tabindex="14" /><label for="Y">Support</label>
+		<input id="N" type="radio" name="stanceRadioButtonList" value="N"
+			tabindex="14" /><label for="N">Oppose</label></td>
+	</tr>
+
+	<tr width="100%">
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: right; vertical-align: top;">
+
+		<label for="txtComments">Comments:</label><br>
+		<span
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; COLOR: red; FONT-FAMILY: sans-serif;"><span
+			id="labelComments"></span></span><span
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; COLOR: red; FONT-FAMILY: sans-serif; VISIBILITY: hidden;"
+			id="spanComments">*Max Length Exceeded</span></td>
+		<td
+			style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; TEXT-ALIGN: left; vertical-align: top;"
+			 nowrap><input size=1 value=2000 name=text_num
+			style="color: #FF0000;"> Characters Left <br>
+		<textarea onKeyDown=check_length(this.form);
+			onKeyUp=check_length(this.form); name=jv_text rows=4 cols=50
+			style="font-family: Arial; height: 75px; width: 418px;">{{ items.message|raw }}</textarea></td>
+	</tr>
+	<tr>
+		<td colspan="2" align="center" style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; 
+		TEXT-ALIGN: center; vertical-align: top;">
+		Your privacy is very important to us. By clicking submit, you are agreeing to the practices described
+		 in the Privacy and Conditions of Use. 
+		</td>
+	</tr>
+	<tr align="left" width="100%">
+		<td align=center colspan="2"><br>
+		<input type="submit" name="submitButton" value="Submit"
+			id="submitButton" tabindex="16" />&nbsp;&nbsp;&nbsp;&nbsp; <input
+			type="reset" TabIndex="17" value="Reset" name="resetButton"
+			OnClick="additionalReset();" style="VISIBILITY: visible;">&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+	
+	<tr>
+		<td colspan="2" align="center" style="FONT-WEIGHT: normal; FONT-SIZE: 10pt; FONT-FAMILY: Arial; COLOR: #2a415d; TEXT-ALIGN: center; vertical-align: top;">
+			<a href="PrivacyPolicy.html" target="_blank" title="This link will open in a new browser window">Privacy and Conditions of Use</a>
+		</td>
+	</tr>
+	
+	
+</table>
+</form>
+</div>

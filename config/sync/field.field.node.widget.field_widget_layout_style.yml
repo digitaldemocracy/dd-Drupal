@@ -1,0 +1,23 @@
+uuid: f6578132-8716-4ae4-af67-4318c0570987
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_layout_style
+    - node.type.widget
+  module:
+    - options
+id: node.widget.field_widget_layout_style
+field_name: field_widget_layout_style
+entity_type: node
+bundle: widget
+label: 'Choose a Layout Style'
+description: "Select a layout style for this widget. <br>\r\nThe Horizontal Layout width ranges from 800px - 480px and is ideal for wide areas.<br>\r\nThe Vertical layout is best for constrained areas with its width ranging from 480 - 220px.<br>"
+required: true
+translatable: false
+default_value:
+  -
+    value: '1'
+default_value_callback: ''
+settings: {  }
+field_type: list_float

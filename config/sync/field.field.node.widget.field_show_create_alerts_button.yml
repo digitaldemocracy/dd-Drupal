@@ -1,0 +1,23 @@
+uuid: 704e3b25-604c-4525-b39c-c3d03e69c74f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_create_alerts_button
+    - node.type.widget
+id: node.widget.field_show_create_alerts_button
+field_name: field_show_create_alerts_button
+entity_type: node
+bundle: widget
+label: 'Show Create Alerts Button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

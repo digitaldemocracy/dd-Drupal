@@ -1,0 +1,48 @@
+uuid: d4595a66-4008-430d-baad-72645d124e06
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_hearing
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: hearingsearchblock
+theme: dd
+region: sidebar_second
+weight: -48
+provider: null
+plugin: dd_hearing_search_block
+settings:
+  id: dd_hearing_search_block
+  label: 'Hearing Search Block'
+  provider: dd_hearing
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/hearing/*\r\n/committee/*"
+    negate: false
+    context_mapping: {  }
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

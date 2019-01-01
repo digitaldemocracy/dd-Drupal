@@ -1,0 +1,56 @@
+uuid: 86432fef-b2b1-4d2b-8184-2c29049bc898
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_action_center
+    - facets
+    - node
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: addresslookup
+theme: dd
+region: sidebar_second
+weight: -50
+provider: null
+plugin: dd_action_center_address_lookup_block
+settings:
+  id: dd_action_center_address_lookup_block
+  label: 'Take Action'
+  provider: dd_action_center
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      campaign: campaign
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/node/*/edit\r\n/node/*/delete\r\n/node/*/statewide-edit\r\n/node/*/bill-edit\r\n/node/*/add"
+    negate: true
+    context_mapping: {  }

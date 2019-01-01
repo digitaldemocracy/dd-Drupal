@@ -1,0 +1,27 @@
+uuid: 001c47ce-882b-460e-be42-72753aff47ba
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_video_alert_history.field_video_alert_result
+    - node.type.dd_video_alert_history
+  module:
+    - user
+id: node.dd_video_alert_history.default
+targetEntityType: node
+bundle: dd_video_alert_history
+mode: default
+content:
+  field_video_alert_result:
+    weight: 103
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

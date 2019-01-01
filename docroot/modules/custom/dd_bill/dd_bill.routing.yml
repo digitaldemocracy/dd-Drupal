@@ -1,0 +1,36 @@
+dd_bill.default_controller_viewByBid:
+  path: '/bill/{dd_bill_bid}'
+  defaults:
+    _controller: '\Drupal\dd_bill\Controller\DefaultController::viewByBid'
+    _title_callback: '\Drupal\dd_bill\Controller\DefaultController::title'
+  requirements:
+    _permission: 'access content'
+dd_bill.bill_autocomplete:
+  path: '/dd_bill_autocomplete/{session_years}/{use_bid_value}/{use_entity_id}'
+  defaults:
+    _controller: '\Drupal\dd_bill\Controller\DdBillAutocompleteController::handleAutocomplete'
+    session_years: 'all'
+    use_bid_value: FALSE
+    use_entity_id: FALSE
+  requirements:
+    _access: 'TRUE'
+dd_bill.bill_version.full_text:
+  path: '/bill/version/{dd_bill_version}/full-text'
+  defaults:
+    _controller: '\Drupal\dd_bill\Controller\BillVersionController::fullText'
+    _title: 'View'
+  requirements:
+    _permission: 'access content'
+dd_bill.bill_version.full_digest:
+  path: '/bill/version/{dd_bill_version}/full-digest'
+  defaults:
+    _controller: '\Drupal\dd_bill\Controller\BillVersionController::fullDigest'
+    _title: 'View'
+  requirements:
+    _permission: 'access content'
+dd_bill.get_bill_version_current_json:
+  path: '/billversioncurrent/{bill_dr_id}'
+  defaults:
+    _controller: '\Drupal\dd_bill\Controller\DefaultController::getBillVersionCurrentJson'
+  requirements:
+    _permission: 'access content'

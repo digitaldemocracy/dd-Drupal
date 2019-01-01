@@ -1,0 +1,22 @@
+add dd bill alert history entities:
+  title: 'Create new Dd bill alert history entities'
+
+administer dd bill alert history entities:
+  title: 'Administer Dd bill alert history entities'
+  description: 'Allow to access the administration form to configure Dd bill alert history entities.'
+  restrict access: true
+
+delete dd bill alert history entities:
+  title: 'Delete Dd bill alert history entities'
+
+edit dd bill alert history entities:
+  title: 'Edit Dd bill alert history entities'
+
+access dd bill alert history overview:
+  title: 'Access the Dd bill alert history overview page'
+
+view published dd bill alert history entities:
+  title: 'View published Dd bill alert history entities'
+
+view unpublished dd bill alert history entities:
+  title: 'View unpublished Dd bill alert history entities'

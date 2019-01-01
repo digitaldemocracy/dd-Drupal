@@ -1,0 +1,37 @@
+uuid: 71fd209a-1c72-4dc1-b9d4-8c12d63df883
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.committee_hearings_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__committee_hearings_years_block_1
+theme: dd
+region: sidebar_second
+weight: -41
+provider: null
+plugin: 'views_block:committee_hearings_years-block_1'
+settings:
+  id: 'views_block:committee_hearings_years-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/committee/*'
+    negate: false
+    context_mapping: {  }

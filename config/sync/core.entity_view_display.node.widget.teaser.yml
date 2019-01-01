@@ -1,0 +1,68 @@
+uuid: 9fb0b643-5404-4838-a219-20b33ff8fd43
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.widget.field_button_text_color
+    - field.field.node.widget.field_css_override
+    - field.field.node.widget.field_logo_vertical
+    - field.field.node.widget.field_show_advanced_search_butto
+    - field.field.node.widget.field_show_create_alerts_button
+    - field.field.node.widget.field_show_search_bills
+    - field.field.node.widget.field_show_search_bills_label
+    - field.field.node.widget.field_show_search_organizations
+    - field.field.node.widget.field_show_search_orgs_label
+    - field.field.node.widget.field_show_search_speakers
+    - field.field.node.widget.field_show_search_speakers_label
+    - field.field.node.widget.field_show_search_statements
+    - field.field.node.widget.field_show_search_statements_lab
+    - field.field.node.widget.field_show_take_action_button
+    - field.field.node.widget.field_show_title
+    - field.field.node.widget.field_widget_background_color
+    - field.field.node.widget.field_widget_button_color
+    - field.field.node.widget.field_widget_description
+    - field.field.node.widget.field_widget_font_color
+    - field.field.node.widget.field_widget_layout_style
+    - field.field.node.widget.field_widget_sponsored_logo
+    - field.field.node.widget.field_widget_sponsored_text
+    - field.field.node.widget.field_widget_top_logo
+    - node.type.widget
+  module:
+    - user
+id: node.widget.teaser
+targetEntityType: node
+bundle: widget
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_button_text_color: true
+  field_css_override: true
+  field_logo_vertical: true
+  field_show_advanced_search_butto: true
+  field_show_create_alerts_button: true
+  field_show_search_bills: true
+  field_show_search_bills_label: true
+  field_show_search_organizations: true
+  field_show_search_orgs_label: true
+  field_show_search_speakers: true
+  field_show_search_speakers_label: true
+  field_show_search_statements: true
+  field_show_search_statements_lab: true
+  field_show_take_action_button: true
+  field_show_title: true
+  field_widget_background_color: true
+  field_widget_button_color: true
+  field_widget_description: true
+  field_widget_font_color: true
+  field_widget_layout_style: true
+  field_widget_show_search_bills: true
+  field_widget_show_search_orgs: true
+  field_widget_sponsored_logo: true
+  field_widget_sponsored_text: true
+  field_widget_top_logo: true

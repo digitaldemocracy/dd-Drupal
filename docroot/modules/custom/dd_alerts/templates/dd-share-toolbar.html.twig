@@ -1,0 +1,17 @@
+{#
+/**
+ * @file
+ * DD Share/Alert Toolbar
+ *
+ * @ingroup themeable
+ */
+#}
+<div class="dd-share-toolbar-group">
+  {% if enable_video_clip == 1 %}<a class="dd-share-toolbar-group-item dd-share-toolbar-video-clip" href="{{ video_clip_url }}" title = "Create Video Clip"><i class="fa fa-scissors fa-2x fa-fw" aria-label="Create Video Clip"></i></a>{% endif %}
+  {% if enable_alert == 1 %}<a class="dd-share-toolbar-group-item" href="{{ alert_url }}" target="_blank" title = "Create Alert"><i class="fa fa-exclamation-circle fa-2x fa-fw" aria-label="Create Alert"></i></a>{% endif %}
+  {% if enable_email == 1 %}<a class="dd-share-toolbar-group-item" href="{{ email_url }}" target="_blank" title = "Send an Email"><i class="fa fa-envelope fa-2x fa-fw" aria-label="Email"></i></a>{% endif %}
+  {% if enable_facebook == 1 %}<a class="dd-share-toolbar-group-item" href="{{ fb_share_url }}" target="_blank" title = "Share on Facebook"><i class="fa fa-facebook fa-2x fa-fw" aria-label="Share on Facebook"></i></a>{% endif %}
+  {% if enable_twitter == 1 %}<a class="dd-share-toolbar-group-item" href="{{ twitter_share_url }}" target="_blank" title = "Share on Twitter"><i class="fa fa-twitter fa-2x fa-fw" aria-label="Share on Twitter"></i></a>{% endif %}
+  {% if enable_linkedin == 1 %}<a class="dd-share-toolbar-group-item" href="{{ linkedin_share_url }}" target="_blank" title = "Share on LinkedIn"><i class="fa fa-linkedin fa-2x fa-fw" aria-label="Share on LinkedIn"></i></a>{% endif %}
+  {% if enable_bookmark == 1 %}{{ bookmark_link }}{% endif %}
+</div>

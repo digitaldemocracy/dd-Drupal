@@ -1,0 +1,51 @@
+uuid: 6dfe895a-7b40-48b0-9c85-66b5290aba08
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: analysisnavigation
+theme: dd
+region: content
+weight: -48
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Analysis Navigation Menu'
+  provider: system
+  label_display: '0'
+  level: 2
+  depth: 0
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/analysis\r\n/analysis/*"
+    negate: false
+    context_mapping: {  }

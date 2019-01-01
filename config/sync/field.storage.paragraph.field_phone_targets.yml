@@ -1,0 +1,27 @@
+uuid: aead445e-1308-4159-98aa-ba5eb2d1a75f
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_phone_targets
+field_name: field_phone_targets
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: capitol_office
+      label: 'Capitol Office'
+    -
+      value: district_offfices
+      label: 'District Office(s)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

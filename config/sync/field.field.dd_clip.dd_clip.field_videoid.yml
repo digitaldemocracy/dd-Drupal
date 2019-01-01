@@ -1,0 +1,20 @@
+uuid: 7be80095-b23a-4011-aa3b-18b89dfea31a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_videoid
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_videoid
+field_name: field_videoid
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Video ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

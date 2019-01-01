@@ -1,0 +1,227 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: Themed creation date field.
+ * - author_name: Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ * - readmore: Flag for more state. Will be true if the teaser content of the
+ *   node cannot hold the main body content.
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ *
+ * @see template_preprocess_node()
+ *
+ * @todo Remove the id attribute (or make it a class), because if that gets
+ *   rendered twice on a page this is invalid CSS for example: two lists
+ *   in different view modes.
+ *
+ * @ingroup themeable
+ */
+#}
+{% if elements['#view_mode'] == 'video_only' %}
+{% set elements = elements|merge({'is_embed': TRUE}) %}
+{% endif %}
+{% if elements['#view_mode'] == 'thumbnail' %}
+
+<div class="dd-clip-thumbnail">
+  <div class="playbutton"></div>
+  <img src="https://videostorage-us-west.s3.amazonaws.com/videos/{{ elements.clip_id }}/thumbnails/large.jpg">
+</div>
+{% else %}
+<script type="application/json" id="annotations-json">
+{{ elements.annotations|raw }}
+</script>
+<div class="node-type-dd-clip">
+  <div class="video-bkhearing">
+    <a id="backLink" href="{{ elements.field_hearing_url[0] }}">Back to Hearing</a>
+  </div>
+  <div class="left-clip-detail">
+    {% if  not elements.is_embed %}
+    <div class="video-clip-header video-clip-title ">
+      <h2 class="block-title">{{ elements.clip_title }}</h2>
+    </div>
+    {% endif %}
+    <div class="clip-video">
+      <div id="annotations" class="videoPlayer-dimensions view-mode"></div>
+      <video id="player1" data-setup="{}" class="video-js vjs-default-skin" controls="controls" preload="auto" poster="https://videostorage-us-west.s3.amazonaws.com/videos/{{ elements.field_videoid[0] }}/thumbnails/large.jpg">
+        <source src="https://videostorage-us-west.s3.amazonaws.com/videos/{{ elements.field_videoid[0] }}/{{ elements.field_videoid[0] }}.mp4" type="video/mp4" />
+      </video>
+    </div>
+    {% if not elements.is_embed %}
+    <div class="clip-social-bar">
+      <span>Share clip:</span>
+      <ul class="social-lists {% if not elements.is_published %}disable{% endif %}">
+        <li class="facebook">
+          <a class="link-share" title="click to share on Facebook" href="#" data-network="facebook" data-url="{{ elements.clip_url }}"></a>
+        </li>
+        <li class="twitter">
+          <a class="link-share" title="click to share on Twitter" href="#" data-network="twitter" data-url="{{ elements.clip_url }}"></a></li>
+        <li class="google">
+          <a class="link-share" title="click to share on Google Plus" href="#" data-network="google-plus" data-url="{{ elements.clip_url }}"></a></li>
+        <li class="in">
+          <a class="link-share" title="click to share on LinkedIn" href="#" data-network="linkedin" data-url="{{ elements.clip_url }}"></a></li>
+        <li class="email">
+          <a class="link-email" title="click to send the clip to your legislator" href="{{ elements.email_url }}"></a></li>
+        <li>
+          <a class="embed-clip"  data-nid="{{ node.id }}">Embed Clip</a>
+        </li>
+        {% if elements.display_transcript %}
+        <li>
+          <a class="embed-transcript">Embed Clip & Transcript</a>
+        </li>
+        {% endif %}
+      </ul>
+    </div><!--social-bar-->
+    <div class="embed-clip-video hide" id="embed-video-{{ node.id }}">
+      <textarea  wrap='off'>
+        <iframe Scrolling="No" width="700" height="400" src="{{ elements.embed_video_url }}" frameborder="0" class="entity_iframe entity_iframe_node" >
+        </iframe>
+      </textarea>
+    </div>
+    {% if elements.display_transcript %}
+    <div class="embed-clip-transcript hide">
+      <textarea  wrap='off'>
+        <iframe width="700" height="500" src="{{ elements.embed_transcript_url }}" frameborder="0" class="entity_iframe entity_iframe_node" >
+        </iframe>
+      </textarea>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% if elements.is_transcript or not elements.is_embed %}
+    <div class="clip-detail-container">
+      {% if not elements.is_embed %}
+      <div class="clip-size-ownership">
+      {% if not elements.is_published %}
+        <span class="clip-woner">Clip is Private</span>
+      {% endif %}
+        <span class="clip-size">SIZE: {{ elements.file_size }}</span>
+      </div>
+      <div class="clip-title-and-date"> <!-- *** clip title and date *** -->
+        <h2 class="block-title"><a href="{{ elements.hearing_url[0] }}">
+          {{ elements.field_hearing_title[0] }}
+        </h2></a>       
+        <span class="clip-date"> Created on: {{ elements.created }}</span>
+      </div> <!-- *** end clip title and date *** -->
+      {% if elements.is_owner %}
+      <div class="clip-save-note clearfix">
+       <span>Private Note:</span>
+       <p>{{ elements.field_note[0] }}</p>
+      </div>
+      {% else %}
+      <div class="clearfix">
+      </div>
+      {% endif %}
+      {% if elements.field_commentary[0] %}
+      <div class="clip-save-note clearfix"><span>Commentary:</span>
+        <p>{{ elements.field_commentary[0] }}</p>
+      </div>
+      {% endif %}
+      {% endif %}
+    {% if elements.display_transcript and (elements.is_transcript or not elements.is_embed) %}
+      <div class="clip-transcript clearfix">
+        <h3>TRANSCRIPT</h3>
+        {% for clip, hearing  in elements.transcripts %}
+          <b>CLIP {{ clip + 1 }}:
+            {{ hearing.info.hearing }}
+            <a href="{{ elements.base_url }}/hearing/{{ hearing.info.hid }}?startTime={{ hearing.info.start }}&vid={{ hearing.info.vid }}">
+              (View video source)
+            </a>
+          </b>
+          {% for utter in hearing.utters %}
+          <p>
+            {% if utter.text %}
+            <a href="{{ elements.base_url }}/person/{{ utter.pid }}">
+              {{ utter.speaker }}
+            </a>: {{ utter.text }}
+            {% else %}
+              "No transcript information."
+            {% endif %}
+          </p>
+          {% endfor %}
+        {% endfor %}
+      </div>
+    {% endif %}
+    </div><!-- *** end left-clip-detail *** -->
+    {% endif %}
+  </div><!-- *** end left-clip-detail *** -->
+</div><!-- *** node-type-dd-clip *** -->
+{%  if elements.campaign_id is not empty %}
+  <div class="social-share">
+{% include "@dd/components/campaigns/campaign-social.twig"
+  with {
+    enable_facebook_share: 1,
+    enable_twitter_share: 1,
+    tweet: elements.field_sample_tweet
+  }
+%}
+  </div>
+{% endif %}
+
+{%  if elements.field_video_description is not empty %}
+  <div>
+    {{  elements.field_video_description|raw }}
+  </div>
+{% endif %}
+{%  if elements.campaign_id is not empty %}
+  <a href="{{ elements.campaign_url }}">&lt;&lt; Back To Campaign</a>
+{% endif %}
+{% if elements.is_embed and elements['#view_mode'] != 'video_only' %}
+  {{ attach_library('dd/dd-clip-embed') }}
+{% else %}
+  {{ attach_library('dd/dd-clip-page') }}
+{% endif %}
+{% endif %}

@@ -1,0 +1,116 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_search.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_search module.
+    case 'help.page.dd_search':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Search Components') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_search_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-site-search-site-search') {
+    $form['speaker_pid']['#autocomplete_route_name'] = 'dd_person.person_autocomplete';
+    $form['#attached']['library'][] = 'dd/dd-autocomplete';
+    $form['#submit'][] = '_dd_search_site_search_submit';
+
+    // Set Bill Type options.
+    $options = ['' => t('- Any -')];
+    $options += \Drupal\dd_bill\Entity\DdBill::getBillTypes();
+    $form['type']['#type'] = 'select';
+    if (isset($form['type']['#size'])) {
+      unset($form['type']['#size']);
+    }
+    $form['type']['#options'] = $options;
+
+    $field_id = 'cn_id';
+    if (isset($form[$field_id])) {
+      $options = \Drupal\dd_committee\Entity\DdCommittee::buildCommitteeList(TRUE, FALSE);
+      // Alter the field.
+      $form[$field_id]['#type'] = 'select';
+      $form[$field_id]['#options'] = $options;
+      $form[$field_id]['#chosen'] = TRUE;
+      unset($form[$field_id]['#size']);
+    }
+  }
+}
+
+/**
+ * Search Form Submit Handler.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_search_site_search_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $view = $form_state->get('view');
+  $input = $view->getExposedInput();
+  $speaker_pid = $form_state->getValue('speaker_pid');
+
+  // Strip out PID from value, either # or First Last (#).
+  if ($speaker_pid != '') {
+    if (preg_match('/^\d+/', $speaker_pid)) {
+      $pid = $speaker_pid;
+    }
+    else {
+      // Take "label (entity id)', match the ID from inside the parentheses.
+      $pid = \Drupal\Core\Entity\Element\EntityAutocomplete::extractEntityIdFromAutocompleteInput($speaker_pid);
+    }
+    $input['speaker_pid'] = $pid;
+    $view->exposed_data['speaker_pid'] = $pid;
+
+  }
+
+  // Add from/to date timestamps so that single day utterance query works.
+  if ($form_state->getValue('date_ts') != '') {
+    $date_ts = $form_state->getValue('date_ts') . ' 00:00:00';
+    $input['date_ts'] = $date_ts;
+    $view->exposed_data['date_ts'] = $date_ts;
+  }
+
+  if ($form_state->getValue('date_ts_1') != '') {
+    $date_ts_1 = $form_state->getValue('date_ts_1') . ' 23:59:59';
+    $input['date_ts_1'] = $date_ts_1;
+    $view->exposed_data['date_ts_1'] = $date_ts_1;
+  }
+
+  $view->setExposedInput($input);
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_search_views_data_alter(array &$data) {
+  // Override filter type for /search Text highlight search api results.
+  $data['search_api_index_currentutterance_index']['text']['field']['filter_type'] = 'xss';
+}
+
+function dd_search_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'dss_report':
+      global $base_url;
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('[DigitalDemocracy] Drupal DDDB - Solr Sync Report] '. $base_url);
+      $message['body'][] = \Drupal\Component\Utility\SafeMarkup::checkPlain($params['message']);
+      break;
+  }
+}

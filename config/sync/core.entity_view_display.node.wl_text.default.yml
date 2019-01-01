@@ -1,0 +1,32 @@
+uuid: 6e3c0694-1f99-4eaa-9042-5f13d3d550b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.wl_text.body
+    - field.field.node.wl_text.field_location
+    - field.field.node.wl_text.field_weight
+    - node.type.wl_text
+  module:
+    - text
+    - user
+id: node.wl_text.default
+targetEntityType: node
+bundle: wl_text
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    weight: 100
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_location: true
+  field_weight: true

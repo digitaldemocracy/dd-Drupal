@@ -1,0 +1,21 @@
+uuid: 2de7a5fc-5c7b-4ddf-b15d-20f32ddf3d6d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_video_clip
+    - paragraphs.paragraphs_type.letter_to_editor
+id: paragraph.letter_to_editor.field_video_clip
+field_name: field_video_clip
+entity_type: paragraph
+bundle: letter_to_editor
+label: 'Video Clip/Montage'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_clip'
+  handler_settings: {  }
+field_type: entity_reference

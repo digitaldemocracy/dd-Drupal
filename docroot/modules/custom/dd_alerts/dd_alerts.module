@@ -1,0 +1,412 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_alerts.module.
+ */
+
+use \Drupal\Core\Form\FormStateInterface;
+use \Drupal\Core\Database\Database;
+use \Drupal\dd_base\DdBase;
+
+/**
+ * Uses hook_form_alter().
+ *
+ * @param array $form
+ *   Form object.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Persistent form state.
+ * @param string $form_id
+ *   ID of the form.
+ */
+function dd_alerts_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if (
+    $form_id == 'node_dd_bill_alert_form' ||
+    $form_id == 'node_dd_bill_alert_edit_form' ||
+    $form_id == 'node_dd_email_subscription_form' ||
+    $form_id == 'node_dd_email_subscription_edit_form'
+  ) {
+    // Remove revision/path/extra admin fields from non-admins.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array('administrator', $user_roles)) {
+      unset($form['author']);
+      unset($form['created']);
+      unset($form['uid']);
+      unset($form['options']);
+      unset($form['promote']);
+      unset($form['path']);
+      unset($form['revision']);
+      unset($form['revision_information']);
+      unset($form['revision_log']);
+      unset($form['sticky']);
+    }
+  }
+  if ($form_id == 'node_dd_bill_alert_form' || $form_id == 'node_dd_bill_alert_edit_form') {
+    // Check how many alerts have been created.
+    // @todo Move this constant to somewhere configurable or in a common area.
+    $allowed_free_bill_alerts = 20;
+    // Check if they are a user on a plan.
+    $user_plan = \Drupal\dd_payment_system\Utility\CommonHelper::getUserSubscribedPlan();
+    $uid = \Drupal::currentUser()->id();
+
+    // Redirect user if not an admin or have a subscription plan.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (
+      empty($user_plan) &&
+      !in_array('administrator', $user_roles) &&
+      !in_array('stealth_mode', $user_roles) &&
+      !in_array('editor', $user_roles) &&
+      !in_array('site_manager', $user_roles)
+    ) {
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'dd_bill_alert')
+        ->condition('uid', $uid);
+      $nids = $query->execute();
+
+      if (count($nids) >= $allowed_free_bill_alerts) {
+        drupal_set_message(t('Exceeded maximum of @allowed_free_bill_alerts Bill Alerts for free plan. Please upgrade to add more alerts.',
+          ['@allowed_free_bill_alerts' => $allowed_free_bill_alerts]),
+          'error'
+        );
+        if (\Drupal\dd_base\DdBase::getSiteType() ==
+            \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL)
+          exit;
+
+        $subscribe_form = \Drupal\Core\Url::fromRoute('dd_payment_system.subscribe', [
+          'user' => $uid,
+        ])->toString();
+        $response = new \Symfony\Component\HttpFoundation\RedirectResponse($subscribe_form);
+        $response->send();
+        exit;
+      }
+    }
+
+    $options = ['_none' => t('- None -')];
+    $options += \Drupal\dd_bill\Entity\DdBill::getBillTypes();
+    $form['field_bill_type']['widget']['#options'] = $options;
+    $form['#validate'][] = '_dd_alerts_validate_bill_alert_form';
+    $form['actions']['unpublish']['#submit'][] = '_dd_alerts_submit_bill_alert_form';
+
+    $bill_number = \Drupal::request()->query->get('bill_number');
+    $bill_type = \Drupal::request()->query->get('bill_type');
+
+    if ($bill_number != '') {
+      $form['field_bill_number']['widget'][0]['value']['#default_value'] = $bill_number;
+    }
+    if ($bill_type != '') {
+      $form['field_bill_type']['widget']['#default_value'] = $bill_type;
+    }
+
+    if (DdBase::getSiteType() != \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+      unset($form['field_organization_alert']);
+    }
+
+  }
+  elseif ($form_id == 'node_dd_email_subscription_form' || $form_id == 'node_dd_email_subscription_edit_form') {
+    // Check how many alerts have been created.
+    // @todo Move this constant to somewhere configurable or in a common area.
+    $allowed_free_video_alerts = 20;
+    $user_plan = \Drupal\dd_payment_system\Utility\CommonHelper::getUserSubscribedPlan();
+    $uid = \Drupal::currentUser()->id();
+
+    // Check number of video alerts created if not on a plan or not an admin.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (
+      empty($user_plan) &&
+      !in_array('administrator', $user_roles) &&
+      !in_array('stealth_mode', $user_roles) &&
+      !in_array('editor', $user_roles) &&
+      !in_array('site_manager', $user_roles)
+    ) {
+      $query = \Drupal::entityQuery('node')
+        ->condition('type', 'dd_email_subscription')
+        ->condition('uid', $uid);
+      $nids = $query->execute();
+
+      if (count($nids) >= $allowed_free_video_alerts) {
+        drupal_set_message(t('Exceeded maximum of @allowed_free_video_alerts Video Alerts for free plan. Please upgrade to add more alerts.',
+          ['@allowed_free_video_alerts' => $allowed_free_video_alerts]),
+          'error'
+        );
+        $subscribe_form = \Drupal\Core\Url::fromRoute('dd_payment_system.subscribe', [
+          'user' => $uid,
+        ])->toString();
+        $response = new \Symfony\Component\HttpFoundation\RedirectResponse($subscribe_form);
+        $response->send();
+        exit;
+      }
+    }
+
+    $form['#attached']['library'][] = 'dd/dd-autocomplete';
+    $form['actions']['unpublish']['#submit'][] = '_dd_alerts_submit_keyword_alert_form';
+    $form['#validate'][] = '_dd_alerts_validate_keyword_alert_form';
+
+    // Hide Organization Alert field for non-white label.
+    if (DdBase::getSiteType() != \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL) {
+      unset($form['field_organization_alert2']);
+    }
+
+    // Hide Receive Alerts For Viedo Field for non-admins.
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array("administrator", $user_roles)) {
+      unset($form['field_receive_alerts_for_videos']);
+    }
+
+    $form['field_key_phrase']['widget']['add_more']['#value'] = t('Add Another Line');
+
+    // Add tooltips next to labels on form.
+    $icon_classes = ['info-icon', 'information-icon-key-phrase'];
+    $fields = [
+      'field_key_phrase' => &$form['field_key_phrase']['widget']['#title'],
+      'field_speaker_pid' => &$form['field_speaker_pid']['widget'][0]['target_id']['#title'],
+      'field_bill_type' => &$form['field_bill_type']['widget']['#title'],
+      'field_bill_number_is' => &$form['field_bill_number_is']['widget'][0]['value']['#title'],
+      'field_committee_is' => &$form['field_committee_is']['widget'][0]['#title'],
+    ];
+
+    foreach ($fields as $field => &$title) {
+      $url = \Drupal\Core\Link::fromTextAndUrl('', \Drupal\Core\Url::fromUserInput('#', [
+        'attributes' => [
+          'class' => $icon_classes,
+          'data-toggle' => 'tooltip',
+          'title' => (string) $form[$field]['widget']['#description']
+        ]
+      ]));
+      $title .= ' ' . $url->toString();
+    }
+
+    $key_phrase_help_text = <<<HDOC
+Enter key words to subscribe to. Statements which contain all key words will be searched. Words are case-insensitive. 
+Words must be at least three characters long and may not contain slashes, apostrophes, asterisks, semicolons, equals signs, 
+percent signs, or curly braces. Leave blank to ignore this restriction.
+HDOC;
+
+    $url = \Drupal\Core\Link::fromTextAndUrl('', \Drupal\Core\Url::fromUserInput('#', [
+      'attributes' => [
+        'class' => $icon_classes,
+        'data-toggle' => 'tooltip',
+        'title' => $key_phrase_help_text,
+      ]
+    ]));
+    $form['title']['#suffix'] = '<div class="form-item key-phrase-heading"><strong>Statement contains all these words</strong>' . $url->toString() . "</div>";
+
+    $options = \Drupal\dd_committee\Entity\DdCommittee::buildCommitteeList();
+
+    $committee_name = \Drupal::request()->query->get('committee_name');
+    if ($committee_name != '') {
+      $form['field_committee_is']['widget'][0]['value']['#default_value'] = \Drupal::request()->query->get('committee_name');
+    }
+    else {
+      $committee_name = $form['field_committee_is']['widget'][0]['value']['#default_value'];
+    }
+
+    // Add Committee Dropdowns.
+    $form['committee_name'] = [
+      '#type' => 'select',
+      '#options' => $options,
+      '#title' => $form['field_committee_is']['widget'][0]['#title'],
+      '#description' => '',
+      '#default_value' => $committee_name,
+      '#weight' => 7,
+    ];
+
+
+    // Set Speaker PID from query string.
+    $field_id = 'field_speaker_pid';
+    $speaker_pid = \Drupal::request()->query->get('speaker_pid');
+    if ($speaker_pid) {
+      $speaker = \Drupal\dd_person\Entity\DdPerson::load($speaker_pid);
+      $form[$field_id]['widget'][0]['target_id']['#default_value'] = $speaker;
+    }
+    unset($form['field_committee_is']);
+  }
+
+  // Add state selection to both alert/video email forms.
+  if (
+    DdBase::getSiteType() != \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL &&
+    ($form_id == 'node_dd_email_subscription_form' || $form_id == 'node_dd_bill_alert_form')
+  ) {
+    $active_states = DdBase::getActiveStates();
+    $state_urls = DdBase::getStateDomains(TRUE, TRUE, TRUE);
+    $current_state = DdBase::getCurrentState();
+    $options = [];
+    foreach ($active_states as $active_state) {
+      $options[$active_state . '~' . $state_urls[$active_state]] = $active_state;
+    }
+
+    $form['alert_state'] = [
+      '#type' => 'select',
+      '#title' => 'Create Alert For State:',
+      '#options' => $options,
+      '#default_value' => $current_state . '~' . $state_urls[$current_state],
+      '#weight' => -1,
+      '#validated' => TRUE,
+    ];
+
+    $form['#attached']['library'][] = 'dd/dd-alerts';
+  }
+  if (
+    $form_id == 'node_dd_email_subscription_form' ||
+    $form_id == 'node_dd_bill_alert_form' ||
+    $form_id == 'node_dd_email_subscription_edit_form' ||
+    $form_id == 'node_dd_bill_alert_edit_form'
+  ) {
+    // Remove Publish buttons, leave all as "Unpublished" for save.
+    unset($form['actions']['publish']);
+    $form['actions']['unpublish']['#value'] = t('Save');
+    unset($form['actions']['unpublish']['#dropbutton']);
+
+  }
+
+}
+
+/**
+ * Custom validation for the dd_bill_alert content type.
+ *
+ * @param array $form
+ *   Form object.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Persistent form state.
+ */
+function _dd_alerts_validate_bill_alert_form(&$form, FormStateInterface $form_state) {
+  // Get form values for validation.
+  $bill_type = $form_state->getValue('field_bill_type');
+  $bill_number = $form_state->getValue('field_bill_number');
+  $alert_video = $form_state->getValue('field_receive_alerts_for_videos');
+  $alert_votes = $form_state->getValue('field_receive_alerts_for_votes');
+  $alert_hearings = $form_state->getValue('field_receive_alerts_for_schedul');
+  $alert_amended = $form_state->getValue('field_alert_me_when_bill_is_amen');
+
+  $query = Database::getConnection('default', DdBase::getDddbName())->select('Bill', 'b');
+  $query->fields('b', array('dr_id', 'billState'));
+
+  if (!empty($bill_type) and !empty($bill_number[0]['value'])) {
+    $bill_type = $bill_type[0]['value'];
+    $bill_number = $bill_number[0]['value'];
+
+    $curr_year = date('Y', strtotime("now"));
+
+    // Check if a user supplied bill type and ID exists.
+    $query->condition('b.type', $bill_type);
+    $query->condition('b.number', $bill_number);
+    $query->condition('b.sessionYear', DdBase::getSessionYear($curr_year));
+    $bill = $query->execute()->fetchObject();
+
+    if (empty($bill)) {
+      $form_state->setErrorByName('field_bill_number', 'Bill number ' . $bill_number . ' does not exist for bill type ' . $bill_type . ' or does not exist in current session year');
+    }
+    else {
+      // Check if a user supplied bill type and ID is chaptered.
+      if ($bill->billState == 'Chaptered') {
+        $form_state->setErrorByName('field_bill_number', 'Your alert has not been saved because the bill has been Chaptered, therefore no future alerts will be sent. Please enter a different bill number in the form and save again. Thank you.');
+      }
+    }
+  }
+  elseif (!empty($bill_type)) {
+
+    $bill_type = $bill_type[0]['value'];
+    // Check if bill type exists.
+    // Check if a user supplied bill type and ID exists.
+    $query->condition('b.type', $bill_type);
+    $bill = $query->execute()->fetchObject();
+
+    if (empty($bill)) {
+      $form_state->setErrorByName('field_bill_type', 'Bill type ' . $bill_type . ' is invalid');
+    }
+  }
+  else {
+    // If we want to do something here if a user has not entered anything...
+  }
+
+  // Check to see if they have selected at least one alert.
+  $alert_video = $alert_video['value'];
+  $alert_votes = $alert_votes['value'];
+  $alert_hearings = $alert_hearings['value'];
+  $alert_amended = $alert_amended['value'];
+  if (!$alert_video and !$alert_votes and !$alert_hearings and !$alert_amended) {
+    $form_state->setErrorByName('field_receive_alerts_for_videos', 'Please select at least one alert type');
+  }
+}
+
+/**
+ * Custom validation for the dd_email_subscription content type.
+ *
+ * @param array $form
+ *   Form object.
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Persistent form state.
+ */
+function _dd_alerts_validate_keyword_alert_form(&$form, FormStateInterface $form_state) {
+  $input = $form_state->getUserInput();
+
+  // Populate the phrase to speaker with name from PID autocomplete.
+  if (preg_match("/(.+)\s\(([^\)]+)\)/", str_replace('"', '', $input['field_speaker_pid'][0]['target_id']), $matches)) {
+    $form_state->setValue('field_restrict_phrase_to_speaker', [['value' => $matches[1]]]);
+  }
+
+  // Set text field to committee name dropdown select value.
+  if (isset($input['committee_name'])) {
+    $form_state->setValue('field_committee_is', [['value' => $input['committee_name']]]);
+  }
+}
+
+/**
+ * Submit handler for bill alert.
+ *
+ * @param array $form
+ *   Form
+ * @param FormStateInterface $form_state
+ *   Form state
+ */
+function _dd_alerts_submit_bill_alert_form(&$form, FormStateInterface $form_state) {
+  $msg = t('Success! You have created your bill alert.');
+  drupal_set_message($msg);
+  $url = \Drupal\Core\Url::fromRoute('dd_account_dashboard.bill_alerts', [
+    'user' => \Drupal::currentUser()->id(),
+  ]);
+  $form_state->setRedirectUrl($url);
+}
+
+/**
+ * Submit handler for email alert.
+ *
+ * @param array $form
+ *   Form
+ * @param FormStateInterface $form_state
+ *   Form state
+ */
+function _dd_alerts_submit_keyword_alert_form(&$form, FormStateInterface $form_state) {
+  $msg = t('Success! You have created your video alert.');
+  drupal_set_message($msg);
+  $url = \Drupal\Core\Url::fromRoute('dd_account_dashboard.keyword_alerts', [
+    'user' => \Drupal::currentUser()->id(),
+  ]);
+  $form_state->setRedirectUrl($url);
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_alerts_theme($existing, $type, $theme, $path) {
+  $theme = array(
+    'dd_share_toolbar' => array(
+      'variables' => array(
+        'enable_video_clip' => FALSE,
+        'enable_alert' => FALSE,
+        'enable_email' => FALSE,
+        'enable_facebook' => FALSE,
+        'enable_twitter' => FALSE,
+        'enable_linkedin' => FALSE,
+        'enable_bookmark' => FALSE,
+        'video_clip_url' => NULL,
+        'alert_url' => NULL,
+        'email_url' => NULL,
+        'fb_share_url' => NULL,
+        'twitter_share_url' => NULL,
+        'linkedin_share_url' => NULL,
+        'bookmark_link' => NULL,
+      ),
+    ),
+  );
+  return $theme;
+}

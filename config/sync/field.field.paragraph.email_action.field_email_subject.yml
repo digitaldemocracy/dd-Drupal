@@ -1,0 +1,19 @@
+uuid: b9ed0ffe-8b01-47fb-9a51-c63c1729291e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_email_subject
+    - paragraphs.paragraphs_type.email_action
+id: paragraph.email_action.field_email_subject
+field_name: field_email_subject
+entity_type: paragraph
+bundle: email_action
+label: 'Email Subject'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

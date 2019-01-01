@@ -1,0 +1,49 @@
+uuid: c8dc36a9-6580-4370-a094-40570439b3e5
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: views_block__contributions_contributions_donor
+theme: dd
+region: content
+weight: -24
+provider: null
+plugin: 'views_block:contributions-contributions_donor'
+settings:
+  id: 'views_block:contributions-contributions_donor'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /analysis/contributions/donor
+    negate: false
+    context_mapping: {  }

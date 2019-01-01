@@ -1,0 +1,23 @@
+uuid: 869d549f-8552-40a7-af00-375c81c5ae42
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_campaign_desc_location
+    - node.type.campaign
+  module:
+    - options
+id: node.campaign.field_campaign_desc_location
+field_name: field_campaign_desc_location
+entity_type: node
+bundle: campaign
+label: 'Campaign Description Location'
+description: 'Place Campaign Description on Top/Middle/Bottom of campaign page'
+required: true
+translatable: false
+default_value:
+  -
+    value: Top
+default_value_callback: ''
+settings: {  }
+field_type: list_string

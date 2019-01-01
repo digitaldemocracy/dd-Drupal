@@ -1,0 +1,15 @@
+uuid: 28bdbd29-6867-426d-88bc-d88a14a4937c
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: yBqw6UD3j0MM1yoDSVDif7nw4SNdoS2e385nw--3ysk
+id: front
+label: 'Front page'
+tags:
+  canonical_url: '[site:url]'
+  shortlink: '[site:url]'
+  title: 'Digital Democracy | Search [site:state_fullname] Legislative Committee Hearings'
+  og_description: 'Digital Democracy is opening up the [site:state_fullname] Legislature to help all citizens. Watch this video and find out how! #digitaldemocracy'
+  og_image: 'https://www.digitaldemocracy.org/themes/custom/dd/images/video-img-0331.jpg'
+  og_video: 'https://youtu.be/PDCfDJL0VSY'

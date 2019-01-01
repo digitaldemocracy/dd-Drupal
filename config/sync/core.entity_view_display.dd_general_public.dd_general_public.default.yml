@@ -1,0 +1,127 @@
+uuid: a80b9389-1e17-44da-b94c-3c051d304f43
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_general_public.dd_general_public.default
+targetEntityType: dd_general_public
+bundle: dd_general_public
+mode: default
+content:
+  did:
+    type: entity_reference_entity_view
+    weight: 6
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  first:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  hid:
+    type: entity_reference_entity_view
+    weight: 7
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 5
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  last:
+    label: inline
+    type: string
+    weight: 3
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  middle:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  oid:
+    type: entity_reference_entity_view
+    weight: 8
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  pid:
+    type: number_unformatted
+    weight: 0
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  position:
+    type: string
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 50
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  servesOn_dr_ids: true

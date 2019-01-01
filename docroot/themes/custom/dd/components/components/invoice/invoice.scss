@@ -1,0 +1,22 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/invoice/icons';
+
+div.dd-invoice-page {
+  width: 50%;
+  margin: 5px auto 5px;
+  padding: 5px 5px 5px 5px;
+  ul.invoice-elements {
+    list-style: none;
+  }
+  ul.back-links {
+    list-style: none;
+    li {
+      display: inline;
+      a {
+        padding: 5px;
+      }
+    }
+  }
+}

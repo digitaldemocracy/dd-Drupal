@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_bill_discussion.html.twig
+ * Default theme implementation to present DD Bill Discussion data.
+ *
+ * This template is used when viewing DD Bill Discussion pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_bill_discussion()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_bill_discussion') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

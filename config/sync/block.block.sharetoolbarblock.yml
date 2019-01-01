@@ -1,0 +1,48 @@
+uuid: 5d335a88-fc0a-400d-a18a-eb068d6bdd5f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_alerts
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: sharetoolbarblock
+theme: dd
+region: content_top
+weight: -50
+provider: null
+plugin: dd_share_toolbar_block
+settings:
+  id: dd_share_toolbar_block
+  label: 'Share Toolbar Block'
+  provider: dd_alerts
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/committee/*\r\n/person/*"
+    negate: false
+    context_mapping: {  }

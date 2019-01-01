@@ -1,0 +1,22 @@
+uuid: c4128aff-96cb-4e74-ab84-033c2a72fac7
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dd_commentary_alert
+id: node.dd_commentary_alert.status
+field_name: status
+entity_type: node
+bundle: dd_commentary_alert
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

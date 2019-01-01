@@ -1,0 +1,9 @@
+dd_email_ca_legislator.contact_form:
+ path: '/email_ca_legislator/contact/{house}/{district}/{pid}'
+ defaults:
+   _form: '\Drupal\dd_email_ca_legislator\Form\EmailCALegislatorForm'
+   _title_callback: '\Drupal\dd_email_ca_legislator\Controller\DdEmailCaLegController::getTitle'
+ requirements:
+   _permission: 'access content'
+ options:
+   no_cache: TRUE

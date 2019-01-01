@@ -1,0 +1,85 @@
+@import 'init';
+
+
+#block-views-block-blurb-blurbs-endorsements {
+  position: relative;
+}
+
+#block-views-block-blurb-blurbs-inthenews {
+  position: relative;
+}
+
+
+.blurbs {
+  font-size: font-size('s');
+  @include zen-respond-to('s') {
+    @include font-size(m);
+    line-height: 1.5rem;
+  }
+
+  .field--name-body {
+    color: $dd-charcoal;
+    margin: .75rem 0;
+    @include zen-respond-to('xxl') { // Only the body field should grow on larger devices.
+      @include font-size(l);
+      line-height: 1.75rem;
+    }
+
+    p {
+      font-style: italic;
+      display: inline;
+    }
+
+    &::before {
+      content: '“';
+      display: inline;
+    }
+
+    &::after {
+      content: '”';
+      display: inline;
+    }
+  }
+
+  .field--name-field-byline {
+    text-align: right;
+
+    &::before {
+      content: '– ';
+      display: inline;
+    }
+  }
+
+  .more-link  { // See also absolute positioning below.
+    @include white-links;
+    right: 1rem;
+  }
+
+  .views_slideshow_pager_field_item {
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background: white;
+    font-size: 0;
+    display: inline-block;
+    margin-right: 7px;
+
+    &.active,
+    &:hover {
+      background: $dd-yellow;
+    }
+  }
+}
+
+#widget_pager_bottom_blurb-blurbs_inthenews,
+#widget_pager_bottom_blurb-blurbs_endorsements,
+.blurbs .more-link {
+  position: absolute;
+  top: 250px;
+  @include zen-respond-to('s') {
+    top: 200px;
+  }
+  @include zen-respond-to('m') {
+    top: 285px;
+  }
+}

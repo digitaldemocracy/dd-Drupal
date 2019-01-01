@@ -1,0 +1,175 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_hearing.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dd_hearing\Entity\DdHearing;
+
+/**
+ * Implements hook_help().
+ */
+function dd_hearing_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_hearing module.
+    case 'help.page.dd_hearing':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Hearing entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_hearing_theme() {
+  $theme = array(
+    'dd_hearing' => array(
+      'render element' => 'elements',
+      'file' => 'dd_hearing.page.inc',
+    ),
+  );
+  return $theme;
+}
+
+/**
+ * Implements hook_entity_storage_load().
+ */
+function dd_hearing_entity_storage_load(array $entities, $entity_type) {
+  if ($entity_type == 'dd_hearing') {
+    foreach ($entities as $entity) {
+      // Set Committee IDs for a hearing.
+      $cids = DdHearing::getCommitteeIdsForHearing($entity->id());
+      $entity->setCids($cids);
+
+      if ($cids) {
+        $cn_ids = [];
+        $committees = \Drupal\dd_committee\Entity\DdCommittee::loadMultiple($cids);
+        if ($committees) {
+          foreach ($committees as $committee) {
+            $cn_ids[] = $committee->getCommitteeNameId();
+          }
+        }
+        $entity->setCommitteeNameIds($cn_ids);
+
+      }
+
+      // Set BillDiscussion IDs for a hearing
+      $entity->setDids(DdHearing::getBillDiscussionIdsForHearing($entity->id()));
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_hearing_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'views_exposed_form' && $form['#id'] == 'views-exposed-form-hearings-faceted-page-1') {
+    // Add class to div around facet form.
+    $form['#attributes']['class'][] = 'hearings-facet-form';
+
+    $user_input = $form_state->getUserInput();
+    $session_years = [];
+
+    if (isset($user_input['f']) && count($user_input['f'])) {
+      foreach ($user_input['f'] as $facet) {
+        list($key, $value) = explode(':', $facet);
+        if ($key == 'session_year') {
+          $session_years[] = $value;
+        }
+      }
+    }
+
+    if ($session_years) {
+      $session_years = implode(':', $session_years);
+    }
+    else {
+      $session_years = 'all';
+    }
+
+    // Replace field description with placeholder.
+    $form['search_api_fulltext']['#placeholder'] = $form['#info']['filter-search_api_fulltext']['description'];
+    $form['#info']['filter-search_api_fulltext']['description'] = '';
+    $form['type_number']['#autocomplete_route_name'] = 'dd_bill.bill_autocomplete';
+    $form['type_number']['#autocomplete_route_parameters'] = ['session_years' => $session_years, 'use_bid_value' => FALSE];
+
+    $form['#attached']['library'][] = 'core/drupal.autocomplete';
+    $form['#submit'][] = '_dd_hearing_search_submit';
+  }
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_hearing_views_data_alter(array &$data) {
+  $data['search_api_index_hearings_index']['InitialVideo'] = array(
+    'title' => t('Hearing Initial Video'),
+    'help' => t('Hearing Initial Video'),
+    'field' => array(
+      'id' => 'hearing_initial_video',
+    ),
+  );
+}
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_hearing_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Add State conditions for search_api tracking of entities.
+  if (
+      isset($query->getTables()['base_table']) &&
+      $query->getTables()['base_table']['table'] == 'H̱earing' &&
+      \Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\search_api\Task\IndexTaskManager'))
+  ) {
+    $query->condition('base_table.state', \Drupal\dd_base\DdBase::getCurrentState());
+  }
+
+  // Perform Hearing Inclusion / Exclusions.
+  if (
+      \Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL &&
+      in_array('Hearing', array_keys($query->getTables())) &&
+      !\Drupal\dd_base\DdBase::checkCallingClass(array('Drupal\Core\Entity\Element\EntityAutocomplete')
+    )
+  ) {
+    $config = Drupal::config(\Drupal\dd_admin\DdAdmin::getDdAdminContentSettingsName());
+    $hearings_include_exclude = $config->get('hearings_include_exclude');
+    $hids = $config->get('hearing_hids');
+
+    if ($hids) {
+      $query->condition('Hearing.hid', $hids, $hearings_include_exclude ? 'IN' : 'NOT IN');
+    }
+  }
+}
+
+/**
+ * Hearing Search Form Submit Handler.
+ *
+ * @param array $form
+ *   Form
+ * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_hearing_search_submit(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $view = $form_state->get('view');
+  $input = $view->getExposedInput();
+
+  // Add from/to date timestamps so that single day query works.
+  if ($form_state->getValue('start_date') != '') {
+    $start_date = $form_state->getValue('start_date') . ' 00:00:00';
+    $input['start_date'] = $start_date;
+    $view->exposed_data['start_date'] = $start_date;
+  }
+
+  if ($form_state->getValue('end_date') != '') {
+    $end_date = $form_state->getValue('end_date') . ' 23:59:59';
+    $input['end_date'] = $end_date;
+    $view->exposed_data['end_date'] = $end_date;
+  }
+
+  $view->setExposedInput($input);
+}

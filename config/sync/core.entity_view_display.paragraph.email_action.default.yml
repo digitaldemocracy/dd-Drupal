@@ -1,0 +1,28 @@
+uuid: 31215ffc-7e4f-4c3f-a314-df18ece3dbf3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.email_action.field_email_body
+    - field.field.paragraph.email_action.field_email_subject
+    - field.field.paragraph.email_action.field_success_message
+    - paragraphs.paragraphs_type.email_action
+id: paragraph.email_action.default
+targetEntityType: paragraph
+bundle: email_action
+mode: default
+content:
+  field_email_subject:
+    type: string
+    weight: 0
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  field_email_body: true
+  field_success_message: true
+  uid: true

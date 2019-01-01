@@ -1,0 +1,10 @@
+uuid: 518f7604-374a-4db7-90d3-d2a2534a637d
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_serves_on.token
+label: Token
+targetEntityType: dd_serves_on
+cache: true

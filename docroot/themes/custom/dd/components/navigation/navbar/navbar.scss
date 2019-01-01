@@ -1,0 +1,320 @@
+@import 'init';
+
+// Navbar
+//
+// A simple method to get navigation links to appear in one line.
+//
+// Markup: navbar.twig
+//
+// Style guide: navigation.navbar
+
+.navbar,
+%navbar {
+  margin: 0;
+  padding: 0;
+  text-align: left;
+
+
+  &__item,
+  li {
+    display: inline-block;
+    text-align: center;
+    padding: 0 1em 0 0;
+    list-style-type: none;
+    list-style-image: none;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+}
+
+#block-dd-main-menu {
+  @include zen-respond-to(xl-and-below) {
+    display: none;
+  }
+
+  ul.menu {
+    @extend %navbar;
+    // Flex layout for desktop menu
+    @include zen-respond-to(xl) {
+      @include flex-container;
+      flex-wrap: nowrap;
+      margin: 0;
+
+      li.menu-item {
+        @include flex-item;
+
+        a {
+          padding-left: .5em;
+          padding-right: .5em;
+        }
+      }
+    }
+
+    li {
+
+      @include zen-respond-to(xl-and-below) {
+
+        // Mobile Menu styles
+        @include dd-complex-borders($dd-blue-darker, 1px, 0, 0, 0);
+        background: $dd-blue-dark;
+        display: block;
+        padding: .5em 0 .1em 1em;
+        text-align: left;
+
+        a {
+          font-weight: normal;
+        }
+      }
+    }
+  }
+
+
+  a {
+    text-decoration: none;
+    font-size: 1.25rem;
+    text-transform: uppercase;
+    font-family: $roboto;
+    color: $dd-charcoal;
+    @if $whitelabel-id == hungeractionla {
+      color: lighten($dd-offwhite, 5%);
+    }
+    line-height: 2em;
+    padding: 0 1px;
+    @include respond-to('xs') {
+      font-size: 115%;
+      line-height: 1.7em;
+    }
+
+    @include zen-respond-to(xl-and-below) {
+      color: color(grey-extra-light);
+
+      &.is-active {
+        color: color(white);
+      }
+    }
+  }
+
+  // Add underline hover effect to non-active links only.
+  a:not(.is-active) {
+    // Options for the underline-from center mixin:
+    // $height: 4px,
+    // $underline-color: $dd-yellow,
+    // $duration: $medium-duration
+    @include dd-underline-from-center(6px, $dd-yellow, $medium-duration);
+    padding-bottom: .5em !important;
+
+    @include respond-to('m') {
+      &::before {
+        height: 6px;
+      }
+    }
+  }
+
+  a.is-active {
+    border-bottom: 4px solid $dd-yellow;
+    display: inline-block;
+    padding-bottom: .2em;
+    vertical-align: middle;
+
+    @include respond-to('m') {
+     border-bottom: 6px solid $dd-yellow;
+    }
+
+    @include zen-respond-to(xl) {
+      color: darken($dd-stormy-intense, 10%);
+    }
+  }
+
+  a:hover {
+    color: $dd-black;
+    @if $whitelabel-id == hungeractionla {
+      color: $dd-offwhite;
+    }
+
+    @include zen-respond-to(xl-and-below) {
+      color: $dd-offwhite;
+    }
+  }
+}
+
+// Top user Account Menu
+
+#block-useraccountmenu {
+  display: inline-block;
+
+  a {
+    font-weight: bold;
+    color: lighten($dd-dimgray, 5%);
+    @if $whitelabel-id == hungeractionla {
+      color: lighten($dd-offwhite, 5%);
+    }
+    text-transform: uppercase;
+    font-size: 88%;
+
+    &:hover {
+      color: $dd-black;
+      @if $whitelabel-id == hungeractionla {
+        color: $dd-offwhite;
+      }
+    }
+  }
+}
+
+// CSS Hamburger icon
+
+$nav-icon-size: 35px;
+
+.menu__hamburger-icon {
+  right: 3px;
+  z-index: 2;
+  position: absolute;
+  margin-top: -40px;
+
+  &.open {
+    .nav-icon1 { background: $dd-yellow; }
+
+    span:nth-child(1) {
+      top: $nav-icon-size / 4;
+      transform: rotate(225deg);
+    }
+
+    span:nth-child(2) {
+      opacity: 0;
+    }
+
+    span:nth-child(3) {
+      top: $nav-icon-size / 4;
+      transform: rotate(-225deg);
+    }
+  }
+}
+
+.nav-icon1 {
+  width: $nav-icon-size + 15px;
+  height: $nav-icon-size;
+  background: $dd-blue-dark;
+  padding: 1em 1em 0 .5em;
+  margin-top: 5px;
+  position: absolute;
+  cursor: pointer;
+  right: 17px;
+  z-index: 2;
+
+  @include zen-respond-to(m) {
+    right: 10px;
+  }
+
+  @include zen-respond-to(xl) {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+    height: $nav-icon-size / 12;
+    width: $nav-icon-size;
+    background: $white;
+    opacity: 1;
+    transform: rotate(0deg);
+    transition: .1s ease-in-out;
+    text-indent: -9999px;
+    margin-top: 6px;
+
+    &:nth-child(1) {top: 0;}
+    &:nth-child(2) {top: $nav-icon-size / 4; }
+
+    &:nth-child(3) {
+      top: $nav-icon-size / 2;
+      height: 3px;
+    }
+  }
+}
+
+//============= Top Autocomplete Search Block ==============
+// General auto search form styles
+.dd-search-form {
+  form {
+    width: 70%;
+    position: relative;
+  }
+  // Visually hide labels
+  label { @include visually-hidden; }
+
+  input {
+    display: inline-block;
+
+    &[type = 'submit'] {
+      width: 10%;
+      position: absolute;
+      right: 0;
+      border-radius: 0;
+      bottom: 0;
+      padding: 5px;
+      margin: 0;
+      text-indent: -99999px;
+      background: url('../../components/hearings-teaser/search.svg') $dd-stormy-intense no-repeat 50% 10%;
+      background-size: 40px;
+
+      &:hover {
+        background-color: $dd-yellow;
+        color: #fff;
+      }
+    }
+  }
+
+  .form-item-dd-search-term {
+    display: inline-block;
+    width: 100%;
+    margin: 0;
+
+    input { width: 100%; }
+  }
+}
+
+// Specific styles for the top block
+#block-topnav-auto-search {
+  margin: 0 auto;
+
+  form {
+    width: 75%;
+
+    @include zen-respond-to(xs) {
+      width: 80%;
+    }
+
+    @include zen-respond-to(xl) {
+      width: 98%;
+    }
+  }
+
+  input[type = 'submit'] {
+    @include input-search-icon;
+    width: 20%;
+
+    @include zen-respond-to(xs) {
+      width: 10%;
+    }
+
+    @include zen-respond-to(l) {
+      width: 7%;
+    }
+  }
+}
+
+// Specific styles for the homepage block
+#block-ddsitesearchblock,
+#block-ddsitesearchblock-home,
+#block-ddsitesearchblock-base {
+  form { margin: 0 auto; }
+
+  // Adding vendor prefixes because this is not yet fully standardized
+  input::-webkit-input-placeholder { text-transform: uppercase;}
+  input:-moz-placeholder { text-transform: uppercase;}
+  input::-moz-placeholder { text-transform: uppercase;}
+  input:-ms-input-placeholder { text-transform: uppercase;}
+}
+
+
+
+

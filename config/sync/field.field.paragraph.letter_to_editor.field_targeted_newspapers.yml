@@ -1,0 +1,21 @@
+uuid: 37260811-fc80-46db-b6c7-dd8ce1f1a54b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_targeted_newspapers
+    - paragraphs.paragraphs_type.letter_to_editor
+  module:
+    - options
+id: paragraph.letter_to_editor.field_targeted_newspapers
+field_name: field_targeted_newspapers
+entity_type: paragraph
+bundle: letter_to_editor
+label: 'Targeted Newspapers'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

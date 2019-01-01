@@ -1,0 +1,14 @@
+name: 'Stripe API'
+description: 'Provides an integration to use the Stripe API library'
+# core: 8.x
+type: module
+package: Stripe
+configure: stripe_api.admin
+dependencies:
+  - key
+
+# Information added by Drupal.org packaging script on 2016-11-17
+version: '8.x-1.0-alpha1'
+core: '8.x'
+project: 'stripe_api'
+datestamp: 1479346214

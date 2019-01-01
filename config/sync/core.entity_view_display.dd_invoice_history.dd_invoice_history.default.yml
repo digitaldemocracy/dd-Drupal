@@ -1,0 +1,67 @@
+uuid: f68fd89d-172f-480e-9933-6b8be166f01e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_invoice_history.dd_invoice_history.field_balance_due
+    - field.field.dd_invoice_history.dd_invoice_history.field_duration_days
+    - field.field.dd_invoice_history.dd_invoice_history.field_expires
+    - field.field.dd_invoice_history.dd_invoice_history.field_total
+  module:
+    - datetime
+    - dd_payment_system
+    - user
+id: dd_invoice_history.dd_invoice_history.default
+targetEntityType: dd_invoice_history
+bundle: dd_invoice_history
+mode: default
+content:
+  field_balance_due:
+    weight: 1
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: dd_payment_system_formatter
+    region: content
+  field_duration_days:
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_expires:
+    weight: 3
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_total:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_lobbyist.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_lobbyist_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_lobbyist module.
+    case 'help.page.dd_lobbyist':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Lobbyist Entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}

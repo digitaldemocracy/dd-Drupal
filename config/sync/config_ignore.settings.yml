@@ -1,0 +1,9 @@
+ignored_config_entities:
+  0: 'dd_admin.DdAdminContentSettings.*'
+  2: dd.settings
+  4: system.site
+  6: google_analytics.settings
+_core:
+  default_config_hash: UVH1aJ4b44UM-VdPVN7hNNuuVqfReJxwfVeDQH1Hvsk
+ignored_regions:
+  - 'home_whitelabel*'

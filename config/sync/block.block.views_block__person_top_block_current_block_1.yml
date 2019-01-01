@@ -1,0 +1,37 @@
+uuid: 6ad66f43-29c7-42fb-b764-7537e5def8fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.person_top_block_current
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__person_top_block_current_block_1
+theme: dd
+region: content_top
+weight: -46
+provider: null
+plugin: 'views_block:person_top_block_current-block_1'
+settings:
+  id: 'views_block:person_top_block_current-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,48 @@
+dd_payment_system.subscribe:
+  path: '/user/{user}/subscribe'
+  defaults:
+    _controller: '\Drupal\dd_payment_system\Controller\DdPaymentSystemController::upgrade'
+    _title: 'Subscribe to Premium Membership Plan'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+dd_payment_system.cancel:
+  path: '/user/{user}/cancel_subscription'
+  defaults:
+    _controller: '\Drupal\dd_payment_system\Controller\DdPaymentSystemController::cancel'
+    _title: 'Cancel Premium Membership'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_payment_system.stripe_charge:
+  path: '/dd_payment_system/charge'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\dd_payment_system\Controller\DdPaymentSystemStripeController::charge'
+    _title: 'charge'
+  requirements:
+    _permission: 'access content'
+
+dd_payment_system.stripe_webhook:
+  path: '/dd_payment_system/webhook/subscription'
+  methods: [POST]
+  defaults:
+    _controller: '\Drupal\dd_payment_system\Controller\DdPaymentSystemWebhook::handleIncomingWebhook'
+    _title: 'webhook_subscription_deleted'
+  requirements:
+    _permission: 'access content'
+
+dd_payment_system.settings:
+  path: '/admin/config/services/dd_payment_system'
+  defaults:
+    _form: '\Drupal\dd_payment_system\Form\DdPaymentSystemSettingsForm'
+    _title: 'Settings'
+  requirements:
+    _permission: 'administer site configuration'

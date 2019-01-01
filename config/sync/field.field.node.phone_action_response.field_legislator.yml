@@ -1,0 +1,25 @@
+uuid: 4d56d71a-2cb0-48a1-918f-c2b4809bd4ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legislator
+    - node.type.phone_action_response
+id: node.phone_action_response.field_legislator
+field_name: field_legislator
+entity_type: node
+bundle: phone_action_response
+label: Legislator
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_legislator'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

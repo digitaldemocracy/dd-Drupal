@@ -1,0 +1,49 @@
+uuid: 50a7440d-3cf2-41dc-9143-ae2e814c9d52
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+_core:
+  default_config_hash: fQhHEb5QgHaaQTZxyziOhuljwsK9_udSHTGnp1IS9fs
+id: dd_page_title
+theme: dd
+region: content
+weight: -51
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: "/person/*\r\n/bill/*\r\n/hearing/*\r\n/blog/*"
+    negate: true
+    context_mapping: {  }
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

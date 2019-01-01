@@ -1,0 +1,25 @@
+uuid: 9713720c-28d1-475d-b35c-c000b109521e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legislator
+    - node.type.target
+id: node.target.field_legislator
+field_name: field_legislator
+entity_type: node
+bundle: target
+label: 'Choose Legislators'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_legislator'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

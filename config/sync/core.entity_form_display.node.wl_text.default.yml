@@ -1,0 +1,59 @@
+uuid: ab57b99e-9b8f-48d6-b547-0fd33e5484b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.wl_text.body
+    - field.field.node.wl_text.field_location
+    - field.field.node.wl_text.field_weight
+    - node.type.wl_text
+  module:
+    - text
+id: node.wl_text.default
+targetEntityType: node
+bundle: wl_text
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 31
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_location:
+    weight: 32
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_weight:
+    weight: 33
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: -5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  created: true
+  path: true
+  promote: true
+  sticky: true
+  uid: true

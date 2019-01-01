@@ -1,0 +1,46 @@
+dd_campaign_visitor.settings:
+  path: '/admin/structure/dd_campaign_visitor/settings'
+  defaults:
+    _form: 'Drupal\dd_metrics\Form\DdCampaignVisitorSettingsForm'
+    _admin_route: TRUE
+  requirements:
+    _permission: 'administer dd action metrics entities'
+
+entity.dd_campaign_visitor.canonical:
+  path: '/dd_campaign_visitor/{dd_campaign_visitor}'
+  defaults:
+    _entity_view: 'dd_campaign_visitor'
+    _title: 'DD Campaign Visitor'
+  requirements:
+    _permission: 'view published dd campaign visitor entities'
+
+dd_metrics.log_campaign_metric:
+  path: '/log-campaign-metric/{campaign_id}/{metric_type}'
+  defaults:
+    _controller: 'Drupal\dd_metrics\Controller\DdMetricsController::logCampaignMetric'
+    campaign_id: \d+
+  requirements:
+    _access: 'TRUE'
+
+dd_metrics.log_action_metric:
+  path: '/log-action-metric/{campaign_id}/{action_id}/{campaign_action_id}/{campaign_action_paragraphs_id}/{target_pid}/{action_conversion}'
+  defaults:
+    _controller: 'Drupal\dd_metrics\Controller\DdMetricsController::logActionMetric'
+    campaign_id: \d+
+    campaign_action_id: NULL
+    campaign_action_paragraphs_id: NULL
+    target_pid: NULL
+    action_conversion: 0
+  requirements:
+    _access: 'TRUE'
+
+dd_metrics.log_action_metric_conversion:
+  path: '/log-action-metric-conversion/{campaign_id}/{action_id}/{campaign_action_id}/{campaign_action_paragraphs_id}/{target_pid}'
+  defaults:
+    _controller: 'Drupal\dd_metrics\Controller\DdMetricsController::logActionMetric'
+    campaign_id: \d+
+    campaign_action_id: NULL
+    campaign_action_paragraphs_id: NULL
+    target_pid: NULL
+  requirements:
+    _access: 'TRUE'

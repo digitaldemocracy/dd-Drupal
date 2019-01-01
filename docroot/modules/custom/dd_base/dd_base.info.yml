@@ -1,0 +1,5 @@
+name: DD Base
+type: module
+description: DD Base Module
+core: 8.x
+package: DigitalDemocracy

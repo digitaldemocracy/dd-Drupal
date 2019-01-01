@@ -1,0 +1,23 @@
+uuid: 53471b82-c9be-4b78-a195-5b727aab8bf5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill_location
+    - node.type.campaign
+  module:
+    - options
+id: node.campaign.field_bill_location
+field_name: field_bill_location
+entity_type: node
+bundle: campaign
+label: 'Bill Location'
+description: 'Place Bill Information on Top/Middle/Bottom of campaign page'
+required: true
+translatable: false
+default_value:
+  -
+    value: Bottom
+default_value_callback: ''
+settings: {  }
+field_type: list_string

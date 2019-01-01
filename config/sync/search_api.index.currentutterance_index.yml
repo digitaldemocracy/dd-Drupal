@@ -1,0 +1,226 @@
+uuid: 104e6be6-e0ae-4f8e-8ca5-a3e9e3a29f08
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+    - dd_video
+    - dd_hearing
+    - dd_committee
+    - dd_person
+    - search_api
+    - dd_utterance
+  config:
+    - search_api.server.solr_server
+id: currentutterance_index
+name: 'CurrentUtterance Index'
+description: ''
+read_only: false
+field_settings:
+  bid:
+    label: 'Bill Discussion ID » DD Bill Discussion » Bill ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'did:entity:bid'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  bid_dr_id:
+    label: 'Bill Discussion ID » DD Bill Discussion » Bill Drupal ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'did:entity:bid_dr_id'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  cid:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » CIDs » DD Committee » ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cids:entity:cid'
+    type: integer
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+        - dd_committee
+  cids:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » CIDs'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cids'
+    type: integer
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+  cn_ids:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » Committee Name IDs'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cn_ids'
+    type: integer
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+  committee_name:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cids:entity:name'
+    type: string
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+        - dd_committee
+  committee_name_raw:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cids:entity:name'
+    type: string
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+        - dd_committee
+  committee_type:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » CIDs » DD Committee » Type'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:cids:entity:type'
+    type: string
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+        - dd_committee
+  date_ts:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » Date'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:date_ts'
+    type: date
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+  did:
+    label: 'Bill Discussion ID » DD Bill Discussion » ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'did:entity:did'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  fullname_firstlast:
+    label: 'Person ID » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'pid:entity:fullname_firstlast'
+    type: string
+    dependencies:
+      module:
+        - dd_person
+  fullname_lastfirst:
+    label: 'Person ID » DD Person » Full Name - Last, First'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'pid:entity:fullname_lastfirst'
+    type: string
+    dependencies:
+      module:
+        - dd_person
+  fullname_lastfirst_fulltext:
+    label: 'Person ID » DD Person » Full Name - Last, First Fulltext'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'pid:entity:fullname_lastfirst'
+    type: text
+    dependencies:
+      module:
+        - dd_person
+  hid:
+    label: 'Video ID » DD Video » Hearing ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid'
+    type: integer
+    dependencies:
+      module:
+        - dd_video
+  lasttouched_ts:
+    label: 'Date Last Touched'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: lastTouched_ts
+    type: date
+  number:
+    label: 'Bill Discussion ID » DD Bill Discussion » Bill Drupal ID » DD Bill » Number'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'did:entity:bid_dr_id:entity:number'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+  pid:
+    label: 'Person ID'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: pid
+    type: integer
+  session_year:
+    label: 'Video ID » DD Video » Hearing ID » DD Hearing » Session Year'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'vid:entity:hid:entity:session_year'
+    type: integer
+    dependencies:
+      module:
+        - dd_video
+        - dd_hearing
+  state:
+    label: State
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: state
+    type: string
+  text:
+    label: Text
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: text
+    type: text
+  type:
+    label: 'Bill Discussion ID » DD Bill Discussion » Bill Drupal ID » DD Bill » Type'
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: 'did:entity:bid_dr_id:entity:type'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+  uid:
+    label: ID
+    datasource_id: 'entity:dd_current_utterance'
+    property_path: uid
+    type: integer
+datasource_settings:
+  'entity:dd_current_utterance': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  highlight:
+    highlight: always
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields: {  }
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+    highlight_partial: false
+  ignorecase:
+    fields:
+      - committee_name
+      - fullname_lastfirst_fulltext
+      - type
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  rendered_item: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 0
+server: solr_server

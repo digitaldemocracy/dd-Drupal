@@ -1,0 +1,5 @@
+services:
+  dd_payment_system.commands:
+    class: \Drupal\dd_payment_system\Commands\DdPaymentSystemCommands
+    tags:
+      - { name: drush.command }

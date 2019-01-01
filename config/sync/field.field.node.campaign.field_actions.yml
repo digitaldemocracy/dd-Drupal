@@ -1,0 +1,80 @@
+uuid: ee14c064-46be-43b9-9fe9-eb77985289e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_actions
+    - node.type.campaign
+    - paragraphs.paragraphs_type.call_governor
+    - paragraphs.paragraphs_type.display_text
+    - paragraphs.paragraphs_type.display_video_clip_montage
+    - paragraphs.paragraphs_type.download_action
+    - paragraphs.paragraphs_type.email_action
+    - paragraphs.paragraphs_type.email_governor
+    - paragraphs.paragraphs_type.fax_action
+    - paragraphs.paragraphs_type.fax_governor
+    - paragraphs.paragraphs_type.letter_to_editor
+    - paragraphs.paragraphs_type.phone_action
+    - paragraphs.paragraphs_type.tweet_legislator_action
+  module:
+    - entity_reference_revisions
+id: node.campaign.field_actions
+field_name: field_actions
+entity_type: node
+bundle: campaign
+label: 'Catch-All Actions'
+description: 'Select action(s) for campaign visitors who do NOT live in a targeted district'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      email_action: email_action
+      fax_action: fax_action
+      display_video_clip_montage: display_video_clip_montage
+      download_action: download_action
+      display_text: display_text
+      letter_to_editor: letter_to_editor
+      phone_action: phone_action
+      tweet_legislator_action: tweet_legislator_action
+      call_governor: call_governor
+      email_governor: email_governor
+      fax_governor: fax_governor
+    target_bundles_drag_drop:
+      email_action:
+        enabled: true
+        weight: -17
+      fax_action:
+        enabled: true
+        weight: -16
+      display_video_clip_montage:
+        enabled: true
+        weight: -15
+      download_action:
+        enabled: true
+        weight: -14
+      display_text:
+        enabled: true
+        weight: -13
+      letter_to_editor:
+        enabled: true
+        weight: -12
+      phone_action:
+        enabled: true
+        weight: -11
+      tweet_legislator_action:
+        enabled: true
+        weight: -10
+      call_governor:
+        enabled: true
+        weight: 12
+      email_governor:
+        enabled: true
+        weight: 17
+      fax_governor:
+        enabled: true
+        weight: 19
+field_type: entity_reference_revisions

@@ -1,0 +1,24 @@
+uuid: 95f3b3eb-fce1-4ba5-b7e7-ed9d63ba7d91
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_subscription_plan.field_disable
+  module:
+    - dd_payment_system
+id: dd_subscription_plan.dd_subscription_plan.field_disable
+field_name: field_disable
+entity_type: dd_subscription_plan
+bundle: dd_subscription_plan
+label: Disable
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

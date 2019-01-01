@@ -1,0 +1,19 @@
+uuid: 65c11950-2d94-4a01-82e1-2a0b1428dec6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sample_tweet
+    - node.type.campaign
+id: node.campaign.field_sample_tweet
+field_name: field_sample_tweet
+entity_type: node
+bundle: campaign
+label: 'Write a Sample Tweet'
+description: 'This text will be displayed when a visitor tweets the campaign. 140 character limit'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

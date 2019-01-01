@@ -1,0 +1,48 @@
+dd_admin.site_manager:
+  title: 'Site Settings'
+  weight: 100
+  route_name: dd_admin.site_manager
+  base_route: entity.user.canonical
+dd_admin.dd_admin_site_settings:
+  title: 'Site Settings'
+  route_name: dd_admin.dd_admin_site_settings
+  parent_id: dd_admin.site_manager
+  description: 'Contact Info, Social Settings'
+  parent: dd_admin.site_manager
+  weight: 5
+dd_admin.dd_admin_content_settings:
+  title: 'Content Settings'
+  route_name: dd_admin.dd_admin_content_settings
+  parent_id: dd_admin.site_manager
+  description: 'Site Section Visibility, Content inclusion/exclusions'
+  parent: dd_admin.site_manager
+  weight: 10
+dd_admin.dd_admin_dashboard_settings:
+  title: 'Dashboard Settings'
+  route_name: dd_admin.dd_admin_dashboard_settings
+  parent_id: dd_admin.site_manager
+  description: 'Control settings for site dashboard'
+  parent: dd_admin.site_manager
+  weight: 20
+dd_admin.dd_admin_email_settings:
+  title: 'Email Settings'
+  route_name: dd_admin.dd_admin_email_settings
+  parent_id: dd_admin.site_manager
+  description: 'Email settings, templates'
+  parent: dd_admin.site_manager
+  weight: 30
+dd_admin.dd_admin_member_settings:
+  title: 'Member Settings'
+  route_name: dd_admin.dd_admin_member_settings
+  parent_id: dd_admin.site_manager
+  description: 'Enable/Disable member registration/login features, settings'
+  parent: dd_admin.site_manager
+  weight: 40
+dd_admin.dd_admin_fax_settings:
+  title: 'Fax Settings'
+  route_name: dd_admin.dd_admin_fax_settings
+  parent_id: dd_admin.site_manager
+  description: 'Number of faxes sent, current limit, option to pay to increase limit'
+  parent: dd_admin.site_manager
+  weight: 50
+

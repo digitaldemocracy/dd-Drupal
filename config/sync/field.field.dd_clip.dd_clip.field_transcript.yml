@@ -1,0 +1,20 @@
+uuid: de4d9795-40ec-4715-abdc-d32a62137508
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_transcript
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_transcript
+field_name: field_transcript
+entity_type: dd_clip
+bundle: dd_clip
+label: Transcript
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

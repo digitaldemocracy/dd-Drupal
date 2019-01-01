@@ -1,0 +1,21 @@
+uuid: 9c3b02d6-f089-429f-8028-00efbd07665c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_success_message
+    - paragraphs.paragraphs_type.email_action
+  module:
+    - text
+id: paragraph.email_action.field_success_message
+field_name: field_success_message
+entity_type: paragraph
+bundle: email_action
+label: 'Success/Completion Message'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

@@ -1,0 +1,37 @@
+uuid: 149b0051-facc-4c41-8dbe-ae51a4e773b1
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+id: solr_server
+name: 'Solr Server'
+description: ''
+backend: search_api_solr
+backend_config:
+  retrieve_data: false
+  highlight_data: false
+  excerpt: false
+  skip_schema_check: false
+  site_hash: true
+  connector: basic_auth
+  connector_config:
+    scheme: http
+    host: dd8.local
+    port: '8983'
+    path: /solr
+    core: collection-ca-dev
+    timeout: 5
+    index_timeout: 5
+    optimize_timeout: 10
+    solr_version: ''
+    http_method: AUTO
+    username: ''
+    password: ''
+    commit_within: 1000
+  core: collection-ca-dev
+  host: dd8.local
+  port: '8983'
+  suggest_suffix: true
+  suggest_corrections: true
+  suggest_words: false

@@ -1,0 +1,55 @@
+uuid: f0ad9dd3-ddc3-45f3-a3f6-4d9309bce47d
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.bills_faceted
+id: primary_author
+name: 'Primary Author PID » DD Person » Full Name - Last, First'
+url_alias: primary_author
+weight: 0
+show_only_one_result: false
+field_identifier: fullname_lastfirst
+query_type_name: null
+facet_source_id: 'views_page:bills_faceted__bills_faceted'
+widget:
+  type: checkbox
+  config:
+    show_numbers: true
+    soft_limit: 5
+query_operator: or
+exclude: false
+only_visible_when_facet_source_is_visible: true
+processor_configs:
+  active_widget_order:
+    processor_id: active_widget_order
+    weights:
+      sort: -10
+    settings:
+      sort: ASC
+  count_widget_order:
+    processor_id: count_widget_order
+    weights:
+      sort: -10
+    settings:
+      sort: DESC
+  display_value_widget_order:
+    processor_id: display_value_widget_order
+    weights:
+      sort: -10
+    settings:
+      sort: ASC
+  hide_non_narrowing_result_processor:
+    processor_id: hide_non_narrowing_result_processor
+    weights:
+      build: -10
+    settings: {  }
+  url_processor_handler:
+    processor_id: url_processor_handler
+    weights:
+      pre_query: -10
+      build: -10
+    settings: {  }
+empty_behavior:
+  behavior: none
+facet_configs: {  }

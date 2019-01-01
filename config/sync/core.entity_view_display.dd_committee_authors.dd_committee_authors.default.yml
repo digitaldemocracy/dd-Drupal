@@ -1,0 +1,29 @@
+uuid: 7edb5d26-5c4d-42a2-abcb-c95d06146d09
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee_authors.dd_committee_authors.default
+targetEntityType: dd_committee_authors
+bundle: dd_committee_authors
+mode: default
+content:
+  bid_dr_id:
+    type: entity_reference_entity_id
+    weight: 1
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  vid_dr_id:
+    type: entity_reference_entity_id
+    weight: 0
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden:
+  bid: true
+  cid: true
+  vid: true

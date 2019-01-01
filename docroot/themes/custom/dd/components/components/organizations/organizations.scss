@@ -1,0 +1,283 @@
+@import 'organizations__search';
+
+// Styling the individual org pages
+
+// ----------------Testimonies------------------
+.view-organization-testimony-per-year {
+  .view-content {
+    @include flex-container;
+  }
+}
+
+.view-organization-testimony-years,
+.view-organization-alignments-years {
+  .ui-tabs .ui-tabs-panel {
+    background-color: $white;
+  }
+}
+
+.organization__testimony {
+  &__row {
+    @include flex-item;
+    @include flex-container;
+    padding: 1em 0;
+    flex-wrap: nowrap;
+    flex-basis: auto;
+    border-bottom: 1px solid $dd-silver;
+    width: 100%;
+
+    @include zen-respond-to(l) {
+      width: auto;
+      flex: 0 1;
+      width: 48%;
+      min-height: 200px;
+      margin: 1%;
+      padding: 10px 15px;
+      border: 1px solid $dd-offwhite;
+      flex-basis: auto;
+    }
+  }
+
+  &--video,
+  &--content-wrapper {
+    @include flex-item();
+  }
+
+  &--content-wrapper {
+    margin-left: 1em;
+  }
+
+  &--video {
+    padding-top: 6px;
+
+    @include zen-respond-to(xs-and-below) {
+      display: none;
+    }
+  }
+
+  // Styling fields within the content wrapper
+  &--link {
+    @include font-size(m);
+    font-weight: weight(bold);
+
+    .hearing-link {
+      @include zen-respond-to(xs-and-below) {
+        background: url('../../components/bills/video-play-button.svg') no-repeat;
+        background-size: 24px 30px;
+        background-position: top left;
+        padding-left: 30px;
+        margin-left: 0;
+        display: inline-block;
+      }
+    }
+
+    .bill-link {
+      font-weight: weight(normal);
+    }
+  }
+
+  // Testimony Author
+  &--position,
+  &--committee-action {
+    display: inline-block;
+    font-weight: weight(bold);
+  }
+
+  &--committee-action {
+    //display: block;
+
+    @include zen-respond-to(s) {
+      display: inline-block;
+    }
+
+    .action--pass,
+    .action--fail {
+      background: url('../../components/organizations/checkmark-green.svg') no-repeat left;
+      background-size: 31px;
+      display: inline-block;
+      padding: 20px 12px 20px 30px;
+      text-indent: -10000px;
+      font-size: 1px;
+    }
+
+    .action--fail {
+      background-image: url('../../components/organizations/circled-x-red.svg');
+      background-size: 35px;
+    }
+  }
+
+  &--position {
+
+    .position--support,
+    .position--oppose {
+      background: url('../../components/organizations/checkmark-green.svg') no-repeat left;
+      background-size: 31px;
+      display: inline-block;
+      padding: 20px 12px 20px 30px;
+      text-indent: -10000px;
+      font-size: 1px;
+
+    }
+
+    .position--oppose {
+      background-image: url('../../components/organizations/circled-x-red.svg');
+    }
+  }
+}
+
+// Labels
+
+.label {
+  &--author {
+    font-weight: weight(bold);
+  }
+}
+
+// Result indicators
+.action--pass,
+.position--support,
+.bill-alignment__support {
+  color: $dd-bayleaf;
+}
+
+.action--fail,
+.position--oppose,
+.bill-alignment__oppose {
+  color: $dd-roman;
+}
+
+
+//-------------------- BILL ALIGNMENT ----------------------
+.view-organization-alignments-per-year {
+  .view-content {
+    @include flex-container();
+    justify-content: flex-start;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+      padding-left: 0;
+    }
+
+
+  }
+}
+
+.organization__alignment {
+  &--intro-text {
+    width: 88%;
+    text-align: center;
+    margin: 1rem;
+    font-style: italic;
+    color: $dd-charcoal;
+  }
+
+  &--group {
+    @include flex-item();
+    @include dd-simple-borders($dd-offwhite);
+    width: 100%;
+    margin: .5rem;
+    position: relative;
+
+    @include zen-respond-to(s-and-below) {
+      border-bottom: 1px solid $dd-silver;
+    }
+
+    @include zen-respond-to(s) {
+      width: 45%;
+      margin: .5rem 2%;
+      min-height: 192px;
+    }
+
+    // Style the grouping header
+    > h3 {
+      @include font-size(m);
+      font-weight: weight(bold);
+      background: $dd-offwhite;
+      text-align: center;
+      margin: 0 0 .5rem;
+      padding: .5rem 0;
+    }
+  }
+
+  // Styling the toggle link
+  &--toggle {
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    display: block;
+    background: url('../../components/showhide/plus.png') no-repeat right center;
+    padding-right: 22px;
+    background-size: 18px;
+
+    &.open {
+      background: url('../../components/showhide/minus.png') no-repeat right center;
+      background-size: 18px;
+    }
+  }
+
+  // Styling the inner li (view rows within each group)
+  &__row {
+    padding: .5rem 0;
+    border-top: 1px solid $dd-offwhite;
+
+    // Hide the Bill titles
+    .organization__alignment--bill-title {
+      display: none;
+      padding: 0 .5rem;
+    }
+
+    // Only display the first Bill title
+    &:first-child .organization__alignment--bill-title {
+        display: block;
+        margin-bottom: .3rem;
+    }
+
+    &:first-child {
+      border-top: 0;
+    }
+  }
+
+
+  &--position,
+  &--name-date {
+    padding: 0 1.5rem;
+  }
+
+  &--position {
+    .dd-label { @include visually-hidden; }
+
+    // Adding checkmark image
+    .bill-alignment__support {
+      background: url('../../components/organizations/checkmark-green.svg') no-repeat left bottom;
+      background-size: 35px;
+      display: block;
+      padding: 15px 43px;
+    }
+
+    .bill-alignment__oppose {
+      background: url('../../components/organizations/circled-x-red.svg') no-repeat left bottom;
+      background-size: 35px;
+      display: block;
+      padding: 15px 43px;
+    }
+  }
+}
+
+.dd-label,
+.bill-alignment__oppose,
+.bill-alignment__support {
+  font-weight: weight(bold);
+}
+
+// Styles specific to the Organization page
+.is-path-organization {
+  .dd-rounded-corners.content--main {
+    background: transparent;
+    border: 0;
+  }
+}

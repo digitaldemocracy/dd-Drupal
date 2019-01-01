@@ -1,0 +1,125 @@
+dd_account_dashboard.my_account:
+  path: '/user/{user}/my-account'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'My Account'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.saved_content:
+  path: '/user/{user}/saved-content'
+  defaults:
+    _title: 'My Saved Content'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.bill_alerts:
+  path: '/user/{user}/bill-alerts'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\DdAlertContentController::content'
+    _title: 'My Bill Alerts'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.keyword_alerts:
+  path: '/user/{user}/keyword-alerts'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\DdAlertContentController::content'
+    _title: 'My Video Alerts'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.commentary_alerts:
+  path: '/user/{user}/commentary-alerts'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'My Commentary Subscriptions'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.video_builder:
+  path: '/video-builder'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'Video Builder'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.user_blog:
+  path: '/blog/{user}'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'Blog'
+  requirements:
+    user: \d+
+    _permission: 'access content'
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.add_bookmark:
+  path: '/bookmark/add/{type}'
+  defaults:
+    _form: '\Drupal\dd_account_dashboard\Form\DdSavedContentAddForm'
+    _title: 'Add Saved Content'
+  requirements:
+    _permission: 'access content'
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.campaigns:
+  path: '/user/{user}/campaigns'
+  defaults:
+    _title: 'Campaigns'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+
+dd_account_dashboard.member_clips:
+  path: '/user/{user}/member_clips'
+  defaults:
+    _title: 'Member Clips'
+    _controller: '\Drupal\dd_video_editor\Controller\CommonUtilityController::memberClipsBlock'
+  requirements:
+    _permission: 'edit any dd clip entities'
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE
+dd_account_dashboard.widgets:
+  path: '/user/{user}/widgets'
+  defaults:
+    _controller: '\Drupal\dd_account_dashboard\Controller\BlankPageController::content'
+    _title: 'Widgets'
+  requirements:
+    _user_is_logged_in: 'TRUE'
+    _custom_access: '\Drupal\dd_base\Controller\DdUserAccessCheck::access'
+    user: \d+
+  options:
+    no_cache: TRUE

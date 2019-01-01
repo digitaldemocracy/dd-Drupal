@@ -1,0 +1,24 @@
+@import 'init';
+
+// Modal forms
+//
+// Markup: modal.twig
+//
+// Style guide: forms.modal
+
+
+// Moved Modal styles into components/jquery/jquery-ui.scss
+// jQuery UI Style Overrides do not work outside of that partial.
+
+//Overriding Firefox modal bug
+.button:-moz-focusring,
+button:-moz-focusring,
+[type='button']:-moz-focusring,
+[type='reset']:-moz-focusring,
+[type='submit']:-moz-focusring {
+  outline: 0 !important;
+}
+
+
+
+

@@ -1,0 +1,67 @@
+uuid: 11b10b62-a6af-4b52-97ac-cc2aca377de2
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill_discussion.dd_bill_discussion.default
+targetEntityType: dd_bill_discussion
+bundle: dd_bill_discussion
+mode: default
+content:
+  bid:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  endTime:
+    type: number
+    weight: 5
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  endVideo:
+    type: number
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  hid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  numVideos:
+    type: number
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  startTime:
+    type: number
+    weight: 4
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  startVideo:
+    type: number
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  bid_dr_id: true
+  lastTouched_ts: true
+  speakers: true

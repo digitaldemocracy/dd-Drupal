@@ -1,0 +1,43 @@
+uuid: 82efafb2-8f1d-4ab1-9d1d-871e1770a46c
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_organization
+id: dd_organization.dd_organization.default
+targetEntityType: dd_organization
+bundle: dd_organization
+mode: default
+content:
+  city:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  stateHeadquartered:
+    type: string_textfield
+    weight: 2
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  type:
+    type: number
+    weight: 3
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

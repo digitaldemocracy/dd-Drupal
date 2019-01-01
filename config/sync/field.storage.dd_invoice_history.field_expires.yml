@@ -1,0 +1,20 @@
+uuid: ab2e8d72-ce84-4b8c-92dd-2862bc79503e
+langcode: en
+status: true
+dependencies:
+  module:
+    - datetime
+    - dd_payment_system
+id: dd_invoice_history.field_expires
+field_name: field_expires
+entity_type: dd_invoice_history
+type: datetime
+settings:
+  datetime_type: datetime
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

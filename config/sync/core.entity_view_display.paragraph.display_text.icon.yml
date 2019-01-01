@@ -1,0 +1,18 @@
+uuid: a8b7a718-9059-4519-88d9-483ab09a2afa
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.display_text.field_action_body
+    - paragraphs.paragraphs_type.display_text
+id: paragraph.display_text.icon
+targetEntityType: paragraph
+bundle: display_text
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_body: true
+  field_action_target: true
+  uid: true

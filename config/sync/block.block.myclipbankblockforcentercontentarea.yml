@@ -1,0 +1,61 @@
+uuid: 45c4a6de-72f7-4fbf-9322-0200b4e147d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_video_editor
+    - facets
+    - request_parameter_condition
+    - system
+    - user
+  theme:
+    - dd
+id: myclipbankblockforcentercontentarea
+theme: dd
+region: content
+weight: -18
+provider: null
+plugin: my_clip_bank_block
+settings:
+  id: my_clip_bank_block
+  label: 'My Clip Bank Block for center content area'
+  provider: dd_video_editor
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/user/*/dd_video_editor/my_clip_bank'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+      administrator: administrator
+      trusted_commentator: trusted_commentator
+      stealth_mode: stealth_mode
+      editor: editor
+      cal_matters: cal_matters
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

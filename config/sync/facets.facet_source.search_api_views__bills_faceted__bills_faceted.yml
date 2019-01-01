@@ -1,0 +1,8 @@
+uuid: 80c71059-cdab-44ff-962e-c1c4c22bcf26
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_views__bills_faceted__bills_faceted
+name: 'search_api_views:bills_faceted:bills_faceted'
+filter_key: null
+url_processor: query_string

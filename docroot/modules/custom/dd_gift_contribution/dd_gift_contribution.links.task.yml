@@ -1,0 +1,43 @@
+# DD Gift routing definition
+dd_gift.settings_tab:
+  route_name: dd_gift.settings
+  title: 'Settings'
+  base_route: dd_gift.settings
+entity.dd_gift.canonical:
+  route_name: entity.dd_gift.canonical
+  base_route: entity.dd_gift.canonical
+  title: 'View'
+
+entity.dd_gift.edit_form:
+  route_name: entity.dd_gift.edit_form
+  base_route: entity.dd_gift.canonical
+  title: Edit
+
+# DD Contribution routing definition
+dd_contribution.settings_tab:
+  route_name: dd_contribution.settings
+  title: 'Settings'
+  base_route: dd_contribution.settings
+entity.dd_contribution.canonical:
+  route_name: entity.dd_contribution.canonical
+  base_route: entity.dd_contribution.canonical
+  title: 'View'
+
+entity.dd_contribution.edit_form:
+  route_name: entity.dd_contribution.edit_form
+  base_route: entity.dd_contribution.canonical
+  title: Edit
+# DD Behests routing definition
+dd_behests.settings_tab:
+  route_name: dd_behests.settings
+  title: 'Settings'
+  base_route: dd_behests.settings
+entity.dd_behests.canonical:
+  route_name: entity.dd_behests.canonical
+  base_route: entity.dd_behests.canonical
+  title: 'View'
+
+entity.dd_behests.edit_form:
+  route_name: entity.dd_behests.edit_form
+  base_route: entity.dd_behests.canonical
+  title: Edit

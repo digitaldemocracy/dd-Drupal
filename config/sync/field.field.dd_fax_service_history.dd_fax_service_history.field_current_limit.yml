@@ -1,0 +1,24 @@
+uuid: 86285cf6-c8d2-4cc0-aff0-ad4a01363c36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_history.field_current_limit
+  module:
+    - dd_fax_service
+id: dd_fax_service_history.dd_fax_service_history.field_current_limit
+field_name: field_current_limit
+entity_type: dd_fax_service_history
+bundle: dd_fax_service_history
+label: 'Current Limit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

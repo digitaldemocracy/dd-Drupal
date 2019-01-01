@@ -1,0 +1,10 @@
+uuid: 3e72202f-41ab-4b64-b0a6-35a4ced2b4c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill_discussion.token
+label: Token
+targetEntityType: dd_bill_discussion
+cache: true

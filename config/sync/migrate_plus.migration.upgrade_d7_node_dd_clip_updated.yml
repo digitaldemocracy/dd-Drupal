@@ -1,0 +1,70 @@
+uuid: b318173a-a6b9-4c7b-a8e6-94e58f48f7e2
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_dd_clip_updated
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (Clip Updated)'
+source:
+  plugin: d7_node
+  node_type: dd_clip_updated
+process:
+  nid: nid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_annotations: field_annotations
+  field_clips: field_clips
+  field_duration_float: field_duration_float
+  field_note: field_note
+  field_transcript: field_transcript
+  field_video_file: field_video_file
+  field_video_tags:
+    plugin: iterator
+    source: field_video_tags
+    process:
+      target_id: tid
+  field_videoid:
+    plugin: iterator
+    source: field_videoid
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - d6_filter_format
+            - d7_filter_format
+          source: format
+destination:
+  plugin: 'entity:node'
+  default_bundle: dd_clip_updated
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

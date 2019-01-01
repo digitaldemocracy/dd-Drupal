@@ -1,0 +1,19 @@
+uuid: 5df6bbc8-29f6-43b3-8484-9e7f13d0d19e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_fips_class_code
+    - node.type.counties
+id: node.counties.field_fips_class_code
+field_name: field_fips_class_code
+entity_type: node
+bundle: counties
+label: 'FIPS Class Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: a2734ca4-d63f-4368-a32a-f16153e863a4
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_fax_service_payment
+id: dd_fax_service_payment_entity.field_price
+field_name: field_price
+entity_type: dd_fax_service_payment_entity
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

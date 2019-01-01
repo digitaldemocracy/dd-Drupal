@@ -1,0 +1,8 @@
+<div class="dd-fax-service-links">
+  <ul class="fax-links">
+    {% for link in links %}
+    <li><a href="{{ link.url|raw }}" target="{{ link.target }}">email {{ link.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+

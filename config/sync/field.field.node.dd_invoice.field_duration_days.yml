@@ -1,0 +1,23 @@
+uuid: 3aec5fb8-3cc4-42dd-8e2c-ceee6a8165b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_duration_days
+    - node.type.dd_invoice
+id: node.dd_invoice.field_duration_days
+field_name: field_duration_days
+entity_type: node
+bundle: dd_invoice
+label: Duration
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: days
+field_type: integer

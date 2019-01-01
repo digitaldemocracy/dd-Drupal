@@ -1,0 +1,6 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+<div class="action-link--tweet action-icon" title="Tweet"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+{# Unused - comes from DdContactRepresentativesBlock.php #}
+<a href="https://twitter.com/intent/tweet?screen_name={{ LegislatorHandle }}&text=.@{{ LegislatorHandle }} {{ SampleTweet }}" class="action-link--tweet twitter-mention-button" data-size="large" data-show-count="false">Tweet to @{{ LegislatorHandle }}</a>
+{% endif %}

@@ -1,0 +1,8 @@
+name: Email Editor Module 
+type: module
+description: 'Module which enable users to find Newspapers and email them.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base

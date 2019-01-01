@@ -1,0 +1,7 @@
+uuid: 327f35d1-085e-4327-88ef-7b455862c826
+langcode: en
+status: false
+dependencies: {  }
+formId: node_blurb_form
+captchaType: default
+label: null

@@ -1,0 +1,22 @@
+uuid: 71303884-a43f-4f09-93f5-1f20107c7d23
+langcode: en
+status: true
+dependencies:
+  module:
+    - help
+  theme:
+    - dd
+_core:
+  default_config_hash: MpLXhd-Zl_rerNB0EA0Gc1Ni7bcf4tvt4kP6ujPoTjY
+id: dd_help
+theme: dd
+region: help
+weight: -8
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  provider: help
+  label_display: '0'
+visibility: {  }

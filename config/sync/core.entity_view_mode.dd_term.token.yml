@@ -1,0 +1,10 @@
+uuid: eef1c751-593a-4313-838d-1db2595513e9
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_term.token
+label: Token
+targetEntityType: dd_term
+cache: true

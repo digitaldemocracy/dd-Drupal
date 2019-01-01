@@ -1,0 +1,10 @@
+uuid: fa2b8d15-0359-4191-91a5-8aa6bc5185c6
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_lobbyist
+id: dd_lobbyist.token
+label: Token
+targetEntityType: dd_lobbyist
+cache: true

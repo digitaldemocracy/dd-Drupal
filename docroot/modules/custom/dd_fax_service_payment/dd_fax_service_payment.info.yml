@@ -1,0 +1,10 @@
+name: DD Fax Service Payment Module
+type: module
+description: 'Module for processing payment for fax service.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base
+  - stripe_api 
+  - dd_payment_system

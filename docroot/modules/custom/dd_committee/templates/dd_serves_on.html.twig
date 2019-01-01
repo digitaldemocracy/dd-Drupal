@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_serves_on.html.twig
+ * Default theme implementation to present DD ServesOn data.
+ *
+ * This template is used when viewing DD ServesOn pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_serves_on()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_serves_on') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

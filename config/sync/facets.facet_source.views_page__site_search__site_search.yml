@@ -1,0 +1,8 @@
+uuid: 3bffae91-9c8d-4925-beb6-17d8545eca89
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__site_search__site_search
+name: 'views_page:site_search__site_search'
+filter_key: ''
+url_processor: query_string

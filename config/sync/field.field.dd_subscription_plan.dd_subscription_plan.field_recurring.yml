@@ -1,0 +1,24 @@
+uuid: 7df1f9c5-3fd8-4a41-8c0d-f4f8457bb40b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_subscription_plan.field_recurring
+  module:
+    - dd_payment_system
+id: dd_subscription_plan.dd_subscription_plan.field_recurring
+field_name: field_recurring
+entity_type: dd_subscription_plan
+bundle: dd_subscription_plan
+label: Recurring
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

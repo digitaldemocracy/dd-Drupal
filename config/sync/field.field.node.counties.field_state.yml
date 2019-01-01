@@ -1,0 +1,19 @@
+uuid: 76a90be3-a657-44b5-aeab-956e94fcb80c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_state
+    - node.type.counties
+id: node.counties.field_state
+field_name: field_state
+entity_type: node
+bundle: counties
+label: State
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

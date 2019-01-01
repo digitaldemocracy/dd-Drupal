@@ -1,0 +1,16 @@
+administer dd video entities:
+  title: 'Administer DD Video entities'
+  description: 'Allow to access the administration form to configure DD Video entities.'
+  restrict access: true
+
+edit dd video entities:
+  title: 'Edit DD Video entities'
+
+access dd video overview:
+  title: 'Access the DD Video overview page'
+
+view published dd video entities:
+  title: 'View published DD Video entities'
+
+view unpublished dd video entities:
+  title: 'View unpublished DD Video entities'

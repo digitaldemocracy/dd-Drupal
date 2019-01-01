@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Add campaign_id column to dd_campaign_visitor table.
+ */
+function dd_action_center_update_8001(&$sandbox) {
+  $conn = \Drupal\Core\Database\Database::getConnection();
+  $sql = 'SHOW CREATE TABLE dd_campaign_visitor';
+  $result = $conn->query($sql)->fetchObject()->{'Create Table'};
+
+  if (strpos($result, 'campaign_id') === FALSE) {
+    $sql = 'ALTER TABLE dd_campaign_visitor ADD COLUMN campaign_id int(11) UNSIGNED AFTER `id`';
+    $conn->query($sql);
+  }
+
+  $sql = 'SHOW CREATE TABLE dd_action_metrics';
+  $result = $conn->query($sql)->fetchObject()->{'Create Table'};
+
+  if (strpos($result, 'campaign_action_paragraphs_id') === FALSE) {
+    $sql = 'ALTER TABLE dd_action_metrics ADD COLUMN campaign_action_paragraphs_id int(11) UNSIGNED AFTER `campaign_action_id`';
+    $conn->query($sql);
+  }
+
+  $sql = 'SHOW CREATE TABLE dd_campaign_visitor';
+  $result = $conn->query($sql)->fetchObject()->{'Create Table'};
+
+  if (strpos($result, 'email') === FALSE) {
+    $sql = 'ALTER TABLE dd_campaign_visitor ADD COLUMN email varchar(255) AFTER `last_name`';
+    $conn->query($sql);
+  }
+}

@@ -1,0 +1,42 @@
+uuid: 3bf3111c-b45d-4ab9-9395-996d5f133fd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.fax_action.field_action_body
+    - field.field.paragraph.fax_action.field_subject
+    - field.field.paragraph.fax_action.field_success_message
+    - paragraphs.paragraphs_type.fax_action
+  module:
+    - text
+id: paragraph.fax_action.default
+targetEntityType: paragraph
+bundle: fax_action
+mode: default
+content:
+  field_action_body:
+    weight: 2
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_subject:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_success_message:
+    weight: 3
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

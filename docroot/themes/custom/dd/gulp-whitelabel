@@ -1,0 +1,3 @@
+#!/bin/bash
+WHITELABEL_ID=$(drush gdwi)
+gulp --whitelabel_id $WHITELABEL_ID

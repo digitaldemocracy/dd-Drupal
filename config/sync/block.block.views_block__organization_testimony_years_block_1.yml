@@ -1,0 +1,37 @@
+uuid: 2f25fbd9-84c1-4847-97b6-de04bb5ff355
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.organization_testimony_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__organization_testimony_years_block_1
+theme: dd
+region: content
+weight: -44
+provider: null
+plugin: 'views_block:organization_testimony_years-block_1'
+settings:
+  id: 'views_block:organization_testimony_years-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/organization/*'
+    negate: false
+    context_mapping: {  }

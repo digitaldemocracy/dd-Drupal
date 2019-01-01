@@ -1,0 +1,39 @@
+uuid: be18451d-effe-4e9a-9616-36edf6d37789
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_clip_bank_quota.dd_clip_bank_quota.field_quota_in_bytes
+  module:
+    - dd_clip
+id: dd_clip_bank_quota.dd_clip_bank_quota.default
+targetEntityType: dd_clip_bank_quota
+bundle: dd_clip_bank_quota
+mode: default
+content:
+  field_quota_in_bytes:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

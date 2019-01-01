@@ -1,0 +1,20 @@
+uuid: 945da371-b7ee-4398-8dee-fceda2cece36
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_payment_entity.field_price
+  module:
+    - dd_fax_service_payment
+id: dd_fax_service_payment_entity.dd_fax_service_payment_entity.field_price
+field_name: field_price
+entity_type: dd_fax_service_payment_entity
+bundle: dd_fax_service_payment_entity
+label: price
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

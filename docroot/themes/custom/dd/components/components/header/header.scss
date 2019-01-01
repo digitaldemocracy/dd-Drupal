@@ -1,0 +1,157 @@
+@import 'init';
+
+// Branding header
+//
+// Markup: header.twig
+//
+// Style guide: components.header
+
+.header,
+%header {
+  @include dd-box-shadow($blur: 6px);
+  overflow: hidden;
+  background: white;
+  @if $whitelabel-id == hungeractionla {
+    background-image: url("../../components/header/header-fulvous.jpg");
+  }
+  margin-bottom: 1em;
+  z-index: 10;
+
+  @include zen-respond-to(m) {
+    margin-bottom: 2em;
+  }
+
+  // Wrapper for any blocks placed in the header region.
+  &__region {
+    // Clear the logo.
+    clear: both;
+  }
+}
+
+// Darker shadow for the homepage header
+.is-path-frontpage header {
+  @include dd-box-shadow($blur: 6px, $color: $dd-grey);
+}
+
+#block-dd-branding {
+  img {
+    max-width: 215px;
+  }
+  @if $whitelabel-id == cmta {
+    img {
+      max-width: 455px;
+    }
+  }
+}
+
+
+#block-useraccountmenu {
+  @include respond-to('s') {
+    padding-right: 1em;
+  }
+  display: inline-block;
+}
+
+// ----- Header layout with Flex
+@include zen-respond-to(s) {
+  .page-header__region {
+    @include flex-container();
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  #block-dd-branding,
+  #block-topnav-auto-search {
+    @include flex-item;
+    flex: 0 1 auto;
+  }
+  // Safari 9 bug: If the flex-basis is set to auto Safari looks for a specific width
+  // for flex-items in the same row. Flex layout rules don't apply.
+  // Adding specific width for the logo and search bar blocks.
+  #block-dd-branding {
+    width: 30%;
+  }
+
+  #block-topnav-auto-search {
+    width: 60%; // This is 60% and not 70% to give space for the state selector dropdown overlap.
+  }
+  .main-menu__region {
+    width:100%;
+  }
+}
+
+@include zen-respond-to(l) {
+  #block-dd-branding {
+    width: 20%;
+    @if $whitelabel-id != '' {
+      width: auto;
+    }
+  }
+
+  #block-topnav-auto-search {
+    width: 70%;
+    @if $whitelabel-id != '' {
+      width: 55%;
+    }
+  }
+}
+
+#block-dd-branding {
+  position: relative;
+  margin-right: 20px;
+  //margin-top: 10px;
+  //width: 100%;
+
+  .state-selection {
+    position: absolute;
+    left: 7.7rem;
+    top: 15%;
+
+    label[for="state-select"] {
+      @include visually-hidden;
+    }
+
+    select#state-select {
+      cursor: pointer;
+      color: $dd-blue;
+      text-transform: uppercase;
+      font-weight: 500;
+      border: 0;
+      // Set button appearance in -webkit browsers
+      background-color: white !important;
+      background-image: url('../../components/header/dropdown-blue.svg');
+      background-repeat: no-repeat;
+      background-size: 14px;
+      -moz-appearance: none;
+      background-position: right;
+      padding-right: 14px;
+      -webkit-appearance: none;
+      border-radius: 0 !important;
+      // Prevent select field from being cutoff in /search pages
+      width: auto;
+    }
+  }
+
+  .site-logo {
+    display: inline-block;
+  }
+
+  //.powered-by-dd {
+  //  line-height: 100px;
+  //  display: inline-block;
+  //  width: 150px;
+  //  height: 72px;
+
+  //  a {
+  //    background: image-url('../../../logo-dd--powered-by.png') no-repeat;
+  //    text-indent: -9999px;
+  //    display: block;
+  //  }
+  //}
+}
+
+//------ Top Region
+.top__region {
+  text-align: right;
+  padding-top: .5em;
+}

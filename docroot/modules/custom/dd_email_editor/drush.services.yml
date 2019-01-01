@@ -1,0 +1,5 @@
+services:
+  dd_email_editor.commands:
+    class: \Drupal\dd_email_editor\Commands\DdEmailEditorCommands
+    tags:
+      - { name: drush.command }

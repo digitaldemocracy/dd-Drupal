@@ -1,0 +1,205 @@
+uuid: 5b4c451c-b694-43b1-bb0b-9d1a81371968
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_hearing
+    - dd_bill
+    - dd_person
+    - dd_committee
+    - search_api
+    - search_api_solr
+  config:
+    - search_api.server.hearing_server
+id: hearings_index
+name: 'Hearings Index'
+description: ''
+read_only: false
+field_settings:
+  cids:
+    label: CIDs
+    datasource_id: 'entity:dd_hearing'
+    property_path: cids
+    type: integer
+    dependencies:
+      module:
+        - dd_hearing
+  cn_ids:
+    label: 'Committee Name IDs'
+    datasource_id: 'entity:dd_hearing'
+    property_path: cn_ids
+    type: integer
+    dependencies:
+      module:
+        - dd_hearing
+  date_ts:
+    label: Date
+    datasource_id: 'entity:dd_hearing'
+    property_path: date_ts
+    type: date
+    dependencies:
+      module:
+        - dd_hearing
+  fullname_firstlast_1:
+    label: 'DIDs » DD Bill Discussion » Speakers » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:speakers:entity:fullname_firstlast'
+    type: text
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_firstlast_ft:
+    label: 'DIDs » DD Bill Discussion » Bill Drupal ID » DD Bill » Primary Author PID » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:bid_dr_id:entity:primary_author_pid:entity:fullname_firstlast'
+    type: text
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_lastfirst:
+    label: 'DIDs » DD Bill Discussion » Speakers » DD Person » Full Name - Last, First'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:speakers:entity:fullname_lastfirst'
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_person
+        - dd_person
+  hearing_state:
+    label: State
+    datasource_id: 'entity:dd_hearing'
+    property_path: state
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+  hid:
+    label: ID
+    datasource_id: 'entity:dd_hearing'
+    property_path: hid
+    type: integer
+    dependencies:
+      module:
+        - dd_hearing
+  house:
+    label: 'CIDs » DD Committee » House'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'cids:entity:house'
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  name:
+    label: 'CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'cids:entity:name'
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  name_1:
+    label: 'CIDs » DD Committee » Name'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'cids:entity:name'
+    type: text
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  pid:
+    label: 'DIDs » DD Bill Discussion » Speakers » DD Person » ID'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:speakers:entity:pid'
+    type: integer
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_person
+        - dd_person
+  session_year:
+    label: 'Session Year'
+    datasource_id: 'entity:dd_hearing'
+    property_path: session_year
+    type: integer
+    dependencies:
+      module:
+        - dd_hearing
+  type:
+    label: 'CIDs » DD Committee » Type'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'cids:entity:type'
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_committee
+        - dd_committee
+  type_number:
+    label: 'DIDs » DD Bill Discussion » Bill Drupal ID » DD Bill » Bill Type / Number'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:bid_dr_id:entity:type_number'
+    type: string
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  type_number_1:
+    label: 'DIDs » DD Bill Discussion » Bill Drupal ID » DD Bill » Bill Type / Number'
+    datasource_id: 'entity:dd_hearing'
+    property_path: 'dids:entity:bid_dr_id:entity:type_number'
+    type: text
+    dependencies:
+      module:
+        - dd_hearing
+        - dd_bill
+        - dd_bill
+        - dd_bill
+        - dd_bill
+datasource_settings:
+  'entity:dd_hearing': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  ignorecase:
+    fields:
+      - fullname_firstlast_1
+      - fullname_firstlast_ft
+      - name_1
+      - type_number
+      - type_number_1
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 0
+server: hearing_server

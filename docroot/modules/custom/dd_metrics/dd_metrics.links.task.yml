@@ -1,0 +1,5 @@
+# DD Campaign Visitor routing definition
+dd_campaign_visitor.settings_tab:
+  route_name: dd_campaign_visitor.settings
+  title: 'Settings'
+  base_route: dd_campaign_visitor.settings

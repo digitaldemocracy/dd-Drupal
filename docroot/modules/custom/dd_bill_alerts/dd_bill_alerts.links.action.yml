@@ -1,0 +1,5 @@
+entity.dd_bill_alert_history.add_form:
+  route_name: entity.dd_bill_alert_history.add_form
+  title: 'Add Dd bill alert history'
+  appears_on:
+    - entity.dd_bill_alert_history.collection

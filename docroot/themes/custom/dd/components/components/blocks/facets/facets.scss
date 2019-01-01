@@ -1,0 +1,139 @@
+@import 'init';
+
+// Facet blocks
+//
+// Facets appear on the left sidebar on search pages.
+//
+// Markup: facets.twig
+//
+// Style guide: components.facets
+
+// All facet blocks
+.block-facets,
+#block-exposedformpersons-facetedpage-1 {
+  font-size: 90%;
+
+  h2 {
+    @include typeface(headings);
+    @include font-size(18px);
+    margin: 1.125rem 0;
+  }
+
+  // Mobile headings
+  h2.ui-accordion-header {
+    @include typeface(body);
+    font-weight: 300;
+    margin: 0;
+  }
+
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
+    border: 0;
+    border-bottom: 1px solid $dd-blue-darker;
+  }
+}
+
+#block-exposedformpersons-facetedpage-1 {
+  h2 {
+    @include typeface(body);
+    font-weight: normal;
+  }
+}
+
+// Remove the bullet and margin from facet list items
+.item-list li.facet-item {
+  list-style: none;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-left: 0;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  label {
+    font-weight: 400;
+  }
+
+  a {
+    color: color(text);
+  }
+}
+
+// Remove the bold default for checkboxes.
+.facet-item label {
+  margin-left: 1.2rem;
+}
+
+a.facets-soft-limit-link {
+  font-weight: bold;
+  text-decoration: underline;
+  color: color(text);
+  margin-left: 2.5rem;
+}
+
+.block-facets input[type='checkbox'] {
+  display: inline-block;
+  float: left;
+  margin-top: .25rem;
+  margin-right: .5rem;
+}
+
+
+//----------- MOBILE FACETS -------------
+// Styling the facets toggle button
+.ddfacets__toggle-button {
+  @include button-style;
+  border-radius: 4px 4px 0 0;
+  float: left;
+  display: block;
+  padding: .3em 1.5em .5em .6em;
+  margin-top: .5em;
+  font-size: 1rem;
+  text-decoration: none;
+  background-image: url('../../components/blocks/facets/funnel-icon-white.svg');
+  padding-left: 37px;
+  background-size: 25px;
+  background-position: 5px;
+}
+
+// Styling the accordion
+
+.ui-accordion-header {
+  @include typeface(body);
+  padding: 1rem;
+  margin: 0;
+  background: $dd-blue;
+  color: $white;
+
+  &.ui-accordion-header-active,
+  &:hover {
+    background: $dd-blue-darker;
+  }
+}
+
+.ui-accordion-content {
+  //@include dd-complex-borders($dd-silver, 0, 1px, 0, 1px);
+  padding: .5em;
+  // Increase facet font sizes to accommodate mobile finger usage.
+  font-size: 1.1em;
+  line-height: 1.8em;
+
+  &:last-child {
+    border-bottom-width: 1px;
+  }
+}
+
+// General JQuery UI styles
+
+.ui-autocomplete {
+  &.ui-widget-content {
+    @include dd-simple-borders;
+    max-width: 320px;
+    background: $white;
+    padding: .5em;
+  }
+}
+
+

@@ -1,0 +1,8 @@
+uuid: 337dd811-1b00-4861-b9bd-cfbe7d2671f1
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__site_search__rest_export_1
+name: 'views_page:site_search__rest_export_1'
+filter_key: ''
+url_processor: query_string

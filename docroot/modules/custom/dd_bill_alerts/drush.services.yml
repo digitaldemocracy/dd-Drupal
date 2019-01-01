@@ -1,0 +1,5 @@
+services:
+  dd_bill_alerts.commands:
+    class: \Drupal\dd_bill_alerts\Commands\DdBillAlertsCommands
+    tags:
+      - { name: drush.command }

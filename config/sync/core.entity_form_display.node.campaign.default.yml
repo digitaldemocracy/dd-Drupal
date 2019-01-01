@@ -1,0 +1,326 @@
+uuid: 7b5567aa-e011-47fd-879e-7f7a6803f95c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.campaign.body
+    - field.field.node.campaign.field_actions
+    - field.field.node.campaign.field_bill
+    - field.field.node.campaign.field_bill_location
+    - field.field.node.campaign.field_bill_position
+    - field.field.node.campaign.field_bill_subject
+    - field.field.node.campaign.field_bill_summary
+    - field.field.node.campaign.field_campaign_desc_location
+    - field.field.node.campaign.field_enable_facebook_share
+    - field.field.node.campaign.field_enable_twitter_share
+    - field.field.node.campaign.field_end_date
+    - field.field.node.campaign.field_is_deleted
+    - field.field.node.campaign.field_is_statewide_campaign
+    - field.field.node.campaign.field_private_campaign
+    - field.field.node.campaign.field_sample_tweet
+    - field.field.node.campaign.field_show_bill_author
+    - field.field.node.campaign.field_show_bill_status
+    - field.field.node.campaign.field_start_date
+    - field.field.node.campaign.field_video_clips
+    - field.field.node.campaign.field_video_location
+    - node.type.campaign
+  module:
+    - datetime
+    - field_group
+    - paragraphs
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_bill:
+      children:
+        - field_bill
+        - field_bill_subject
+        - field_bill_summary
+        - field_show_bill_author
+        - field_show_bill_status
+        - field_bill_position
+        - field_bill_location
+      parent_name: ''
+      weight: 1
+      format_type: details
+      format_settings:
+        label: 'Add a Target Bill'
+        required_fields: true
+        id: ''
+        classes: campaign__target-bill
+        open: false
+      label: 'Add a Target Bill'
+    group_date:
+      children:
+        - field_start_date
+        - field_end_date
+      parent_name: group_campaign_info
+      weight: 3
+      format_type: html_element
+      format_settings:
+        label: Date
+        element: div
+        show_label: false
+        label_element: h3
+        attributes: ''
+        effect: none
+        speed: fast
+        id: ''
+        classes: campaign__dates
+        required_fields: false
+      label: Date
+    group_actions:
+      children:
+        - field_actions
+      parent_name: ''
+      weight: 2
+      format_type: details
+      format_settings:
+        label: 'Add Actions'
+        open: true
+        required_fields: true
+        id: ''
+        classes: campaign__actions
+      label: 'Add Actions'
+    group_campaign_info:
+      children:
+        - title
+        - field_private_campaign
+        - promote
+        - group_date
+        - body
+        - field_campaign_desc_location
+        - field_video_clips
+        - field_video_location
+        - group_campaign_social
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        label: 'Create Campaign Landing Page'
+        open: true
+        id: campaign__info
+        classes: ''
+        required_fields: false
+      label: 'Create Campaign Landing Page'
+    group_campaign_social:
+      children:
+        - field_enable_facebook_share
+        - field_enable_twitter_share
+        - field_sample_tweet
+      parent_name: group_campaign_info
+      weight: 8
+      format_type: fieldset
+      format_settings:
+        id: ''
+        classes: ''
+        description: ''
+        required_fields: true
+      label: 'Campaign Landing Page Social Media'
+id: node.campaign.default
+targetEntityType: node
+bundle: campaign
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 4
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  created:
+    type: datetime_timestamp
+    weight: 6
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_actions:
+    weight: 16
+    settings:
+      title: Action
+      title_plural: Actions
+      edit_mode: open
+      add_mode: select
+      form_display_mode: default
+      default_paragraph_type: ''
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
+  field_bill:
+    weight: 10
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_bill_location:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_bill_position:
+    weight: 15
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_bill_subject:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_bill_summary:
+    weight: 12
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_campaign_desc_location:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_enable_facebook_share:
+    weight: 5
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_enable_twitter_share:
+    weight: 6
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_end_date:
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_is_deleted:
+    type: boolean_checkbox
+    weight: 7
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    region: content
+  field_is_statewide_campaign:
+    weight: 26
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_private_campaign:
+    weight: 1
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_sample_tweet:
+    weight: 8
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_show_bill_author:
+    weight: 13
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_bill_status:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_start_date:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_video_clips:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_video_location:
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  path:
+    type: path
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 2
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_non_targeted_actions: true
+  field_targeted_actions: true

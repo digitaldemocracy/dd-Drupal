@@ -1,0 +1,52 @@
+uuid: 20c5ce59-30b2-4c5a-970f-019adbc91307
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaign_wizard_targets
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__campaign_wizard_targets_block_1
+theme: dd
+region: content
+weight: -51
+provider: null
+plugin: 'views_block:campaign_wizard_targets-block_1'
+settings:
+  id: 'views_block:campaign_wizard_targets-block_1'
+  label: '1. Select Target(s)'
+  provider: views
+  label_display: visible
+  views_label: '1. Select Target(s)'
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/node/*/targetactions-edit'
+    negate: false
+    context_mapping: {  }

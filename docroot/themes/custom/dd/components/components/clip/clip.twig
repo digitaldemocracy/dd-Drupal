@@ -1,0 +1,16 @@
+
+
+<div class="player-area">
+  {{ video_markup }}
+
+
+  <video id="player" class="vjs-tech vjs-default-skin"
+        controls preload="auto" width="685" height="390"
+        src="https://videostorage-us-west.s3.amazonaws.com/videos/{{ videoid }}/{{ videoid }}.mp4">
+  </video>
+</div>
+
+<!-- @todo this should go in a show/hide div -->
+
+{{ transcript }}
+

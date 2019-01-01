@@ -1,0 +1,26 @@
+uuid: 4f32e2f0-60c9-4920-92f6-4049d6d458af
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - system
+  theme:
+    - dd
+_core:
+  default_config_hash: K6XVQbaDvHdKF5UmRr5XVqplxoxlbCo-EdsuRGo81wk
+id: dd_main_menu
+theme: dd
+region: primary_menu
+weight: 0
+provider: null
+plugin: 'system_menu_block:main'
+settings:
+  id: 'system_menu_block:main'
+  label: 'Main navigation'
+  provider: system
+  label_display: '0'
+  level: 1
+  depth: 1
+visibility: {  }

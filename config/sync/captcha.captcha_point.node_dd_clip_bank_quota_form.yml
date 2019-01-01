@@ -1,0 +1,7 @@
+uuid: 77f19e52-3494-498f-b3d4-c9340e63df4c
+langcode: en
+status: false
+dependencies: {  }
+formId: node_dd_clip_bank_quota_form
+captchaType: default
+label: null

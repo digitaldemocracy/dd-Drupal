@@ -1,0 +1,6 @@
+name: Find Legislators Module
+type: module
+description: 'Module which enable users to find legislators from his/her address.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false

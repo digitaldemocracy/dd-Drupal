@@ -1,0 +1,9 @@
+name: Email CA Legislator Module
+type: module
+description: 'Module for emailing CA legislators.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base
+

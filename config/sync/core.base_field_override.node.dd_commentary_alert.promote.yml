@@ -1,0 +1,22 @@
+uuid: daa9c8e7-b2c9-4527-ac61-b164aec9afe4
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dd_commentary_alert
+id: node.dd_commentary_alert.promote
+field_name: promote
+entity_type: node
+bundle: dd_commentary_alert
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

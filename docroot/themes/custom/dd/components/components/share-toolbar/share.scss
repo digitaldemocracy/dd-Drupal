@@ -1,0 +1,33 @@
+@import 'init';
+
+// Share Toolbar
+//
+// Markup: share.twig
+//
+// Style guide: components.share-toolbar
+
+#block-sharetoolbarblock {
+  display: inline-block;
+ // padding-left: 2em;
+ // padding-top: 1.3em;
+ // z-index: 1;
+}
+
+// The share bar
+.dd-share-toolbar-group {
+
+  // Disk icon color when already bookmarked.
+  .is-saved {
+    color: $dd-bayleaf !important;
+    }
+
+  .fa {
+    color: $dd-yellow-darkest;
+    &:hover { color: $dd-yellow; }
+  }
+
+  .fa-2x {
+    font-size: 1.3rem;
+  }
+}
+

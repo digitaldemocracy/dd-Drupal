@@ -1,0 +1,66 @@
+uuid: 5df3c207-2819-4d9f-a025-40100fde2edd
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_action_center
+    - facets
+    - node
+    - request_parameter_condition
+    - system
+    - user
+  theme:
+    - dd
+id: ddcampaignpreviewlocationblock
+theme: dd
+region: sidebar_second
+weight: -51
+provider: null
+plugin: dd_campaign_preview_location_block
+settings:
+  id: dd_campaign_preview_location_block
+  label: 'Dd campaign preview location block'
+  provider: dd_action_center
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  node_type:
+    id: node_type
+    bundles:
+      campaign: campaign
+    negate: false
+    context_mapping:
+      node: '@node.node_route_context:node'
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      administrator: administrator
+      action_center_admin: action_center_admin
+      site_manager: site_manager
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'
+  request_path:
+    id: request_path
+    pages: "/node/*/edit\r\n/node/*/delete\r\n/node/*/statewide-edit\r\n/node/*/bill-edit\r\n/node/*/add\r\n/node/add/campaign"
+    negate: true
+    context_mapping: {  }

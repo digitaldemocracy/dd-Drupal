@@ -1,0 +1,85 @@
+uuid: 7bc93c94-fe7d-4b5e-8367-d660d742ebf1
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+    - search_api
+    - search_api_solr
+  config:
+    - search_api.server.committees_server
+id: committees_index
+name: 'Committees Index'
+description: ''
+read_only: false
+field_settings:
+  cn_id:
+    label: 'Committee Name ID'
+    datasource_id: 'entity:dd_committee'
+    property_path: cn_id
+    type: integer
+    dependencies:
+      module:
+        - dd_committee
+  current_flag:
+    label: 'Current Flag'
+    datasource_id: 'entity:dd_committee'
+    property_path: current_flag
+    type: boolean
+    dependencies:
+      module:
+        - dd_committee
+  house:
+    label: House
+    datasource_id: 'entity:dd_committee'
+    property_path: house
+    type: string
+    dependencies:
+      module:
+        - dd_committee
+  name:
+    label: Name
+    datasource_id: 'entity:dd_committee'
+    property_path: name
+    type: text
+    dependencies:
+      module:
+        - dd_committee
+  session_year:
+    label: 'Session Year'
+    datasource_id: 'entity:dd_committee'
+    property_path: session_year
+    type: integer
+    dependencies:
+      module:
+        - dd_committee
+  state:
+    label: State
+    datasource_id: 'entity:dd_committee'
+    property_path: state
+    type: string
+    dependencies:
+      module:
+        - dd_committee
+  type:
+    label: Type
+    datasource_id: 'entity:dd_committee'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - dd_committee
+datasource_settings:
+  'entity:dd_committee': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 0
+server: committees_server

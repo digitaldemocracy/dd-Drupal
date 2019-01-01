@@ -1,0 +1,10 @@
+uuid: 23c5d5ee-be41-4335-a4c0-440c0c6dd021
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_leg_participation.token
+label: Token
+targetEntityType: dd_leg_participation
+cache: true

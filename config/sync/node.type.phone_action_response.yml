@@ -1,0 +1,17 @@
+uuid: 948e68df-ecd4-4774-8b46-041fffb56276
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Phone Action Response'
+type: phone_action_response
+description: 'Used to store Phone Action form submissions'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

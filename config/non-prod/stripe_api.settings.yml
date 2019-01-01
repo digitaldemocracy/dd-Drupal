@@ -1,0 +1,8 @@
+test_secret_key: sk_test
+test_public_key: pk_test
+live_secret_key: sk_live
+live_public_key: pk_live
+log_webhooks: 1
+mode: test 
+_core:
+  default_config_hash: bDytzWYwg0WvFxdrSzHMrWCCi82WboNTCqPbNA5oN_Q

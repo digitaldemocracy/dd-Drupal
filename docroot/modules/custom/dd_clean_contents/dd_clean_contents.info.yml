@@ -1,0 +1,5 @@
+name: 'Digital Democracy Clean Contents'
+type: module
+description: 'Cleanup user and user contents'
+package: DigitalDemocracy
+core: 8.x

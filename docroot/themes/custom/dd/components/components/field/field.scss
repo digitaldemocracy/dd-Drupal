@@ -1,0 +1,21 @@
+@import 'init';
+
+// Fields and field items
+//
+// Markup: field.twig
+//
+// Style guide: components.fields
+// @todo this needs some sorting into discrete components.
+
+.field--item:first-of-type {
+    border-top: 1px solid #000;
+}
+
+.field--type-entity-reference .field__items,
+.field--type-entity-reference .field--item {
+    margin-left: 20px;
+}
+
+.field--type-entity-reference .field__items .field--item .field:last-of-type {
+    margin-bottom: 20px;
+}

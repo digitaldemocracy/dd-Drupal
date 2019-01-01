@@ -1,0 +1,9 @@
+{% if view_mode == 'icon' or view_mode == 'icon_label' %}
+  <div class="action-link--download action-icon" title="Download File"></div>{% if view_mode == 'icon_label' %}<div class="action-label">{{ action }}</div>{% endif %}
+{% else %}
+<div class="action--download">
+
+  <a href="{{ file }}" onClick="Drupal.behaviors.campaigns.logActionMetric('{{ campaign_id }}', 'download_action', '{{ campaign_action_id }}', '{{ campaign_action_paragraphs_id }}', '{{ legislator_pid }}');" target="_blank" class="action-link--download button--action">Download this</a>
+
+</div>
+{% endif %}

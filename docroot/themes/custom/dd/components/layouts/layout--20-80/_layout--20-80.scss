@@ -1,0 +1,40 @@
+.layout--20-80,
+%layout--20-80 {
+  // We set the context to flow, so that this container can be used in most
+  // places in the HTML, i.e. it must be nested inside something that has
+  // padding.
+  @include zen-grid-container($context: flow);
+
+  &__sidebar,
+  &__main {
+    @include zen-new-row(both);
+    @include zen-grid-item-base();
+    @include zen-grid-item(1, 1);
+  }
+
+  @include zen-respond-to(l) {
+    // Since our container's context is "flow" and we changed the gutter size,
+    // we need to re-apply the container's negative left/right margins.
+    @include zen-grid-container($context: flow);
+
+    &__sidebar  {
+      @include zen-grid-item(1, 1);
+      // Since we changed the gutter size for this media query, we need to
+      // re-apply the padding to every grid item.
+      @include zen-apply-gutter-padding();
+    }
+
+    &__main  {
+      // Since this inherits from the mobile layout, we have to explicitly turn
+      // off the new-row mixin.
+      @include zen-new-row(none);
+      @include zen-grid-item(4, 2);
+      @include zen-apply-gutter-padding();
+    }
+  }
+
+  // Place last so it can override the padding of grid items.
+  &__grid-item-container {
+    @include zen-grid-container($context: grid-item);
+  }
+}

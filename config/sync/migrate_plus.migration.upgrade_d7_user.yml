@@ -1,0 +1,69 @@
+uuid: 28b48425-3174-4c8e-bba8-b98c537f0118
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_user
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'User accounts'
+source:
+  plugin: d7_dd_user
+  constants:
+    language: en
+process:
+  uid: uid
+  name: name
+  pass: pass
+  mail: mail
+  created: created
+  access: access
+  login: login
+  status: status
+  timezone: timezone
+  langcode: constants/language
+  preferred_langcode: constants/language
+  preferred_admin_langcode: constants/language
+  init: init
+  roles:
+    plugin: migration
+    migration: upgrade_d7_user_role
+    source: roles
+  user_picture:
+    -
+      plugin: default_value
+      source: picture
+      default_value: null
+    -
+      plugin: migration
+      migration: d7_file
+  field_address:
+    plugin: addressfield
+    source: field_address
+  field_biography: field_biography
+  field_first_name: field_first_name
+  field_last_name: field_last_name
+  field_organization: field_organization
+  field_phone: field_phone
+  field_receive_email_notification: field_receive_email_notification
+  field_organization_role: field_organization_role
+  field_short_biography: field_short_biography
+  field_user_title: field_user_title
+  field_website:
+    plugin: iterator
+    source: field_website
+    process:
+      uri: url
+      title: title
+      options: attributes
+  field_user_type: field_user_type
+destination:
+  plugin: 'entity:user'
+migration_dependencies:
+  required:
+    - upgrade_d7_user_role
+  optional:
+    - upgrade_d7_file
+    - upgrade_user_picture_field_instance
+    - upgrade_user_picture_entity_display
+    - upgrade_user_picture_entity_form_display

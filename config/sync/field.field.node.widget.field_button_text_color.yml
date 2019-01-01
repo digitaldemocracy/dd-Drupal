@@ -1,0 +1,23 @@
+uuid: 88e80bed-9188-49d0-8c82-34b7d1b12ece
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_button_text_color
+    - node.type.widget
+  module:
+    - jquery_colorpicker
+id: node.widget.field_button_text_color
+field_name: field_button_text_color
+entity_type: node
+bundle: widget
+label: 'Button Text Color'
+description: 'Choose a color for the button text.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0a010a
+default_value_callback: ''
+settings: {  }
+field_type: jquery_colorpicker

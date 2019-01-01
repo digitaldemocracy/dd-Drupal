@@ -1,0 +1,9 @@
+services:
+  content_uninstall_validator:
+    class: Drupal\dd_base\Entity\DdBaseContentUninstallValidator
+    tags:
+      - { name: module_install.uninstall_validator }
+    arguments: ['@entity.manager', '@string_translation']
+  entity.definition_update_manager:
+    class: Drupal\dd_base\Entity\DdBaseEntityDefinitionUpdateManager
+    arguments: ['@entity.manager']

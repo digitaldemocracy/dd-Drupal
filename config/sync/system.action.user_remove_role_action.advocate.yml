@@ -1,0 +1,14 @@
+uuid: 101dabc9-4322-46a8-866e-0c26a56d67c1
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.advocate
+  module:
+    - user
+id: user_remove_role_action.advocate
+label: 'Remove the advocate role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: advocate

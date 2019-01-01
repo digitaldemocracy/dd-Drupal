@@ -1,0 +1,291 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_fax_service module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\node\Entity\Node;
+use \Drupal\dd_fax_service\Utility\CommonHelper;
+use \Drupal\dd_fax_service\Entity\DdFaxServiceHistory;
+
+/**
+ * Implements hook_help().
+ */
+function dd_fax_service_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_fax_service':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module helps you send fax');
+      $output .= '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_fax_service_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-fax-service-links' => array(
+      'variables' => array(
+        'links' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-fax-service-links',
+    ),
+    'dd-fax-service-preview-form' => array(
+      'variables' => array(
+        'form' => NULL,
+        'fax' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-fax-service-preview-form',
+    ),
+    'dd-fax-service-fax-form' => array(
+      'variables' => array(
+        'fax_num' => NULL,
+        'to' => NULL,
+        'subject' => NULL,
+        'body' => NULL,
+        'sender' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-fax-service-fax-form',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * a helper function to send fax 
+ *
+ * @param string $fax_num
+ *   fax number of the recipienct. may include - and sapce.
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip  ONLY DIGIT is ALLOWED.
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param string $sender_first
+ *   sender first name 
+ * @param string $sender_last
+ *   sender last name 
+ * @param string $sender_contact
+ *   sender contact info (phone, fax, or email) 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ *
+ * @return renderable array
+ *   some message regarding the result of faxing. 
+ */
+function dd_fax_service_send_fax($fax_num, $state, $zip, $city, $street,
+                                 $sender_first, $sender_last, $sender_contact,
+                                 $body, $subject = null) {
+  return array(
+    '#markup' => '<h3>Your fax has been successfully sent.</h3>' .
+                 '<ul>' .
+                 '<li>To: ' . $fax_num . '</li>' .
+                 '<li>From: ' . $sender_first . ' ' . $sender_last . '<br>' .
+                 $sender_street . '<br>' .
+                 $sender_city . ', ' . $sender_state . ' ' .
+                 $sender_zip . '<br>' .
+                 $sender_contact . '</li>' .
+                 '<li>Subject: ' . $subject . '</li>' .
+                 '<li>Message: <p>' . $body . '</p></li>',
+  );
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param string $sender_first
+ *   sender first name 
+ * @param string $sender_last
+ *   sender last name 
+ * @param string $sender_email
+ *   sender email address 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ *
+ * @return array
+ *   the array including legislators with the url for faxing and geo_coord. 
+ */
+function dd_fax_service_get_fax_links($state, $zip, $city, $street,
+                                               $sender_first, $sender_last,
+                                               $sender_contact, $body,
+                                               $subject = null) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+                   'first' => $sender_first,
+                   'last' => $sender_last,
+                   'contact' => $sender_contact,
+             );
+  $result = dd_find_legislators_find($address);
+  if (!isset($result['data'])) {
+    return array(
+      '#markup' => 'Failed to locate your address.',
+    );
+  }
+  $links = CommonHelper::buildLinks(
+    $address, $result['data']['legislators'], $body, $subject);
+  return array('legislators' => $links,
+               'geo_coord' => $result['data']['geo_coord']);
+}
+
+/**
+ * a helper function to get email links
+ *
+ * @param string $state
+ *   sender state
+ * @param string $zip
+ *   sender zip 
+ * @param string $city
+ *   sender city 
+ * @param string $street
+ *   sender street address 
+ * @param string $sender_first
+ *   sender first name 
+ * @param string $sender_last
+ *   sender last name 
+ * @param string $sender_email
+ *   sender email address 
+ * @param string $body
+ *   sender message body
+ * @param string $subject
+ *   sender message subject
+ * @param array $legislators
+ *   list of legislators. Each legislator should at least contain:
+ *     'house name e.g. Senate' => [
+ *       'first' => 'first name',
+ *       'middle' => 'middle name if any',
+ *       'last' => 'last name',
+ *       'fax' => 'fax number',
+ *     ]
+ *
+ * @return array
+ *   the array including legislators with the url for faxing. 
+ */
+function dd_fax_service_get_legislator_fax_links($state, $zip, $city, $street,
+                                               $sender_first, $sender_last,
+                                               $sender_contact, $body,
+                                               $subject = null, $legislators) {
+  $address = array('state' => $state,
+                   'zip' => $zip,
+                   'city' => $city,
+                   'street' => $street,
+                   'first' => $sender_first,
+                   'last' => $sender_last,
+                   'contact' => $sender_contact,
+             );
+  $links = CommonHelper::buildLinks(
+    $address, $legislators, $body, $subject);
+  return array('legislators' => $links);
+}
+
+/**
+ * helper function to get custom content entity.
+ *
+ * @return Entity
+ *   the custom entity dd_fax_service_history
+ */
+function dd_fax_service_get_history() {
+  $fax_history = current(DdFaxServiceHistory::loadByFields(
+    [['field' => 'name', 'value' => 'fax_service']]
+  ));
+
+  return $fax_history;
+}
+
+/**
+ * function to check if limit reached.
+ *
+ * @return Boolean
+ */
+function dd_fax_service_check_limit_reached() {
+  $fax_history = dd_fax_service_get_history();
+  $current_limit = $fax_history->field_current_limit->value; 
+  $faxes_sent = $fax_history->field_faxes_sent->value;
+  if ($faxes_sent >= $current_limit) {
+    return false;
+  }
+  return true;
+}
+
+/**
+ * function to check if the end date has been reached. if it has then reset
+ * the current limit to limit.
+ */
+function dd_fax_service_reset_limit_if_end() {
+  $fax_history = dd_fax_service_get_history();
+  $end_date = $fax_history->field_end_date->value;
+  $cur_limit = $fax_history->field_current_limit->value;
+  $limit = $fax_history->field_limit->value; 
+  $faxes_sent = $fax_history->field_faxes_sent->value;
+  $rollover = 0;
+
+  if ($end_date < date("Y-m-d H:i:s")) {
+
+    if ($cur_limit > $limit) {
+      // Add rollover if organization paid for more faxes.
+      $rollover = $cur_limit - $faxes_sent; 
+    } 
+
+    $fax_history->field_current_limit->setValue($limit + $rollover); 
+    $fax_history->field_faxes_sent->setValue(0);
+    $fax_history->save();
+  }
+}
+
+/**
+ * function to increment the number of faxes sent when user sends a fax.
+ */
+function dd_fax_service_increment_faxes_sent() {
+  $fax_history = dd_fax_service_get_history();
+  $faxes_sent = $fax_history->field_faxes_sent->value;
+  $fax_history->field_faxes_sent->setValue($faxes_sent + 1);
+  $fax_history->save();
+}
+
+/**
+ * implements hook_cron().
+ */
+function dd_fax_service_cron() {
+  dd_fax_service_reset_limit_if_end();
+}
+
+/**
+ * drush function for testing purposes.
+ */
+function dd_fax_service_drush() {
+  /*
+  if (dd_fax_service_check_limit_reached()) {
+    echo 'the fax was sent';
+  } else {
+    echo 'the fax was not sent';
+  }
+   */
+  dd_fax_service_reset_limit_if_end();
+}

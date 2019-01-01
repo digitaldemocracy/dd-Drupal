@@ -1,0 +1,10 @@
+uuid: c1c0d4c8-082d-4486-b6e4-75c90a8f4e24
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.icon
+label: Icon
+targetEntityType: paragraph
+cache: true

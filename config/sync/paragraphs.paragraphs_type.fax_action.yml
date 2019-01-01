@@ -1,0 +1,6 @@
+uuid: 2aba4f95-7ca9-4fd7-87d2-4024589ddca9
+langcode: en
+status: true
+dependencies: {  }
+id: fax_action
+label: 'Fax Legislator'

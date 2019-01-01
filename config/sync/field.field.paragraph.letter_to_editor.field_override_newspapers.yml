@@ -1,0 +1,23 @@
+uuid: cb2d3958-0f08-4344-8c29-975253d08bb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_override_newspapers
+    - paragraphs.paragraphs_type.letter_to_editor
+id: paragraph.letter_to_editor.field_override_newspapers
+field_name: field_override_newspapers
+entity_type: paragraph
+bundle: letter_to_editor
+label: 'Override List of Newspapers'
+description: 'If enabled, visitor will only be shown newspapers selected below regardless of their location'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,19 @@
+uuid: 78082c0d-1c32-4c96-8553-d704fb0d82ca
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_clips
+field_name: field_clips
+entity_type: dd_clip
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: 69046da9-5a6f-41c7-abfa-61260af48832
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.dd_subscription_type.field_price
+    - field.field.node.dd_subscription_type.field_type_description
+    - node.type.dd_subscription_type
+  module:
+    - user
+id: node.dd_subscription_type.teaser
+targetEntityType: node
+bundle: dd_subscription_type
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_price: true
+  field_type_description: true

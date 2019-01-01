@@ -1,0 +1,24 @@
+uuid: a5605316-e70c-413e-b61b-2f34600e9c7f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_bill_alert_history.field_user_id
+  module:
+    - dd_bill_alerts
+id: dd_bill_alert_history.dd_bill_alert_history.field_user_id
+field_name: field_user_id
+entity_type: dd_bill_alert_history
+bundle: dd_bill_alert_history
+label: 'User id'
+description: 'Drupal user id'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 1
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

@@ -1,0 +1,23 @@
+uuid: b4152ed3-262d-43db-bf65-3d0b73499e85
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_take_action_button
+    - node.type.widget
+id: node.widget.field_show_take_action_button
+field_name: field_show_take_action_button
+entity_type: node
+bundle: widget
+label: 'Show Take Action Button'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

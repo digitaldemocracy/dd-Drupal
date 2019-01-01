@@ -1,0 +1,20 @@
+uuid: f3dd1bc6-1874-4381-a2c1-ab90304929a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.download_action.field_download_action_file
+    - field.field.paragraph.download_action.field_download_description
+    - paragraphs.paragraphs_type.download_action
+id: paragraph.download_action.icon
+targetEntityType: paragraph
+bundle: download_action
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_download_action_file: true
+  field_download_description: true
+  uid: true

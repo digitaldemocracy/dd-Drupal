@@ -1,0 +1,22 @@
+# Dd bill alert history routing definition
+dd_bill_alert_history.settings_tab:
+  route_name: dd_bill_alert_history.settings
+  title: 'Settings'
+  base_route: dd_bill_alert_history.settings
+
+entity.dd_bill_alert_history.canonical:
+  route_name: entity.dd_bill_alert_history.canonical
+  base_route: entity.dd_bill_alert_history.canonical
+  title: 'View'
+
+entity.dd_bill_alert_history.edit_form:
+  route_name: entity.dd_bill_alert_history.edit_form
+  base_route: entity.dd_bill_alert_history.canonical
+  title: 'Edit'
+
+entity.dd_bill_alert_history.delete_form:
+  route_name:  entity.dd_bill_alert_history.delete_form
+  base_route:  entity.dd_bill_alert_history.canonical
+  title: Delete
+  weight: 10
+

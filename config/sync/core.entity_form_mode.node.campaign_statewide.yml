@@ -1,0 +1,10 @@
+uuid: 2eef8e3b-2a08-4167-a4fe-20e619123571
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.campaign_statewide
+label: 'Campaign Statewide'
+targetEntityType: node
+cache: true

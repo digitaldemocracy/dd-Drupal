@@ -1,0 +1,17 @@
+uuid: 52f1ccee-6d42-4d7e-b760-502e14fc7ff2
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'DD Video Alert'
+type: dd_email_subscription
+description: 'Email alert configuration for videos'
+help: "Define criteria for an email alert. You will receive emails whenever new utterances are posted which match these criteria.\r\n\r\nNote that the title only affects how this alert is displayed on your account page, and has no effect on the search for matching utterances."
+new_revision: false
+preview_mode: 0
+display_submitted: false

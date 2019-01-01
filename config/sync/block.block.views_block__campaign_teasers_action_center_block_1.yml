@@ -1,0 +1,37 @@
+uuid: 8ed3e42f-da83-49bf-bee6-16924727d35c
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.campaign_teasers_action_center
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__campaign_teasers_action_center_block_1
+theme: dd
+region: content
+weight: -49
+provider: null
+plugin: 'views_block:campaign_teasers_action_center-block_1'
+settings:
+  id: 'views_block:campaign_teasers_action_center-block_1'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '<front>'
+    negate: false
+    context_mapping: {  }

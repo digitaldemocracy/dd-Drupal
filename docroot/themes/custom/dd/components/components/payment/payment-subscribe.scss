@@ -1,0 +1,27 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/payment/icons';
+
+div.dd-subscribe-plan {
+  div.plans {
+    border: solid 1px black;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding: 5px 5px 5px 5px;
+
+    ul.plan {
+      list-style: none;
+    }
+  }
+
+  div.form {
+    border: solid 1px black;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px 5px 5px 5px;
+  }
+}

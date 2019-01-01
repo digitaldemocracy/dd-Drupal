@@ -1,0 +1,12 @@
+uuid: 33fb52e3-359b-42fa-aae9-8beaba49d75f
+langcode: en
+status: true
+dependencies: {  }
+id: trusted_commentator
+label: 'Trusted Commentator'
+weight: 3
+is_admin: null
+permissions:
+  - 'create blog content'
+  - 'delete own blog content'
+  - 'edit own blog content'

@@ -1,0 +1,7 @@
+dd_bill_alerts_settings:
+  path: '/admin/structure/dd_bill_alerts/settings'
+  defaults:
+    _form: '\Drupal\dd_bill_alerts\Form\DdBillAlertsSettingsForm'
+    _title: 'DD Bill Alerts Settings'
+  requirements:
+    _permission: 'administer site configuration'

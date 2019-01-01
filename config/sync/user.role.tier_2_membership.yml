@@ -1,0 +1,9 @@
+uuid: d4774aca-cefc-4a78-b8e8-829777d4c33a
+langcode: en
+status: true
+dependencies: {  }
+id: tier_2_membership
+label: 'Tier 2 Membership'
+weight: 8
+is_admin: null
+permissions: {  }

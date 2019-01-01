@@ -1,0 +1,166 @@
+uuid: c6258593-ea90-44e9-a3df-a99ae0396c93
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_legislator.dd_legislator.default
+targetEntityType: dd_legislator
+bundle: dd_legislator
+mode: default
+content:
+  OfficialBio:
+    label: above
+    type: string
+    weight: 13
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  capitol_phone:
+    label: inline
+    type: string
+    weight: 8
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  description:
+    label: inline
+    type: string
+    weight: 6
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  email_form_link:
+    label: inline
+    type: string
+    weight: 11
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  first:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 4
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    label: inline
+    type: string
+    weight: 5
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  is_legislator:
+    type: boolean
+    weight: 12
+    label: inline
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    region: content
+  last:
+    label: inline
+    type: string
+    weight: 3
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  middle:
+    label: inline
+    type: string
+    weight: 2
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  pid:
+    type: number_unformatted
+    weight: 0
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  room_number:
+    label: inline
+    type: number_unformatted
+    weight: 10
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  servesOn_dr_ids:
+    type: entity_reference_entity_view
+    weight: 14
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  state:
+    label: inline
+    type: string
+    weight: 12
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  twitter_handle:
+    label: inline
+    type: string
+    weight: 7
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  website_url:
+    label: inline
+    type: string
+    weight: 9
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  capitol_fax: true

@@ -1,0 +1,25 @@
+uuid: e042f117-d0d6-4eef-b6a1-913b0e6c9aae
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_bill
+    - node.type.campaign
+id: node.campaign.field_bill
+field_name: field_bill
+entity_type: node
+bundle: campaign
+label: 'Add a Bill'
+description: 'Search for a bill by title, number, or keyword'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_bill'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

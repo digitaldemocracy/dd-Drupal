@@ -1,0 +1,26 @@
+uuid: 00e3b148-5d1d-4796-9265-592d237279ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.paragraph.icon
+    - field.field.paragraph.phone_action.field_advocacy_message
+    - field.field.paragraph.phone_action.field_phone_targets
+    - field.field.paragraph.phone_action.field_talking_points
+    - paragraphs.paragraphs_type.phone_action
+id: paragraph.phone_action.icon
+targetEntityType: paragraph
+bundle: phone_action
+mode: icon
+content: {  }
+hidden:
+  created: true
+  field_action_target: true
+  field_advocacy_message: true
+  field_advocacy_message_label: true
+  field_capture_info: true
+  field_capture_staff: true
+  field_legislator_position: true
+  field_phone_targets: true
+  field_talking_points: true
+  uid: true

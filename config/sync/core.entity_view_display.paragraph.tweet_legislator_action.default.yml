@@ -1,0 +1,23 @@
+uuid: 26eaa49c-1ea1-4509-af5d-9f67412607d9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.tweet_legislator_action.field_sample_tweet
+    - paragraphs.paragraphs_type.tweet_legislator_action
+id: paragraph.tweet_legislator_action.default
+targetEntityType: paragraph
+bundle: tweet_legislator_action
+mode: default
+content:
+  field_sample_tweet:
+    weight: 0
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+hidden:
+  created: true
+  field_action_target: true
+  uid: true

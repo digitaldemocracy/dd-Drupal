@@ -1,0 +1,733 @@
+uuid: fa59b972-b600-4c7e-b5b0-45ea9c50024f
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.main
+  module:
+    - dd_lobbyist
+    - dd_organization
+    - views_autocomplete_filters
+id: organizations
+label: Organizations
+module: views
+description: ''
+tag: ''
+base_table: Organizations
+base_field: oid
+core: 8.x
+display:
+  default:
+    display_plugin: default
+    id: default
+    display_title: Master
+    position: 0
+    display_options:
+      access:
+        type: none
+        options: {  }
+      cache:
+        type: tag
+        options: {  }
+      query:
+        type: views_query
+        options:
+          disable_sql_rewrite: false
+          distinct: false
+          replica: false
+          query_comment: ''
+          query_tags: {  }
+      exposed_form:
+        type: basic
+        options:
+          submit_button: Apply
+          reset_button: true
+          reset_button_label: Clear
+          exposed_sorts_label: 'Sort by'
+          expose_sort_order: true
+          sort_asc_label: Asc
+          sort_desc_label: Desc
+      pager:
+        type: full
+        options:
+          items_per_page: 25
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: ‹‹
+            next: ››
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+      style:
+        type: table
+        options:
+          grouping: {  }
+          row_class: ''
+          default_row_class: true
+          override: true
+          sticky: false
+          caption: ''
+          summary: ''
+          description: ''
+          columns:
+            name: name
+          info:
+            name:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: '-1'
+          empty_table: false
+      row:
+        type: 'entity:dd_organization'
+      fields:
+        name:
+          id: name
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: null
+          entity_field: name
+          plugin_id: field
+        state:
+          id: state
+          table: OrganizationStateAffiliation
+          field: state
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: standard
+      filters:
+        name:
+          id: name
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_op
+            label: 'Filter By Name'
+            description: ''
+            use_operator: false
+            operator: name_op
+            identifier: name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              trusted_commentator: '0'
+              stealth_mode: '0'
+              editor: '0'
+              cal_matters: '0'
+            autocomplete_filter: 1
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: name
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: dd_organization
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
+        name_1:
+          id: name_1
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: 'Organization Name Search (Starts with)'
+          operator: regular_expression
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: name_1_op
+            label: ''
+            description: ''
+            use_operator: false
+            operator: name_1_op
+            identifier: startswith
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+            autocomplete_filter: 0
+            autocomplete_min_chars: '0'
+            autocomplete_items: '10'
+            autocomplete_field: name_1
+            autocomplete_raw_suggestion: 1
+            autocomplete_raw_dropdown: 1
+            autocomplete_dependent: 0
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: dd_organization
+          entity_field: name
+          plugin_id: views_autocomplete_filters_string
+        state:
+          id: state
+          table: OrganizationStateAffiliation
+          field: state
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value: ''
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+            autocomplete_filter: 0
+            autocomplete_min_chars: 0
+            autocomplete_items: 10
+            autocomplete_field: ''
+            autocomplete_raw_suggestion: true
+            autocomplete_raw_dropdown: true
+            autocomplete_dependent: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: views_autocomplete_filters_string
+      sorts:
+        name:
+          id: name
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: ASC
+          exposed: true
+          expose:
+            label: Name
+          entity_type: dd_organization
+          entity_field: name
+          plugin_id: standard
+      title: Organizations
+      header: {  }
+      footer: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No Organizations Found.'
+            format: basic_html
+          plugin_id: text
+      relationships:
+        oid_combined_representations:
+          id: oid_combined_representations
+          table: Organizations
+          field: oid_combined_representations
+          relationship: none
+          group_type: group
+          admin_label: 'Organization CombinedRepresentations'
+          required: true
+          entity_type: dd_organization
+          plugin_id: standard
+      arguments: {  }
+      display_extenders: {  }
+      group_by: true
+      css_class: organizations__search
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+      tags: {  }
+  organizations_page:
+    display_plugin: page
+    id: organizations_page
+    display_title: Page
+    position: 1
+    display_options:
+      display_extenders:
+        metatag_display_extender: {  }
+      path: organizations
+      menu:
+        type: normal
+        title: Organizations
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 45
+        context: '0'
+        menu_name: main
+      exposed_block: true
+      style:
+        type: default
+        options:
+          grouping:
+            -
+              field: nothing
+              rendered: true
+              rendered_strip: false
+          row_class: organizations__search--row
+          default_row_class: false
+      defaults:
+        style: false
+        row: false
+        fields: false
+        header: false
+        pager: false
+      row:
+        type: fields
+        options:
+          default_field_elements: false
+          inline: {  }
+          separator: ''
+          hide_empty: true
+      fields:
+        name:
+          id: name
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: span
+          element_class: organizations__search--link
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: null
+          entity_field: name
+          plugin_id: field
+        name_1:
+          id: name_1
+          table: Organizations
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: "{{name_1__value|replace({'0':'#', '1':'#', '2':'#', '3':'#', '4':'#', '5':'#', '6':'#', '7':'#', '8':'#', '9':'#'})|upper}}\n"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: true
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 1
+            word_boundary: false
+            ellipsis: false
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: true
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: false
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: dd_organization
+          entity_field: name
+          plugin_id: field
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: true
+            text: '<a id ={{ name_1 }} name = {{ name_1 }} rel = nofollow>{{ name_1 }}</a> '
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
+        state:
+          id: state
+          table: OrganizationStateAffiliation
+          field: state
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          plugin_id: standard
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          content: '<span class = "organizations__search--results"><span class = "organizations__search--results-count">@total</span> Organizations found.</span>'
+          plugin_id: result
+        area_text_custom:
+          id: area_text_custom
+          table: views
+          field: area_text_custom
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: false
+          content: "<ul class = \"organizations__glossary\">\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[0-9]\" class = \"organizations__glossary--links\"> # </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[A]\" class = \"organizations__glossary--links\"> A </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[B]\" class = \"organizations__glossary--links\"> B </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[C]\" class = \"organizations__glossary--links\"> C </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[D]\" class = \"organizations__glossary--links\"> D </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[E]\" class = \"organizations__glossary--links\"> E </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[F]\" class = \"organizations__glossary--links\"> F </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[G]\" class = \"organizations__glossary--links\"> G </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[H]\" class = \"organizations__glossary--links\"> H </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[I]\" class = \"organizations__glossary--links\"> I </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[J]\" class = \"organizations__glossary--links\"> J </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[K]\" class = \"organizations__glossary--links\"> K </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[L]\" class = \"organizations__glossary--links\"> L </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[M]\" class = \"organizations__glossary--links\"> M </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[N]\" class = \"organizations__glossary--links\"> N </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[O]\" class = \"organizations__glossary--links\"> O </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[P]\" class = \"organizations__glossary--links\"> P </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[Q]\" class = \"organizations__glossary--links\"> Q </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[R]\" class = \"organizations__glossary--links\"> R </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[S]\" class = \"organizations__glossary--links\"> S </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[T]\" class = \"organizations__glossary--links\"> T </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[U]\" class = \"organizations__glossary--links\"> U </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[V]\" class = \"organizations__glossary--links\"> V </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[W]\" class = \"organizations__glossary--links\"> W </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[X]\" class = \"organizations__glossary--links\"> X </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[Y]\" class = \"organizations__glossary--links\"> Y </a></li>\n    <li class = \"organizations__glossary--list\"><a href = \"?startswith=^[Z]\" class = \"organizations__glossary--links\"> Z </a></li>\n</ul>"
+          plugin_id: text_custom
+      pager:
+        type: full
+        options:
+          items_per_page: 50
+          offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
+    cache_metadata:
+      max-age: -1
+      contexts:
+        - 'languages:language_content'
+        - 'languages:language_interface'
+        - url
+        - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+      tags: {  }

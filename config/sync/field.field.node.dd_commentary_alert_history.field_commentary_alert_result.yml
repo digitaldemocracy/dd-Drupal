@@ -1,0 +1,19 @@
+uuid: bf136075-6e69-461b-b14c-f2124d4cc9e7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_commentary_alert_result
+    - node.type.dd_commentary_alert_history
+id: node.dd_commentary_alert_history.field_commentary_alert_result
+field_name: field_commentary_alert_result
+entity_type: node
+bundle: dd_commentary_alert_history
+label: 'Commentary Alert History'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

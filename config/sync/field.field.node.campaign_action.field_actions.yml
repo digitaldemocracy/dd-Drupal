@@ -1,0 +1,65 @@
+uuid: fdf804f3-6cff-4719-9390-38951a7a14fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_actions
+    - node.type.campaign_action
+    - paragraphs.paragraphs_type.display_text
+    - paragraphs.paragraphs_type.display_video_clip_montage
+    - paragraphs.paragraphs_type.download_action
+    - paragraphs.paragraphs_type.email_action
+    - paragraphs.paragraphs_type.fax_action
+    - paragraphs.paragraphs_type.letter_to_editor
+    - paragraphs.paragraphs_type.phone_action
+    - paragraphs.paragraphs_type.tweet_legislator_action
+  module:
+    - entity_reference_revisions
+id: node.campaign_action.field_actions
+field_name: field_actions
+entity_type: node
+bundle: campaign_action
+label: 'Choose Action(s) for Selected Targets'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      email_action: email_action
+      fax_action: fax_action
+      phone_action: phone_action
+      tweet_legislator_action: tweet_legislator_action
+      display_video_clip_montage: display_video_clip_montage
+      download_action: download_action
+      display_text: display_text
+      letter_to_editor: letter_to_editor
+    target_bundles_drag_drop:
+      email_action:
+        enabled: true
+        weight: -17
+      fax_action:
+        enabled: true
+        weight: -16
+      phone_action:
+        enabled: true
+        weight: -15
+      tweet_legislator_action:
+        enabled: true
+        weight: -14
+      display_video_clip_montage:
+        enabled: true
+        weight: -13
+      download_action:
+        enabled: true
+        weight: -12
+      display_text:
+        enabled: true
+        weight: -11
+      letter_to_editor:
+        enabled: true
+        weight: -10
+field_type: entity_reference_revisions

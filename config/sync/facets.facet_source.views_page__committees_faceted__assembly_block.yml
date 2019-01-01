@@ -1,0 +1,8 @@
+uuid: 2c7b8262-7786-4e54-a9c6-5234a373adc5
+langcode: en
+status: true
+dependencies: {  }
+id: views_page__committees_faceted__assembly_block
+name: 'views_page:committees_faceted__assembly_block'
+filter_key: ''
+url_processor: query_string

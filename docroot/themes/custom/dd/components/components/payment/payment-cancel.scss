@@ -1,0 +1,16 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/payment/icons';
+
+div.dd-cancel-plan {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  div.form {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

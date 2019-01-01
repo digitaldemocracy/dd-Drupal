@@ -1,0 +1,14 @@
+uuid: b90d07d6-d9d9-413f-8042-35648113ae46
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.educator
+  module:
+    - user
+id: user_add_role_action.educator
+label: 'Add the Educator role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: educator

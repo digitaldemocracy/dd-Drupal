@@ -1,0 +1,21 @@
+uuid: 8355d579-689a-46db-9299-76ee09183325
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_advocacy_message
+    - paragraphs.paragraphs_type.phone_action
+  module:
+    - text
+id: paragraph.phone_action.field_advocacy_message
+field_name: field_advocacy_message
+entity_type: paragraph
+bundle: phone_action
+label: 'Advocacy Message'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

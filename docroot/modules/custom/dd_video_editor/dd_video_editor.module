@@ -1,0 +1,141 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_video_editor.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_video_editor_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_video_editor':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Video Editor Module lets you create video clips! ');
+      $output .= t('This module requires the clipper_gallery_block and ');
+      $output .= t('builder_gallery_block blocks to be placed in the second ');
+      $output .= t('side bar to function properly.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_video_editor_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-video-clipper' => array(
+      'variables' => array(
+        'form' => NULL,
+        'video_id' => NULL,
+        'video_file' => NULL,
+        'video_type' => NULL,
+        'thumbnail' => NULL,
+        'video_title' => NULL,
+        'clip_date' => NULL,
+        'time' => NULL,
+        'source' => NULL,
+      ),
+      'template' => 'dd-video-clipper',
+    ),
+    'clipper-gallery-block' => array(
+      'variables' => array(
+        'items' => NULL,
+        'rep_tags' => NULL,
+        'form' => NULL,
+        'total_usage_size' => NULL,
+        'quota_size' => NULL,
+        'clips_json' => NULL,
+        'tags_csv' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'clipper-gallery-block',
+    ),
+    'clipper-gallery-item' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'clipper-gallery-item',
+    ),
+    'dd-video-builder' => array(
+      'variables' => array(
+        'title' => NULL,
+        'form' => NULL,
+        'combine_form' => NULL,
+      ),
+      'template' => 'dd-video-builder',
+    ),
+    'builder-gallery-block' => array(
+      'variables' => array(
+        'items' => NULL,
+        'rep_tags' => NULL,
+        'form' => NULL,
+        'total_usage_size' => NULL,
+        'quota_size' => NULL,
+        'clips_json' => NULL,
+        'tags_csv' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'builder-gallery-block',
+    ),
+    'builder-gallery-item' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'builder-gallery-item',
+    ),
+    'my-clip-bank-block' => array(
+      'variables' => array(
+        'items' => NULL,
+        'rep_tags' => NULL,
+        'form' => NULL,
+        'total_usage_size' => NULL,
+        'quota_size' => NULL,
+        'clips_json' => NULL,
+        'tags_csv' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'my-clip-bank-block',
+    ),
+    'my-clip-bank-item' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'my-clip-bank-item',
+    ),
+    'clip-select-item' => array(
+      'variables' => array(
+        'elements' => NULL,
+      ),
+      'template' => 'clip-select-item',
+    ),
+    'video-editor-menu-block' => array(
+      'variables' => array(
+        'items' => NULL,
+      ),
+      'template' => 'video-editor-menu-block',
+    ),
+    'dd-video-annotator' => array(
+      'variables' => array(
+        'title' => NULL,
+        'form' => NULL,
+        'video_id' => NULL,
+        'video_file' => NULL,
+        'video_type' => NULL,
+        'thumbnail' => NULL,
+        'video_title' => NULL,
+        'clip_date' => NULL,
+        'annotations_json' => NULL,
+      ),
+      'template' => 'dd-video-annotator',
+    ),
+  );
+  return $variables;
+}

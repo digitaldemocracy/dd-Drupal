@@ -1,0 +1,8 @@
+uuid: 0df22cda-e0df-4fc2-8868-a325c3039657
+langcode: en
+status: true
+dependencies: {  }
+id: search_api_views__committees_faceted__page_1
+name: 'search_api_views:committees_faceted:page_1'
+filter_key: committees
+url_processor: query_string

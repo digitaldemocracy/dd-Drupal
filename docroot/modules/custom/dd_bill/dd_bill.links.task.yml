@@ -1,0 +1,44 @@
+# DD Bill routing definition
+dd_bill.settings_tab:
+  route_name: dd_bill.settings
+  title: 'Settings'
+  base_route: dd_bill.settings
+
+entity.dd_bill.canonical:
+  route_name: entity.dd_bill.canonical
+  base_route: entity.dd_bill.canonical
+  title: 'View'
+
+entity.dd_bill.edit_form:
+  route_name: entity.dd_bill.edit_form
+  base_route: entity.dd_bill.canonical
+  title: Edit
+
+# DD Bill Version routing definition
+dd_bill_version.settings_tab:
+  route_name: dd_bill_version.settings
+  title: 'Settings'
+  base_route: dd_bill_version.settings
+entity.dd_bill_version.canonical:
+  route_name: entity.dd_bill_version.canonical
+  base_route: entity.dd_bill_version.canonical
+  title: 'View'
+
+entity.dd_bill_version.edit_form:
+  route_name: entity.dd_bill_version.edit_form
+  base_route: entity.dd_bill_version.canonical
+  title: Edit
+# DD Bill Discussion routing definition
+dd_bill_discussion.settings_tab:
+  route_name: dd_bill_discussion.settings
+  title: 'Settings'
+  base_route: dd_bill_discussion.settings
+entity.dd_bill_discussion.canonical:
+  route_name: entity.dd_bill_discussion.canonical
+  base_route: entity.dd_bill_discussion.canonical
+  title: 'View'
+
+entity.dd_bill_discussion.edit_form:
+  route_name: entity.dd_bill_discussion.edit_form
+  base_route: entity.dd_bill_discussion.canonical
+  title: Edit

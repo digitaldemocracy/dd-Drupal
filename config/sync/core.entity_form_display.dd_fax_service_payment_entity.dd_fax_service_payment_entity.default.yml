@@ -1,0 +1,55 @@
+uuid: 8b171793-8250-4dec-a7cc-b08da6a90169
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_fax_service_payment_entity.dd_fax_service_payment_entity.field_duration
+    - field.field.dd_fax_service_payment_entity.dd_fax_service_payment_entity.field_increase_limit
+    - field.field.dd_fax_service_payment_entity.dd_fax_service_payment_entity.field_price
+  module:
+    - dd_fax_service_payment
+id: dd_fax_service_payment_entity.dd_fax_service_payment_entity.default
+targetEntityType: dd_fax_service_payment_entity
+bundle: dd_fax_service_payment_entity
+mode: default
+content:
+  field_duration:
+    weight: 8
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_increase_limit:
+    weight: 6
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_price:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

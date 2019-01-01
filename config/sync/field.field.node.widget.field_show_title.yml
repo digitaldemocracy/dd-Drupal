@@ -1,0 +1,23 @@
+uuid: c1addcee-fb62-473e-a875-7479d29fbd63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_title
+    - node.type.widget
+id: node.widget.field_show_title
+field_name: field_show_title
+entity_type: node
+bundle: widget
+label: 'Show Title'
+description: 'Show the title at top of the widget'
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,459 @@
+@import 'init';
+
+#views-exposed-form-committees-faceted-assembly-block,
+#views-exposed-form-committees-faceted-senate-block {
+  display: none;
+}
+
+//----------- COMMITTEES LIST LANDING PAGE------------------------
+.is-path-committees {
+  // Setup layout with floats
+  .block-views-blockcommittees-faceted-assembly-block,
+  .block-views-blockcommittees-faceted-senate-block {
+    @include dd-simple-borders($dd-offwhite);
+    margin-bottom: 1.5rem;
+    margin-top: .5rem;
+    padding: 0 .5rem .5rem;
+    max-height: 440px;
+    overflow: scroll;
+
+    @include zen-respond-to(xs) {
+      min-width: 300px;
+    }
+
+    @include zen-respond-to(l) {
+      float: left;
+      width: 48%;
+    }
+
+    > h2 {
+      color: color(text);
+    }
+  }
+
+  .block-views-blockcommittees-faceted-assembly-block {
+    @include zen-respond-to(m) {
+      margin-right: 2%;
+    }
+  }
+
+  // Clear the upcoming hearings block
+  .block-views-blockhearing-agenda-block-upcoming-committees-hearings-block {
+    clear: both;
+  }
+
+  h1,
+  h2,
+  h3 {
+    margin: .5rem 0;
+  }
+
+  h1,
+  h2 {
+    color: color(text);
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .committee-group {
+    &--wrapper {
+      margin-top: 0;
+    }
+
+    // Styling individual committee links
+    &--item {
+      @include font-size(s);
+      padding: .3em 0;
+
+      @include zen-respond-to(xl) {
+        @include font-size(m);
+      }
+    }
+  }
+
+  .view-committees-faceted > .view-content {
+    @include view-showhide;
+
+    .dd-showhide-group {
+      padding-left: 0;
+      padding-top: 0;
+      padding-bottom: 0;
+
+
+      h3 {
+        @include font-size(m);
+        padding: .5em;
+        background-size: 18px;
+        cursor: pointer;
+        margin: 0;
+        background-repeat: no-repeat;
+        background-position: 10px 55%;
+
+        &.expanded {
+          border-top: 0;
+          background-color: $dd-blue;
+          background-image: url('../../components/showhide/minus-solid-white.svg');
+          color: $white;
+        }
+
+        .dd-showhide-group-header {
+          padding-left: 30px;
+
+          @include zen-respond-to(xs-and-below) {
+            display: block;
+          }
+        }
+
+        @include zen-respond-to(xl) {
+          @include font-size(l);
+        }
+      }
+
+      &:first-child > h3 { border-top: 0; }
+
+      .toggle {
+        @include font-size(s);
+        float: right;
+        font-weight: normal;
+        color: $dd-charcoal;
+        padding-right:0;
+        padding-top: 5px;
+
+        &.open {
+          color: $white;
+        }
+
+        @include zen-respond-to(xs-and-below) {
+          @include visually-hidden;
+        }
+
+        @include zen-respond-to(xl) {
+          @include font-size(m);
+        }
+      }
+    }
+  }
+}
+
+//----------- INDIVIDUAL COMMITTEE PAGES -------------------------
+// Contact Info Block
+.view-id-committee_contact_info {
+  > .view-content {
+    //@include dd-simple-borders;
+    position: relative;
+  }
+}
+
+.page--committee {
+  h1.page-title {
+    //@include dd-bottom-border($dd-silver);
+    //margin: 0;
+  }
+
+  .region__inner-wrapper {
+    h3,
+    h2 {
+      margin: 10px 0;
+    }
+  }
+
+  // Share toolbar
+  .dd-share-toolbar-group {
+    text-align: right;
+
+    .fa-2x {
+      font-size: 1.5rem;
+    }
+  }
+
+
+
+  //--------- Hearings Block ------------
+  .view-committee-hearings-years,
+  .view-committee-members-years {
+
+    >.view-header {
+      @include typeface(headings);
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: .5rem;
+      color: $dd-blue;
+
+      &.collapsed,
+      &.expanded {
+        padding-left: 1.8rem;
+        background-position: 0 15px;
+      }
+
+      .toggler {
+        @include typeface(body);
+        @include font-size(m);
+        font-weight: normal;
+      }
+    }
+
+    table.views-table {
+      margin: 0;
+      border: 0;
+
+      .view-id-hearings_faceted {
+        h3 {
+          @include font-size(m);
+          text-transform: uppercase;
+          color: $dd-dimgray;
+        }
+      }
+
+      .view-showhide {
+        > .view-header {
+          @include dd-bottom-border($dd-silver);
+
+          &.expanded {
+            background-color: $dd-blue;
+            font-weight: bold;
+            color: $white;
+            background-image: url('../../components/showhide/minus-solid-white.svg');
+          }
+
+          + .view-content {
+            background-color: lighten($dd-offwhite, 2%);
+          }
+        }
+      }
+    }
+  }
+
+  .ui-tabs .ui-tabs-panel {
+    @include dd-simple-borders($dd-offwhite);
+    padding-top: 0;
+    padding: .5rem;
+  }
+
+  .ui-widget-header {
+    border: 0;
+  }
+
+  //------------- Committee Members---------
+  .view-committee-members-years {
+    > .view-header {
+      color: color(text);
+    }
+  }
+  .committee-members {
+    > .view-content {
+      @include flex-container;
+      justify-content: space-between;
+    }
+
+    &--group {
+      @include flex-item;
+      @include flex-container;
+      width: auto;
+
+      @include zen-respond-to(xxs) {
+        //display: inline-flex;
+        //width: 48%;
+
+        // Members will always be the last ordered group so we set its width to 100%;
+        &:last-child {
+          display: flex;
+          width: 100%;
+
+          .committee-members--list {
+            justify-content: flex-start;
+          }
+        }
+      }
+
+      h3 {
+        @include dd-bottom-border($dd-silver);
+        width: 100%;
+      }
+    }
+
+    &--list {
+      // The ul is a nested flex container
+      @include flex-item;
+      @include flex-container;
+      justify-content: space-between;
+      padding-left: 0;
+      width: 100%;
+    }
+
+    &--row {
+      @include flex-item;
+      @include line-height(20px);
+      margin: 1rem .8%;
+      width: 100%;
+
+      // Set width per breakpoint
+      @include zen-respond-to(xxxs) { width: 44%; }
+      @include zen-respond-to(s) { width: 29%; }
+      @include zen-respond-to(m) { width: 43%; }
+      @include zen-respond-to(xxl) { width: 29%; }
+
+      // Set Chair, Vice-chair and co-chair to 100% widths
+      &.chair,
+      &.vice-chair,
+      &.co-chair {
+        width: auto !important; // Important to override breakpoint settings.
+        //padding-right: 1em;
+        /* Justify content would've been perfect here, but we can't use it because the
+         * parent (&--group) would need to be set to 100% for it to work and we can't do THAT
+         * because if we do, the vice-chairman will no longer be on the same row.
+         *
+         * We can't set nowrap to force the vice-chairman to be on the same row, because if
+         * we do that, the members section will squeeze up beside chair and vice.
+         * ¯\_(ツ)_/¯
+        */
+    }
+    }
+
+    @include dd-round-headshots(100px);
+
+    &--name {
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  }
+
+  // Removing hearings teaser bottom border
+  .hearings-teaser {
+    border-bottom: 0;
+    padding: 1em .5em 0 1em;
+  }
+}// End page--committee
+
+
+//----------- Contact Block------------
+.view-committee-contact-info > .view-content {
+
+  > .views-row {
+    margin-bottom: 1rem;
+
+    &:last-child { // Share block on committee pages.
+    }
+  }
+
+  .contact-info--text {
+
+    @include flex-container(flex-start);
+    margin: 1em 0;
+
+    > .contact-info-column {
+      @include flex-item;
+      padding-right: 5rem;
+    }
+
+    .committee-contact-info__chief-consultant,
+    .committee-contact-info__consultant {
+      margin-bottom: 1rem;
+    }
+  }
+
+}
+
+//--------- Styling the search form -------------
+.dd-hearing-search-box-form {
+  position: relative;
+
+  .form-text {
+    width: 100%;
+  }
+
+  .form-submit {
+    @include input-search-icon;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-bottom: 0;
+    width: 15%;
+    text-indent: -99999px;
+    margin-right: 0;
+
+    &:hover {
+      box-shadow: none;
+      background-color: $dd-yellow;
+    }
+
+    @include zen-respond-to(l) {
+      width: 10%;
+    }
+  }
+}
+
+//----------- COMMON STYLES --------
+.is-path-committees,
+.page--committee {
+  // Adding styles for the upcoming hearings block.
+  // Upcoming Hearings Block
+  .upcoming-hearings {
+    margin-bottom: 1rem;
+    background-color: $white;
+    padding: .5rem;
+
+    .view-grouping-header {
+      @include typeface(headings);
+      @include font-size(m);
+      font-weight: bold;
+      text-transform: uppercase;
+      color: $dd-dimgray;
+    }
+
+    table.views-table {
+      @include dd-simple-borders($dd-offwhite);
+      margin: .5rem 0;
+
+      caption {
+        background: $dd-offwhite;
+        font-weight: bold;
+        padding: 5px;
+      }
+    }
+
+    &--row {
+      @include dd-bottom-border;
+
+      td {
+        padding-left: .3rem;
+      }
+    }
+
+    &--bill-number,
+    &--bill-link {
+      width: 13%;
+      min-width: 65px;
+      padding-right: 0;
+
+      > a {
+        white-space: nowrap;
+      }
+    }
+
+    &--bill-link {
+      width: 10%;
+    }
+
+    &--authors {
+      min-width: 110px;
+      vertical-align: middle;
+      width: 20%;
+
+      .item-list {
+        ul { margin-bottom: 0; }
+
+        li {
+          list-style: none;
+          padding-top: 5px;
+          margin-left: 5px;
+        }
+      }
+    }
+
+    &--subject {
+      width: 70%;
+    }
+  }
+}

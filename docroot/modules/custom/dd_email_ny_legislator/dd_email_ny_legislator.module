@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_email_ny_legislator.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use \Drupal\node\Entity\Node;
+
+/**
+ * Implements hook_help().
+ */
+function dd_email_ny_legislator_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_email_ny_legislator':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module helps you email NY legislators');
+      $output .= t(' and email them.');
+      $output .= '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_email_ny_legislator_theme($existing, $type, $theme, $path) {
+  $variables = array(
+    'dd-email-ny-leg' => array(
+      'variables' => array(
+        'form' => NULL,
+        'items' => NULL,
+        'title' => NULL,
+      ),
+      'template' => 'dd-email-ny-leg',
+    ),
+  );
+  return $variables;
+}
+
+/**
+ * Implements hook_legislators_contact_form().
+ */
+function dd_email_ny_legislator_legislators_contact_form($address, $legislators, $body, $bcc=null) {
+  if ($address['state'] === "NY") {
+    $markup = '<div id="leg-contact-list">';
+    foreach ($legislators as $house => $leg) {
+      $full_name = $leg['first'] . ' ' . ($leg['middle'] ? $leg['middle'] . ' ' : '') . $leg['last'];
+      $title = ($house === "Senate" ? 'Senator ' : 'Assemblymember ');
+      $markup .= '<h3>' . $title . ' ' . $full_name;
+      $markup .= ' - ' . $house . ' District ' . $leg['district'] . '</h3>';
+      $markup .= '<div><p><a href="mailto:'.$leg['email'].'?';
+      $markup .= 'body=' . rawurlencode(html_entity_decode($body));
+      if ($bcc) {
+        $markup .= '&bcc=' . rawurlencode($bcc);
+      }
+      $markup .= '">Email '. $title . ' ' . $full_name .'</a></p></div>';
+    }
+    $markup .= '</div>';
+    return $markup;
+  }
+}
+
+/**
+ * Implements hook_legislators_contact_links().
+ */
+function dd_email_ny_legislator_legislators_contact_links($sender, $legislators,
+                                                          $body, $subject, $bcc=null) {
+  if ($sender['state'] === "NY") {
+    $links = array();
+    foreach ($legislators as $house => $leg) {
+      if ($house === "geo_coord") {
+        continue;
+      }
+      $signature = $sender['first'] . ' ' . $sender['last'] . "\n"
+                 . $sender['email'] . "\n"
+                 . $sender['street'] . "\n"
+                 . $sender['city'] . ', ' . $sender['state'] . ' '
+                 . $sender['zip'];
+      $legislators[$house]['url'] =
+        'mailto:' . $leg['email'].'?subject=' . rawurlencode($subject) .
+                 '&body=' . rawurlencode(html_entity_decode($body) . "\n\n\n" . $signature);
+      if ($bcc) {
+        $legislators[$house]['url'] .= '&bcc=' . rawurlencode($bcc);
+      }
+      $legislators[$house]['name'] =
+        ($house === "Senate" ? "Senator " : "Assemblymember ") .
+                   $leg['first'] . 
+                   (' ' . $leg['middle'] . ' ' ? $leg['middle'] : ' ') .
+                   $leg['last'];
+      $legislators[$house]['target'] = '_self';
+    }
+    return $legislators;
+  }
+}

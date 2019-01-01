@@ -1,0 +1,33 @@
+uuid: 419a7967-38f7-4f14-81f2-abad1591a5ed
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_utterance
+    - facets
+    - system
+  theme:
+    - dd
+id: ddutteranceblock
+theme: dd
+region: content
+weight: -19
+provider: null
+plugin: dd_utterance_block
+settings:
+  id: dd_utterance_block
+  label: Transcript
+  provider: dd_utterance
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/hearing/*'
+    negate: false
+    context_mapping: {  }

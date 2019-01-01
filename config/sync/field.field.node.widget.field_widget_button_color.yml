@@ -1,0 +1,23 @@
+uuid: 31b900c5-70b9-4a2c-8a3b-30695f448759
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_widget_button_color
+    - node.type.widget
+  module:
+    - jquery_colorpicker
+id: node.widget.field_widget_button_color
+field_name: field_widget_button_color
+entity_type: node
+bundle: widget
+label: 'Button Color'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: ebcc1a
+default_value_callback: ''
+settings: {  }
+field_type: jquery_colorpicker

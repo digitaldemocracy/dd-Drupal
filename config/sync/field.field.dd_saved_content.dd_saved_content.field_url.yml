@@ -1,0 +1,23 @@
+uuid: befc8a37-8ee4-4fd2-8e22-432799bc319c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_saved_content.field_url
+  module:
+    - dd_account_dashboard
+    - link
+id: dd_saved_content.dd_saved_content.field_url
+field_name: field_url
+entity_type: dd_saved_content
+bundle: dd_saved_content
+label: URL
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  link_type: 17
+  title: 1
+field_type: link

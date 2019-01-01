@@ -1,0 +1,43 @@
+{% extends "page.html.twig" %}
+
+
+
+{% block header %}
+  {# Disables the header #}
+{% endblock %}
+
+{% block body %}
+  {# Set Widget style variables #}
+  {% set background_color = node.field_widget_background_color.value %}
+  {% set font_color       = node.field_widget_font_color.value %}
+  {% set button_bg        = node.field_widget_button_color.value %}
+  {% set button_text      = node.field_button_text_color.value %}
+
+  {# CSS Overrides#}
+  <style type="text/css">
+    .button {
+      background-color: #{{ button_bg }};
+      color: #{{ button_text }};
+      text-decoration: none;
+    }
+    .button:hover {
+      text-decoration: underline;
+    }
+    {{ node.field_css_override.value }}
+  </style>
+  <div class="dd-widget--body"
+       style = "background-color:#{{ background_color }};
+                color: #{{ font_color }};">
+    <main class="" role="main">
+      {{ page.help }}
+      {# Display content without the title block #}
+      {{ page.content | without('dd_page_title') }}
+    </main>
+    {% block sidebars %}
+    {% endblock %}
+
+  </div>
+{% endblock %}
+{% block footer %}
+  {# Disables the footer #}
+{% endblock %}

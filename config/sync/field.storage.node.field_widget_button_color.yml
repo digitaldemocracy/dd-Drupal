@@ -1,0 +1,19 @@
+uuid: 77abe74d-0f20-451a-8b54-ceba236beebb
+langcode: en
+status: true
+dependencies:
+  module:
+    - jquery_colorpicker
+    - node
+id: node.field_widget_button_color
+field_name: field_widget_button_color
+entity_type: node
+type: jquery_colorpicker
+settings: {  }
+module: jquery_colorpicker
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

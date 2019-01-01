@@ -1,0 +1,5 @@
+services:
+  dd_clean_contents.commands:
+    class: \Drupal\dd_clean_contents\Commands\DdCleanContentsCommands
+    tags:
+      - { name: drush.command }

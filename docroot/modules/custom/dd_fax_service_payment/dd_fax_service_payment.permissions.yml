@@ -1,0 +1,22 @@
+add dd fax service payment entity entities:
+  title: 'Create new Dd fax service payment entity entities'
+
+administer dd fax service payment entity entities:
+  title: 'Administer Dd fax service payment entity entities'
+  description: 'Allow to access the administration form to configure Dd fax service payment entity entities.'
+  restrict access: true
+
+delete dd fax service payment entity entities:
+  title: 'Delete Dd fax service payment entity entities'
+
+edit dd fax service payment entity entities:
+  title: 'Edit Dd fax service payment entity entities'
+
+access dd fax service payment entity overview:
+  title: 'Access the Dd fax service payment entity overview page'
+
+view published dd fax service payment entity entities:
+  title: 'View published Dd fax service payment entity entities'
+
+view unpublished dd fax service payment entity entities:
+  title: 'View unpublished Dd fax service payment entity entities'

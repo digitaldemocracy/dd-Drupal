@@ -1,0 +1,173 @@
+@import 'init';
+
+// Hearings teaser
+//
+// Markup: hearings-teaser.twig
+//
+// Style guide: components.hearings-teaser
+
+
+.hearings-teaser {
+  font-size: 90%;
+  padding-left: 3em;
+  padding-bottom: 1em;
+  border-bottom: 1px solid color(border);
+
+  > .view-content > .views-row,
+  > .view-empty > .view-hearing-teaser > .view-content > .views-row {
+    @include clearfix();
+    margin: 1em 0;
+
+    > .views-field { // add a margin to all fields except image thumbnail.
+      @include respond-to('xs') {
+        margin-left: 23%;
+      }
+    }
+
+    // Hearing number and bill link.
+    > .views-field-nothing-1 {
+      font-weight: bold;
+      font-size: 1.2em;
+
+      span.bill-link {
+        font-weight: normal;
+      }
+    }
+
+    > .views-field-subject {
+      font-weight: bold;
+    }
+
+    > .views-field-name {
+      font-style: italic;
+    }
+
+    // Author and Speakers
+    > .views-field-BillDiscussionSpeakers,
+    > .views-field-view {
+
+      div,
+      span {
+        @include block-to-inline();
+      }
+    }
+
+    // // Speakers.
+    // > .views-field-view-1 {
+    //   @include block-to-inline();
+    // }
+
+    // Contains thumbnail.
+    > .views-field-nothing {
+      display: none;
+      margin-left: 0;
+      @include respond-to('xs') {
+        display: block;
+        float: left;
+        width: 20%;
+      }
+    }
+
+    .views-field-BillDiscussionSpeakers {
+      @include line-height(20px);
+    }
+  }
+
+  nav.pager {
+    text-align: right;
+  }
+}
+
+// This should perhaps be moved to its own component, and/or abstracted to fit any h3s that group together collapsible views-rows.
+.is-path-hearings {
+  .view-hearings-faceted {
+    .toggler {
+      display: none;
+    }
+
+    .view-content > h3,
+    .view-empty > h3 {
+      margin: 1rem 0;
+    }
+
+    .hearings-teaser {
+      .view-header { // Prevent the .showhide .view-header from applying here.
+        padding-left: 0;
+        border-bottom: 0;
+        padding-bottom: 0;
+        padding-top: 1rem;
+      }
+
+      // Hide /hearings page committee name and dates
+      .views-field-name,
+      .views-field-date-ts {
+        display: none;
+      }
+
+      li.pager__item.is-active {
+        display: none;
+      }
+
+      li.pager__item.pager__item--previous {
+        float: left;
+      }
+
+      ul.pager__items {
+        padding: 0;
+      }
+
+      .view-hearings-faceted h3 {
+        padding-bottom: .5em; // to match padding of the .views-rows
+        border-bottom: 1px solid color(border);
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // Making expanded committee title more prominent
+  .view-showhide {
+    .view-header.expanded {
+      font-weight: bold;
+      background-color: $dd-blue;
+      color: $white;
+      .hearing--play-icon {
+        a {
+          @include playicon;
+          background-size: 22px;
+        }
+      }
+    }
+
+    .view-content {
+      background-color: lighten($dd-offwhite, 3%);
+    }
+  }
+
+  .hearing--play-icon a {
+    @include playicon;
+    background-size: 25px 25px;
+    padding: 5px;
+    color: white;
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: text-top;
+  }
+
+  .hearing--play-icon {
+    display: none;
+  }
+
+  .view-header .field-content .hearing--play-icon:last-of-type {
+    display: inline-block;
+  }
+
+}
+
+// Exposed form
+#block-exposedformhearings-facetedpage-1 {
+  label[for = 'edit-end-date'] {
+    @include visually-hidden;
+  }
+}

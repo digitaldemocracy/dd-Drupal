@@ -1,0 +1,184 @@
+@import 'init';
+
+// Campaign Admin
+
+#node-campaign-form,
+#node-campaign-edit-form,
+#node-campaign-action-form,
+#node-campaign-action-edit-form,
+#dd-campaign-targets-form,
+#dd-campaign-target-actions-form,
+#dd-campaign-preview-form,
+#dd-campaign-review-form {
+  .campaign-bill-preview {
+    display: none;
+  }
+
+  .campaign__dates {
+    margin: 2rem 0;
+    @include flex-container;
+
+    div {
+      @include flex-item;
+      padding-right: 1rem;
+    }
+  }
+
+  details {
+    @include dd-box-shadow(
+      $blur: 15px,
+      $color: $dd-silver
+    );
+    border-radius: 4px;
+    border-width: 0;
+    margin-top: 0; // So that the node tabs are attached to the first <details>.
+    .details-toggle {
+      display: inline-block;
+      float: right;
+    }
+  }
+
+
+  .campaign-token-help .form-type-item {
+      display: inline-block;
+      padding: 10px;
+  }
+
+  fieldset > legend {
+    display: block;
+  }
+
+  .tabledrag-toggle-weight-wrapper {
+    display: none;
+  }
+
+  .campaign-token-help .description {
+    -moz-user-select: all;
+    -khtml-user-select: all;
+    -webkit-user-select: all;
+    -ms-user-select: all;
+    user-select: all;
+  }
+
+  .form-type-vertical-tabs {
+    @include dd-box-shadow();
+    padding: 1rem;
+  }
+
+
+  .save-for-later-wrapper {
+    text-align: right;
+    clear: both;
+  }
+
+  // Hide text/html format filter area.
+  .filter-wrapper {
+    display: none;
+  }
+
+  #field-actions-add-more-wrapper .paragraphs-dropdown-wrapper em.placeholder {
+    display: none;
+  }
+
+  #edit-action-groups {
+    margin-left: 25px;
+  }
+
+  .hide-unassigned-warning {
+    display: none;
+  }
+
+  .form-item-new-old-group:first-of-type {
+    float: left;
+    margin-right: 10px;
+  }
+}
+
+#block-views-block-campaign-wizard-targets-block-1 {
+  tr.target-assigned,
+  tr.target-assigned a {
+    //color: $dd-greylight;
+  }
+
+  tr.target-assigned {
+    background: darken($dd-offwhite, 10%);
+  }
+}
+
+#block-views-block-campaign-wizard-targets-block-2,
+.view-id-campaign_stats,
+#block-views-block-campaign-stats-catch-all-block-1 {
+  // Hide title from rendered campaign action view, align right.
+  caption {
+    text-align: left;
+    article {
+      display: inline-block;
+      float: right;
+      h2 {
+        display: none;
+      }
+    }
+  }
+  // Indent table grouping names.
+  .view-id-campaign_wizard_targets {
+    .views-view-table {
+      margin-left: 25px;
+      margin-bottom: 25px;
+      width: 95%;
+      caption {
+        margin-left: -25px;
+      }
+    }
+  }
+}
+
+
+// Icon basic theming, should be moved to work with icon view mode if possible.
+#block-views-block-campaign-wizard-targets-block-1,
+#block-views-block-campaign-wizard-targets-block-2,
+#block-views-block-campaign-wizard-catch-all-actions-block-1,
+.view-id-campaign_stats,
+#block-views-block-campaign-stats-catch-all-block-1 {
+  .field--name-field-actions .field__item {
+    display: inline-block;
+  }
+  .action-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 6px 20px 3px 11px;
+  }
+}
+
+#block-views-block-campaign-wizard-catch-all-actions-block-1 {
+  margin-bottom: 25px;
+  .view-content {
+    margin-left: 25px;
+  }
+  .views-row {
+    //display: inline-block;
+  }
+}
+
+.view-campaign-wizard-action-groups {
+  .item-list ul {
+    list-style-type: none;
+  }
+  .item-list li {
+    display: inline-block;
+    margin: 2px;
+  }
+  .action-icon {
+    width: 32px;
+    height: 32px;
+    margin: 0;
+    padding: 6px 20px 3px 11px;
+  }
+}
+
+.is-page-node-type-campaign {
+  // @todo check if this should be sitewide.
+  .content {
+    overflow: visible; // Allows long Chosen select lists to be seen, when they go past the height of .content--main.
+  }
+}

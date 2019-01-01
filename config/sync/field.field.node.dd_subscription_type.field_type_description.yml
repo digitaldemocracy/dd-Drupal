@@ -1,0 +1,21 @@
+uuid: 207e671a-325b-4f3b-bf56-e6544c7563cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_type_description
+    - node.type.dd_subscription_type
+  module:
+    - text
+id: node.dd_subscription_type.field_type_description
+field_name: field_type_description
+entity_type: node
+bundle: dd_subscription_type
+label: type_description
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

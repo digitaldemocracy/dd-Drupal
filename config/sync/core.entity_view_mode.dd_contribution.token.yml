@@ -1,0 +1,10 @@
+uuid: 194dce5c-e102-4353-aa0d-7b12a383fc44
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_gift_contribution
+id: dd_contribution.token
+label: Token
+targetEntityType: dd_contribution
+cache: true

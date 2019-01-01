@@ -1,0 +1,10 @@
+uuid: 6632135e-66fb-4d3a-a020-7390b093aa05
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_organization
+id: dd_organization.token
+label: Token
+targetEntityType: dd_organization
+cache: true

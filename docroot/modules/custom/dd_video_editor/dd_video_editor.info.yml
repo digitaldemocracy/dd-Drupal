@@ -1,0 +1,14 @@
+name: Video Editor Module 
+type: module
+description: 'Module which implements video clipper, video builder, video annotator.'
+package: DigitalDemocracy 
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base
+  - dd_clip
+  - dd_utterance
+  - dd_video
+  - dd_person
+  - dd_committee
+  - dd_hearing

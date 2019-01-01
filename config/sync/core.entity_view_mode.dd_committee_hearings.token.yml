@@ -1,0 +1,10 @@
+uuid: a6f36e43-ad05-414d-8c3a-d82ca5b5e1f5
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee_hearings.token
+label: Token
+targetEntityType: dd_committee_hearings
+cache: true

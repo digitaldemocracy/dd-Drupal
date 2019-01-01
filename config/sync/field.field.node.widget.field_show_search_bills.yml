@@ -1,0 +1,23 @@
+uuid: 8068ed93-410c-4a41-b9de-68e2829e5130
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_search_bills
+    - node.type.widget
+id: node.widget.field_show_search_bills
+field_name: field_show_search_bills
+entity_type: node
+bundle: widget
+label: 'Show Search Bills'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

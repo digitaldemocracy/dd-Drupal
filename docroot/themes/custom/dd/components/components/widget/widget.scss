@@ -1,0 +1,243 @@
+@import 'init';
+
+.is-page-node-type-widget {
+  margin: 0;
+
+  .dd-widget--content {
+    @include typeface(body);
+    font-size: 100%;
+    font-weight: normal;
+    padding: 1em;
+
+    // Hide the page title
+    #block-dd-page-title {
+    }
+
+    //--- Logo
+    .dd-widget-- {
+      &top-logo {
+      text-align: center;
+    }
+      &title {
+        @include typeface(headings);
+        text-align: center;
+      }
+    }
+
+    //description field
+    .field--name-field-widget-description {
+      margin-bottom: 1rem;
+    }
+
+    // Screenreader-only text
+    .widget-screenreader-only {
+      text-indent: -99999px;
+      font-size: 0;
+    }
+
+    //--------- Form Elements-----------
+    .button {
+      padding: .5rem 1rem;
+      display: inline-block;
+      border: 1px solid $dd-greylight;
+      border-radius: 3px;
+      margin: .5rem;
+      text-decoration: none;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+    }
+
+    input[type='email'],
+    input[type='number'],
+    input[type='password'],
+    input[type='search'],
+    input[type='tel'],
+    input[type='text'],
+    input[type='url'],
+    textarea,
+    select {
+      appearance: none; // Removes awkward default styles on some inputs for iOS
+      background-color: $white;
+      border: .1rem solid $dd-greylight;
+      border-radius: .4rem;
+      box-shadow: none;
+      box-sizing: border-box; // Forced to replace inherit values of the normalize.css
+      height: 1.8rem;
+      padding: .6rem 1.0rem; // The .6rem vertically centers text on FF, ignored by Webkit
+      width: 100%;
+
+      &:focus {
+        border-color: lightblue;
+        outline: 0;
+      }
+    }
+
+    select {
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#d1d1d1" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>') center right no-repeat;
+      padding-right: 3.0rem;
+
+      &:focus {
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" height="14" viewBox="0 0 29 14" width="29"><path fill="#9b4dca" d="M9.37727 3.625l5.08154 6.93523L19.54036 3.625"/></svg>');
+      }
+    }
+
+    textarea {
+      //min-height: 6.5rem;
+    }
+
+    label,
+    legend {
+      display: block;
+      font-weight: 700;
+      margin: .5rem 0 .2rem;
+      font-size: 90%;
+    }
+
+    fieldset {
+      border-width: 0;
+      padding: 0;
+    }
+
+    input[type='checkbox'],
+    input[type='radio'] {
+      display: inline;
+    }
+
+    .label-inline {
+      display: inline-block;
+      font-weight: normal;
+      margin-left: .5rem;
+    }
+
+    form.dd-widget--search {
+      max-width: 800px;
+      padding: .2rem 0;
+
+      .form--inner {
+        position: relative;
+      }
+
+      input[type = "search"] {
+        @include input-style;
+        font-size: 80%;
+        border-radius: 5px;
+        height: auto;
+      }
+
+      input[value = "search"] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        border: 0;
+        padding: 14px 25px;
+        cursor: pointer;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background-image: url('../../components/hearings-teaser/search.svg');
+        background-repeat: no-repeat;
+        background-size: 15px;
+        background-position: 50%;
+        background-color: transparent;
+        text-indent: -9999px;
+        font-size: 0;
+
+
+        @include zen-respond-to(s) {
+          background-position: 30%;
+        }
+
+        @include zen-respond-to(m) {
+          color: darken($dd-stormy-intense, 10%);
+        }
+      }
+    }
+
+    //============== Action Buttons ===========
+    .dd-widget--action-buttons {
+      @include flex-container();
+      justify-content: center;
+
+      a {
+        @include flex-item();
+
+        &:hover {
+          cursor: pointer;
+          box-shadow: 1px 1px 2px $dd-greylight;
+        }
+      }
+    }
+
+    //==================== Bottom ==============
+    .dd-widget--bottom {
+      .dd-widget--sponsored {
+        padding: 1em 0;
+        .field--name-field-widget-sponsored-text {
+          display: inline-block;
+        }
+        .field--name-field-widget-sponsored-logo {
+          display:inline-block;
+          vertical-align: middle;
+        }
+      }
+      .dd-widget--powered-by {
+        padding: 1em 0;
+        svg {
+          height: 50px;
+          width: 160px;
+          display: inline-block;
+          vertical-align: middle;
+        }
+      }
+    }
+
+    //================= HORIZONTAL STYLES ==========
+    &.horizontal-layout {
+      height: 100vh;
+
+      .dd-widget--top {
+        @include flex-container();
+        flex-wrap: nowrap;
+
+        .dd-widget--top-logo,
+        .field--name-field-widget-description {
+          @include flex-item();
+        }
+
+        .dd-widget--top-logo {
+          padding-right: 2em;
+        }
+      }
+
+      .dd-widget--search-fields {
+        @include flex-container();
+        align-items: flex-end;
+        justify-content: space-between;
+
+        form {
+          @include flex-item();
+          flex: 1 1;
+          flex-basis: auto;
+          padding: 0 5px;
+          width: 47%;
+        }
+      }
+
+      .dd-widget--bottom {
+        @include flex-container();
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: flex-end;
+
+        .dd-widget--sponsored,
+        .dd-widget--powered-by {
+          @include flex-item();
+        }
+      }
+
+    }
+
+  }
+}

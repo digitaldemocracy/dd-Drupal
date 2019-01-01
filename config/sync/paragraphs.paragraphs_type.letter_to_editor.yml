@@ -1,0 +1,6 @@
+uuid: 94fbc57d-c0d2-478d-9674-f96670c84f87
+langcode: en
+status: true
+dependencies: {  }
+id: letter_to_editor
+label: 'Letter to Editor'

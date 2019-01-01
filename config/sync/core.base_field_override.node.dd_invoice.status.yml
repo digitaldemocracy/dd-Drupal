@@ -1,0 +1,22 @@
+uuid: e4fc9dee-19b3-4a1e-bad8-a9aa71e529bf
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.dd_invoice
+id: node.dd_invoice.status
+field_name: status
+entity_type: node
+bundle: dd_invoice
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

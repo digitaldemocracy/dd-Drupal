@@ -1,0 +1,20 @@
+uuid: 0f954e03-229b-4fcd-8a38-7cee04cd9251
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_pid
+field_name: field_pid
+entity_type: node
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

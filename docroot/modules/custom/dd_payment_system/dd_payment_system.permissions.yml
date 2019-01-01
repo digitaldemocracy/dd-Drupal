@@ -1,0 +1,41 @@
+administer dd invoice history entities:
+  title: 'Administer Dd invoice history entities'
+  description: 'Allow to access the administration form to configure Dd invoice history entities.'
+  restrict access: true
+
+delete dd invoice history entities:
+  title: 'Delete Dd invoice history entities'
+
+edit dd invoice history entities:
+  title: 'Edit Dd invoice history entities'
+
+access dd invoice history overview:
+  title: 'Access the Dd invoice history overview page'
+
+view published dd invoice history entities:
+  title: 'View published Dd invoice history entities'
+
+view unpublished dd invoice history entities:
+  title: 'View unpublished Dd invoice history entities'
+add dd subscription plan entities:
+  title: 'Create new DD Subscription Plan entities'
+
+administer dd subscription plan entities:
+  title: 'Administer DD Subscription Plan entities'
+  description: 'Allow to access the administration form to configure DD Subscription Plan entities.'
+  restrict access: true
+
+delete dd subscription plan entities:
+  title: 'Delete DD Subscription Plan entities'
+
+edit dd subscription plan entities:
+  title: 'Edit DD Subscription Plan entities'
+
+access dd subscription plan overview:
+  title: 'Access the DD Subscription Plan overview page'
+
+view published dd subscription plan entities:
+  title: 'View published DD Subscription Plan entities'
+
+view unpublished dd subscription plan entities:
+  title: 'View unpublished DD Subscription Plan entities'

@@ -1,0 +1,24 @@
+uuid: a36d4c63-ae8e-4c0b-8f01-a7beb60f93e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_fax_service_history.field_faxes_sent
+  module:
+    - dd_fax_service
+id: dd_fax_service_history.dd_fax_service_history.field_faxes_sent
+field_name: field_faxes_sent
+entity_type: dd_fax_service_history
+bundle: dd_fax_service_history
+label: 'Faxes Sent'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

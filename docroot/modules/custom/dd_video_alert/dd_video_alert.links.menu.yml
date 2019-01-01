@@ -1,0 +1,6 @@
+dd_video_alert.admin:
+  title: 'DD Video Alert Settings'
+  desription: 'Change how far back to get utterances when updating.'
+  parent: system.admin_config_development
+  route_name: dd_video_alert_settings 
+  weight: 100

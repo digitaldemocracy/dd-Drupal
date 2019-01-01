@@ -1,0 +1,1281 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/video-clip/icons';
+/*** Video Editor Page ***/
+/*#edit-field-start-time, #edit-field-end-time {
+ display: none;
+}*/
+
+#vc-user-tags {
+  margin-bottom: 20px;
+}
+
+#vc-user-tags-container {
+  max-height: 100px;
+  overflow: auto;
+}
+
+#vc-user-tags-container .user-tag {
+  padding: .25em;
+  margin: 5px;
+  border: solid 1px;
+  cursor: pointer;
+  background: white;
+}
+
+#insert-transcript {
+  margin-bottom: 10px;
+  float: right;
+}
+
+#commentary-label {
+  margin-top: 10px;
+}
+
+#table-div div {
+  padding: 10px;
+}
+
+table.table-condensed {
+  tr:nth-child(even) {
+  background-color: #f2f2f2;
+  }
+
+  th,
+  td {
+  border-bottom: 1px solid #ddd;
+  }
+}
+
+#table-div div h3 {
+  padding: 10px 0;
+}
+
+#editTableHead {
+  margin-bottom: 0;
+}
+
+#editTableBody {
+  display: block;
+  overflow: auto;
+  max-height: 150px;
+
+  tr:nth-child(even) {
+  background-color: #f2f2f2;
+  }
+
+  th,
+  td {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+#editTableBody tbody {
+  display: table;
+  width: 100%;
+}
+
+.cp-video-tag {
+  background-color: #4b4b4b;
+  color: #f8d51b;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+  margin: 2px;
+  position: relative;
+  min-width: 35px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.cp-video-tag-edit {
+  //background-color: #4b4b4b;
+  //color: #f8d51b;
+  //background: image-url('icon-gear-a-128.png') no-repeat scroll 0 0;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background: image-url('ui-icons-222222-256x240.png') -65px -113px;
+
+  padding: 5px;
+  cursor: pointer;
+  margin: 2px;
+  position: relative;
+  //min-width: 35px;
+  border-radius: 5px;
+  text-align: center;
+}
+
+/*.cp-video-tag: before {
+  content: '';
+  width: 20px;
+  height: 20%;
+  border-radius: 0 20px 0 0;
+  position: absolute;
+  top: -20%;
+  left: 0;
+  background: inherit;
+}*/
+
+.cp-video-tag-active {
+  background-color: #f8d51b;
+  color: #4b4b4b;
+}
+
+.video-builder-wrapper .cp-video-tags {
+  width: 375px;
+}
+
+.cp-video-tags {
+  padding: 10px;
+  background: #636363;
+}
+
+
+.scrollable-view {
+  height: 500px;
+  width: 375px;
+  overflow: auto;
+}
+
+.clip-video #player1 {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.video-area .content-video {
+  background: #efefef none repeat scroll 0 0;
+  clear: both;
+  padding: 10px;
+}
+
+.video-editing .video-gallery,
+.video-editing .video-clipbank,
+.video-editing .video-clipper {
+  float: left;
+ padding: 12px 15px;
+}
+
+.video-editing .video-clipper.vc-active {
+ background: #efefef;
+}
+
+/*.vc-total-cbs {
+ float: right;
+ padding: 12px 15px;
+}
+
+.vc-total-cbs .clip-bank-size {
+ background: rgba(0, 0, 0, 0) image-url('total-clip-bank.png') no-repeat scroll 0 0;
+  padding: 5px 10px 2px 40px;
+ font-size: 12px;
+  color: #000;
+ font-weight: bold;
+}*/
+.video-editing .vc-total-cbs {
+  float: right;
+  padding: 12px 15px;
+}
+
+//.video-editing .vc-total-cbs .clip-bank-size {
+.vc-total-cbs .clip-bank-size {
+  background: rgba(0, 0, 0, 0) image-url('total-clip-bank.png') no-repeat scroll 0 0;
+  padding: 5px 10px 2px 40px;
+  font-size: 12px;
+  color: #000;
+  font-weight: bold;
+}
+
+.video-editing .video-gallery > a,
+.video-editing .video-clipbank > a,
+.video-editing .video-clipper > a {
+color: #3c3e3d;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.content-video .vc-header {
+  background: #f8db19 none repeat scroll 0 0;
+padding: 15px 15px 20px;
+}
+
+.content-video .vc-header .vc-page-header {
+  font-size: 20px;
+padding: 0 0 15px;
+  color: #000;
+// text-transform: lowercase;
+}
+
+.content-video .vc-header .vc-month {
+  font-size: 13px;
+  font-weight: bold;
+ color: #000;
+}
+
+.node-type-dd-hearing .video-area .social-bar {
+ padding: 8px 2px 2px 8px;
+}
+
+.ui-slider-horizontal .ui-slider-range {
+ background: #f9d817;
+}
+
+.node-type-dd-hearing #clipButton {
+  background: #f7d519 image-url('clip-icon.png') no-repeat scroll 2px 2px;
+  padding: 2px 10px 4px 25px;
+  text-decoration: none;
+  font-size: 14px;
+  color: #010101;
+ text-transform: uppercase;
+}
+
+.vc-slider-time {
+  background: #404040 none repeat scroll 0 0;
+  padding: 35px 0 15px;
+}
+
+.vc-slider-time .vc-btn-and-time {
+  background: #838383 none repeat scroll 0 0;
+  margin: 0 auto 8px;
+  padding: 10px 5px;
+  width: 685px;
+}
+
+.vc-btn-and-time .vc-slider {
+ padding: 10px 10px 15px;
+}
+
+.vc-btn-and-time .vc-buttons {
+ float: left;
+ padding: 15px 10px 10px 15px;
+    width: 255px;
+}
+
+.vc-start-time .control-label,
+.vc-end-time .control-label {
+  display: none;
+}
+
+.vc-btn-and-time .vc-timer {
+  float: left;
+ margin-left: 25px;
+}
+
+.vc-btn-and-time .vc-timer .vc-start-time {
+  float: left;
+ margin-right: 15px;
+}
+
+.vc-timer .vc-start-time .vc-start-min,
+.vc-timer .vc-start-time .vc-start-sec {
+  float: left;
+}
+
+.vc-btn-and-time .vc-timer .vc-end-time {
+  float: left;
+}
+
+.vc-timer .vc-end-time .vc-end-min,
+.vc-timer .vc-end-time .vc-end-sec {
+  float: left;
+}
+
+.vc-timer .vc-start-time .start-label,
+.vc-timer .vc-end-time .end-label {
+  color: #1b1b1b;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+}
+
+.vc-start-time .vc-start-min .st-min,
+.vc-start-time .vc-start-sec .st-sec,
+.vc-end-time .vc-end-min .end-min,
+.vc-end-time .vc-end-sec .end-sec {
+  color: #1b1b1b;
+  font-size: 11px;
+  font-weight: bold;
+  text-align: center;
+ text-transform: uppercase;
+}
+
+.vc-btn-and-time .vc-timer .vc-start-time .form-text,
+.vc-btn-and-time .vc-timer .vc-end-time .form-text {
+ background: #dcdcdc none repeat scroll 0 0;
+  height: 32px;
+  padding: 5px 4px;
+  width: 38px;
+}
+
+.vc-timer .vc-start-time .form-item-start-min,
+.vc-timer .vc-start-time .form-item-start-sec {
+  margin: 0 4px 5px 0;
+}
+
+.vc-timer .vc-end-time .form-item-end-min,
+.vc-timer .vc-end-time .form-item-end-sec {
+  margin: 0 4px 5px 0;
+}
+
+.vc-buttons .form-submit {
+ background: #000;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0;
+  width: 108px;
+  height: 32px;
+  font-size: 13px;
+  margin: 2px;
+}
+
+.vc-slider-time .vc-clip-details {
+  background: #838383 none repeat scroll 0 0;
+  margin: 25px auto 20px;
+  max-width: 685px;
+  padding: 10px 0 15px;
+}
+
+.vc-clip-details .vc-clip-name {
+  margin: 0 auto;
+  max-width: 435px;
+  text-align: left;
+  padding-bottom: 12px;
+}
+
+.vc-clip-details .vc-clip-name .form-text {
+  background: #dcdcdc;
+}
+
+.vc-clip-details .vc-clip-note {
+  margin: 0 auto;
+  max-width: 435px;
+  text-align: left;
+}
+
+.vc-clip-details .form-item label,
+.vc-clip-note .control-label {
+  text-transform: uppercase;
+  color: #000;
+  font-size: 12px;
+}
+
+.vc-clip-note .form-item-note .form-textarea-wrapper textarea {
+  border-radius: 0;
+  resize: none;
+  height: 75px;
+  background: #dcdcdc;
+}
+
+.vc-clip-note .form-item-note .form-textarea-wrapper .grippie {
+  display: none;
+}
+
+.vc-slider-time .vc-btns-save-cancel {
+  margin: 30px 25px 20px;
+}
+
+.vc-btns-save-cancel .vc-save,
+.vc-btns-save-cancel .vc-cancel,
+.vc-btns-save-cancel .vc-full-hearing {
+  display: inline-block;
+  padding: 0 12px 0 10px;
+}
+
+.vc-btns-save-cancel .vc-cancel { /*-- Hiding cancel button for now --*/
+display: none;
+}
+
+.vc-btns-save-cancel .vc-save .form-submit {
+ background: rgba(0, 0, 0, 0) image-url('save-clip.png') no-repeat scroll 0 0;
+  color: #fff;
+  font-size: 16px;
+  padding: 0 0 0 45px;
+  text-transform: uppercase;
+  width: 160px;
+}
+
+.vc-btns-save-cancel .vc-cancel > a,
+.vc-btns-save-cancel .vc-full-hearing > a {
+  color: #fff;
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.vc-btns-save-cancel .vc-cancel > a {
+ background: rgba(0, 0, 0, 0) image-url('cancel-clip.png') no-repeat scroll 0 0;
+ padding: 5px 5px 5px 40px;
+}
+
+.vc-btns-save-cancel .vc-full-hearing > a {
+  background: rgba(0, 0, 0, 0) image-url('full-hearing-clip.png') no-repeat scroll 0 0;
+ font-size: 14px;
+  padding: 8px 5px 9px 40px;
+}
+
+/***** Clip Bank Block *****/
+.right-vcbank .block-title {
+  background: #f8db19 none repeat scroll 0 0;
+  color: #3c3e3d;
+  font-weight: bold;
+  font-size: 19px;
+}
+
+.block-dd-video-editor  ul.my-clip-list {
+    padding: 0;
+    margin: 0;
+}
+
+.block-dd-video-editor  ul.my-clip-list  li.clip-item {
+    list-style: outside none none;
+
+}
+
+.clip-bank-videos .cd-video-row {
+  padding: 10px;
+}
+
+.block-dd-video-editor > div.clip-list-v > ul > li.light {
+ background: #636363 none repeat scroll 0 0;
+}
+
+.block-dd-video-editor > div.clip-list-v > ul > li.dark {
+ background: #444746 none repeat scroll 0 0;
+}
+
+.my-clip-list li:nth-child(odd) {
+ background: #444746 none repeat scroll 0 0;
+}
+
+.my-clip-list li:nth-child(even) {
+ background: #636363 none repeat scroll 0 0;
+}
+
+.block-dd-video-editor .clip-list-v {
+  height: 770px;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+/*
+.block-dd-video-editor > div.clip-list-v > ul {
+ padding: 0;
+ margin: 0;
+}
+
+.block-dd-video-editor > div.clip-list-v > ul > li {
+ list-style: outside none none;
+  padding: 10px;
+}
+
+.block-dd-video-editor .clip-bank-videos {
+  padding: 3px;
+}
+
+.block-dd-video-editor .clip-bank-videos .my-cd-video {
+ float: left;
+ max-width: 130px;
+}
+
+.block-dd-video-editor .clip-bank-videos .about-cb-video {
+  float: left;
+ max-width: 180px;
+ width: 100%;
+}
+
+.block-dd-video-editor .clip-bank-videos .about-cb-video .cb-video-note {
+  padding: 5px;
+}
+
+
+.my-cd-video .cd-video-op {
+  padding: 20px 5px 15px;
+}
+
+.my-cd-video .cd-video-op a {
+ color: transparent;
+  text-indent: -9999px;
+ margin: 3px;
+}
+
+.my-cd-video .cd-video-op .cb-play-video {
+ background: rgba(0, 0, 0, 0) image-url('../img/play-clip.png') no-repeat scroll 0 0;
+ padding: 5px 6px 15px 0;
+}
+
+.my-cd-video .cd-video-op .cb-edit-video {
+ background: rgba(0, 0, 0, 0) image-url('../img/edit-clip.png') no-repeat scroll 0 0;
+ padding: 5px 10px 15px 0;
+}
+
+.my-cd-video .cd-video-op .cb-delete-video {
+  background: rgba(0, 0, 0, 0) image-url('../img/delete-clip.png') no-repeat scroll 0 0;
+ padding: 5px 0 15px 0;
+}
+
+.about-cb-video .cb-video-title {
+  padding: 0 5px 15px;
+}
+
+.about-cb-video .cb-video-title a {
+ color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+ line-height: 18px;
+}
+
+.about-cb-video .cb-video-size {
+  color: #fff;
+  padding: 5px 12px 0 0;
+  text-align: right;
+ font-size: 12px;
+}*/
+
+.block-dd-video-editor .clip-bank-videos {
+
+  position: relative;
+}
+
+.block-dd-video-editor .clip-bank-videos .my-cd-video {
+    float: left;
+    max-width: 130px;
+}
+
+.block-dd-video-editor .clip-bank-videos .about-cb-video {
+  float: left;
+    max-width: 180px;
+    width: 100%;
+}
+
+.clip-bank-videos .cd-video-op {
+  padding: 20px 5px 15px;
+}
+
+.clip-bank-videos .cd-video-op a {
+    color: transparent;
+  text-indent: -9999px;
+    margin: 3px;
+}
+
+.clip-bank-videos .cd-video-op .cb-play-video {
+    background: rgba(0, 0, 0, 0) image-url('cp-play.png') no-repeat scroll 0 0;
+    width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-op .cb-edit-video {
+    background: rgba(0, 0, 0, 0) image-url('cp-edit.png') no-repeat scroll 0 0;
+    width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-op .cb-annotate-video {
+    background: rgba(0, 0, 0, 0) image-url('cp-annotate.png') no-repeat scroll 0 0;
+    width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-op .cb-clip-video {
+    background: rgba(0, 0, 0, 0) image-url('cp-clip.png') no-repeat scroll 0 0;
+    width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-op .cb-delete-video {
+  background: rgba(0, 0, 0, 0) image-url('cp-delete.png') no-repeat scroll 0 0;
+    width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-op .cb-share-video {
+  background: rgba(0, 0, 0, 0) image-url('cp-share.png') no-repeat scroll 0 0;
+  width: 32px;
+  height: 32px;
+  float: left;
+}
+
+.about-cb-video .cb-video-title {
+  padding: 0 5px 15px;
+}
+
+.about-cb-video .cb-video-title a {
+    color: #fff;
+  font-size: 15px;
+  text-decoration: none;
+    line-height: 18px;
+}
+
+.clip-bank-videos .cb-video-size {
+  color: #fff;
+  padding: 5px 12px 0 0;
+  text-align: right;
+    font-size: 12px;
+  bottom: 5px;
+  position: absolute;
+  right: 0;
+}
+
+.clip-bank-videos .cd-video-share {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  padding: 40px 70px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .8;
+  z-index: 99;
+}
+
+.clip-bank-videos .cd-video-share ul {
+  margin-top: 10px;
+}
+
+
+.clip-bank-videos .cd-video-share ul li {
+  width: 23px;
+  height: 23px;
+  margin-left: 5px;
+  cursor: pointer;
+  display: block;
+  float: left;
+}
+
+.clip-bank-videos .cd-video-share ul li a {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+
+.clip-bank-videos .cd-video-share ul li.facebook {
+  background: image-url('cp-facebook.png') no-repeat;
+}
+
+.clip-bank-videos .cd-video-share ul li.twitter {
+  background: image-url('cp-twitter.png') no-repeat;
+}
+
+.clip-bank-videos .cd-video-share ul li.google {
+  background: image-url('cp-google.png') no-repeat;
+}
+
+.clip-bank-videos .cd-video-share ul li.in {
+  background: image-url('cp-linkdin.png') no-repeat;
+}
+
+.clip-bank-videos .cd-video-share ul li.embed {
+  background: image-url('cp-embed.png') no-repeat;
+}
+
+.clip-bank-videos .embed-clip-video {
+  position: absolute;
+  width: 70%;
+  text-align: center;
+  padding: 10px;
+  background: #fff;
+  top: 60px;
+
+  margin: 0 -10px;
+}
+
+.clip-bank-videos .embed-clip-video  textarea {
+  width: 96%;
+  overflow-x: hidden;
+  resize: none;
+  height: 20px;
+  }
+
+.clip-bank-videos span.share-close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  background-image: image-url('cancel-clip.png');
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  background-size: 25px 25px;
+  z-index: 101;
+  display: none;
+}
+
+.clip-bank-videos.share-open span.share-close {
+  display: block;
+}
+
+.clip-bank-videos .cd-video-share span.embed-close {
+  position: absolute;
+  right: 50px;
+  top: 30px;
+  background-image: image-url('cancel-clip.png');
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  background-size: 25px 25px;
+  z-index: 99;
+  display: none;
+}
+
+/*** Clip Node Page ***/
+.is-page-clip .page-title {
+  display: none;
+}
+
+.node-type-dd-clip .left-clip-detail {
+  max-width: 640px;
+}
+
+.contents-clip .video-bkhearing {
+  padding: 5px 0 15px 15px;
+}
+
+.contents-clip .video-bkhearing > a {
+  background: #efefef none repeat scroll 0 0;
+  font-size: 14px;
+  font-weight: bold;
+  padding: 10px 15px;
+  text-decoration: none;
+  color: #3c3e3d;
+  text-transform: uppercase;
+}
+
+.video-clip-title {
+  //background: #f8db19 none repeat scroll 0 0;
+  padding: 15px;
+}
+
+.video-clip-title .block-title {
+  font-size: 19px;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.video-clip-title .clip-date {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.clip-title-and-date .block-title > a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.clip-video .field-name-field-video-file .video-js {
+  max-width: 100%;
+}
+
+.clip-detail-container {
+  background: #494949 none repeat scroll 0 0;
+  color: #fff;
+  padding: 15px;
+}
+
+.clip-detail-container .clip-size-ownership {
+  float: right;
+  padding: 5px 10px 15px 0;
+}
+
+.clip-size-ownership .clip-woner {
+  background: rgba(0, 0, 0, 0) image-url('icon-lock.png') no-repeat scroll 0 0;
+  font-size: 13px;
+  padding: 0 15px 0 20px;
+  text-transform: uppercase;
+}
+
+.clip-size-ownership .clip-size {
+  font-size: 13px;
+  text-transform: uppercase;
+}
+
+.clip-detail-container .clip-transcript {
+  background: #747474 none repeat scroll 0 0;
+  margin: 10px;
+  padding: 15px;
+  clear: both;
+  position: relative;
+}
+
+.clip-detail-container .clip-save-note {
+  background: #747474 none repeat scroll 0 0;
+  margin: 10px;
+  padding: 15px;
+  clear: both;
+}
+
+.clip-save-note > span {
+  font-size: 14px;
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+
+.clip-save-note > p {
+  margin-top: 10px;
+}
+
+.page-entity-iframe .clip-save-note {
+  max-width: 685px;
+}
+
+.clip-detail-container .clip-btns-edit-del {
+  padding: 20px 15px;
+}
+
+.clip-detail-container .clip-btns-edit-del .clip-btn-inline {
+  display: inline-block;
+}
+
+.clip-btns-edit-del a {
+  color: #e3e3e3;
+  font-size: 14px;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.clip-btns-edit-del .clip-edit-btn {
+  padding: 0 15px 0 5px;
+}
+
+.clip-edit-btn .clip-edit-video {
+  background: rgba(0, 0, 0, 0) image-url('edit-clip.png') no-repeat scroll 0 0;
+  padding: 8px 5px 10px 40px;
+}
+
+.clip-btns-edit-del .clip-del-btn {
+  padding: 0 15px 0 0;
+}
+
+.clip-del-btn .clip-del-video {
+  background: rgba(0, 0, 0, 0) image-url('delete-clip.png') no-repeat scroll 0 0;
+  padding: 8px 5px 10px 40px;
+}
+
+.clip-full-hearing .clip-full-hear {
+  background: rgba(0, 0, 0, 0) image-url('full-hearing-clip.png') no-repeat scroll 0 0;
+  padding: 8px 5px 10px 40px;
+}
+
+.left-clip-detail .clip-social-bar {
+  background: #202020;
+  padding: 20px 22px;
+}
+
+.left-clip-detail .clip-social-bar > span {
+  color: #ababab;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.clip-social-bar ul.social-lists {
+  display: inline-block;
+  padding: 0;
+}
+
+.clip-social-bar ul.social-lists li {
+  display: inline-block;
+  padding: 5px 0;
+}
+
+.clip-social-bar ul.social-lists li a {
+  font-size: 13px;
+  text-decoration: none;
+  padding: 5px 13px;
+}
+
+.clip-social-bar ul.social-lists li a.link-share {
+  margin-right: 10px;
+}
+
+.clip-social-bar ul.social-lists li a.link-email {
+  margin-right: 10px;
+}
+
+.clip-social-bar ul.social-lists li.facebook a {
+  background: rgba(0, 0, 0, 0) image-url('clip-fb.png') no-repeat scroll 0 0;
+}
+
+.clip-social-bar ul.social-lists li.twitter a {
+  background: rgba(0, 0, 0, 0) image-url('clip-twitter.png') no-repeat scroll 0 0;
+}
+
+.clip-social-bar ul.social-lists li.google a {
+  background: rgba(0, 0, 0, 0) image-url('clip-google.png') no-repeat scroll 0 0;
+}
+
+.clip-social-bar ul.social-lists li.in a {
+  background: rgba(0, 0, 0, 0) image-url('clip-in.png') no-repeat scroll 0 0;
+}
+
+.clip-social-bar ul.social-lists li.email a {
+  background: rgba(0, 0, 0, 0) image-url('clip-email8.png') no-repeat scroll 0 0;
+}
+
+.clip-video .vjs-default-skin.vjs-has-started.vjs-user-inactive.vjs-playing .vjs-control-bar {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+
+
+.title-area,
+.node-type-dd-clip .title-area {
+  padding: 0;
+  border-bottom: 0;
+}
+
+.title-container h1,
+.node-type-dd-clip .title-container h1 {
+  display: none;
+}
+
+.my-clip-bank-area {
+  margin-top: 30px;
+  max-width: 80%;
+
+  .row {
+    margin: 0;
+
+    .content-video {
+      background: #efefef none repeat scroll 0 0;
+      clear: both;
+      padding: 5px;
+
+      .row {
+        margin: 0;
+
+        span.size {
+          float: left;
+          clear: left;
+        }
+      }
+    }
+  }
+  .col4 {
+    min-width: 260px;
+  }
+
+}
+
+.video-area,
+.node-type-dd-clip .video-area {
+  margin-top: 30px;
+}
+
+.vc-btns-save-cancel .vc-full-hearing {
+  display: inline-block;
+  padding: 0 12px 0 30px !important;
+  }
+
+
+.node-type-dd-clip .clip-title-and-date {
+float: left;
+width: 90%;
+margin: 0 0 20px 20px;
+}
+
+.dd-no-clip-loaded {
+margin: 0 0 0 20px;
+}
+
+.node-type-dd-clip #backLink {
+  display: none;
+}
+
+/*.clip-bank-videos .cb-video-note {
+color: white;
+margin: 0 0 10px 0;
+}*/
+
+.cb-video-note {
+color: white;
+  padding-left: 5px;
+}
+
+/* Start embed feature styles */
+.node-type-dd-clip .embed-clip,
+.node-type-dd-clip .embed-transcript {
+  padding: 7px 10px;
+  background: #747474;
+  margin-top: -6px;
+  margin-right: 5px;
+  cursor: pointer;
+  color: #000;
+}
+
+.node-type-dd-clip .embed-clip:hover,
+.node-type-dd-clip .embed-clip.opened,
+.node-type-dd-clip .embed-transcript:hover,
+.node-type-dd-clip .embed-transcript.opened  {
+  background: #f7d519;
+}
+
+.node-type-dd-clip .embed-clip-video,
+.embed-clip-transcript {
+  position: absolute;
+  width: 620px;
+  text-align: center;
+  margin-top: -8px;
+  padding: 10px;
+  background: #fff;
+  margin-left: 15px;
+  margin-right: 17px;
+  line-height: 1em;
+}
+
+.node-type-dd-clip .embed-clip-video textarea,
+.embed-clip-transcript textarea {
+  width: 96%;
+  overflow-x: hidden;
+  resize: none;
+  height: 20px;
+}
+
+.clip-bank-videos .row-2 {
+  position: relative;
+}
+
+/* END embed feature styles */
+
+/* START Annotation styles */
+#annotations {
+  position: absolute;
+  height: 360px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.annotation {
+ position: absolute;
+ color: white;
+ background: blue;
+ opacity: .6;
+ z-index: 100;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ text-align: center;
+}
+
+.annotation:hover {
+  opacity: 1;
+}
+
+.view-mode .annotation:hover .annotation-close {
+ display: block;
+ cursor: pointer;
+}
+
+.view-mode .annotation.has-link:hover {
+ cursor: pointer;
+}
+
+.annotation-close {
+ display: none;
+ width: 16px;
+ height: 16px;
+ background: image-url('cp-close.png') no-repeat center;
+ background-size: contain;
+ position: absolute;
+ top: -8px;
+ right: -8px;
+}
+
+.annotation-link {
+ width: 16px;
+ height: 16px;
+ background: image-url('cp-undo.png') no-repeat center;
+ background-size: contain;
+ position: absolute;
+ bottom: -8px;
+ right: -8px;
+}
+
+.page-dd-video-annotator .left-vceditor {
+ float: left;
+ width: 640px;
+}
+
+.target-focus {
+ opacity: 1;
+}
+
+.page-dd-video-annotator .right-vcbank {
+ float: right;
+ width: 250px;
+}
+
+.page-dd-video-annotator #saveRow {
+ padding: 20px 0;
+}
+
+.trackEdit {
+ display: none;
+}
+
+div.trackEdit label {
+ width: 100%;
+}
+
+div.trackEdit .ui-spinner {
+ width: 100%;
+}
+
+div.trackEdit .tool-col {
+ width: 45%;
+ display: inline-block;
+}
+
+div.trackEdit .tool-col:nth-child(even) {
+ float: right;
+}
+
+div.trackEdit textarea {
+ width: 100%;
+}
+
+div.trackEdit {
+ margin-top: 10px;
+ padding-top: 10px;
+ border-top: solid 1px;
+}
+
+#trackDeleteBtn {
+ float: right;
+}
+
+#trackEnableLink {
+ margin-right: 5px;
+}
+
+#trackLink {
+ width: 100%;
+}
+
+#saveBtn {
+ float: right;
+}
+
+.page-dd-video-annotator .video-area .content-video {
+ padding: 0 10px;
+}
+
+.fontSelect {
+ position: relative;
+ padding: 3px;
+ height: 28px;
+ line-height: 28px;
+ cursor: pointer;
+}
+
+.fontSelect span {
+ overflow: hidden;
+ margin-left: 5px;
+}
+
+.fontSelect .arrow-down {
+ position: absolute;
+ right: 10px;
+ top: 14px;
+ border-left: 6px solid transparent;
+ border-right: 6px solid transparent;
+ border-top: 6px solid black;
+}
+
+.fontSelectUl {
+ list-style: none;
+ width: 200px;
+ background: #f9f9f9;
+ position: absolute;
+ left: 0;
+ top: 35px;
+  padding: 0;
+}
+
+.fontSelectUl li {
+ height: 24px;
+ line-height: 24px;
+ overflow: hidden;
+ cursor: pointer;
+ padding: 0 10px;
+
+ font-size: 14px;
+
+ border-left: 1px solid #f0f0f0;
+ border-right: 1px solid #f0f0f0;
+}
+
+.fontSelectUl li:last-child {
+ -webkit-border-radius: 0 0 4px 4px;
+ -moz-border-radius: 0 0 4px 4px;
+ border-radius: 0 0 4px 4px;
+
+ border-bottom: 1px solid #eee;
+}
+
+.fontSelectUl li:hover {
+ background: #ddd;
+}
+
+#textTool {
+  padding: 10px 0;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+  margin-top: 10px;
+}
+
+/* END Annotation styles */
+
+.hide {
+  display: none;
+}
+
+#edit-submit--2 {
+//  display: none;
+}
+
+// Some temporary theming to fix modal presentation on Clip Select.
+.ui-dialog-content {
+  .clip-title a {
+    color: #fff;
+  }
+  .clip-action-area {
+    color: #000;
+  }
+  .my-cp-video {
+    min-height: inherit;
+  }
+
+  .bank-clip {
+    display: inline-block;
+    width: 300px;
+    margin-top: 10px;
+    vertical-align: top;
+  }
+
+  .cp-video-details {
+    min-height: 80px;
+    padding-bottom: 40px;
+  }
+
+  .clip-action-area {
+    position: absolute;
+    bottom: 10px;
+    left: 100px;
+  }
+
+  .select-clip-button {
+    color: #000 !important;
+  }
+}
+
+.node-type-dd-clip .video-clip-header.video-clip-title {
+  display: none;
+}

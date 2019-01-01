@@ -1,0 +1,10 @@
+uuid: f3cab800-0b8f-4b66-91d6-059a2bf50808
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_authors.token
+label: Token
+targetEntityType: dd_authors
+cache: true

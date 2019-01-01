@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+id: dd_person.teaser
+label: Teaser
+targetEntityType: dd_person
+cache: true

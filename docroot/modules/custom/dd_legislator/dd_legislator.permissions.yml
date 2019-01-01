@@ -1,0 +1,49 @@
+administer dd legislator entities:
+  title: 'Administer DD Legislator entities'
+  description: 'Allow to access the administration form to configure DD Legislator entities.'
+  restrict access: true
+
+edit dd legislator entities:
+  title: 'Edit DD Legislator entities'
+
+access dd legislator overview:
+  title: 'Access the DD Legislator overview page'
+
+view published dd legislator entities:
+  title: 'View published DD Legislator entities'
+
+view unpublished dd legislator entities:
+  title: 'View unpublished DD Legislator entities'
+administer dd term entities:
+  title: 'Administer DD Term entities'
+  description: 'Allow to access the administration form to configure DD Term entities.'
+  restrict access: true
+
+edit dd term entities:
+  title: 'Edit DD Term entities'
+
+access dd term overview:
+  title: 'Access the DD Term overview page'
+
+view published dd term entities:
+  title: 'View published DD Term entities'
+
+view unpublished dd term entities:
+  title: 'View unpublished DD Term entities'
+
+administer dd legislative staff entities:
+  title: 'Administer DD Legislative Staff entities'
+  description: 'Allow to access the administration form to configure DD Legislative Staff entities.'
+  restrict access: true
+
+edit dd legislative staff entities:
+  title: 'Edit DD Legislative Staff entities'
+
+access dd legislative staff overview:
+  title: 'Access the DD Legislative Staff overview page'
+
+view published dd legislative staff entities:
+  title: 'View published DD Legislative Staff entities'
+
+view unpublished dd legislative staff entities:
+  title: 'View unpublished DD Legislative Staff entities'

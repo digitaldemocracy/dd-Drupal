@@ -1,0 +1,19 @@
+uuid: 7b862a06-fd82-481b-ac05-3a0512ca92c1
+langcode: en
+status: true
+dependencies: {  }
+countryCode: CC
+format: "%organization\n%recipient\n%addressLine1\n%addressLine2\n%locality %administrativeArea %postalCode"
+requiredFields:
+  - recipient
+  - addressLine1
+  - locality
+uppercaseFields:
+  - locality
+  - administrativeArea
+administrativeAreaType: province
+localityType: city
+dependentLocalityType: null
+postalCodeType: postal
+postalCodePattern: '6799'
+postalCodePrefix: null

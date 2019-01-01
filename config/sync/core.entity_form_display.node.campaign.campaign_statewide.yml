@@ -1,0 +1,80 @@
+uuid: 5306f328-2518-46a7-8787-487bf668f057
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_form_mode.node.campaign_statewide
+    - field.field.node.campaign.body
+    - field.field.node.campaign.field_actions
+    - field.field.node.campaign.field_bill
+    - field.field.node.campaign.field_bill_location
+    - field.field.node.campaign.field_bill_position
+    - field.field.node.campaign.field_bill_subject
+    - field.field.node.campaign.field_bill_summary
+    - field.field.node.campaign.field_campaign_desc_location
+    - field.field.node.campaign.field_enable_facebook_share
+    - field.field.node.campaign.field_enable_twitter_share
+    - field.field.node.campaign.field_end_date
+    - field.field.node.campaign.field_is_deleted
+    - field.field.node.campaign.field_is_statewide_campaign
+    - field.field.node.campaign.field_private_campaign
+    - field.field.node.campaign.field_sample_tweet
+    - field.field.node.campaign.field_show_bill_author
+    - field.field.node.campaign.field_show_bill_status
+    - field.field.node.campaign.field_start_date
+    - field.field.node.campaign.field_video_clips
+    - field.field.node.campaign.field_video_location
+    - node.type.campaign
+  module:
+    - paragraphs
+id: node.campaign.campaign_statewide
+targetEntityType: node
+bundle: campaign
+mode: campaign_statewide
+content:
+  field_actions:
+    weight: 0
+    settings:
+      title: Action
+      title_plural: Actions
+      edit_mode: open
+      add_mode: select
+      form_display_mode: default
+    third_party_settings: {  }
+    type: entity_reference_paragraphs
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
+hidden:
+  body: true
+  created: true
+  field_bill: true
+  field_bill_location: true
+  field_bill_position: true
+  field_bill_subject: true
+  field_bill_summary: true
+  field_campaign_desc_location: true
+  field_enable_facebook_share: true
+  field_enable_twitter_share: true
+  field_end_date: true
+  field_is_deleted: true
+  field_is_statewide_campaign: true
+  field_non_targeted_actions: true
+  field_private_campaign: true
+  field_sample_tweet: true
+  field_show_bill_author: true
+  field_show_bill_status: true
+  field_start_date: true
+  field_targeted_actions: true
+  field_video_clips: true
+  field_video_location: true
+  path: true
+  promote: true
+  sticky: true
+  title: true
+  uid: true

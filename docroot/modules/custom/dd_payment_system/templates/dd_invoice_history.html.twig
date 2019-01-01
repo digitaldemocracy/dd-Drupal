@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_invoice_history.html.twig
+ * Default theme implementation to present Dd invoice history data.
+ *
+ * This template is used when viewing Dd invoice history pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_invoice_history()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_invoice_history') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

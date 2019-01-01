@@ -1,0 +1,18 @@
+uuid: 6dbf61ea-4de0-4521-ab74-16308b3381f7
+langcode: und
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_receive_alerts_for_schedul
+field_name: field_receive_alerts_for_schedul
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: false
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

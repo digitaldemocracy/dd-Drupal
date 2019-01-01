@@ -1,0 +1,85 @@
+uuid: 15d8f7ad-f983-42e8-9c85-2b5af326678f
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.dd_person.teaser
+  module:
+    - dd_person
+id: dd_person.dd_person.teaser
+targetEntityType: dd_person
+bundle: dd_person
+mode: teaser
+content:
+  biography:
+    type: string
+    weight: 2
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  current_affiliations:
+    label: inline
+    type: string
+    weight: 70
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  current_classifications:
+    label: inline
+    type: string
+    weight: 70
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  fullname_lastfirst:
+    label: inline
+    type: string
+    weight: 1
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  image:
+    type: string
+    weight: 0
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  affiliation_dr_ids: true
+  affiliation_oids: true
+  affiliations: true
+  classification_dr_ids: true
+  classifications: true
+  current_affiliation_dr_ids: true
+  current_affiliation_oids: true
+  current_classification_dr_ids: true
+  first: true
+  fullname_firstlast: true
+  has_spoken: true
+  last: true
+  last_name_alpha: true
+  middle: true
+  servesOn_dr_ids: true

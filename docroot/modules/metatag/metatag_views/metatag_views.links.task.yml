@@ -1,0 +1,9 @@
+metatag_views.defaults:
+  title: 'Defaults'
+  route_name: entity.metatag_defaults.collection
+  base_route: entity.metatag_defaults.collection
+  weight: 0
+metatag_views.tab_views:
+  title: 'Views'
+  route_name: metatag_views.metatags.list
+  base_route: entity.metatag_defaults.collection

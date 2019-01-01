@@ -1,0 +1,34 @@
+uuid: 377f6350-988d-4ae3-a239-693a9a3aa7ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - search_api_solr
+id: bills_discussion_server
+name: 'Bills Discussion Server'
+description: ''
+backend: search_api_solr
+backend_config:
+  connector: basic_auth
+  connector_config:
+    scheme: http
+    host: dd8.local
+    port: '8983'
+    path: /solr
+    core: collection-ca-dev-bd
+    timeout: 5
+    index_timeout: 5
+    optimize_timeout: 10
+    commit_within: 1000
+    username: kramerpatrick48
+    password: N0tSureWh@tT0H@veAsAP@ssw0rd12345
+    solr_version: ''
+    http_method: AUTO
+  retrieve_data: false
+  highlight_data: false
+  excerpt: false
+  skip_schema_check: false
+  site_hash: true
+  suggest_suffix: true
+  suggest_corrections: true
+  suggest_words: false

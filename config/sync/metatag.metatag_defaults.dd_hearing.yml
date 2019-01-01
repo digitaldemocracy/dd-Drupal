@@ -1,0 +1,9 @@
+uuid: a6e47801-6da6-4fab-88c1-656c71e34722
+langcode: en
+status: true
+dependencies: {  }
+id: dd_hearing
+label: 'DD Hearing'
+tags:
+  og_description: 'Check out what was said at the [current-page:title]'
+  og_title: 'Watch this hearing video shared from Digital Democracy.'

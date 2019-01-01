@@ -1,0 +1,11 @@
+uuid: e310f40b-db22-4b23-a43d-79d997e40661
+langcode: en
+status: true
+dependencies: {  }
+name: Blurb
+type: blurb
+description: 'used for both "in the news" and "endorsements" on the front page.'
+help: ''
+new_revision: false
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,27 @@
+uuid: 9bcaa551-a36a-4701-9e7b-9e7f1a3824c1
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_account_dashboard
+    - facets
+  theme:
+    - dd
+id: ddaccountblock
+theme: dd
+region: top
+weight: -49
+provider: null
+plugin: dd_account_block
+settings:
+  id: dd_account_block
+  label: 'DD Account Block'
+  provider: dd_account_dashboard
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }

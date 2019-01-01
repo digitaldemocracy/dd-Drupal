@@ -1,0 +1,83 @@
+@import 'init';
+
+// Action Links
+//
+// :hover     - hover
+// :active    - active
+// --email    - An email action
+// --fax      - A video clip
+// --letter   - A file download
+// --phone    - A phone action
+// --download - A download action
+//
+// Markup: action-links.twig
+//
+// Style guide: Actions.links
+
+.action-link,
+%action-link {
+  // margin-top: 1em;
+
+  /* This is prettier */
+
+  @include button-style($dd-blue,$dd-offwhite,$dd-blue-darker);
+  padding: 6px 20px 6px 30px;
+  text-align: left;
+}
+
+.action-link {
+  &--email {
+    @extend %action-link;
+    background-image: url('../../components/actions/email-envelope.svg');
+    background-size: 20px;
+    background-position-y: 6px;
+  }
+
+  &--letter {
+    @extend %action-link;
+    background-image: url('../../components/actions/pen.svg');
+    background-size: 20px;
+    background-position-y: 6px;
+  }
+
+  &--phone {
+    @extend %action-link;
+    background-image: url('../../components/actions/phone-buttons.svg');
+  }
+
+  &--fax {
+    @extend %action-link;
+    background-image: url('../../components/actions/fax-machine.svg');
+    background-position-y: 4px;
+  }
+
+  &--video {
+    @extend %action-link;
+    background-image: url('../../components/actions/video.svg');
+    background-position-y: 6px;
+    background-size: 20px;
+  }
+
+  &--download {
+    @extend %action-link;
+    background-image: url('../../components/actions/download-arrow.svg');
+    background-size: 20px;
+    background-position-y: 6px;
+  }
+
+  &--text {
+    @extend %action-link;
+    background-image: url('../../components/actions/text.svg');
+    background-size: 20px;
+    background-position-y: 5px;
+  }
+
+  &--tweet {
+    @extend %action-link;
+    background-image: url('../../components/actions/tweet.svg');
+    background-size: 20px;
+    background-position-y: 7px;
+  }
+}
+
+

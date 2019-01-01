@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.thumbnail
+label: Thumbnail
+targetEntityType: dd_clip
+cache: true

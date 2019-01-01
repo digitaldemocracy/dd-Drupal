@@ -1,0 +1,262 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_clip.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\dd_clip\Entity\DdClip;
+use Drupal\dd_video_editor\Utility\CommonHelper;
+use \Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function dd_clip_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_clip':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Customizes DD Clip Content Type Node Page') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function dd_clip_theme() {
+  $theme = array(
+    'dd_clip' => array(
+      'render element' => 'elements',
+      'file' => 'dd_clip.page.inc',
+    ),
+  );
+  return $theme;
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_clip_form_dd_clip_delete_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $uid = \Drupal::currentUser()->id();
+  $form['actions']['cancel'] = [
+    '#title' => 'Cancel',
+    '#type' => 'link',
+    '#url' => Url::fromRoute('dd_video_editor.my_clip_bank_page', ['user' => $uid]),
+    '#weight' =>10
+  ];
+}
+
+/**
+ * prepare associative array for transcripts to be passed to template.
+ *
+ * @param string $transcripts
+ *   json string of transcripts 
+ *
+ * @return array 
+ */
+function dd_clip_prepare_transcripts($transcripts) {
+  $utters = json_decode($transcripts);
+  $hearings = array();
+  $cur_utters = array();
+  $transcript = array();
+  if (!isset($utters) || count($utters) == 0) {
+    return $transcript;
+  }
+  $cur_hearing_info = array(
+    'hearing' => current($utters)->hearing,
+    'hid' => current($utters)->hid,
+    'vid' => current($utters)->vid,
+    'start' => current($utters)->vid_start,
+  );
+  foreach ($utters as $utter) {
+    if ($utter->hearing != $cur_hearing_info['hearing']) {
+      $transcript[] = array(
+        'utters' => $cur_utters,
+        'info' => $cur_hearing_info,
+      );
+      
+      $cur_hearing_info = array(
+        'hearing' => $utter->hearing,
+        'hid' => $utter->hid,
+        'vid' => $utter->vid,
+        'start' => $utter->vid_start,
+      );
+      $cur_utters = array();
+    }
+    array_push($cur_utters, $utter);
+  }
+  $transcript[] = array(
+    'utters' => $cur_utters,
+    'info' => $cur_hearing_info,
+  );
+  return $transcript;
+}
+
+/**
+ * format file size in units greater than byte.
+ *
+ * @param int $bytes
+ *   file size in bytes 
+ *
+ * @return string 
+ */
+function dd_clip_format_size_units($bytes) {
+    if ($bytes >= 1073741824) {
+      $bytes = number_format($bytes / 1073741824, 2) . ' GB';
+    } elseif ($bytes >= 1048576) {
+      $bytes = number_format($bytes / 1048576, 2) . ' MB';
+    } elseif ($bytes >= 1024) {
+      $bytes = number_format($bytes / 1024, 2) . ' KB';
+    } elseif ($bytes > 1) {
+      $bytes = $bytes . ' bytes';
+    } elseif ($bytes == 1) {
+      $bytes = $bytes . ' byte';
+    } elseif ($bytes == 0) {
+      $bytes = '0 bytes';
+    } else {
+      $bytes = 'Unlimited';
+    }
+    return $bytes;
+}
+
+/**
+ * create dd_clip node.
+ *
+ * @param string $filename
+ *   file name of the video file to save
+ * @param string $title
+ *   title of the clip
+ * @param string $note
+ *   private note for the clip
+ * @param string $commentary
+ *   public commentary for the clip
+ * @param int $duration
+ *   duration for the clip
+ * @param array $transcript
+ *   array of transcript json objects associated with the clip
+ * @param array $clips
+ *   array of clip json objects associated with the clip
+ * @param boolean $showTranscripts
+ *   indicates whether or not to show the transcripts
+ * @param array $tags
+ *   tags associated with the clip
+ *
+ * @return int
+ *   node id of the created node or -1 when failed
+ */
+function dd_clip_create_node($videoid,
+                             $title=null,
+                             $note=null,
+                             $commentary=null,
+                             $duration,
+                             $file_size,
+                             $transcript,
+                             $clips,
+                             $showTranscript,
+                             $tags,
+                             $shared=true,
+                             $promoted=false) {
+  try {
+    $clip_node = DdClip::create(
+      array(
+        'user' => \Drupal::currentUser()->id(),
+        'status' => 0,
+        'name' => is_null($title) ? $videoid : $title,
+        'language' => 'und',
+        'path' => array('alias' => '/clip/'.$videoid),
+      ));
+    $clip_node->field_videoid->setValue($videoid);
+    $clip_node->field_note->setValue($note);
+    $clip_node->field_commentary->setValue($commentary);
+    $clip_node->field_duration_float->setValue($duration);
+    $clip_node->field_file_size->setValue($file_size);
+    $clip_node->field_transcript->setValue($transcript);
+    $clip_node->field_display_transcript->setValue($showTranscript);
+    $clip_node->field_clips->setValue($clips);
+    $clip_node->field_video_tags->setValue($tags);
+    $clip_node->field_promote->setValue($promoted);
+    $clip_node->setPublished($shared);
+    $clip_node->setCreatedTime(REQUEST_TIME);
+    $clip_node->save();
+  } catch (exception $e) {
+    echo 'Exception occurred while saving dd_clip: ',  $e->getMessage(), "\n";
+    return -1;
+  }
+  return $clip_node->id();
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_clip_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'dd_clip_edit_form') {
+    // Check for admin user, otherwise disable extra fields for clip builder.
+    $admin_only_fields = array();
+    $user_roles = \Drupal::currentUser()->getRoles();
+    if (!in_array("administrator", $user_roles)) {
+      $admin_only_fields = [
+        'user_id',
+        'field_annotations',
+        'field_clips',
+        'field_clip_source',
+        'field_duration_float',
+        'field_file_size',
+        'field_hearing_url',
+        'field_transcript',
+        'field_videoid',
+        'field_video_tags',
+      ];
+      // add videoid as a hidden field
+      $form['videoid'] = array(
+        '#type' => 'hidden',
+        '#value' => $form['field_videoid']['widget'][0]['value']['#default_value'],
+      );
+      // redicrect to the clip view after submit
+      $form['actions']['submit']['#submit'][] = '_dd_clip_path_alias_redirect';
+    }
+    if (!CommonHelper::isPermitted('attach transcripts to clips')) {
+      $admin_only_fields[] = 'field_commentary';
+      $admin_only_fields[] = 'field_display_transcript';
+    }
+    foreach ($admin_only_fields as $admin_only_field) {
+      unset($form[$admin_only_field]);
+    }
+  }
+  elseif ($form_id == 'dd_clip_delete_form') {
+    // Add redirect on delete of a clip to My Clip Bank.
+    $form['actions']['submit']['#submit'][] = '_dd_clip_my_clip_bank_redirect';
+  }
+}
+
+/**
+ * helper function to redirect user to alias path of clip 
+ *
+ * @param array $form
+ *   Form
+ * @param FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_clip_path_alias_redirect(&$form, FormStateInterface $form_state) {
+  $form_state->setRedirect('dd_clip.clip_view',
+                           ['videoid' => $form_state->getValues()['videoid']]);
+}
+
+/**
+ * Redirect to My Clip Bank.
+ *
+ * @param array $form
+ *   Form
+ * @param FormStateInterface $form_state
+ *   Form State
+ */
+function _dd_clip_my_clip_bank_redirect(&$form, FormStateInterface $form_state) {
+  $form_state->setRedirect('dd_video_editor.my_clip_bank_page',
+                           ['user' => \Drupal::currentUser()->id()]);
+}

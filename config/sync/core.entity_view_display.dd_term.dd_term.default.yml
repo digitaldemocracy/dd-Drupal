@@ -1,0 +1,67 @@
+uuid: f2961897-b3f6-44bf-b5dd-a491b6f0c3d8
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_legislator
+id: dd_term.dd_term.default
+targetEntityType: dd_term
+bundle: dd_term
+mode: default
+content:
+  fullname_firstlast:
+    label: inline
+    type: string
+    weight: 4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  official_bio:
+    label: above
+    type: string
+    weight: 60
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  state:
+    label: inline
+    type: string
+    weight: 50
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  suffix:
+    label: inline
+    type: string
+    weight: 3
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  title:
+    label: inline
+    type: string
+    weight: 0
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+hidden:
+  caucus: true
+  current_term: true
+  district: true
+  end_ts: true
+  first: true
+  fullname_lastfirst: true
+  house: true
+  image: true
+  last: true
+  middle: true
+  party: true
+  pid: true
+  servesOn_dr_ids: true
+  start_ts: true
+  year: true

@@ -1,0 +1,34 @@
+
+# Dd invoice history menu items definition
+entity.dd_invoice_history.collection:
+  title: 'Dd invoice history list'
+  route_name: entity.dd_invoice_history.collection
+  description: 'List Dd invoice history entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_invoice_history.admin.structure.settings:
+  title: Dd invoice history settings
+  description: 'Configure Dd invoice history entities'
+  route_name: dd_invoice_history.settings
+  parent: system.admin_structure
+
+# DD Subscription Plan menu items definition
+entity.dd_subscription_plan.collection:
+  title: 'DD Subscription Plan list'
+  route_name: entity.dd_subscription_plan.collection
+  description: 'List DD Subscription Plan entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_subscription_plan.admin.structure.settings:
+  title: DD Subscription Plan settings
+  description: 'Configure DD Subscription Plan entities'
+  route_name: dd_subscription_plan.settings
+  parent: system.admin_structure
+
+dd_payment_system_menu:
+  title: 'DD Payment System'
+  description: 'Configure settings for DD Payment System formatted fields.'
+  parent: system.admin_config_services
+  route_name: dd_payment_system.settings

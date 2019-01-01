@@ -1,0 +1,28 @@
+uuid: 614ad0af-1f60-4037-87c3-532304b09e8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_commentary_alert.field_user
+    - node.type.dd_commentary_alert
+  module:
+    - user
+id: node.dd_commentary_alert.default
+targetEntityType: node
+bundle: dd_commentary_alert
+mode: default
+content:
+  field_user:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  links:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+hidden: {  }

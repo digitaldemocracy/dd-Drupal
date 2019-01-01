@@ -1,0 +1,31 @@
+{% extends "node.html.twig" %}
+
+{% set modifier_class = attributes.class %}
+{% set attributes = attributes.addClass('campaign','campaign--' ~ view_mode|clean_class) %}
+{% block content %}
+
+  {{ attach_library('dd/modal') }}
+  {{ attach_library('dd/dd-video-player') }}
+  {{ attach_library('dd/campaign') }}
+  {{ attach_library('dd/campaign-visit') }}
+  {% include "@dd/components/campaigns/campaign.twig"
+    with {
+    body: content.body,
+    campaign_description_location: content.field_campaign_desc_location.0|render,
+    bill_location: content.field_bill_location.0|render,
+    video_location: content.field_video_location.0|render,
+    clips: content.field_video_clips,
+    path: path('entity.node.canonical', {'node': node.id}),
+    enable_facebook_share: content.field_enable_facebook_share.0,
+    enable_twitter_share: content.field_enable_twitter_share.0,
+    tweet: content.field_sample_tweet[0]['#context']['value']
+  }
+  %}
+
+{% endblock %}
+
+
+
+
+
+

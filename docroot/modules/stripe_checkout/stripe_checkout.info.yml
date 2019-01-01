@@ -1,0 +1,13 @@
+name: Stripe Licensing
+type: module
+description: Permits licenses for entity access to be purchased via Stripe.
+# core: 8.x
+package: E-commerce
+dependencies:
+  - stripe_api
+
+# Information added by Drupal.org packaging script on 2016-11-17
+version: '8.x-2.0-alpha1'
+core: '8.x'
+project: 'stripe_checkout'
+datestamp: 1479347076

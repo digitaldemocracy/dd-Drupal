@@ -1,0 +1,49 @@
+uuid: 1998e346-c891-4b2d-b055-d13e142b74d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill.dd_bill.default
+targetEntityType: dd_bill
+bundle: dd_bill
+mode: default
+content:
+  bid:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  number:
+    type: number
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  state:
+    type: string_textfield
+    weight: 50
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  type:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  billState: true
+  house: true
+  lastTouched_ts: true
+  session: true
+  sessionYear: true
+  status: true

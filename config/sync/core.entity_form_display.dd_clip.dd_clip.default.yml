@@ -1,0 +1,144 @@
+uuid: e87486d5-5842-458a-87c4-9cfca3f1c051
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.dd_clip.dd_clip.field_annotations
+    - field.field.dd_clip.dd_clip.field_clip_source
+    - field.field.dd_clip.dd_clip.field_clips
+    - field.field.dd_clip.dd_clip.field_commentary
+    - field.field.dd_clip.dd_clip.field_display_transcript
+    - field.field.dd_clip.dd_clip.field_duration_float
+    - field.field.dd_clip.dd_clip.field_file_size
+    - field.field.dd_clip.dd_clip.field_hearing_url
+    - field.field.dd_clip.dd_clip.field_note
+    - field.field.dd_clip.dd_clip.field_promote
+    - field.field.dd_clip.dd_clip.field_transcript
+    - field.field.dd_clip.dd_clip.field_video_tags
+    - field.field.dd_clip.dd_clip.field_videoid
+  module:
+    - dd_clip
+    - text
+id: dd_clip.dd_clip.default
+targetEntityType: dd_clip
+bundle: dd_clip
+mode: default
+content:
+  field_annotations:
+    type: string_textarea
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_clip_source:
+    type: options_select
+    weight: 7
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_clips:
+    type: string_textarea
+    weight: 6
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_commentary:
+    type: text_textarea
+    weight: 3
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_display_transcript:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_duration_float:
+    type: number
+    weight: 8
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_file_size:
+    type: string_textfield
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_note:
+    weight: 4
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_promote:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_transcript:
+    type: string_textarea
+    weight: 11
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  field_video_tags:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
+  field_videoid:
+    type: string_textfield
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    weight: 12
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    region: content
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 13
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden:
+  field_hearing_url: true

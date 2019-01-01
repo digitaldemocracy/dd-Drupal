@@ -1,0 +1,22 @@
+uuid: d256bda7-6578-4d10-bd32-6e9c378b1c5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.campaign
+  module:
+    - text
+id: node.campaign.body
+field_name: body
+entity_type: node
+bundle: campaign
+label: 'Campaign Description'
+description: 'What is the purpose/goal of this campaign?'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

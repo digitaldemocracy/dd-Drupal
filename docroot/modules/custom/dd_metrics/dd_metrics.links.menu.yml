@@ -1,0 +1,5 @@
+dd_campaign_visitor.admin.structure.settings:
+  title: DD Metrics - DD Campaign Visitor settings
+  description: 'Configure DD Campaign Visitorentities'
+  route_name: dd_campaign_visitor.settings
+  parent: system.admin_structure

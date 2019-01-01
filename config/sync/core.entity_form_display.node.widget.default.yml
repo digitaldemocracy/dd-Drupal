@@ -1,0 +1,329 @@
+uuid: bf2ed0fa-8319-4bc5-afee-78be536030a1
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.widget.field_button_text_color
+    - field.field.node.widget.field_css_override
+    - field.field.node.widget.field_logo_vertical
+    - field.field.node.widget.field_show_advanced_search_butto
+    - field.field.node.widget.field_show_create_alerts_button
+    - field.field.node.widget.field_show_search_bills
+    - field.field.node.widget.field_show_search_bills_label
+    - field.field.node.widget.field_show_search_organizations
+    - field.field.node.widget.field_show_search_orgs_label
+    - field.field.node.widget.field_show_search_speakers
+    - field.field.node.widget.field_show_search_speakers_label
+    - field.field.node.widget.field_show_search_statements
+    - field.field.node.widget.field_show_search_statements_lab
+    - field.field.node.widget.field_show_take_action_button
+    - field.field.node.widget.field_show_title
+    - field.field.node.widget.field_widget_background_color
+    - field.field.node.widget.field_widget_button_color
+    - field.field.node.widget.field_widget_description
+    - field.field.node.widget.field_widget_font_color
+    - field.field.node.widget.field_widget_layout_style
+    - field.field.node.widget.field_widget_sponsored_logo
+    - field.field.node.widget.field_widget_sponsored_text
+    - field.field.node.widget.field_widget_top_logo
+    - image.style.thumbnail
+    - node.type.widget
+  module:
+    - field_group
+    - image
+    - jquery_colorpicker
+    - path
+    - text
+third_party_settings:
+  field_group:
+    group_test_details:
+      children:
+        - field_widget_background_color
+        - field_widget_font_color
+        - field_widget_button_color
+        - field_button_text_color
+        - field_css_override
+      parent_name: ''
+      weight: 11
+      format_type: details
+      format_settings:
+        open: false
+        required_fields: true
+        classes: ''
+        id: ''
+      label: 'Configure Widget Styles'
+    group_display_search_boxes:
+      children:
+        - field_show_search_bills_label
+        - field_show_search_bills
+        - field_show_search_orgs_label
+        - field_show_search_organizations
+        - field_show_search_speakers_label
+        - field_show_search_speakers
+        - field_show_search_statements_lab
+        - field_show_search_statements
+      parent_name: ''
+      weight: 12
+      format_type: details
+      format_settings:
+        open: false
+        required_fields: true
+        classes: ''
+        id: ''
+      label: 'Enable Search Boxes'
+    group_display_action_buttons:
+      children:
+        - field_show_create_alerts_button
+        - field_show_take_action_button
+        - field_show_advanced_search_butto
+      parent_name: ''
+      weight: 13
+      format_type: details
+      format_settings:
+        label: 'Action Buttons Configuration'
+        open: true
+        required_fields: true
+        id: ''
+        classes: ''
+      label: 'Action Buttons Configuration'
+    group_widget_configuration:
+      children:
+        - title
+        - field_show_title
+        - field_logo_vertical
+        - field_widget_top_logo
+        - field_widget_description
+        - field_widget_sponsored_text
+        - field_widget_sponsored_logo
+        - field_widget_layout_style
+      parent_name: ''
+      weight: 0
+      format_type: details
+      format_settings:
+        id: ''
+        classes: ''
+        open: true
+        required_fields: false
+      label: 'Widget Configuration'
+id: node.widget.default
+targetEntityType: node
+bundle: widget
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 2
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  field_button_text_color:
+    weight: 15
+    settings:
+      color: FFFFFF
+    third_party_settings: {  }
+    type: jquery_colorpicker
+    region: content
+  field_css_override:
+    weight: 16
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textarea
+    region: content
+  field_logo_vertical:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_show_advanced_search_butto:
+    weight: 16
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_create_alerts_button:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_bills:
+    weight: 14
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_bills_label:
+    weight: 13
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_organizations:
+    weight: 16
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_orgs_label:
+    weight: 15
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_speakers:
+    weight: 18
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_speakers_label:
+    weight: 17
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_statements:
+    weight: 20
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_search_statements_lab:
+    weight: 19
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_take_action_button:
+    weight: 15
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_show_title:
+    weight: 2
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_widget_background_color:
+    weight: 12
+    settings:
+      color: FFFFFF
+    third_party_settings: {  }
+    type: jquery_colorpicker
+    region: content
+  field_widget_button_color:
+    weight: 14
+    settings:
+      color: FFFFFF
+    third_party_settings: {  }
+    type: jquery_colorpicker
+    region: content
+  field_widget_description:
+    weight: 5
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textarea
+    region: content
+  field_widget_font_color:
+    weight: 13
+    settings:
+      color: FFFFFF
+    third_party_settings: {  }
+    type: jquery_colorpicker
+    region: content
+  field_widget_layout_style:
+    weight: 8
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_widget_sponsored_logo:
+    weight: 7
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  field_widget_sponsored_text:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_widget_top_logo:
+    weight: 4
+    settings:
+      progress_indicator: throbber
+      preview_image_style: thumbnail
+    third_party_settings: {  }
+    type: image_image
+    region: content
+  path:
+    type: path
+    weight: 5
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  promote:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 3
+    third_party_settings: {  }
+    region: content
+  status:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 121
+    third_party_settings: {  }
+    region: content
+  sticky:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 4
+    third_party_settings: {  }
+    region: content
+  title:
+    type: string_textfield
+    weight: 1
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    region: content
+hidden: {  }

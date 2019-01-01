@@ -1,0 +1,50 @@
+add dd clip entities:
+  title: 'Create new DD Clip entities'
+
+administer dd clip entities:
+  title: 'Administer DD Clip entities'
+  description: 'Allow to access the administration form to configure DD Clip entities.'
+  restrict access: true
+
+delete any dd clip entities:
+  title: 'Delete any DD Clip entities'
+
+delete own dd clip entities:
+  title: 'Delete own DD Clip entities'
+
+edit any dd clip entities:
+  title: 'Edit any DD Clip entities'
+
+edit own dd clip entities:
+  title: 'Edit own DD Clip entities'
+
+access dd clip overview:
+  title: 'Access the DD Clip overview page'
+
+view published dd clip entities:
+  title: 'View published DD Clip entities'
+
+view unpublished dd clip entities:
+  title: 'View unpublished DD Clip entities'
+add dd clip bank quota entities:
+  title: 'Create new DD Clip Bank Quota entities'
+
+administer dd clip bank quota entities:
+  title: 'Administer DD Clip Bank Quota entities'
+  description: 'Allow to access the administration form to configure DD Clip Bank Quota entities.'
+  restrict access: true
+
+delete dd clip bank quota entities:
+  title: 'Delete DD Clip Bank Quota entities'
+
+edit dd clip bank quota entities:
+  title: 'Edit DD Clip Bank Quota entities'
+
+access dd clip bank quota overview:
+  title: 'Access the DD Clip Bank Quota overview page'
+
+view published dd clip bank quota entities:
+  title: 'View published DD Clip Bank Quota entities'
+
+view unpublished dd clip bank quota entities:
+  title: 'View unpublished DD Clip Bank Quota entities'

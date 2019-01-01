@@ -1,0 +1,14 @@
+
+# DD Saved Content menu items definition
+entity.dd_saved_content.collection:
+  title: 'DD Saved Content list'
+  route_name: entity.dd_saved_content.collection
+  description: 'List DD Saved Content entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_saved_content.admin.structure.settings:
+  title: DD Saved Content settings
+  description: 'Configure DD Saved Content entities'
+  route_name: dd_saved_content.settings
+  parent: system.admin_structure

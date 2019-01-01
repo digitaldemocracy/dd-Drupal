@@ -1,0 +1,20 @@
+uuid: 1be64778-8d95-4b8e-9993-a14d699c1bb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_payment_system
+id: dd_subscription_plan.field_duration_days
+field_name: field_duration_days
+entity_type: dd_subscription_plan
+type: integer
+settings:
+  unsigned: false
+  size: normal
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

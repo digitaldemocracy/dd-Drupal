@@ -1,0 +1,37 @@
+uuid: fd5e167d-337d-43bb-b7dd-70b3b6d49034
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.dd_subscription_type.field_price
+    - field.field.node.dd_subscription_type.field_type_description
+    - node.type.dd_subscription_type
+  module:
+    - text
+    - user
+id: node.dd_subscription_type.default
+targetEntityType: node
+bundle: dd_subscription_type
+mode: default
+content:
+  field_price:
+    weight: 101
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_type_description:
+    weight: 102
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

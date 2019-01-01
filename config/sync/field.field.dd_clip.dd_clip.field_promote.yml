@@ -1,0 +1,24 @@
+uuid: e8ccc5b9-301a-403b-bc4a-277d7f262495
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip.field_promote
+  module:
+    - dd_clip
+id: dd_clip.dd_clip.field_promote
+field_name: field_promote
+entity_type: dd_clip
+bundle: dd_clip
+label: 'Promote This Clip To The Front Page'
+description: 'Checking this box promotes the clip to the front page of the site.'
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

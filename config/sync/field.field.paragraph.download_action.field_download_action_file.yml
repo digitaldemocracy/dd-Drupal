@@ -1,0 +1,27 @@
+uuid: 7c00f9b5-6cf2-4718-86a4-f3320f97ef3c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_download_action_file
+    - paragraphs.paragraphs_type.download_action
+  module:
+    - file
+id: paragraph.download_action.field_download_action_file
+field_name: field_download_action_file
+entity_type: paragraph
+bundle: download_action
+label: File
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt jpg pdf png doc'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

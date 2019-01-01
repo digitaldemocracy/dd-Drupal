@@ -1,0 +1,25 @@
+uuid: 03c91c2f-7ccd-4865-85a4-d138b964ea9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_speaker_pid
+    - node.type.dd_email_subscription
+id: node.dd_email_subscription.field_speaker_pid
+field_name: field_speaker_pid
+entity_type: node
+bundle: dd_email_subscription
+label: '<span class="and-label">AND</span> Narrow all searches above to speaker'
+description: 'Restrict search to utterances spoken by a particular speaker. Speaker names may not contain slashes, apostrophes, asterisks, semicolons, equals signs, percent signs, or curly braces. Speaker names are case-insensitive. Leave blank to ignore this restriction.'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_person'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

@@ -1,0 +1,23 @@
+<div id="video-editor-message"></div>
+<h1 class="form-page-title hide">{{ title }}</h1>
+<div class="left-wrapper">
+  <div class="selected-clip-wrapper">
+    <span class="video-label">SELECTED CLIPS:</span>
+    <div id="video-builder-drop-area" >
+      <div id="drop-placeholder" class="empty-drop">
+        <span>Drag clips and transitions from the right side to begin building.</span>
+      </div>
+      {{ combine_form }}
+    </div>
+    <div class="video-wrapper hide">
+      <video id="player1" class="video-js vjs-default-skin"
+      controls preload="auto" width="685" height="390">
+      </video>
+    </div>
+    <div id='create_form' style='display:none'>
+      <span class="video-label">PREVIEW:</span>
+      {{ form }}
+    </div>
+  </div>
+</div>
+{{ attach_library('dd/dd-video-builder') }}

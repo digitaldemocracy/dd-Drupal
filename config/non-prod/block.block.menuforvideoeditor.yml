@@ -1,0 +1,56 @@
+uuid: ab0a729f-b08c-4d6f-aa0a-427a35d3f49b
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_visibility_groups
+    - dd_video_editor
+    - facets
+    - request_parameter_condition
+    - system
+    - user
+  theme:
+    - dd
+id: menuforvideoeditor
+theme: dd
+region: secondary_menu
+weight: 0
+provider: null
+plugin: video_editor_menu_block
+settings:
+  id: video_editor_menu_block
+  label: 'Menu For Video Editor'
+  provider: dd_video_editor
+  label_display: '0'
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/clip/*'
+    negate: false
+    context_mapping: {  }
+  user_role:
+    id: user_role
+    roles:
+      authenticated: authenticated
+    negate: false
+    context_mapping:
+      user: '@user.current_user_context:current_user'

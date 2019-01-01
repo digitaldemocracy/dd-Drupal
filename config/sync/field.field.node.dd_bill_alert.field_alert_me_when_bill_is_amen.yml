@@ -1,0 +1,23 @@
+uuid: 6e780f1c-8094-480e-a39c-ec032c865136
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_alert_me_when_bill_is_amen
+    - node.type.dd_bill_alert
+id: node.dd_bill_alert.field_alert_me_when_bill_is_amen
+field_name: field_alert_me_when_bill_is_amen
+entity_type: node
+bundle: dd_bill_alert
+label: 'Receive alerts when bill is amended'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

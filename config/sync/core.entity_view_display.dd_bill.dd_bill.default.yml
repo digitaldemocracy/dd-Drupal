@@ -1,0 +1,25 @@
+uuid: edf71fa2-e76e-426b-a123-8ab25be89941
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+id: dd_bill.dd_bill.default
+targetEntityType: dd_bill
+bundle: dd_bill
+mode: default
+content: {  }
+hidden:
+  bid: true
+  billState: true
+  bill_version_current_dr_id: true
+  house: true
+  lastTouched_ts: true
+  number: true
+  primary_author_pid: true
+  session: true
+  sessionYear: true
+  state: true
+  status: true
+  type: true
+  type_number: true

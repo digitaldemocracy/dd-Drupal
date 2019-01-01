@@ -1,0 +1,17 @@
+uuid: 625121de-7884-436e-9f62-f4c2e9ef1f55
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Campaign Action'
+type: campaign_action
+description: 'Groups of Actions for a campaign'
+help: ''
+new_revision: false
+preview_mode: 0
+display_submitted: false

@@ -1,0 +1,18 @@
+uuid: 99352afb-c7b0-4501-ac8f-6673b8dc72d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_show_search_speakers
+field_name: field_show_search_speakers
+entity_type: node
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

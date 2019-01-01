@@ -1,0 +1,19 @@
+uuid: 414c288a-e896-4d32-a2e2-f542e4149810
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_video_alert_result
+    - node.type.dd_video_alert_history
+id: node.dd_video_alert_history.field_video_alert_result
+field_name: field_video_alert_result
+entity_type: node
+bundle: dd_video_alert_history
+label: 'Video Alert History'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

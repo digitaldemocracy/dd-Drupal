@@ -1,0 +1,14 @@
+uuid: 88ba5489-6ca4-4de6-9a63-4f1db8c2cdd6
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.action_center_admin
+  module:
+    - user
+id: user_remove_role_action.action_center_admin
+label: 'Remove the Action Center Admin role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: action_center_admin

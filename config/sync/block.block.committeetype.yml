@@ -1,0 +1,49 @@
+uuid: f5e70fb1-0058-48e3-8eb0-c4e92de6d8cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.committee_type
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - system
+  theme:
+    - dd
+id: committeetype
+theme: dd
+region: sidebar_first
+weight: -34
+provider: null
+plugin: 'facet_block:committee_type'
+settings:
+  id: 'facet_block:committee_type'
+  label: 'Committee Type'
+  provider: facets
+  label_display: visible
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /hearings
+    negate: false
+    context_mapping: {  }

@@ -1,0 +1,8 @@
+name: Email Legislator Module 
+type: module
+description: 'Module which enable users to find their legislators and email them.'
+package: DigitalDemocracy
+core: 8.x
+hidden: false
+dependencies:
+  - dd_base

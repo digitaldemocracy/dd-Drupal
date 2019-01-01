@@ -1,0 +1,69 @@
+@import "init";
+
+// Style the Bottom Next/back Buttons
+
+.campaign-wizard {
+
+  #node-campaign-form,
+  #node-campaign-edit-form,
+  #node-campaign-action-form,
+  #node-campaign-action-edit-form,
+  #dd-campaign-targets-form,
+  #dd-campaign-target-actions-form,
+  #dd-campaign-preview-form,
+  #dd-campaign-review-form {
+
+    .nav-buttons-wrapper{
+      @include flex-container($flex-wrap: nowrap, $justify-content: space-between);
+      margin-top: 1rem;
+
+
+      .submit-wrapper,
+      #edit-back {
+        @include flex-item;
+      }
+
+      a#edit-back {
+        @include font-size(l);
+        text-transform: uppercase;
+        font-weight: bold;
+        background: transparent;
+        color: $dd-dimgray;
+        text-shadow: none;
+        box-shadow: none;
+        // Background svg icon-point-left
+
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 451.847 451.847"><g><path fill ="%23656565" d="M97.141 225.92c0-8.095 3.091-16.192 9.259-22.366L300.689 9.27c12.359-12.359 32.397-12.359 44.751 0 12.354 12.354 12.354 32.388 0 44.748L173.525 225.92l171.903 171.909c12.354 12.354 12.354 32.391 0 44.744-12.354 12.365-32.386 12.365-44.745 0l-194.29-194.281c-6.167-6.177-9.252-14.274-9.252-22.372z"/></g></svg>');
+        background-size: 19px;
+        background-repeat: no-repeat;
+        background-position: 1% center;
+        text-align: right;
+        padding-left: 1.5em;
+      }
+
+      input.form-submit,
+      a#edit-next {
+        @include font-size(l);
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 307.046 307.046"><g><g><g><path fill ="%23fff" d="M239.087 142.427L101.259 4.597c-6.133-6.129-16.073-6.129-22.203 0L67.955 15.698c-6.129 6.133-6.129 16.076 0 22.201l115.621 115.626-115.621 115.61c-6.129 6.136-6.129 16.086 0 22.209l11.101 11.101c6.13 6.136 16.07 6.136 22.203 0l137.828-137.831c6.135-6.127 6.135-16.058 0-22.187z"/></g></g></g></svg>');
+        background-size: 19px;
+        background-position: 98% center;
+        text-align: left;
+        padding-right: 2em;
+      }
+    }
+
+  }
+
+  &.campaign-wizard--details #node-campaign-edit-form,
+  &.campaign-wizard--details #node-campaign-form {
+    .nav-buttons-wrapper {
+      justify-content: flex-end;
+      }
+    }
+
+  &.campaign-wizard--target-actions #node-campaign-action-form {
+    .nav-buttons-wrapper {
+      align-items: flex-end;
+    }
+  }
+}

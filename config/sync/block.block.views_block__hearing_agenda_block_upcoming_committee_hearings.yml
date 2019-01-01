@@ -1,0 +1,37 @@
+uuid: 7d122bda-6e32-4abf-9f2f-3714efb6e083
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.hearing_agenda
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__hearing_agenda_block_upcoming_committee_hearings
+theme: dd
+region: sidebar_second
+weight: -47
+provider: null
+plugin: 'views_block:hearing_agenda-block_upcoming_committee_hearings'
+settings:
+  id: 'views_block:hearing_agenda-block_upcoming_committee_hearings'
+  label: 'Upcoming Hearings'
+  provider: views
+  label_display: visible
+  views_label: 'Upcoming Hearings'
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/committee/*'
+    negate: false
+    context_mapping: {  }

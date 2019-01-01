@@ -1,0 +1,9 @@
+uuid: 56937469-1723-4b50-ab67-0e7ef558dcd2
+langcode: en
+status: true
+dependencies: {  }
+id: educator
+label: Educator
+weight: 12
+is_admin: null
+permissions: {  }

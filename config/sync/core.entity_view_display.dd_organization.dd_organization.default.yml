@@ -1,0 +1,23 @@
+uuid: 22f7bb79-41ae-481f-b8f3-d04861aae854
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_organization
+id: dd_organization.dd_organization.default
+targetEntityType: dd_organization
+bundle: dd_organization
+mode: default
+content:
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  city: true
+  stateHeadquartered: true
+  type: true

@@ -1,0 +1,33 @@
+uuid: c64341e2-1f7d-43ee-8d66-e4f9e85c3018
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_person
+    - facets
+    - system
+  theme:
+    - dd
+id: speakersearchblock
+theme: dd
+region: sidebar_second
+weight: -49
+provider: null
+plugin: dd_speaker_search_block
+settings:
+  id: dd_speaker_search_block
+  label: 'Speaker Search Block'
+  provider: dd_person
+  label_display: '0'
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

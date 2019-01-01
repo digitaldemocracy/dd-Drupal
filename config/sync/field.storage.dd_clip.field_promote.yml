@@ -1,0 +1,18 @@
+uuid: 2139de1a-f6d4-4d3d-8845-073ee5f8113a
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_promote
+field_name: field_promote
+entity_type: dd_clip
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

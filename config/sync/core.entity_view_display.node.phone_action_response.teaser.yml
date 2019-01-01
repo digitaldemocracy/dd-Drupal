@@ -1,0 +1,34 @@
+uuid: 7336b5cd-2686-4f8f-b755-7ec5adba980e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.phone_action_response.field_campaign
+    - field.field.node.phone_action_response.field_campaign_visitor
+    - field.field.node.phone_action_response.field_legislator
+    - field.field.node.phone_action_response.field_legislator_position
+    - field.field.node.phone_action_response.field_phone_action_id
+    - field.field.node.phone_action_response.field_staff_comments
+    - field.field.node.phone_action_response.field_staff_member
+    - node.type.phone_action_response
+  module:
+    - user
+id: node.phone_action_response.teaser
+targetEntityType: node
+bundle: phone_action_response
+mode: teaser
+content:
+  links:
+    weight: 100
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  field_campaign: true
+  field_campaign_visitor: true
+  field_legislator: true
+  field_legislator_position: true
+  field_phone_action_id: true
+  field_staff_comments: true
+  field_staff_member: true

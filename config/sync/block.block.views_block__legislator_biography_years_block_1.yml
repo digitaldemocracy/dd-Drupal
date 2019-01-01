@@ -1,0 +1,37 @@
+uuid: 01b2d7b0-169a-43ec-87c0-0e44ff9b96c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.legislator_biography_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__legislator_biography_years_block_1
+theme: dd
+region: content
+weight: -41
+provider: null
+plugin: 'views_block:legislator_biography_years-block_1'
+settings:
+  id: 'views_block:legislator_biography_years-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

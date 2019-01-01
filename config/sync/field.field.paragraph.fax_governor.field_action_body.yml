@@ -1,0 +1,21 @@
+uuid: 90454e44-ce7e-47ee-8ee1-d230281e7d2e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_action_body
+    - paragraphs.paragraphs_type.fax_governor
+  module:
+    - text
+id: paragraph.fax_governor.field_action_body
+field_name: field_action_body
+entity_type: paragraph
+bundle: fax_governor
+label: 'Fax Content'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

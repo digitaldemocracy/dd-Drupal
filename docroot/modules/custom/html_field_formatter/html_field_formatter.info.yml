@@ -1,0 +1,5 @@
+name: HTML Field Formatter
+type: module
+description: Adds an HTML field formatter.
+core: 8.x
+package: User interface

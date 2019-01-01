@@ -1,0 +1,32 @@
+{#
+/**
+* @file
+* Template for dd account block
+*
+* Available variables
+*   - userid
+*
+* @ingroup themeable
+*/
+#}
+<nav role="navigation" aria-labelledby="block-useraccountmenu-menu" id="block-useraccountmenu" class="block block-menu navigation menu--account">
+            
+  <h2 class="visually-hidden" id="block-useraccountmenu-menu">User account menu</h2>
+  
+  <ul class="menu navbar">
+  {% if userid %}
+    <li class="menu-item">
+      <a href="/user/{{userid}}/my-account">My Account</a> 
+    </li>
+    <li class="menu-item">
+      <a href="/user/logout">Log out</a>
+    </li>
+  {% else %}
+    <li class="menu-item">
+      <a href="/user/login">Log In</a>
+    </li>
+  {% endif %}
+
+  </ul>
+
+</nav>

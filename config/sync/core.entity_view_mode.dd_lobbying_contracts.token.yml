@@ -1,0 +1,10 @@
+uuid: 5a488832-16aa-4242-9593-dd46404788cc
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_lobbyist
+id: dd_lobbying_contracts.token
+label: Token
+targetEntityType: dd_lobbying_contracts
+cache: true

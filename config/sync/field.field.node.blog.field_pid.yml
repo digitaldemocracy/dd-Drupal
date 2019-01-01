@@ -1,0 +1,23 @@
+uuid: a155ea9f-8cce-4e29-b765-f7c131a3ab86
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pid
+    - node.type.blog
+id: node.blog.field_pid
+field_name: field_pid
+entity_type: node
+bundle: blog
+label: pid
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

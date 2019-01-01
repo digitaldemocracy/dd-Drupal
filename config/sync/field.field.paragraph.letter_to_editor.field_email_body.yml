@@ -1,0 +1,21 @@
+uuid: 243d066d-95be-4c66-b74c-14000b4a2a71
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_email_body
+    - paragraphs.paragraphs_type.letter_to_editor
+  module:
+    - text
+id: paragraph.letter_to_editor.field_email_body
+field_name: field_email_body
+entity_type: paragraph
+bundle: letter_to_editor
+label: 'Email Body'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

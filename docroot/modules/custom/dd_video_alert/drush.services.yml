@@ -1,0 +1,5 @@
+services:
+  dd_video_alert.commands:
+    class: \Drupal\dd_video_alert\Commands\DdVideoAlertCommands
+    tags:
+      - { name: drush.command }

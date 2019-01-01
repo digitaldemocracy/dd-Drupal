@@ -1,0 +1,167 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_base.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\views\ViewExecutable;
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+
+/**
+ * Implements hook_help().
+ */
+function dd_base_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_base module.
+    case 'help.page.dd_base':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Base Module') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+
+function dd_base_get_current_state() {
+  return 'CA';
+}
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function dd_base_views_data_alter(array &$data) {
+  // Removes all computed fields from Search Api indexes/datasources.
+  // They will crash upon use because of no storage definition.
+  // The only use for the computed fields is for facets.
+  foreach ($data as $key => $fields) {
+    if (strpos($key, 'search_api_index') !== FALSE || strpos($key, 'search_api_datasource') !== FALSE) {
+      foreach ($fields as $field_key => $field_data) {
+        if (isset($field_data['field']) && $field_data['field']['id'] == 'search_api_field') {
+
+          $field_definitions = \Drupal::entityManager()->getBaseFieldDefinitions($field_data['field']['entity_type']);
+          if (isset($field_definitions[$field_data['field']['field_name']]) && $field_definitions[$field_data['field']['field_name']]->isComputed()) {
+            unset($data[$key][$field_key]['field']);
+          }
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_token_info().
+ */
+function dd_base_token_info() {
+  $info = [];
+
+  if (\Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_STATE) {
+    $info['tokens']['site']['state_abbrev']['name'] = t('State Abbrev');
+    $info['tokens']['site']['state_abbrev']['description'] = t('The state abbreviation, Two letter capitalized');
+
+    $info['tokens']['site']['state_fullname']['name'] = t('State Full Name');
+    $info['tokens']['site']['state_fullname']['description'] = t('The full state name');
+  }
+  return $info;
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function dd_base_tokens($type, $tokens, array $data, array $options, \Drupal\Core\Render\BubbleableMetadata $bubbleable_metadata) {
+  $replacements = [];
+  if (
+    \Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_STATE &&
+    $type == 'site'
+  ) {
+    foreach ($tokens as $name => $original) {
+      switch ($name) {
+        case 'state_abbrev':
+          $new = \Drupal\dd_base\DdBase::getCurrentState();
+          $replacements[$original] = $new;
+          break;
+
+        case 'state_fullname':
+          $new = \Drupal\dd_base\DdBase::getCurrentState(FALSE);
+          $replacements[$original] = $new;
+          break;
+      }
+    }
+  }
+  return $replacements;
+}
+
+/**
+ * Add hidden fields to forms with facets to preserve query values on submit.
+ */
+function dd_base_form_views_exposed_form_alter(&$form, $form_state, $form_id) {
+  $params = \Drupal::requestStack()->getCurrentRequest()->query->all();
+  $facet_manager = \Drupal::service('facets.manager');
+  $facets = $facet_manager->getEnabledFacets();
+  foreach ($facets as $facet) {
+    $filter_keys[] = empty($facet->getFacetSourceConfig()->getFilterKey()) ? 'f' : $facet->getFacetSourceConfig()->getFilterKey();
+
+  }
+  if (!empty($filter_keys)) {
+    foreach (array_unique($filter_keys) as $filter_key) {
+      if (isset($params[$filter_key]) && !empty($param_values = $params[$filter_key])) {
+        // Add facet parameters to hidden fields in the forms.
+        foreach ($param_values as $key => $value) {
+          $form[$filter_key . '[' . $key . ']'] = [
+            '#type' => 'hidden',
+            '#value' => $value,
+          ];
+        }
+      }
+    }
+  }
+}
+
+
+/**
+ * Implements hook_form_alter().
+ */
+function dd_base_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  $form['#submit'][] = '_dd_base_user_login_form_submit';
+}
+
+/**
+ * Custom submit handler for login form.
+ */
+function _dd_base_user_login_form_submit($form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  // Set redirect to login form.
+  $uid = \Drupal::currentUser()->id();
+
+  $form_state->setRedirect('dd_account_dashboard.my_account', ['user' => $uid]);
+}
+
+/**
+ * Implements hook_query_alter().
+ */
+function dd_base_query_alter(Drupal\Core\Database\Query\AlterableInterface $query) {
+  // Output query to screen if ?querydebug param is set on URL.
+  if (isset($_GET['querydebug'])) {
+    echo "-------<br/><code>\n";
+    echo $query . "</code><br/><br/><div style='color:#ff0000'><code>\n";
+    print_r($query->getArguments());
+    echo "</code></div><br/>\n";
+  }
+}
+
+/**
+ * Implements hook_rebuild().
+ */
+function dd_base_rebuild() {
+  // Add DigitalDemocracy google analytics tracking to whitelabel sites.
+  $module_handler = \Drupal::service('module_handler');
+
+  if (
+    \Drupal\dd_base\DdBase::getSiteType() == \Drupal\dd_base\DdEnvironment::DD_ENVIRONMENT_SITE_TYPE_WHITELABEL &&
+    $module_handler->moduleExists('google_analytics')
+  ) {
+    \Drupal\dd_base\DdBaseGoogleAnalytics::addDdAnalyticsTracking();
+  }
+}

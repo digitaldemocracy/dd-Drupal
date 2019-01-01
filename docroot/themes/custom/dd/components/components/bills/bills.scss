@@ -1,0 +1,102 @@
+@import 'init';
+
+// Bills teaser
+//
+// Markup: bill__teaser.twig
+//
+// Style guide: components.bills--teaser
+
+// Change the default sub-directory for the image-url() mixin.
+
+.bill__teaser {
+  font-size: .9rem;
+  border-bottom: 1px solid color(border);
+  padding-bottom: 1em;
+  overflow: auto;
+
+  &:first-child {
+    border-top: 1px solid color(border);
+    margin-top: 1em;
+  }
+
+  h3 {
+    margin-bottom: 0;
+  }
+
+  h5 {
+    margin: 0;
+  }
+
+  .bill__discussion-list {
+    @include font-size(s);
+    @include zen-respond-to(m) {
+      float: right;
+      width: 60%;
+      padding-left: 1rem;
+      margin-top: 0;
+    }
+
+    .item-list ul {
+      list-style: none;
+      margin-top: .5em;
+
+      li {
+        @if $whitelabel-id == 'cmta' { background-image: url('../../../images/play-icon-orange.svg'); }
+        @else if $whitelabel-id == 'hungeractionla' { background-image: url('../../components/bills/video-play-button-hala-green.svg'); }
+        @else { background-image: url('../../components/bills/video-play-button.svg'); }
+        background-size: 19px 20px;
+        background-position: left 2px;
+        background-repeat: no-repeat;
+        padding-left: 30px;
+        margin-left: 0;
+      }
+    }
+  }
+}
+
+// Bill teasers in the bills page
+.bill {
+  &__status {
+    font-weight: bold;
+
+    &--value {
+      font-weight: normal;
+      text-transform: uppercase;
+    }
+  }
+
+  // Add some space between the author field and its label
+  &__author {
+    //margin-left: 5px;
+  }
+
+  // Indent fields under the title & author
+  &__status,
+  &__description,
+  &__discussion-list {
+    //margin-left: 1.5em;
+  }
+
+  &__status,
+  &__author,
+  &__session-year {
+    @include zen-respond-to(m) {
+      @include font-size(m);
+      margin-bottom: .5rem;
+    }
+  }
+
+  &__description {
+    font-style: italic;
+    margin: 1rem 0;
+    @include font-size(m);
+  }
+
+}
+
+#block-exposedformbills-facetedbills-faceted {
+  // Hide type number field, using bid field.
+  .form-item-type-number {
+    display: none;
+  }
+}

@@ -1,0 +1,202 @@
+@import 'init';
+
+// Campaign
+//
+// Markup: campaign.twig
+//
+// Style guide: components.campaign
+
+.campaign,
+%campaign {
+  // border: 1px solid $dd-grey;
+  //background: $dd-offwhite;
+  //padding: 1rem;
+  //margin-bottom: 1rem;
+
+  .node-type-dd-clip {
+    margin-bottom: 1rem;
+  }
+  .field--name-title {
+    // @extend h3;
+  }
+
+  .bil__id-subject {
+    margin-top: 0;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  video {
+    //@include respond-to('m') {
+    //  float: right;
+    //  max-width: 45%;
+    //  padding-left: 1rem;
+    //  height: auto;
+    //}
+  }
+
+
+
+  .bill__teaser {
+    padding: 1rem;
+    border: 1px solid $dd-greyextralight;
+  }
+  .twitter-tweet-button {
+    position: relative !important;
+    top: 7px;
+  }
+}
+
+.campaign--teaser {
+  @extend %campaign;
+  @include dd-box-shadow();
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  overflow: auto;
+
+  .padded {
+    @include zen-apply-gutter-padding();
+  }
+}
+
+.campaign--full {
+  @extend %campaign;
+
+  a.button--large { // Hide the blue button from the full node version.
+    display: none !important;
+  }
+  .field--name-field-video-clips {
+    margin-top: 10px;
+  }
+}
+
+.campaign__admin-block,
+#block-views-block-campaign-admin-block-1 {
+  padding: 1em;
+  background: lighten($dd-yellow, 40%);
+  border: 4px solid $dd-yellow;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  .views-field-title {
+    display: none;
+  }
+
+  th {
+    text-align: left;
+  }
+
+  .video-clip-title {
+    display: none;
+  }
+  .views-field-operations {
+    .dropbutton-multiple {
+      padding-right: 5em;
+    }
+  }
+
+}
+
+.campaign--adminblock {
+  .views-field-operations {
+    .dropbutton-multiple {
+      padding-right: 5em;
+    }
+  }
+
+}
+
+.is-page-node-type-campaign,
+.campaign-wizard--preview {
+  .actions--recipients {
+    display: none;
+  }
+
+  .bill__teaser {
+    padding: 1rem;
+    border: 1px solid $dd-greyextralight;
+    background: lighten($dd-offwhite, 3%);
+
+    .views-field-field-bill-position {
+      font-size: 1.2rem;
+      color: red;
+
+      .views-label-field-bill-position {
+        font-weight: bold;
+      }
+      .field-content {
+        display: inline-block;
+      }
+    }
+
+    .views-field-subject {
+      margin-bottom: 10px;
+      border-bottom: 1px solid lighten($dd-silver, 5%);
+    }
+
+    .views-label-bid-author {
+      font-weight: bold;
+      font-size: .9rem;
+    }
+
+    .bill__status {
+      .field-content {
+        text-transform: uppercase;
+        font-weight: lighter;
+      }
+    }
+
+    .bill__position {
+      display: inline-block;
+      margin-left: .5rem;
+    }
+
+    p {
+      margin : .5rem;
+    }
+  }
+
+  .ui-dialog {
+    padding: 0;
+  }
+}
+
+// Campaign Bills
+.campaign-bill--oppose {
+  background: url(/themes/custom/dd/components/components/organizations/circled-x-red.svg) no-repeat left bottom;
+  color: $dd-roman;
+}
+
+.campaign-bill--support {
+  background: url(/themes/custom/dd/components/components/organizations/checkmark-green.svg) no-repeat left bottom;
+  color: $dd-bayleaf;
+}
+
+.campaign-bill--support,
+.campaign-bill--oppose {
+  @include font-size(m);
+  background-size: 35px;
+  display: block;
+  font-weight: bold;
+  padding: 5px 42px 15px;
+}
+
+//============== Email Legislator Action Form ================
+form#ContactForm {
+  table {
+    tbody {
+      border-top: 0;
+
+      tr {
+        border-bottom: 0;
+        background-color: transparent;
+      }
+    }
+  }
+}

@@ -1,0 +1,44 @@
+# Dd fax service history routing definition
+dd_fax_service_history.settings_tab:
+  route_name: dd_fax_service_history.settings
+  title: 'Settings'
+  base_route: dd_fax_service_history.settings
+
+entity.dd_fax_service_history.canonical:
+  route_name: entity.dd_fax_service_history.canonical
+  base_route: entity.dd_fax_service_history.canonical
+  title: 'View'
+
+entity.dd_fax_service_history.edit_form:
+  route_name: entity.dd_fax_service_history.edit_form
+  base_route: entity.dd_fax_service_history.canonical
+  title: 'Edit'
+
+entity.dd_fax_service_history.delete_form:
+  route_name:  entity.dd_fax_service_history.delete_form
+  base_route:  entity.dd_fax_service_history.canonical
+  title: Delete
+  weight: 10
+
+# Dd fax service history routing definition
+dd_fax_service_history.settings_tab:
+  route_name: dd_fax_service_history.settings
+  title: 'Settings'
+  base_route: dd_fax_service_history.settings
+
+entity.dd_fax_service_history.canonical:
+  route_name: entity.dd_fax_service_history.canonical
+  base_route: entity.dd_fax_service_history.canonical
+  title: 'View'
+
+entity.dd_fax_service_history.edit_form:
+  route_name: entity.dd_fax_service_history.edit_form
+  base_route: entity.dd_fax_service_history.canonical
+  title: 'Edit'
+
+entity.dd_fax_service_history.delete_form:
+  route_name:  entity.dd_fax_service_history.delete_form
+  base_route:  entity.dd_fax_service_history.canonical
+  title: Delete
+  weight: 10
+

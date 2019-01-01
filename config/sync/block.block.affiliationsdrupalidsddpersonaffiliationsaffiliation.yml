@@ -1,0 +1,34 @@
+uuid: e73d60f0-4d7b-4193-9e82-885a7f76f924
+langcode: en
+status: true
+dependencies:
+  config:
+    - facets.facet.affiliations_drupal_ids_dd_person_affiliations_aff
+  module:
+    - facets
+    - system
+  theme:
+    - dd
+id: affiliationsdrupalidsddpersonaffiliationsaffiliation
+theme: dd
+region: sidebar_first
+weight: -37
+provider: null
+plugin: 'facet_block:affiliations_drupal_ids_dd_person_affiliations_aff'
+settings:
+  id: 'facet_block:affiliations_drupal_ids_dd_person_affiliations_aff'
+  label: Affiliations
+  provider: facets
+  label_display: visible
+visibility:
+  other_facet:
+    id: other_facet
+    facets: 'facet_block:affiliations_drupal_ids_dd_person_affiliations_aff'
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: /persons
+    negate: false
+    context_mapping: {  }

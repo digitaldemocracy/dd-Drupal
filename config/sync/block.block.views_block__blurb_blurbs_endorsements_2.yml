@@ -1,0 +1,46 @@
+uuid: 403093ed-994b-4dc3-be02-430e10c91fa9
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.blurb
+  module:
+    - block_visibility_groups
+    - facets
+    - request_parameter_condition
+    - views
+  theme:
+    - dd
+id: views_block__blurb_blurbs_endorsements_2
+theme: dd
+region: home_triptych_middle
+weight: -50
+provider: null
+plugin: 'views_block:blurb-blurbs_endorsements'
+settings:
+  id: 'views_block:blurb-blurbs_endorsements'
+  label: ''
+  provider: views
+  label_display: visible
+  views_label: ''
+  items_per_page: none
+visibility:
+  condition_group:
+    id: condition_group
+    negate: false
+    block_visibility_group: ''
+    context_mapping: {  }
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_parameter:
+    id: request_parameter
+    parameter: ''
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: false
+    context_mapping: {  }

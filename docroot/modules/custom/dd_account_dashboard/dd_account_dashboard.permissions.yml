@@ -1,0 +1,22 @@
+add dd saved content entities:
+  title: 'Create new DD Saved Content entities'
+
+administer dd saved content entities:
+  title: 'Administer DD Saved Content entities'
+  description: 'Allow to access the administration form to configure DD Saved Content entities.'
+  restrict access: true
+
+delete dd saved content entities:
+  title: 'Delete DD Saved Content entities'
+
+edit dd saved content entities:
+  title: 'Edit DD Saved Content entities'
+
+access dd saved content overview:
+  title: 'Access the DD Saved Content overview page'
+
+view published dd saved content entities:
+  title: 'View published DD Saved Content entities'
+
+view unpublished dd saved content entities:
+  title: 'View unpublished DD Saved Content entities'

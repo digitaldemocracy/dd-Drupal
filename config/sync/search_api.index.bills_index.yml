@@ -1,0 +1,233 @@
+uuid: 04fe7690-61e8-4afd-bee0-b174cbc9e943
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_bill
+    - dd_person
+    - search_api
+    - search_api_solr
+  config:
+    - search_api.server.bills_server
+id: bills_index
+name: 'Bills Index'
+description: ''
+read_only: false
+field_settings:
+  bid:
+    label: 'Bill ID'
+    datasource_id: 'entity:dd_bill'
+    property_path: bid
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  bill_author_first:
+    label: 'Primary Author PID » DD Person » First Name'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'primary_author_pid:entity:first'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  bill_author_last:
+    label: 'Primary Author PID » DD Person » Last Name'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'primary_author_pid:entity:last'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  bill_session_year:
+    label: 'Session Year'
+    datasource_id: 'entity:dd_bill'
+    property_path: sessionYear
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  bill_state:
+    label: 'Bill State'
+    datasource_id: 'entity:dd_bill'
+    property_path: billState
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  bill_state_abbr:
+    label: State
+    datasource_id: 'entity:dd_bill'
+    property_path: state
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  digest:
+    label: 'BillVersionCurrent » DD Bill Version Current » Digest'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'bill_version_current_dr_id:entity:digest'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  dr_id:
+    label: ID
+    datasource_id: 'entity:dd_bill'
+    property_path: dr_id
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  fullname_firstlast_ft:
+    label: 'Primary Author PID » DD Person » Full Name - First Last'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'primary_author_pid:entity:fullname_firstlast'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  fullname_lastfirst:
+    label: 'Primary Author PID » DD Person » Full Name - Last, First'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'primary_author_pid:entity:fullname_lastfirst'
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  house:
+    label: House
+    datasource_id: 'entity:dd_bill'
+    property_path: house
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  number:
+    label: Number
+    datasource_id: 'entity:dd_bill'
+    property_path: number
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+  pid:
+    label: 'Primary Author PID » DD Person » ID'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'primary_author_pid:entity:pid'
+    type: integer
+    dependencies:
+      module:
+        - dd_bill
+        - dd_person
+        - dd_person
+  status:
+    label: Status
+    datasource_id: 'entity:dd_bill'
+    property_path: status
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  subject:
+    label: 'BillVersionCurrent » DD Bill Version Current » Subject'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'bill_version_current_dr_id:entity:subject'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  text:
+    label: 'BillVersionCurrent » DD Bill Version Current » Text'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'bill_version_current_dr_id:entity:text'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  title:
+    label: 'BillVersionCurrent » DD Bill Version Current » Title'
+    datasource_id: 'entity:dd_bill'
+    property_path: 'bill_version_current_dr_id:entity:title'
+    type: text
+    dependencies:
+      module:
+        - dd_bill
+        - dd_bill
+        - dd_bill
+  type:
+    label: Type
+    datasource_id: 'entity:dd_bill'
+    property_path: type
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+  type_number:
+    label: 'Bill Type / Number'
+    datasource_id: 'entity:dd_bill'
+    property_path: type_number
+    type: string
+    dependencies:
+      module:
+        - dd_bill
+datasource_settings:
+  'entity:dd_bill': {  }
+processor_settings:
+  add_url: {  }
+  aggregated_field: {  }
+  highlight:
+    highlight: always
+    excerpt: true
+    excerpt_length: 256
+    exclude_fields:
+      - fullname_firstlast_ft
+      - subject
+      - title
+    prefix: '<strong>'
+    suffix: '</strong>'
+    weights:
+      postprocess_query: 0
+    highlight_partial: false
+  html_filter:
+    fields:
+      - digest
+      - subject
+      - text
+      - title
+    title: false
+    alt: false
+    tags:
+      b: 2
+      em: 1
+      h1: 5
+      h2: 3
+      h3: 2
+      strong: 2
+      u: 1
+    weights:
+      preprocess_index: -10
+      preprocess_query: -10
+    all_fields: false
+  rendered_item: {  }
+  solr_date_range: {  }
+tracker_settings:
+  default:
+    indexing_order: fifo
+options:
+  index_directly: true
+  cron_limit: 0
+server: bills_server

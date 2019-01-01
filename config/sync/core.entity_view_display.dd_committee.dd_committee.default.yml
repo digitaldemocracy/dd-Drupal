@@ -1,0 +1,44 @@
+uuid: 01bf2005-bad6-4ada-8126-94a5a90a74fd
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_committee
+id: dd_committee.dd_committee.default
+targetEntityType: dd_committee
+bundle: dd_committee
+mode: default
+content:
+  member_pids:
+    label: above
+    type: entity_reference_entity_view
+    weight: 6
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    region: content
+  name:
+    label: hidden
+    type: string
+    weight: 0
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    region: content
+hidden:
+  cid: true
+  cn_id: true
+  committee_authors: true
+  current_flag: true
+  email: true
+  fax: true
+  hids: true
+  house: true
+  house_type: true
+  phone: true
+  room: true
+  session_year: true
+  short_name: true
+  state: true
+  type: true

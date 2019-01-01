@@ -1,0 +1,266 @@
+@import 'init';
+
+// Change the default sub-directory for the image-url() mixin.
+$image-url-subdirectory: 'components/video-clip/icons';
+
+.left-vceditor.col-sm-7 {
+  //min-width: 751px;
+  min-width: 100%;
+}
+
+.col4 {
+  float: left;
+  width: 30%;
+  margin: 14px;
+}
+
+.cp-video {
+	background: #000;
+	text-align: center;
+}
+
+.my-cp-video {
+	min-height: 402px;
+	position: relative;
+}
+
+.cp-video-details {
+  background: #4b4b4b;
+  padding: 8px;
+  color: #fff;
+}
+
+.cp-video-details a {
+	color: #fff;
+	text-decoration: none;
+
+}
+
+.cp-video-title {
+	height: 65px;
+}
+
+.cp-video-title a {
+	line-height: 1.2;
+}
+
+.cp-video-share ul {
+	list-style: none;
+  margin: 0;
+  padding: 0;
+  float: left;
+  padding-top: 5px;
+}
+
+.cp-video-size .status {
+  float: left;
+  background: image-url('cp-lock-open.png') no-repeat;
+  background-size: 13px 16px;
+  padding-left: 25px;
+  background-position: 0 0;
+  padding-top: 2px;
+}
+
+.cp-video-size .size {
+	float: right;
+}
+
+.cp-video-tag {
+  background-color: #f8d51b;
+  color: #4b4b4b;
+  border-radius: 5px;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.cp-video-tag-active {
+  background-color: #4b4b4b;
+  color: #f8d51b;
+}
+
+.page-my-clip-bank .cp-video-tags {
+  margin: 10px;
+  background: inherit;
+}
+
+.cp-video-op a {
+	background: rgba(0, 0, 0, 0) image-url('cp-play.png') no-repeat scroll 0 0;
+  width: 34px;
+  height: 34px;
+  margin: 0;
+  cursor: pointer;
+  display: block;
+  float: left;
+  margin-bottom: 20px;
+}
+
+.cp-video-op a:hover {
+	background: rgba(0, 0, 0, 0) image-url('cp-play-hover.png') no-repeat scroll 0 0;
+}
+
+.cp-video-op a.cb-annotate-video {
+	background: rgba(0, 0, 0, 0) image-url('cp-annotate.png') no-repeat scroll 0 0;
+	margin-left: 5px;
+
+  &:hover {
+  	background: rgba(0, 0, 0, 0) image-url('cp-annotate-hover.png') no-repeat scroll 0 0;
+  }
+}
+
+.cp-video-op a.cb-edit-video {
+	background: rgba(0, 0, 0, 0) image-url('cp-edit.png') no-repeat scroll 0 0;
+	margin-left: 5px;
+
+  &:hover {
+  	background: rgba(0, 0, 0, 0) image-url('cp-edit-hover.png') no-repeat scroll 0 0;
+  }
+}
+
+.cp-video-op a.cb-clip-video {
+	background: rgba(0, 0, 0, 0) image-url('cp-clip.png') no-repeat scroll 0 0;
+	margin-left: 5px;
+
+  &:hover {
+  	background: rgba(0, 0, 0, 0) image-url('cp-clip-hover.png') no-repeat scroll 0 0;
+  }
+}
+
+.cp-video-op a.clip_delete {
+	background: rgba(0, 0, 0, 0) image-url('cp-delete.png') no-repeat scroll 0 0;
+	margin-left: 5px;
+
+  &:hover {
+  	background: rgba(0, 0, 0, 0) image-url('cp-delete-hover.png') no-repeat scroll 0 0;
+  }
+}
+
+.cp-video-op a.clip_share {
+	background: rgba(0, 0, 0, 0) image-url('cp-share.png') no-repeat scroll 0 0;
+	margin-left: 5px;
+
+  &:hover {
+  	background: rgba(0, 0, 0, 0) image-url('cp-share-hover.png') no-repeat scroll 0 0;
+  }
+}
+
+.cp-video-share {
+	background: #2f2f2f;
+	padding: 10px 8px 15px 20px;
+	color: #c8c8c8;
+	position: relative;
+}
+
+.cp-video-size .private.status {
+	background: image-url('cp-lock.png') no-repeat;
+}
+
+.share-label {
+	float: left;
+  margin-right: 5px;
+  padding-top: 10px;
+}
+
+.cp-video-share a {
+  width: 23px;
+  height: 23px;
+  display: block;
+}
+
+.cp-video-share ul li {
+  width: 23px;
+  height: 23px;
+  margin-left: 5px;
+  cursor: pointer;
+  display: block;
+  float: left;
+}
+
+.cp-video-share ul li.facebook {
+	background: image-url('cp-facebook.png') no-repeat;
+}
+
+.cp-video-share ul li.facebook:hover {
+	background: image-url('cp-facebook-hover.png') no-repeat;
+}
+
+.cp-video-share ul li.twitter {
+	background: image-url('cp-twitter.png') no-repeat;
+}
+
+.cp-video-share ul li.twitter:hover {
+	background: image-url('cp-twitter-hover.png') no-repeat;
+}
+
+.cp-video-share ul li.google {
+	background: image-url('cp-google.png') no-repeat;
+}
+
+.cp-video-share ul li.google:hover {
+	background: image-url('cp-google-hover.png') no-repeat;
+}
+
+.cp-video-share ul li.in {
+	background: image-url('cp-linkdin.png') no-repeat;
+}
+
+.cp-video-share ul li.in:hover {
+	background: image-url('cp-linkdin-hover.png') no-repeat;
+}
+
+.cp-video-share ul li.embed {
+	background: image-url('cp-embed.png') no-repeat;
+}
+
+.clip-bank .embed-clip-video {
+	position: absolute;
+  width: 90%;
+  text-align: center;
+  padding: 10px;
+  background: #fff;
+  bottom: 150px;
+  margin: 0 15px;
+}
+
+
+.clip-bank .embed-clip-video textarea {
+	width: 96%;
+  overflow-x: hidden;
+  resize: none;
+  height: 20px;
+}
+
+
+.my-cp-video.opned-embed .embed-clip-video-wrapper {
+  position: absolute;
+  background: #000;
+  z-index: 99;
+  width: 100%;
+  height: 95%;
+  opacity: .8;
+}
+
+.embed-clip-video-wrapper span.embed-close {
+  position: absolute;
+  right: 15px;
+  top: 165px;
+  background-image: image-url('cancel-clip.png');
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  background-size: 25px 25px;
+  z-index: 101;
+  display: none;
+}
+
+.my-cp-video.opned-embed .embed-clip-video-wrapper span.embed-close {
+display: block;
+}
+
+#edit-submit {
+  box-shadow: none;
+}
+
+fieldset > legend {
+  display: none;
+}

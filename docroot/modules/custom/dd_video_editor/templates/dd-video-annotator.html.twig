@@ -1,0 +1,60 @@
+<script type="application/json" id="annotations-json">
+{{ annotations_json|raw }}
+</script>
+
+<div class="video-area">
+  <div class="row" style="margin:0;">
+    <section class="col-sm-12">
+      <div id="saveRow">
+        {{ form }}
+      </div>
+      <div class="left-vceditor"> 
+        <div class="vc-header vc-title">
+          <h1 class="vc-page-header">{{ video_title }}</h1>
+          <span class="vc-month">Clip Created on: {{ clip_date }}</span>
+        </div>  
+        <div id="annotations" class="videoPlayer-dimensions"></div>
+        <div class="vc-video">
+          <video id="player1" class="video-js vjs-default-skin"
+            controls preload="auto" width="640" height="360" 
+            data-videoid="{{ video_id }}" poster="{{ thumbnail }}">
+                    <source src="{{ video_file }}"  type="{{ video_type }}">
+          </video>
+        </div>
+        <div id="timeline"></div>
+      </div>
+      <div class="right-vcbank">  
+        <button id="addAnnoBtn" type="button">
+          <span class="glyphicon glyphicon-plus"></span>Add Annotation
+        </button>
+        <button class="trackEdit" id="trackDeleteBtn" type="button">
+          <span class="glyphicon glyphicon-trash"></span>
+        </button>
+        <div class="trackEdit">
+          <label>Font
+            <div id="trackFont" class="fontSelect ui-corner-all ui-widget-content">
+              <div class="arrow-down"></div>
+            </div>
+          </label>
+          <div class="tool-col">
+            <input id="trackFontSize" type="text">
+          </div>
+          <div class="tool-col">
+            <input id="trackFontColor" type="text">
+          </div>
+          <label id="textTool">Text <textarea id="trackContent"></textarea></label>
+          <div class="tool-col">
+            <label>Start <input id="trackStart" type="text"></label>
+          </div>
+          <div class="tool-col">
+            <label>Stop <input id="trackEnd" type="text"></label>
+          </div>
+          <label>Fill <input id="trackColor" type="text"></label>
+          <label><input id="trackEnableLink" type="checkbox">Enable Link</label>
+          <label>Link-URL <input id="trackLink" type="text"></label>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+{{ attach_library('dd/dd-video-annotator') }}

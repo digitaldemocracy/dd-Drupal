@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_legislator.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_legislator_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_legislator module.
+    case 'help.page.dd_legislator':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('DD Legislator Entity') . '</p>';
+      return $output;
+
+    default:
+  }
+}

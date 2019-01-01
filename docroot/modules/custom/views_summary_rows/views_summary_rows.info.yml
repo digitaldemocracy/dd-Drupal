@@ -1,0 +1,5 @@
+name: Views Summary Rows
+type: module
+description: Adds a Views Area plugin for showing summary data in a header or footer.
+core: 8.x
+package: Views

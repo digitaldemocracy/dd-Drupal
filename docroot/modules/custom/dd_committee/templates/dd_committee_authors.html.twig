@@ -1,0 +1,22 @@
+{#
+/**
+ * @file dd_committee_authors.html.twig
+ * Default theme implementation to present DD Committee Authors data.
+ *
+ * This template is used when viewing DD Committee Authors pages.
+ *
+ *
+ * Available variables:
+ * - content: A list of content items. Use 'content' to print all content, or
+ * - attributes: HTML attributes for the container element.
+ *
+ * @see template_preprocess_dd_committee_authors()
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes.addClass('dd_committee_authors') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</div>

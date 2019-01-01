@@ -1,0 +1,15 @@
+uuid: 2a6eb190-705f-443d-bf20-619e33295e9e
+langcode: en
+status: true
+dependencies: {  }
+name: thumbnail_override
+label: 'Thumbnail 236x177'
+effects:
+  146ef7af-0d2d-484b-878a-3b04fe698e7c:
+    uuid: 146ef7af-0d2d-484b-878a-3b04fe698e7c
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 236
+      height: 177
+      anchor: center-center

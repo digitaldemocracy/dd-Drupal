@@ -1,0 +1,22 @@
+uuid: 6f856d5c-26d3-4e37-bf76-6eb1ccd59588
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.campaign
+id: node.campaign.status
+field_name: status
+entity_type: node
+bundle: campaign
+label: 'Publishing status'
+description: 'A boolean indicating whether the node is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

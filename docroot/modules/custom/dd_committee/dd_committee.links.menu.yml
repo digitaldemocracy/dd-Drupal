@@ -1,0 +1,39 @@
+# DD Committee menu items definition
+entity.dd_committee.collection:
+  title: 'DD Committee list'
+  route_name: entity.dd_committee.collection
+  description: 'List DD Committee entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_committee.admin.structure.settings:
+  title: DD Committee settings
+  description: 'Configure DD Committee entities'
+  route_name: dd_committee.settings
+  parent: system.admin_structure
+# DD Committee Authors menu items definition
+entity.dd_committee_authors.collection:
+  title: 'DD Committee - DD Committee Authors list'
+  route_name: entity.dd_committee_authors.collection
+  description: 'List DD Committee Authors entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_committee_authors.admin.structure.settings:
+  title: DD Committee - DD Committee Authors settings
+  description: 'Configure DD Committee Authors entities'
+  route_name: dd_committee_authors.settings
+  parent: system.admin_structure
+# DD ServesOn menu items definition
+entity.dd_serves_on.collection:
+  title: 'DD Committee - DD ServesOn list'
+  route_name: entity.dd_serves_on.collection
+  description: 'List DD ServesOn entities'
+  parent: system.admin_structure
+  weight: 100
+
+dd_serves_on.admin.structure.settings:
+  title: DD Committee - DD ServesOn settings
+  description: 'Configure DD ServesOn entities'
+  route_name: dd_serves_on.settings
+  parent: system.admin_structure

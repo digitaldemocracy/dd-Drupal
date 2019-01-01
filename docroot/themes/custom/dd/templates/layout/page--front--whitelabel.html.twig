@@ -1,0 +1,24 @@
+{% extends "page--front--default.html.twig" %}
+
+{% block header %}
+  <header class="header header__region" role="banner">
+    {% if page.top %}
+      <section class ="top__region layout-center"> {{ page.top }} </section>
+    {% endif %}
+    <section class = "layout-center branding__region">
+      <div class = "page-header__region"> {{ page.header }} </div>
+      <section class = "main-menu__region">
+        {# Navigation hamburger toggle icon markup for the mobile menu #}
+        <a class = "js-nav-menu-toggle menu__hamburger-icon">
+          <div class='nav-icon1'>
+            <span>toggle-menu</span>
+            <span>toggle-menu</span>
+            <span>toggle-menu</span>
+          </div>
+        </a>
+        {{ page.primary_menu }}
+      </section>
+    </section>
+    {{ page.secondary_menu }}
+  </header>
+{% endblock %}

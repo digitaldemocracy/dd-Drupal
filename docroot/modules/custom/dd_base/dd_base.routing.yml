@@ -1,0 +1,17 @@
+dd_account_dashboard.add_bookmark:
+  path: '/bookmark/add/{type}'
+  defaults:
+    _form: '\Drupal\dd_account_dashboard\Form\DdSavedContentAddForm'
+    _title: 'Add Saved Content'
+  requirements:
+    _permission: 'access content'
+    _user_is_logged_in: 'TRUE'
+  options:
+    no_cache: TRUE
+
+dd_base.dd_state_select_controller_ShowStateSelectBlock:
+  path: '/dd_base/show_state_select_block'
+  defaults:
+    _controller: '\Drupal\dd_base\Controller\DdStateSelectController::ShowStateSelectBlock'
+  requirements:
+    _permission: 'access content'

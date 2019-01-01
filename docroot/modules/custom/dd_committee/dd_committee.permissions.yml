@@ -1,0 +1,50 @@
+administer dd committee entities:
+  title: 'Administer DD Committee entities'
+  description: 'Allow to access the administration form to configure DD Committee entities.'
+  restrict access: true
+
+edit dd committee entities:
+  title: 'Edit DD Committee entities'
+
+access dd committee overview:
+  title: 'Access the DD Committee overview page'
+
+view published dd committee entities:
+  title: 'View published DD Committee entities'
+
+view unpublished dd committee entities:
+  title: 'View unpublished DD Committee entities'
+
+administer dd committee authors entities:
+  title: 'Administer DD Committee Authors entities'
+  description: 'Allow to access the administration form to configure DD Committee Authors entities.'
+  restrict access: true
+
+edit dd committee authors entities:
+  title: 'Edit DD Committee Authors entities'
+
+access dd committee authors overview:
+  title: 'Access the DD Committee Authors overview page'
+
+view published dd committee authors entities:
+  title: 'View published DD Committee Authors entities'
+
+view unpublished dd committee authors entities:
+  title: 'View unpublished DD Committee Authors entities'
+
+administer dd serveson entities:
+  title: 'Administer DD ServesOn entities'
+  description: 'Allow to access the administration form to configure DD ServesOn entities.'
+  restrict access: true
+
+edit dd serveson entities:
+  title: 'Edit DD ServesOn entities'
+
+access dd serveson overview:
+  title: 'Access the DD ServesOn overview page'
+
+view published dd serveson entities:
+  title: 'View published DD ServesOn entities'
+
+view unpublished dd serveson entities:
+  title: 'View unpublished DD ServesOn entities'

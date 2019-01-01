@@ -1,0 +1,7 @@
+uuid: e9c958ef-5595-47ae-a10d-bd1046e291c0
+langcode: en
+status: true
+dependencies: {  }
+formId: dd_fax_service_preview_fax_form
+captchaType: recaptcha/reCAPTCHA
+label: dd_fax_service_preview_fax_form

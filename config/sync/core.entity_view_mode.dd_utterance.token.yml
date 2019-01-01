@@ -1,0 +1,10 @@
+uuid: 0c58c6e2-c2fe-4750-902b-08da5dcce5b6
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_utterance
+id: dd_utterance.token
+label: Token
+targetEntityType: dd_utterance
+cache: true

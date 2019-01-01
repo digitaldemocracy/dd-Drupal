@@ -1,0 +1,8 @@
+uuid: edc90dee-2a52-4674-90e8-7b4bec953e8d
+langcode: en
+status: true
+dependencies: {  }
+id: social
+label: Social
+description: 'Links to Facebook, Twitter, etc'
+locked: false

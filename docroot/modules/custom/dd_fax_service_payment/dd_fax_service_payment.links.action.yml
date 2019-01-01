@@ -1,0 +1,5 @@
+entity.dd_fax_service_payment_entity.add_form:
+  route_name: entity.dd_fax_service_payment_entity.add_form
+  title: 'Add Dd fax service payment entity'
+  appears_on:
+    - entity.dd_fax_service_payment_entity.collection

@@ -1,0 +1,14 @@
+uuid: 6566d160-7905-4f2a-963a-a0b289f424bb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cal_matters
+  module:
+    - user
+id: user_remove_role_action.cal_matters
+label: 'Remove the Cal Matters role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: cal_matters

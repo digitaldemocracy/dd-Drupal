@@ -1,0 +1,7 @@
+dd_committee.view_by_cn_id:
+  path: '/committee/{cn_id}'
+  defaults:
+    _controller: '\Drupal\dd_committee\Controller\DdCommitteeViewController::viewCommitteeByCommitteeNameId'
+    _title: 'View Committee by Committee Name ID'
+  requirements:
+    _permission: 'access content'

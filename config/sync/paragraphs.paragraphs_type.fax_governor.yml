@@ -1,0 +1,7 @@
+uuid: e53d3930-02e6-4076-b3e2-ab1796acaed6
+langcode: en
+status: true
+dependencies: {  }
+id: fax_governor
+label: 'Fax Governor'
+behavior_plugins: {  }

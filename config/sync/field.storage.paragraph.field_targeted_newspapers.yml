@@ -1,0 +1,1272 @@
+uuid: 0bdb10d2-65cc-45c8-8f0b-4a95e9e76d94
+langcode: en
+status: true
+dependencies:
+  module:
+    - options
+    - paragraphs
+id: paragraph.field_targeted_newspapers
+field_name: field_targeted_newspapers
+entity_type: paragraph
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'A&E'
+      label: 'A&E'
+    -
+      value: Adelante
+      label: Adelante
+    -
+      value: Agenda
+      label: Agenda
+    -
+      value: 'Al Borde'
+      label: 'Al Borde'
+    -
+      value: 'Al Jadid'
+      label: 'Al Jadid'
+    -
+      value: Al-Akhbar
+      label: Al-Akhbar
+    -
+      value: Al-Watan
+      label: Al-Watan
+    -
+      value: 'Amador Ledger Dispatch'
+      label: 'Amador Ledger Dispatch'
+    -
+      value: 'American Indian Culture & Research Journal'
+      label: 'American Indian Culture & Research Journal'
+    -
+      value: 'Antelope Valley Journal'
+      label: 'Antelope Valley Journal'
+    -
+      value: 'Antelope Valley Press'
+      label: 'Antelope Valley Press'
+    -
+      value: 'Antelope Valley Press Online'
+      label: 'Antelope Valley Press Online'
+    -
+      value: 'Arvin Tiller'
+      label: 'Arvin Tiller'
+    -
+      value: 'Arvin Tiller & Lamont Reporter Newspapers'
+      label: 'Arvin Tiller & Lamont Reporter Newspapers'
+    -
+      value: 'Asian Enterprise Magazine'
+      label: 'Asian Enterprise Magazine'
+    -
+      value: 'Atascadero News'
+      label: 'Atascadero News'
+    -
+      value: 'Auburn Journal'
+      label: 'Auburn Journal'
+    -
+      value: 'Auburn Journal Online'
+      label: 'Auburn Journal Online'
+    -
+      value: AutoWire.Net
+      label: AutoWire.Net
+    -
+      value: 'Awareness Magazine'
+      label: 'Awareness Magazine'
+    -
+      value: 'Azteca News'
+      label: 'Azteca News'
+    -
+      value: 'Azusa Herald Highlander'
+      label: 'Azusa Herald Highlander'
+    -
+      value: 'Bakersfield Californian Online'
+      label: 'Bakersfield Californian Online'
+    -
+      value: 'Bakersfield News Observer'
+      label: 'Bakersfield News Observer'
+    -
+      value: Beachcomber
+      label: Beachcomber
+    -
+      value: 'Beirut Times'
+      label: 'Beirut Times'
+    -
+      value: 'Beirut Times Online'
+      label: 'Beirut Times Online'
+    -
+      value: 'Berkeley Tri-City Post'
+      label: 'Berkeley Tri-City Post'
+    -
+      value: Berkeleyside
+      label: Berkeleyside
+    -
+      value: 'Bert Dohmen''s Wellington Letter'
+      label: 'Bert Dohmen''s Wellington Letter'
+    -
+      value: 'Beverly Press/Park Labrea News'
+      label: 'Beverly Press/Park Labrea News'
+    -
+      value: 'Big Bear Grizzly'
+      label: 'Big Bear Grizzly'
+    -
+      value: 'Business Journal Online'
+      label: 'Business Journal Online'
+    -
+      value: 'Business Life'
+      label: 'Business Life'
+    -
+      value: 'Business Life Online'
+      label: 'Business Life Online'
+    -
+      value: 'C-Suite Quarterly'
+      label: 'C-Suite Quarterly'
+    -
+      value: 'CMEA Magazine'
+      label: 'CMEA Magazine'
+    -
+      value: CalContractor
+      label: CalContractor
+    -
+      value: 'California Advocate'
+      label: 'California Advocate'
+    -
+      value: 'California Advocate Online'
+      label: 'California Advocate Online'
+    -
+      value: 'California Buildings News'
+      label: 'California Buildings News'
+    -
+      value: 'California Courier'
+      label: 'California Courier'
+    -
+      value: 'California Crusader News'
+      label: 'California Crusader News'
+    -
+      value: 'California Management Review'
+      label: 'California Management Review'
+    -
+      value: 'California Planning & Development Report'
+      label: 'California Planning & Development Report'
+    -
+      value: Cam-News
+      label: Cam-News
+    -
+      value: 'Career Planning & Adult Development Network Newsletter'
+      label: 'Career Planning & Adult Development Network Newsletter'
+    -
+      value: 'Castro Valley Forum'
+      label: 'Castro Valley Forum'
+    -
+      value: 'Chico Enterprise-Record'
+      label: 'Chico Enterprise-Record'
+    -
+      value: 'Chino Champion'
+      label: 'Chino Champion'
+    -
+      value: 'Chino Hills Champion'
+      label: 'Chino Hills Champion'
+    -
+      value: 'Cloverdale Reveille'
+      label: 'Cloverdale Reveille'
+    -
+      value: 'Coalinga Recorder'
+      label: 'Coalinga Recorder'
+    -
+      value: 'Coastal Community Newspapers'
+      label: 'Coastal Community Newspapers'
+    -
+      value: 'Colton Courier'
+      label: 'Colton Courier'
+    -
+      value: 'Colusa County Sun-Herald'
+      label: 'Colusa County Sun-Herald'
+    -
+      value: 'Community News'
+      label: 'Community News'
+    -
+      value: 'Compendium Newsletter'
+      label: 'Compendium Newsletter'
+    -
+      value: 'County Legal Reporter'
+      label: 'County Legal Reporter'
+    -
+      value: 'Courts Today'
+      label: 'Courts Today'
+    -
+      value: 'Covina Press Courier Highlander'
+      label: 'Covina Press Courier Highlander'
+    -
+      value: 'Credit Union Digest'
+      label: 'Credit Union Digest'
+    -
+      value: 'Cultural News'
+      label: 'Cultural News'
+    -
+      value: 'Daily Democrat Online'
+      label: 'Daily Democrat Online'
+    -
+      value: 'Daily News'
+      label: 'Daily News'
+    -
+      value: 'Daily Press'
+      label: 'Daily Press'
+    -
+      value: 'Daily Press Online'
+      label: 'Daily Press Online'
+    -
+      value: 'Daily Republic'
+      label: 'Daily Republic'
+    -
+      value: 'Daily Republic Online'
+      label: 'Daily Republic Online'
+    -
+      value: 'Davis Enterprise Online'
+      label: 'Davis Enterprise Online'
+    -
+      value: 'Deal Lawyers'
+      label: 'Deal Lawyers'
+    -
+      value: 'Deal Lawyers Online'
+      label: 'Deal Lawyers Online'
+    -
+      value: 'Delano Record'
+      label: 'Delano Record'
+    -
+      value: 'Desert Life'
+      label: 'Desert Life'
+    -
+      value: 'Desert Magazine'
+      label: 'Desert Magazine'
+    -
+      value: 'Desert Sun Online'
+      label: 'Desert Sun Online'
+    -
+      value: 'Dixon''s Independent Voice'
+      label: 'Dixon''s Independent Voice'
+    -
+      value: 'Dynamic Chiropractic'
+      label: 'Dynamic Chiropractic'
+    -
+      value: 'East Bay Times'
+      label: 'East Bay Times'
+    -
+      value: 'East Bay Times Online'
+      label: 'East Bay Times Online'
+    -
+      value: 'East County Gazette'
+      label: 'East County Gazette'
+    -
+      value: Econews
+      label: Econews
+    -
+      value: Edutopia
+      label: Edutopia
+    -
+      value: 'El Chicano'
+      label: 'El Chicano'
+    -
+      value: 'El Clasificado'
+      label: 'El Clasificado'
+    -
+      value: 'El Clasificado Online'
+      label: 'El Clasificado Online'
+    -
+      value: 'El Hispano'
+      label: 'El Hispano'
+    -
+      value: 'El Informador del Valle'
+      label: 'El Informador del Valle'
+    -
+      value: 'El Latino San Diego'
+      label: 'El Latino San Diego'
+    -
+      value: 'El Latino San Diego Online'
+      label: 'El Latino San Diego Online'
+    -
+      value: 'El Mojave'
+      label: 'El Mojave'
+    -
+      value: 'El Mundo'
+      label: 'El Mundo'
+    -
+      value: 'El Observador'
+      label: 'El Observador'
+    -
+      value: 'El Observador Online'
+      label: 'El Observador Online'
+    -
+      value: 'Elk Grove Citizen'
+      label: 'Elk Grove Citizen'
+    -
+      value: 'Embarcadero Publishing - Palo Alto'
+      label: 'Embarcadero Publishing - Palo Alto'
+    -
+      value: 'Embarcadero Publishing - Palo Alto Online'
+      label: 'Embarcadero Publishing - Palo Alto Online'
+    -
+      value: 'Environmental Times'
+      label: 'Environmental Times'
+    -
+      value: 'Erosion Control Online'
+      label: 'Erosion Control Online'
+    -
+      value: 'Escalon Times'
+      label: 'Escalon Times'
+    -
+      value: 'Ferndale Enterprise'
+      label: 'Ferndale Enterprise'
+    -
+      value: 'Fibromyalgia Aware'
+      label: 'Fibromyalgia Aware'
+    -
+      value: 'Filipino Press'
+      label: 'Filipino Press'
+    -
+      value: 'Fillmore Gazette'
+      label: 'Fillmore Gazette'
+    -
+      value: 'Firebaugh-Mendota Journal'
+      label: 'Firebaugh-Mendota Journal'
+    -
+      value: 'Five Cities Times Press-Recorder Publishing'
+      label: 'Five Cities Times Press-Recorder Publishing'
+    -
+      value: 'Fontana Herald News'
+      label: 'Fontana Herald News'
+    -
+      value: 'Fontana Herald News Online'
+      label: 'Fontana Herald News Online'
+    -
+      value: Food
+      label: Food
+    -
+      value: 'Food & Drink'
+      label: 'Food & Drink'
+    -
+      value: 'Food & Wine'
+      label: 'Food & Wine'
+    -
+      value: 'Franchise Update'
+      label: 'Franchise Update'
+    -
+      value: 'Fullerton Observer'
+      label: 'Fullerton Observer'
+    -
+      value: 'German World'
+      label: 'German World'
+    -
+      value: 'Giant Robot'
+      label: 'Giant Robot'
+    -
+      value: 'Glendora Community News'
+      label: 'Glendora Community News'
+    -
+      value: 'Glendora/San Dimas/La Verne Highlander'
+      label: 'Glendora/San Dimas/La Verne Highlander'
+    -
+      value: 'Gonzales Tribune'
+      label: 'Gonzales Tribune'
+    -
+      value: 'Green Sheet'
+      label: 'Green Sheet'
+    -
+      value: 'Greenfield News'
+      label: 'Greenfield News'
+    -
+      value: 'Gringo Gazette'
+      label: 'Gringo Gazette'
+    -
+      value: 'HPRA: Hispanic Public Relations Association'
+      label: 'HPRA: Hispanic Public Relations Association'
+    -
+      value: 'Half Moon Bay Review'
+      label: 'Half Moon Bay Review'
+    -
+      value: 'Half Moon Bay Review Online'
+      label: 'Half Moon Bay Review Online'
+    -
+      value: 'Healdsburg Tribune'
+      label: 'Healdsburg Tribune'
+    -
+      value: 'Health Freedom News'
+      label: 'Health Freedom News'
+    -
+      value: 'Health Freedom News Online'
+      label: 'Health Freedom News Online'
+    -
+      value: 'Health Matters'
+      label: 'Health Matters'
+    -
+      value: 'Hellenic Journal'
+      label: 'Hellenic Journal'
+    -
+      value: 'Hesperia Star'
+      label: 'Hesperia Star'
+    -
+      value: 'Hesperia Star Online'
+      label: 'Hesperia Star Online'
+    -
+      value: 'High Rise Facilities'
+      label: 'High Rise Facilities'
+    -
+      value: 'Hispano Times'
+      label: 'Hispano Times'
+    -
+      value: 'Hispanos Unidos'
+      label: 'Hispanos Unidos'
+    -
+      value: 'Home & Garden'
+      label: 'Home & Garden'
+    -
+      value: HopeKeepers
+      label: HopeKeepers
+    -
+      value: HowToLearn.com
+      label: HowToLearn.com
+    -
+      value: 'Hugh Hewitt'
+      label: 'Hugh Hewitt'
+    -
+      value: Hullabaloo
+      label: Hullabaloo
+    -
+      value: 'Humor Times'
+      label: 'Humor Times'
+    -
+      value: 'ICFE Newsletter'
+      label: 'ICFE Newsletter'
+    -
+      value: 'IE Voice'
+      label: 'IE Voice'
+    -
+      value: 'II stix Magazine'
+      label: 'II stix Magazine'
+    -
+      value: 'Imperial Valley Press'
+      label: 'Imperial Valley Press'
+    -
+      value: 'Imperial Valley Press Online'
+      label: 'Imperial Valley Press Online'
+    -
+      value: 'In Motion Magazine'
+      label: 'In Motion Magazine'
+    -
+      value: 'India Post'
+      label: 'India Post'
+    -
+      value: 'Inglewood Today'
+      label: 'Inglewood Today'
+    -
+      value: 'Inland Empire Community Newspapers'
+      label: 'Inland Empire Community Newspapers'
+    -
+      value: Intercepts
+      label: Intercepts
+    -
+      value: 'Internet for Lawyers'
+      label: 'Internet for Lawyers'
+    -
+      value: 'KABC-AM Online'
+      label: 'KABC-AM Online'
+    -
+      value: 'KDFC-FM Online'
+      label: 'KDFC-FM Online'
+    -
+      value: 'KEYT-TV Online'
+      label: 'KEYT-TV Online'
+    -
+      value: 'KFMB-AM Online'
+      label: 'KFMB-AM Online'
+    -
+      value: 'KFSH-FM Online'
+      label: 'KFSH-FM Online'
+    -
+      value: 'KKJZ-FM Online'
+      label: 'KKJZ-FM Online'
+    -
+      value: 'KKLA-FM Online'
+      label: 'KKLA-FM Online'
+    -
+      value: 'KLLY-FM Online'
+      label: 'KLLY-FM Online'
+    -
+      value: 'KNZR-AM Online'
+      label: 'KNZR-AM Online'
+    -
+      value: 'KRLA-AM Online'
+      label: 'KRLA-AM Online'
+    -
+      value: 'KRON-TV Online'
+      label: 'KRON-TV Online'
+    -
+      value: 'KSRO-AM Online'
+      label: 'KSRO-AM Online'
+    -
+      value: 'KUSI-TV Online'
+      label: 'KUSI-TV Online'
+    -
+      value: 'Kerman News'
+      label: 'Kerman News'
+    -
+      value: 'Khmer Post Online'
+      label: 'Khmer Post Online'
+    -
+      value: 'King City Rustler'
+      label: 'King City Rustler'
+    -
+      value: 'L'' Italo Americano'
+      label: 'L'' Italo Americano'
+    -
+      value: 'L'' Italo Americano Online'
+      label: 'L'' Italo Americano Online'
+    -
+      value: 'LAAHU Times'
+      label: 'LAAHU Times'
+    -
+      value: 'La Canada Flintridge'
+      label: 'La Canada Flintridge'
+    -
+      value: 'La Canada Flintridge Outlook Weeklies'
+      label: 'La Canada Flintridge Outlook Weeklies'
+    -
+      value: 'La Mirada Lamplighter'
+      label: 'La Mirada Lamplighter'
+    -
+      value: 'La Nueva Voz'
+      label: 'La Nueva Voz'
+    -
+      value: 'La Opinión'
+      label: 'La Opinión'
+    -
+      value: 'La Prensa Hispana-L.A.'
+      label: 'La Prensa Hispana-L.A.'
+    -
+      value: 'La Puente Highlander'
+      label: 'La Puente Highlander'
+    -
+      value: 'La Vibra'
+      label: 'La Vibra'
+    -
+      value: 'La Voz Bilingual Newspaper'
+      label: 'La Voz Bilingual Newspaper'
+    -
+      value: 'Laguna Woods Globe'
+      label: 'Laguna Woods Globe'
+    -
+      value: 'Lake County Record-Bee'
+      label: 'Lake County Record-Bee'
+    -
+      value: 'Lake County Record-Bee Online'
+      label: 'Lake County Record-Bee Online'
+    -
+      value: 'Lake Tahoe News'
+      label: 'Lake Tahoe News'
+    -
+      value: 'Lakewood Community News'
+      label: 'Lakewood Community News'
+    -
+      value: 'Lamont Reporter'
+      label: 'Lamont Reporter'
+    -
+      value: 'Lamorinda Sun'
+      label: 'Lamorinda Sun'
+    -
+      value: 'Latin American Perspectives'
+      label: 'Latin American Perspectives'
+    -
+      value: 'Latin Heat'
+      label: 'Latin Heat'
+    -
+      value: 'Latin Heat Online'
+      label: 'Latin Heat Online'
+    -
+      value: Latinopia
+      label: Latinopia
+    -
+      value: 'Latinos Corriendo'
+      label: 'Latinos Corriendo'
+    -
+      value: 'Lee Newspapers'
+      label: 'Lee Newspapers'
+    -
+      value: 'Life Enhancement Products'
+      label: 'Life Enhancement Products'
+    -
+      value: LifeStyle
+      label: LifeStyle
+    -
+      value: 'Lodi News-Sentinel'
+      label: 'Lodi News-Sentinel'
+    -
+      value: 'Lodi News-Sentinel Online'
+      label: 'Lodi News-Sentinel Online'
+    -
+      value: 'Long Beach Navy Dispatch'
+      label: 'Long Beach Navy Dispatch'
+    -
+      value: 'Long Beach Press-Telegram Online'
+      label: 'Long Beach Press-Telegram Online'
+    -
+      value: 'Loomis News'
+      label: 'Loomis News'
+    -
+      value: 'Los Angeles Bay News Observer - Valley Edition'
+      label: 'Los Angeles Bay News Observer - Valley Edition'
+    -
+      value: 'Los Angeles News Observer - Inglewood'
+      label: 'Los Angeles News Observer - Inglewood'
+    -
+      value: 'M Magazine'
+      label: 'M Magazine'
+    -
+      value: 'Madera Tribune Online'
+      label: 'Madera Tribune Online'
+    -
+      value: 'Malibu Surfside News'
+      label: 'Malibu Surfside News'
+    -
+      value: 'Malibu Surfside News Online'
+      label: 'Malibu Surfside News Online'
+    -
+      value: 'Malibu Times'
+      label: 'Malibu Times'
+    -
+      value: 'Malibu Times Online'
+      label: 'Malibu Times Online'
+    -
+      value: 'Mammoth Times'
+      label: 'Mammoth Times'
+    -
+      value: 'Mammoth Times Online'
+      label: 'Mammoth Times Online'
+    -
+      value: 'Manteca Bulletin'
+      label: 'Manteca Bulletin'
+    -
+      value: 'Marin Post'
+      label: 'Marin Post'
+    -
+      value: 'Marinscope Community Newspapers'
+      label: 'Marinscope Community Newspapers'
+    -
+      value: 'Mendota Journal'
+      label: 'Mendota Journal'
+    -
+      value: 'Metropolitan News Company'
+      label: 'Metropolitan News Company'
+    -
+      value: 'Metropolitan News-Enterprise'
+      label: 'Metropolitan News-Enterprise'
+    -
+      value: 'Mexico Traveler'
+      label: 'Mexico Traveler'
+    -
+      value: 'Mid Valley Publishing - Reedley'
+      label: 'Mid Valley Publishing - Reedley'
+    -
+      value: Miniondas
+      label: Miniondas
+    -
+      value: 'Mobilehome Parks Report'
+      label: 'Mobilehome Parks Report'
+    -
+      value: 'Modesto Bee Online'
+      label: 'Modesto Bee Online'
+    -
+      value: 'Modoc County Record'
+      label: 'Modoc County Record'
+    -
+      value: 'Mojave Desert News'
+      label: 'Mojave Desert News'
+    -
+      value: 'Mojave Desert News Online'
+      label: 'Mojave Desert News Online'
+    -
+      value: Money
+      label: Money
+    -
+      value: 'Monterey County Herald Online'
+      label: 'Monterey County Herald Online'
+    -
+      value: 'Monterey Park Journal'
+      label: 'Monterey Park Journal'
+    -
+      value: 'Morgan Hill Times'
+      label: 'Morgan Hill Times'
+    -
+      value: 'Mountain Democrat'
+      label: 'Mountain Democrat'
+    -
+      value: 'Mountain Democrat Online'
+      label: 'Mountain Democrat Online'
+    -
+      value: 'Mountain View Voice'
+      label: 'Mountain View Voice'
+    -
+      value: 'Multi-Unit Franchise'
+      label: 'Multi-Unit Franchise'
+    -
+      value: NAPAbroadcasting.com
+      label: NAPAbroadcasting.com
+    -
+      value: 'Nail It! Online'
+      label: 'Nail It! Online'
+    -
+      value: 'News from Native California'
+      label: 'News from Native California'
+    -
+      value: News-Enterprise
+      label: News-Enterprise
+    -
+      value: NewsInc.
+      label: NewsInc.
+    -
+      value: 'Nichi Bei Weekly'
+      label: 'Nichi Bei Weekly'
+    -
+      value: 'Nichi Bei Weekly Online'
+      label: 'Nichi Bei Weekly Online'
+    -
+      value: NikkeiWest
+      label: NikkeiWest
+    -
+      value: 'Noe Valley Voice Online'
+      label: 'Noe Valley Voice Online'
+    -
+      value: 'Not Born Yesterday'
+      label: 'Not Born Yesterday'
+    -
+      value: 'Noticiero Semanal'
+      label: 'Noticiero Semanal'
+    -
+      value: 'Oakdale Leader'
+      label: 'Oakdale Leader'
+    -
+      value: 'Oakdale Leader Online'
+      label: 'Oakdale Leader Online'
+    -
+      value: 'Oakland Post'
+      label: 'Oakland Post'
+    -
+      value: 'Opinión Online'
+      label: 'Opinión Online'
+    -
+      value: 'Orange County Lawyer'
+      label: 'Orange County Lawyer'
+    -
+      value: 'Outdoor California'
+      label: 'Outdoor California'
+    -
+      value: 'Pacifica Tribune'
+      label: 'Pacifica Tribune'
+    -
+      value: 'Pakistan Link'
+      label: 'Pakistan Link'
+    -
+      value: 'Palo Alto Weekly'
+      label: 'Palo Alto Weekly'
+    -
+      value: 'Palo Verde Valley & Quartzsite Times'
+      label: 'Palo Verde Valley & Quartzsite Times'
+    -
+      value: 'Palo Verde Valley Times'
+      label: 'Palo Verde Valley Times'
+    -
+      value: 'Paradise Post'
+      label: 'Paradise Post'
+    -
+      value: 'Pasadena Outlook'
+      label: 'Pasadena Outlook'
+    -
+      value: 'Paso Robles Gazette'
+      label: 'Paso Robles Gazette'
+    -
+      value: 'Paso Robles Newspapers Inc.'
+      label: 'Paso Robles Newspapers Inc.'
+    -
+      value: 'Paso Robles Press'
+      label: 'Paso Robles Press'
+    -
+      value: 'Payam-E-Ashena (Persian Community Journal)'
+      label: 'Payam-E-Ashena (Persian Community Journal)'
+    -
+      value: 'Peninsula People'
+      label: 'Peninsula People'
+    -
+      value: 'Perris Progress and City News'
+      label: 'Perris Progress and City News'
+    -
+      value: 'Petaluma Argus-Courier Online'
+      label: 'Petaluma Argus-Courier Online'
+    -
+      value: 'Political Empire - The Press-Enterprise'
+      label: 'Political Empire - The Press-Enterprise'
+    -
+      value: 'Polling Report'
+      label: 'Polling Report'
+    -
+      value: 'Porterville Recorder'
+      label: 'Porterville Recorder'
+    -
+      value: 'Post News Group'
+      label: 'Post News Group'
+    -
+      value: 'Precious Times'
+      label: 'Precious Times'
+    -
+      value: 'Quality Digest'
+      label: 'Quality Digest'
+    -
+      value: 'Quartzsite Times'
+      label: 'Quartzsite Times'
+    -
+      value: RadioScope
+      label: RadioScope
+    -
+      value: 'Reading The Pictures'
+      label: 'Reading The Pictures'
+    -
+      value: 'Real Estate'
+      label: 'Real Estate'
+    -
+      value: 'Record Online'
+      label: 'Record Online'
+    -
+      value: 'Record Searchlight'
+      label: 'Record Searchlight'
+    -
+      value: 'Record Searchlight Online'
+      label: 'Record Searchlight Online'
+    -
+      value: 'Reedley Exponent'
+      label: 'Reedley Exponent'
+    -
+      value: 'Review/Beacon Publishing'
+      label: 'Review/Beacon Publishing'
+    -
+      value: 'Rialto Record'
+      label: 'Rialto Record'
+    -
+      value: 'Richmond Post'
+      label: 'Richmond Post'
+    -
+      value: 'River News-Herald & Isleton Journal'
+      label: 'River News-Herald & Isleton Journal'
+    -
+      value: 'Riverbank News'
+      label: 'Riverbank News'
+    -
+      value: RoofersCoffeeShop.com
+      label: RoofersCoffeeShop.com
+    -
+      value: 'Rossmoor News'
+      label: 'Rossmoor News'
+    -
+      value: 'Rowland Heights Highlander'
+      label: 'Rowland Heights Highlander'
+    -
+      value: 'Sacramento Observer'
+      label: 'Sacramento Observer'
+    -
+      value: 'San Diego Reader Online'
+      label: 'San Diego Reader Online'
+    -
+      value: 'San Diego Union-Tribune Online'
+      label: 'San Diego Union-Tribune Online'
+    -
+      value: 'San Francisco Community Radio'
+      label: 'San Francisco Community Radio'
+    -
+      value: 'San Francisco Post'
+      label: 'San Francisco Post'
+    -
+      value: 'San Gabriel Valley Newspaper Group'
+      label: 'San Gabriel Valley Newspaper Group'
+    -
+      value: 'San Rafael News Pointer'
+      label: 'San Rafael News Pointer'
+    -
+      value: 'Santa Barbara News-Press Online'
+      label: 'Santa Barbara News-Press Online'
+    -
+      value: 'Santa Maria Times Online'
+      label: 'Santa Maria Times Online'
+    -
+      value: 'Santa Monica Lookout'
+      label: 'Santa Monica Lookout'
+    -
+      value: 'Santa Ynez Valley News'
+      label: 'Santa Ynez Valley News'
+    -
+      value: 'School Library Connection'
+      label: 'School Library Connection'
+    -
+      value: 'Selma Enterprise'
+      label: 'Selma Enterprise'
+    -
+      value: 'Shafter Press'
+      label: 'Shafter Press'
+    -
+      value: 'Shasta Lake Bulletin'
+      label: 'Shasta Lake Bulletin'
+    -
+      value: 'Show Weekend'
+      label: 'Show Weekend'
+    -
+      value: 'Sierra Booster'
+      label: 'Sierra Booster'
+    -
+      value: 'Sierra Sun'
+      label: 'Sierra Sun'
+    -
+      value: Siliconeer
+      label: Siliconeer
+    -
+      value: 'Siskiyou Daily News'
+      label: 'Siskiyou Daily News'
+    -
+      value: 'Siskiyou Daily News Online'
+      label: 'Siskiyou Daily News Online'
+    -
+      value: 'Soledad Bee'
+      label: 'Soledad Bee'
+    -
+      value: 'Sonoma Index-Tribune'
+      label: 'Sonoma Index-Tribune'
+    -
+      value: 'Sonoma Index-Tribune Online'
+      label: 'Sonoma Index-Tribune Online'
+    -
+      value: 'South Bay Pipeline'
+      label: 'South Bay Pipeline'
+    -
+      value: 'South County Post'
+      label: 'South County Post'
+    -
+      value: 'Taft Midway Driller'
+      label: 'Taft Midway Driller'
+    -
+      value: 'Taft Midway Driller Online'
+      label: 'Taft Midway Driller Online'
+    -
+      value: 'Tahoe Mountain News'
+      label: 'Tahoe Mountain News'
+    -
+      value: 'Teacher Education Quarterly'
+      label: 'Teacher Education Quarterly'
+    -
+      value: 'Tehachapi News'
+      label: 'Tehachapi News'
+    -
+      value: 'The American News'
+      label: 'The American News'
+    -
+      value: 'The Ark'
+      label: 'The Ark'
+    -
+      value: 'The Bakersfield Voice'
+      label: 'The Bakersfield Voice'
+    -
+      value: 'The Beach Reporter'
+      label: 'The Beach Reporter'
+    -
+      value: 'The Black Biker'
+      label: 'The Black Biker'
+    -
+      value: 'The Black Voice News'
+      label: 'The Black Voice News'
+    -
+      value: 'The Black Voice News Online'
+      label: 'The Black Voice News Online'
+    -
+      value: 'The Boulevard Sentinel'
+      label: 'The Boulevard Sentinel'
+    -
+      value: 'The Business Journal'
+      label: 'The Business Journal'
+    -
+      value: 'The California Educator'
+      label: 'The California Educator'
+    -
+      value: 'The California Educator Online'
+      label: 'The California Educator Online'
+    -
+      value: 'The Catalina Islander'
+      label: 'The Catalina Islander'
+    -
+      value: 'The Coast News'
+      label: 'The Coast News'
+    -
+      value: 'The Coast News - Inland Edition'
+      label: 'The Coast News - Inland Edition'
+    -
+      value: 'The Coast News Group'
+      label: 'The Coast News Group'
+    -
+      value: 'The Coast News Online'
+      label: 'The Coast News Online'
+    -
+      value: 'The Community Voice'
+      label: 'The Community Voice'
+    -
+      value: 'The Corcoran Journal'
+      label: 'The Corcoran Journal'
+    -
+      value: 'The Daily Californian'
+      label: 'The Daily Californian'
+    -
+      value: 'The Daily Independent'
+      label: 'The Daily Independent'
+    -
+      value: 'The Daily Independent Online'
+      label: 'The Daily Independent Online'
+    -
+      value: 'The Daily Triplicate'
+      label: 'The Daily Triplicate'
+    -
+      value: 'The Desert Sun'
+      label: 'The Desert Sun'
+    -
+      value: 'The Foothills Sun-Gazette'
+      label: 'The Foothills Sun-Gazette'
+    -
+      value: 'The Galt Herald'
+      label: 'The Galt Herald'
+    -
+      value: 'The Galt Herald Online'
+      label: 'The Galt Herald Online'
+    -
+      value: 'The Gilroy Dispatch'
+      label: 'The Gilroy Dispatch'
+    -
+      value: 'The Grizzly & Life'
+      label: 'The Grizzly & Life'
+    -
+      value: 'The Gustine Press-Standard'
+      label: 'The Gustine Press-Standard'
+    -
+      value: 'The Hanford Sentinel'
+      label: 'The Hanford Sentinel'
+    -
+      value: 'The Hanford Sentinel Online'
+      label: 'The Hanford Sentinel Online'
+    -
+      value: 'The IPM Practitioner'
+      label: 'The IPM Practitioner'
+    -
+      value: 'The Independent'
+      label: 'The Independent'
+    -
+      value: 'The Journal Newspapers'
+      label: 'The Journal Newspapers'
+    -
+      value: 'The Life Connection'
+      label: 'The Life Connection'
+    -
+      value: 'The Lompoc Record'
+      label: 'The Lompoc Record'
+    -
+      value: 'The Los Angeles Turkish American Association'
+      label: 'The Los Angeles Turkish American Association'
+    -
+      value: 'The News-Ledger'
+      label: 'The News-Ledger'
+    -
+      value: 'The Observer Group Newspapers of Southern California'
+      label: 'The Observer Group Newspapers of Southern California'
+    -
+      value: 'The Orange County Register'
+      label: 'The Orange County Register'
+    -
+      value: 'The Orange County Register Online'
+      label: 'The Orange County Register Online'
+    -
+      value: 'The Peter B. Collins Show'
+      label: 'The Peter B. Collins Show'
+    -
+      value: 'The Press Democrat'
+      label: 'The Press Democrat'
+    -
+      value: 'The Press Democrat Online'
+      label: 'The Press Democrat Online'
+    -
+      value: 'The Rancho Santa Fe News'
+      label: 'The Rancho Santa Fe News'
+    -
+      value: 'The Record-Gazette'
+      label: 'The Record-Gazette'
+    -
+      value: 'The Richmond Review'
+      label: 'The Richmond Review'
+    -
+      value: 'The Sacramento Bee'
+      label: 'The Sacramento Bee'
+    -
+      value: 'The Sacramento Bee Online'
+      label: 'The Sacramento Bee Online'
+    -
+      value: 'The Sacramento Gazette'
+      label: 'The Sacramento Gazette'
+    -
+      value: 'The San Diego Union-Tribune'
+      label: 'The San Diego Union-Tribune'
+    -
+      value: 'The San Diego Voice & Viewpoint'
+      label: 'The San Diego Voice & Viewpoint'
+    -
+      value: 'The Santa Clara Weekly'
+      label: 'The Santa Clara Weekly'
+    -
+      value: 'The Signal'
+      label: 'The Signal'
+    -
+      value: 'The Signal Online'
+      label: 'The Signal Online'
+    -
+      value: 'The Southern Cross'
+      label: 'The Southern Cross'
+    -
+      value: 'The Sun Newspapers'
+      label: 'The Sun Newspapers'
+    -
+      value: 'The Sunday Star'
+      label: 'The Sunday Star'
+    -
+      value: 'The Sunset Beacon'
+      label: 'The Sunset Beacon'
+    -
+      value: 'The Tuesday Barter Report'
+      label: 'The Tuesday Barter Report'
+    -
+      value: 'The Weed Press'
+      label: 'The Weed Press'
+    -
+      value: 'The Weekly Calistogan'
+      label: 'The Weekly Calistogan'
+    -
+      value: 'The West Side Index'
+      label: 'The West Side Index'
+    -
+      value: 'The Willits News'
+      label: 'The Willits News'
+    -
+      value: 'The Windmill'
+      label: 'The Windmill'
+    -
+      value: Ticket
+      label: Ticket
+    -
+      value: 'Tierra Times'
+      label: 'Tierra Times'
+    -
+      value: 'Time Out'
+      label: 'Time Out'
+    -
+      value: 'Times Press Recorder'
+      label: 'Times Press Recorder'
+    -
+      value: 'Times-Standard Online'
+      label: 'Times-Standard Online'
+    -
+      value: Travel
+      label: Travel
+    -
+      value: 'Tri-City Voice'
+      label: 'Tri-City Voice'
+    -
+      value: 'Tribune Online'
+      label: 'Tribune Online'
+    -
+      value: 'Tulare Advance-Register Online'
+      label: 'Tulare Advance-Register Online'
+    -
+      value: 'Turlock City News'
+      label: 'Turlock City News'
+    -
+      value: 'Turlock Journal'
+      label: 'Turlock Journal'
+    -
+      value: 'Ukiah Daily Journal'
+      label: 'Ukiah Daily Journal'
+    -
+      value: 'Ukiah Daily Journal Online'
+      label: 'Ukiah Daily Journal Online'
+    -
+      value: 'Union Jack'
+      label: 'Union Jack'
+    -
+      value: 'Ventura County Star'
+      label: 'Ventura County Star'
+    -
+      value: 'Ventura County Star Online'
+      label: 'Ventura County Star Online'
+    -
+      value: 'Vida Latina San Diego'
+      label: 'Vida Latina San Diego'
+    -
+      value: 'Visalia Times-Delta Online'
+      label: 'Visalia Times-Delta Online'
+    -
+      value: Vision
+      label: Vision
+    -
+      value: 'Vision Hispana'
+      label: 'Vision Hispana'
+    -
+      value: 'Walnut Creek Journal'
+      label: 'Walnut Creek Journal'
+    -
+      value: 'Walnut Highlander'
+      label: 'Walnut Highlander'
+    -
+      value: 'Wasco Tribune'
+      label: 'Wasco Tribune'
+    -
+      value: Weekend
+      label: Weekend
+    -
+      value: 'West Covina Highlander'
+      label: 'West Covina Highlander'
+    -
+      value: 'West Portal Monthly'
+      label: 'West Portal Monthly'
+    -
+      value: 'West Side Advance'
+      label: 'West Side Advance'
+    -
+      value: 'West Valley Journal'
+      label: 'West Valley Journal'
+    -
+      value: 'Western Birds'
+      label: 'Western Birds'
+    -
+      value: 'Western Outdoor News'
+      label: 'Western Outdoor News'
+    -
+      value: 'Western States Weeklies Inc.'
+      label: 'Western States Weeklies Inc.'
+    -
+      value: 'Westminster Journal'
+      label: 'Westminster Journal'
+    -
+      value: 'Westside Observer'
+      label: 'Westside Observer'
+    -
+      value: Wheels
+      label: Wheels
+    -
+      value: 'Windsor Times'
+      label: 'Windsor Times'
+    -
+      value: 'Yountville Sun'
+      label: 'Yountville Sun'
+    -
+      value: 'Yucaipa/Calimesa News Mirror'
+      label: 'Yucaipa/Calimesa News Mirror'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

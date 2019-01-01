@@ -1,0 +1,25 @@
+uuid: 81c275ce-814c-4d9d-bee8-45098a497f19
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_vid
+    - node.type.blog
+id: node.blog.field_vid
+field_name: field_vid
+entity_type: node
+bundle: blog
+label: Video
+description: 'Video ID'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:dd_video'
+  handler_settings:
+    target_bundles: null
+    sort:
+      field: _none
+    auto_create: false
+field_type: entity_reference

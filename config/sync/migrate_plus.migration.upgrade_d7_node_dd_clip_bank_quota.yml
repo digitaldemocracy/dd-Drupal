@@ -1,0 +1,60 @@
+uuid: 5c895f77-2760-4df7-a756-229a42b0e087
+langcode: en
+status: true
+dependencies: {  }
+id: upgrade_d7_node_dd_clip_bank_quota
+migration_tags:
+  - 'Drupal 7'
+migration_group: migrate_drupal_7
+label: 'Nodes (dd_clip_bank_quota)'
+source:
+  plugin: d7_node
+  node_type: dd_clip_bank_quota
+process:
+  nid: nid
+  vid: vid
+  langcode:
+    plugin: default_value
+    source: language
+    default_value: und
+  title: title
+  uid: node_uid
+  status: status
+  created: created
+  changed: changed
+  promote: promote
+  sticky: sticky
+  revision_uid: revision_uid
+  revision_log: log
+  revision_timestamp: timestamp
+  field_quota_in_bytes: field_quota_in_bytes
+  field_quota_type:
+    plugin: iterator
+    source: field_quota_type
+    process:
+      value: value
+      format:
+        -
+          plugin: static_map
+          bypass: true
+          source: format
+          map:
+            - null
+        -
+          plugin: skip_on_empty
+          method: process
+        -
+          plugin: migration
+          migration:
+            - d6_filter_format
+            - d7_filter_format
+          source: format
+destination:
+  plugin: 'entity:node'
+  default_bundle: dd_clip_bank_quota
+migration_dependencies:
+  required:
+    - upgrade_d7_user
+    - upgrade_d7_node_type
+  optional:
+    - upgrade_d7_field_instance

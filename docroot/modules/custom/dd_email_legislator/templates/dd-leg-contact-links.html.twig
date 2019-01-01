@@ -1,0 +1,7 @@
+<div class="dd-email-legislator-contact-links">
+  <ul class="contact-links">
+    {% for link in links %}
+    <li><a href="{{ link.url|raw }}" target="{{ link.target }}">email {{ link.name }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

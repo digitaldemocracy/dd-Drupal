@@ -1,0 +1,21 @@
+uuid: 58d7600d-e1b6-4d57-b799-7442d513501a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_success_message
+    - paragraphs.paragraphs_type.fax_governor
+  module:
+    - text
+id: paragraph.fax_governor.field_success_message
+field_name: field_success_message
+entity_type: paragraph
+bundle: fax_governor
+label: 'Success/Completion Message'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

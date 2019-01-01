@@ -1,0 +1,19 @@
+uuid: edb203c5-6a7a-42b5-bc78-d2626f0418ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - dd_clip
+id: dd_clip.field_note
+field_name: field_note
+entity_type: dd_clip
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

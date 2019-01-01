@@ -1,0 +1,37 @@
+uuid: f18c3f1a-3526-444f-bb52-caa246ebd9f7
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.person_committees_years
+  module:
+    - facets
+    - system
+    - views
+  theme:
+    - dd
+id: views_block__person_committees_years_block_1
+theme: dd
+region: content
+weight: -38
+provider: null
+plugin: 'views_block:person_committees_years-block_1'
+settings:
+  id: 'views_block:person_committees_years-block_1'
+  label: ''
+  provider: views
+  label_display: '0'
+  views_label: ''
+  items_per_page: none
+visibility:
+  other_facet:
+    id: other_facet
+    facets: ''
+    facet_value: ''
+    negate: false
+    context_mapping: {  }
+  request_path:
+    id: request_path
+    pages: '/person/*'
+    negate: false
+    context_mapping: {  }

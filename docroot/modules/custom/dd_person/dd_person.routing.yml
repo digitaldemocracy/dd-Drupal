@@ -1,0 +1,6 @@
+dd_person.person_autocomplete:
+  path: '/dd_person_autocomplete'
+  defaults:
+    _controller: '\Drupal\dd_person\Controller\DdPersonAutocompleteController::handleAutocomplete'
+  requirements:
+    _access: 'TRUE'

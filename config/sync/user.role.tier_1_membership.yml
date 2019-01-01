@@ -1,0 +1,9 @@
+uuid: 8feb5174-c1d5-438f-82b8-632293f73bc5
+langcode: en
+status: true
+dependencies: {  }
+id: tier_1_membership
+label: 'Tier 1 Membership'
+weight: 7
+is_admin: null
+permissions: {  }

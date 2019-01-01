@@ -1,0 +1,5 @@
+name: DD Bill Alerts
+type: module
+description: Emails users when bills matching their criteria are updated.
+core: 8.x
+package: DigitalDemocracy

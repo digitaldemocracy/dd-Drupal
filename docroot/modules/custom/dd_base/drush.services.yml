@@ -1,0 +1,5 @@
+services:
+  dd_base.commands:
+    class: \Drupal\dd_base\Commands\DdBaseCommands
+    tags:
+      - { name: drush.command }

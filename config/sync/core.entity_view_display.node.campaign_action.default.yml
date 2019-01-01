@@ -1,0 +1,28 @@
+uuid: c0234c09-2cdc-4287-8664-bd810f20fb3b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.campaign_action.field_actions
+    - field.field.node.campaign_action.field_campaign
+    - node.type.campaign_action
+  module:
+    - entity_reference_revisions
+    - user
+id: node.campaign_action.default
+targetEntityType: node
+bundle: campaign_action
+mode: default
+content:
+  field_actions:
+    weight: 0
+    label: hidden
+    settings:
+      view_mode: icon
+      link: ''
+    third_party_settings: {  }
+    type: entity_reference_revisions_entity_view
+    region: content
+hidden:
+  field_campaign: true
+  links: true

@@ -1,0 +1,693 @@
+// sass-lint:disable indentation, no-color-keywords
+
+// Colors
+//
+// Use the `color()` function to add colors to CSS properties. To learn more,
+// [read the Chroma documentation](http://johnalbin.github.io/chroma/).
+//
+// Markup: chroma.twig
+//
+// Weight: -1
+//
+// Style guide: sass.colors
+
+// Define the default color scheme's color names.
+// Color names are from http://www.color-blindness.com/color-name-hue/
+// and http://chir.ag/projects/name-that-color/#474747.
+
+$chroma: define-default-color-scheme('branding', 'The site\'s main colors. Can be used to define colors in other color schemes.');
+
+// Yellows
+$dd-yellow:         	#f7d519;
+$dd-yellow-white:   	#fff7cc;
+$dd-yellow-lightest:	#fff09c;
+$dd-yellow-lighter: 	#fbea8c;
+$dd-yellow-light:   	#f9df52;
+$dd-yellow-darker:  	#e8c400;
+$dd-yellow-darkest: 	#d5b400;
+
+$dd-sangria:        	#900;
+$dd-roman:          	#db5461;
+
+// Blues
+$dd-blue:           	#137177;
+$dd-blue-lightest:  	#4eb8bf;
+$dd-blue-lighter:   	#289da4;
+$dd-blue-light:     	#18868c;
+$dd-blue-dark:      	#0f656a;
+$dd-blue-darker:    	#094b4f;
+$dd-blue-darkest:   	#06393d;
+
+$dd-pelorous:       	#269abc;
+$dd-stormy:         	#537580;
+$dd-stormy-intense: 	darken(saturate($dd-stormy, 10%), 5%);
+$dd-astral:         	#356e7e;
+
+// Green
+$dd-bayleaf:        	#6baa75;
+
+// Monochrome
+$dd-black:          	#1c1e1d;
+$dd-grey:           	#3c3e3d;
+$dd-charcoal:       	#464746;
+$dd-dimgray:        	#656565;
+$dd-greylight:      	#9c9e9d;
+$dd-greyextralight: 	#efefef;
+$dd-silversand:     	#bfbebf; // From client design mockup header
+$dd-silver:         	#c9c8c9;
+$dd-offwhite:       	#efefef;
+$dd-baby-powder:    	#fffffa;
+$white:             	#fff;
+
+// Acme
+$acme-header-bg:     	#33729a;
+$acme-footer-bg:     	#33729a;
+$acme-button-bg:     	#eba426;
+$acme-button-shadow: 	#ad781a;
+$acme-title-text:    	#33729a;
+$acme-body-text:     	#464749;
+$acme-block-A-header:	#eba426;
+$acme-block-A-bg:    	#e6c891;
+$acme-block-B-header:	#33729a;
+$acme-block-B-bg:    	#9bb8cb;
+
+// Alliance
+$alliance-header-bg:     	#807823;
+$alliance-footer-bg:     	#807823;
+$alliance-button-bg:     	#fdb936;
+$alliance-button-shadow: 	#fdb936;
+$alliance-title-text:    	#ada43f;
+$alliance-body-text:     	#464749;
+$alliance-block-A-header:	#c78c20;
+$alliance-block-A-bg:    	#fdb936;
+$alliance-block-B-header:	#c78c20;
+$alliance-block-B-bg:    	#fdb936;
+
+$alliance-links:              	#7136ae;
+
+
+//$alliance-gold-light:         #fcd67d;
+//$alliance-gold:               #fdb936;
+//$alliance-gold-brown:         #c78c20;
+//$alliance-green:              #ada43f;
+//$alliance-green-brown:        #807823;
+//$alliance-grey-green:         #cfcfb0;
+//$alliance-purple:             #7136ae;
+
+// CALmatters
+$caleg-header-bg:     	#211f1f;
+$caleg-footer-bg:     	#211f1f;
+$caleg-button-bg:     	#f27522;
+$caleg-button-shadow: 	#999999;
+$caleg-title-text:    	#211f1f;
+$caleg-body-text:     	#211f1f;
+$caleg-block-A-header:	#f27522;
+$caleg-block-A-bg:    	#ffffff;
+$caleg-block-B-header:	#f27522;
+$caleg-block-B-bg:    	#ffffff;
+
+// CMTA
+$rose-of-sharon:	#a92c30; // red (dark)
+$tenn:          	#b94130; // red (light)
+$sorrell-brown: 	#c7c7c8; // gray
+
+// HALA
+$hala-body-bg-color: #fff;
+$hala-block-bg-color: rgba(127,127,127,0.1);
+$hala-block-header-color: rgba(127,127,127,0.4);
+$hala-theme-color-green: #98c93b; //(main nav buttons color)
+$hala-theme-color-pantoneblk: rgb(45, 41, 38); //(heading text color)
+$hala-theme-color-turquoise: #06afd7;
+$hala-red: #b94a48; //error
+$hala-green: #619114; //success
+
+
+$chroma: add-colors((
+	black:              	#000,
+	grey-dark:          	$dd-charcoal,
+	'grey':             	$dd-grey,
+	grey-light:         	$dd-greylight,
+	grey-extra-light:   	$dd-greyextralight,
+	silver:             	$dd-silver,
+	offwhite:           	$dd-offwhite,
+	white:              	#fff,
+	red:                	#c00,
+	yellow-white:       	$dd-yellow-white,
+	yellow-lightest:    	$dd-yellow-lightest,
+	yellow-lighter:     	$dd-yellow-lighter,
+	yellow-light:       	$dd-yellow-light,
+	yellow:             	$dd-yellow,
+	yellow-darker:      	$dd-yellow-darker,
+	yellow-darkest:     	$dd-yellow-darkest,
+	blue-lightest:      	$dd-blue-lightest,
+	blue-lighter:       	$dd-blue-lighter,
+	blue-light:         	$dd-blue-light,
+	blue:               	$dd-blue,
+	blue-dark:          	$dd-blue-dark,
+	blue-darker:        	$dd-blue-darker,
+	blue-darkest:       	$dd-blue-darkest,
+	rose-of-sharon:     	$rose-of-sharon,
+	tenn:               	$tenn,
+	acme-header-bg:     	$acme-header-bg,
+	acme-footer-bg:     	$acme-footer-bg,
+	acme-button-bg:     	$acme-button-bg,
+	acme-button-shadow: 	$acme-button-shadow,
+	acme-title-text:    	$acme-title-text,
+	acme-body-text:     	$acme-body-text,
+	acme-block-A-header:	$acme-block-A-header,
+	acme-block-A-bg:    	$acme-block-A-bg,
+	acme-block-B-header:	$acme-block-B-header,
+	acme-block-B-bg:    	$acme-block-B-bg,
+	alliance-header-bg:     	$alliance-header-bg,
+	alliance-footer-bg:     	$alliance-footer-bg,
+	alliance-button-bg:     	$alliance-button-bg,
+	alliance-button-shadow: 	$alliance-button-shadow,
+	alliance-title-text:    	$alliance-title-text,
+	alliance-body-text:     	$alliance-body-text,
+	alliance-block-A-header:	$alliance-block-A-header,
+	alliance-block-A-bg:    	$alliance-block-A-bg,
+	alliance-block-B-header:	$alliance-block-B-header,
+	alliance-block-B-bg:    	$alliance-block-B-bg,
+	alliance-links:              	$alliance-links,
+	caleg-header-bg:    	$caleg-header-bg,
+	caleg-footer-bg:      	$caleg-footer-bg,
+	caleg-button-bg:      	$caleg-button-bg,
+	caleg-button-shadow:  	$caleg-button-shadow,
+	caleg-title-text:     	$caleg-title-text,
+	caleg-body-text:      	$caleg-body-text,
+	caleg-block-A-header: 	$caleg-block-A-header,
+	caleg-block-A-bg:     	$caleg-block-A-bg,
+	caleg-block-B-header: 	$caleg-block-B-header,
+	caleg-block-B-bg:     	$caleg-block-B-bg,
+        hala-body-bg-color:     $hala-body-bg-color,
+        hala-block-bg-color:     $hala-block-bg-color,
+        hala-theme-color-green: $hala-theme-color-green,
+        hala-theme-color-pantoneblk: $hala-theme-color-pantoneblk,
+        hala-theme-color-turquoise: $hala-theme-color-turquoise,
+        hala-red:               $hala-red,
+        hala-green:             $hala-green
+));
+
+// Define color names for functional uses.
+$chroma: define-color-scheme('functional', 'Colors used by functional parts of the design.');
+$chroma: add-colors('functional', (
+	// Colors used in the main content area.
+	text:                  	'grey-dark',
+	link:                  	'blue',
+	link-visited:          	('link'),
+	link-active:           	'blue-darker',
+	link-hover:            	'blue-darker',
+	text-bg:               	'grey-extra-light',
+	border:                	'grey-light',
+	headings:              	'blue',
+	autocomplete:          	'text',
+	autocomplete-bg:       	'text-bg',
+	autocomplete-select:   	'white',
+	autocomplete-select-bg:	'blue',
+	
+	body-bg:               	'text-bg',
+	box-shadow:            	'grey-light',
+	button:                	'white',
+	button-disabled:       	'grey',
+	
+	fieldset-summary:      	'grey',
+	form-error:            	'red',
+	
+	mark-highlight:        	'red',
+	mark-bg:               	'yellow',
+	
+	menu-active:           	'text',
+	
+	preview-bg:            	('yellow' lighten 43%),
+	
+	progress-bar:          	'blue',
+	progress-bar-bg:       	'silver',
+	progress-bar-border:   	'grey-dark',
+	
+	resizable-grippie:     	'offwhite',
+	
+	row-stripe:            	'offwhite',
+	row-disabled:          	'silver',
+	
+	skip-link:             	'white',
+	skip-link-bg:          	'grey-dark',
+	
+	status:                	'blue',
+	status-bg:             	(status lighten 62%),
+	status-highlight:      	text,
+	warning:               	text,
+	warning-bg:            	('yellow' lighten 45%),
+	warning-border:        	'yellow',
+	error:                 	'red',
+	error-bg:              	(error lighten 57%),
+	
+	tabs-border:           	'border',
+	tabs-bg:               	'text-bg',
+	tab:                   	'text',
+	tab-text-shadow:       	'white',
+	tab-bg:                	('silver' lighten 6.66%),
+	tab-secondary:         	'grey-dark',
+	
+	table-drag:            	('yellow' lighten 43%),
+	table-select:          	('yellow' lighten 47%),
+	
+	watermark:             	'offwhite',
+	highlighted-bg:        	'yellow-white'
+));
+
+$chroma: define-color-scheme('acme', 'Colors used for acme site.');
+$chroma: add-colors('acme', (
+	// Colors used in the main content area.
+	text:                  	'acme-body-text',
+	link:                  	'acme-title-text',
+	link-visited:          	'link',
+	link-active:           	'blue-darker',
+	link-hover:            	'blue-darker',
+	text-bg:               	'grey-extra-light',
+	border:                	'grey-light',
+	headings:              	'acme-title-text',
+	autocomplete:          	'text',
+	autocomplete-bg:       	'text-bg',
+	autocomplete-select:   	'white',
+	autocomplete-select-bg:	'blue',
+
+	body-bg:               	'text-bg',
+	box-shadow:            	'grey-light',
+	button:                	'white',
+	button-disabled:       	'grey',
+
+	fieldset-summary:      	'grey',
+	form-error:            	'red',
+
+	mark-highlight:        	'red',
+	mark-bg:               	'yellow',
+
+	menu-active:           	'text',
+
+	preview-bg:            	('yellow' lighten 43%),
+
+	progress-bar:          	'blue',
+	progress-bar-bg:       	'silver',
+	progress-bar-border:   	'grey-dark',
+
+	resizable-grippie:     	'offwhite',
+
+	row-stripe:            	'offwhite',
+	row-disabled:          	'silver',
+
+	skip-link:             	'white',
+	skip-link-bg:          	'grey-dark',
+
+	status:                	'blue',
+	status-bg:             	(status lighten 62%),
+	status-highlight:      	text,
+	warning:               	text,
+	warning-bg:            	('yellow' lighten 45%),
+	warning-border:        	'yellow',
+	error:                 	'red',
+	error-bg:              	(error lighten 57%),
+
+	tabs-border:           	'border',
+	tabs-bg:               	'text-bg',
+	tab:                   	'text',
+	tab-text-shadow:       	'white',
+	tab-bg:                	('silver' lighten 6.66%),
+	tab-secondary:         	'grey-dark',
+
+	table-drag:            	('yellow' lighten 43%),
+	table-select:          	('yellow' lighten 47%),
+
+	watermark:             	'offwhite',
+	highlighted-bg:        	'yellow-white'
+));
+
+$chroma: define-color-scheme('alliance', 'Colors used for alliance site.');
+$chroma: add-colors('alliance', (
+	// Colors used in the main content area.
+	text:                   'alliance-body-text',
+	link:                   'alliance-links',
+	link-visited:           'link',
+	link-active:            ('alliance-links' darken 50%),
+	link-hover:             ('alliance-links' darken 50%),
+	text-bg:                'grey-extra-light',
+	border:                 'grey-light',
+	headings:               'alliance-title-text',
+	autocomplete:           'text',
+	autocomplete-bg:        'text-bg',
+	autocomplete-select:    'white',
+	autocomplete-select-bg: 'blue',
+
+	body-bg:                'text-bg',
+	box-shadow:             'grey-light',
+	button:                 'white',
+	button-disabled:        'grey',
+
+	fieldset-summary:       'grey',
+	form-error:             'red',
+
+	mark-highlight:         'red',
+	mark-bg:                'yellow',
+
+	menu-active:            'text',
+
+	preview-bg:             ('yellow' lighten 43%),
+
+	progress-bar:           'blue',
+	progress-bar-bg:        'silver',
+	progress-bar-border:    'grey-dark',
+
+	resizable-grippie:      'offwhite',
+
+	row-stripe:             'offwhite',
+	row-disabled:           'silver',
+
+	skip-link:              'white',
+	skip-link-bg:           'grey-dark',
+
+	status:                 'blue',
+	status-bg:              (status lighten 62%),
+	status-highlight:       text,
+	warning:                text,
+	warning-bg:             ('yellow' lighten 45%),
+	warning-border:         'yellow',
+	error:                  'red',
+	error-bg:               (error lighten 57%),
+
+	tabs-border:            'border',
+	tabs-bg:                'text-bg',
+	tab:                    'text',
+	tab-text-shadow:        'white',
+	tab-bg:                 ('silver' lighten 6.66%),
+	tab-secondary:          'grey-dark',
+
+	table-drag:             ('yellow' lighten 43%),
+	table-select:           ('yellow' lighten 47%),
+
+	watermark:              'offwhite',
+	highlighted-bg:         'yellow-white'
+));
+
+
+
+$chroma: define-color-scheme('caleg', 'Colors used for CALmatters site.');
+$chroma: add-colors('caleg', (
+	// Colors used in the main content area.
+	text:                  	'caleg-body-text',
+	link:                  	'caleg-title-text',
+	link-visited:          	'link',
+	link-active:           	'blue-darker',
+	link-hover:            	'blue-darker',
+	text-bg:               	'grey-extra-light',
+	border:                	'grey-light',
+	headings:              	'caleg-title-text',
+	autocomplete:          	'text',
+	autocomplete-bg:       	'text-bg',
+	autocomplete-select:   	'white',
+	autocomplete-select-bg:	'blue',
+
+	body-bg:               	'text-bg',
+	box-shadow:            	'grey-light',
+	button:                	'white',
+	button-disabled:       	'grey',
+
+	fieldset-summary:      	'grey',
+	form-error:            	'red',
+
+	mark-highlight:        	'red',
+	mark-bg:               	'yellow',
+
+	menu-active:           	'text',
+
+	preview-bg:            	('yellow' lighten 43%),
+
+	progress-bar:          	'blue',
+	progress-bar-bg:       	'silver',
+	progress-bar-border:   	'grey-dark',
+
+	resizable-grippie:     	'offwhite',
+
+	row-stripe:            	'offwhite',
+	row-disabled:          	'silver',
+
+	skip-link:             	'white',
+	skip-link-bg:          	'grey-dark',
+
+	status:                	'blue',
+	status-bg:             	(status lighten 62%),
+	status-highlight:      	text,
+	warning:               	text,
+	warning-bg:            	('yellow' lighten 45%),
+	warning-border:        	'yellow',
+	error:                 	'red',
+	error-bg:              	(error lighten 57%),
+
+	tabs-border:           	'border',
+	tabs-bg:               	'text-bg',
+	tab:                   	'text',
+	tab-text-shadow:       	'white',
+	tab-bg:                	('silver' lighten 6.66%),
+	tab-secondary:         	'grey-dark',
+
+	table-drag:            	('yellow' lighten 43%),
+	table-select:          	('yellow' lighten 47%),
+
+	watermark:             	'offwhite',
+	highlighted-bg:        	'yellow-white'
+));
+
+
+$chroma: define-color-scheme('cmta', 'Colors used for cmta site.');
+$chroma: add-colors('cmta', (
+	// Colors used in the main content area.
+	text:                  	'grey-dark',
+	link:                  	'rose-of-sharon',
+	link-visited:          	('link'),
+	link-active:           	'blue-darker',
+	link-hover:            	'blue-darker',
+	text-bg:               	'grey-extra-light',
+	border:                	'grey-light',
+	headings:              	'rose-of-sharon',
+	autocomplete:          	'text',
+	autocomplete-bg:       	'text-bg',
+	autocomplete-select:   	'white',
+	autocomplete-select-bg:	'blue',
+
+	body-bg:               	'text-bg',
+	box-shadow:            	'grey-light',
+	button:                	'white',
+	button-disabled:       	'grey',
+
+	fieldset-summary:      	'grey',
+	form-error:            	'red',
+
+	mark-highlight:        	'red',
+	mark-bg:               	'yellow',
+
+	menu-active:           	'text',
+
+	preview-bg:            	('yellow' lighten 43%),
+
+	progress-bar:          	'blue',
+	progress-bar-bg:       	'silver',
+	progress-bar-border:   	'grey-dark',
+
+	resizable-grippie:     	'offwhite',
+
+	row-stripe:            	'offwhite',
+	row-disabled:          	'silver',
+
+	skip-link:             	'white',
+	skip-link-bg:          	'grey-dark',
+
+	status:                	'blue',
+	status-bg:             	(status lighten 62%),
+	status-highlight:      	text,
+	warning:               	text,
+	warning-bg:            	('yellow' lighten 45%),
+	warning-border:        	'yellow',
+	error:                 	'red',
+	error-bg:              	(error lighten 57%),
+
+	tabs-border:           	'border',
+	tabs-bg:               	'text-bg',
+	tab:                   	'text',
+	tab-text-shadow:       	'white',
+	tab-bg:                	('silver' lighten 6.66%),
+	tab-secondary:         	'grey-dark',
+
+	table-drag:            	('yellow' lighten 43%),
+	table-select:          	('yellow' lighten 47%),
+
+	watermark:             	'offwhite',
+	highlighted-bg:        	'yellow-white'
+));
+
+
+$chroma: define-color-scheme('hala', 'Colors used for hala site.');
+$chroma: add-colors('hala', (
+	// Colors used in the main content area.
+	text:                  	'hala-theme-color-pantoneblk',
+	link:                  	'hala-theme-color-turquoise',
+	link-visited:          	('link'),
+	link-active:           	'hala-theme-color-turquoise',
+	link-hover:            	('hala-theme-color-turquoise' darken 5%),
+	text-bg:               	'grey-extra-light',
+	border:                	'grey-light',
+	headings:              	'hala-theme-color-pantoneblk',
+	autocomplete:          	'text',
+	autocomplete-bg:       	'text-bg',
+	autocomplete-select:   	'white',
+	autocomplete-select-bg:	'blue',
+
+	body-bg:               	'text-bg',
+	box-shadow:            	'grey-light',
+	button:                	'white',
+	button-disabled:       	'grey',
+
+	fieldset-summary:      	'grey',
+	form-error:            	'red',
+
+	mark-highlight:        	'red',
+	mark-bg:               	'yellow',
+
+	menu-active:           	'text',
+
+	preview-bg:            	('yellow' lighten 43%),
+
+	progress-bar:          	'blue',
+	progress-bar-bg:       	'silver',
+	progress-bar-border:   	'grey-dark',
+
+	resizable-grippie:     	'offwhite',
+
+	row-stripe:            	'offwhite',
+	row-disabled:          	'silver',
+
+	skip-link:             	'white',
+	skip-link-bg:          	'grey-dark',
+
+	status:                	'blue',
+	status-bg:             	(status lighten 62%),
+	status-highlight:      	text,
+	warning:               	text,
+	warning-bg:            	('yellow' lighten 45%),
+	warning-border:        	'yellow',
+	error:                 	'red',
+	error-bg:              	(error lighten 57%),
+
+	tabs-border:           	'border',
+	tabs-bg:               	'text-bg',
+	tab:                   	'text',
+	tab-text-shadow:       	'white',
+	tab-bg:                	('silver' lighten 6.66%),
+	tab-secondary:         	'grey-dark',
+
+	table-drag:            	('yellow' lighten 43%),
+	table-select:          	('yellow' lighten 47%),
+
+	watermark:             	'offwhite',
+	highlighted-bg:        	'yellow-white'
+));
+
+
+$chroma-active-scheme: 'functional';
+
+/** Whitelabel Overrides **/
+$chroma-active-scheme: 'functional';
+
+/** Whitelabel Overrides **/
+@if $whitelabel-id == wltest {
+	/** Place color overrides here **/
+}
+
+@if $whitelabel-id == alliance {
+	$dd-yellow-white:     	$white;
+	$dd-yellow-lightest:  	$alliance-block-A-bg;
+	$dd-yellow-lighter:   	$alliance-block-A-bg;
+	$dd-yellow-light:     	$alliance-block-A-bg;
+	$dd-yellow:           	$alliance-button-bg;
+	$dd-yellow-darker:    	$alliance-block-A-header;
+	$dd-yellow-darkest:   	$alliance-button-shadow;
+	$dd-blue-lightest:    	$alliance-block-B-bg;
+	$dd-blue-lighter:     	$alliance-block-B-header;
+	$dd-blue-light:       	$alliance-header-bg;
+	$dd-blue:             	$alliance-header-bg;
+	$dd-blue-dark:        	$alliance-header-bg;
+	$dd-blue-darker:      	$alliance-header-bg;
+	$dd-blue-darkest:     	$alliance-header-bg;
+	$chroma-active-scheme:	'alliance';
+}
+
+
+@if $whitelabel-id == caleg {
+	$dd-yellow-white:     	$white;
+	$dd-yellow-lightest:  	$caleg-block-A-bg;
+	$dd-yellow-lighter:   	$caleg-block-A-bg;
+	$dd-yellow-light:     	$caleg-block-A-bg;
+	$dd-yellow:           	$caleg-button-bg;
+	$dd-yellow-darker:    	$caleg-block-A-header;
+	$dd-yellow-darkest:   	$caleg-button-shadow;
+	$dd-blue-lightest:    	$caleg-block-B-bg;
+	$dd-blue-lighter:     	$caleg-block-B-header;
+	$dd-blue-light:       	$caleg-header-bg;
+	$dd-blue:             	$caleg-header-bg;
+	$dd-blue-dark:        	$caleg-header-bg;
+	$dd-blue-darker:      	$caleg-header-bg;
+	$dd-blue-darkest:     	$caleg-header-bg;
+	$chroma-active-scheme:	'caleg';
+}
+
+@if $whitelabel-id == cmta {
+	$dd-yellow-white:     	$white;
+	$dd-yellow-lightest:  	$sorrell-brown;
+	$dd-yellow-lighter:   	$sorrell-brown;
+	$dd-yellow-light:     	$sorrell-brown;
+	$dd-yellow:           	$tenn;
+	$dd-yellow-darker:    	$rose-of-sharon;
+	$dd-yellow-darkest:   	$rose-of-sharon;
+	$dd-blue-lightest:    	$sorrell-brown;
+	$dd-blue-lighter:     	$rose-of-sharon;
+	$dd-blue-light:       	#747474;
+	$dd-blue:             	$sorrell-brown;
+	$dd-blue-dark:        	#747474;
+	$dd-blue-darker:      	#747474;
+	$dd-blue-darkest:     	#747474;
+	$chroma-active-scheme:	'cmta';
+}
+
+@if $whitelabel-id == hungeractionla {
+	$dd-yellow-white:     	$white;
+	$dd-yellow-lightest:  	$hala-body-bg-color;
+	$dd-yellow-lighter:   	$hala-body-bg-color;
+	$dd-yellow-light:     	$hala-body-bg-color;
+	$dd-yellow:             $hala-theme-color-green;	
+	$dd-yellow-darker:    	$hala-body-bg-color;
+	$dd-yellow-darkest:   	$hala-theme-color-green;
+	$dd-blue-lightest:    	$hala-theme-color-green;
+	$dd-blue-lighter:     	$hala-theme-color-green;
+	$dd-blue-light:       	$hala-theme-color-green;
+	$dd-blue:             	$hala-block-header-color;
+	$dd-blue-dark:        	$hala-theme-color-green;
+	$dd-blue-darker:      	$hala-theme-color-green;
+	$dd-blue-darkest:     	$hala-theme-color-green;
+	$chroma-active-scheme:	'hala';
+}
+
+@if $whitelabel-id == demo {
+	$dd-yellow-white:     	$white;
+	$dd-yellow-lightest:  	$acme-block-A-bg;
+	$dd-yellow-lighter:   	$acme-block-A-bg;
+	$dd-yellow-light:     	$acme-block-A-bg;
+	$dd-yellow:           	$acme-button-bg;
+	$dd-yellow-darker:    	$acme-block-A-header;
+	$dd-yellow-darkest:   	$acme-button-shadow;
+	$dd-blue-lightest:    	$acme-block-B-bg;
+	$dd-blue-lighter:     	$acme-block-B-header;
+	$dd-blue-light:       	$acme-header-bg;
+	$dd-blue:             	$acme-header-bg;
+	$dd-blue-dark:        	$acme-header-bg;
+	$dd-blue-darker:      	$acme-header-bg;
+	$dd-blue-darkest:     	$acme-header-bg;
+	$chroma-active-scheme:	'acme';
+}
+

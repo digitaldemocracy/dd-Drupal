@@ -1,0 +1,16 @@
+{
+  "name": "group/project",
+  "description": "The Project.",
+  "require": {
+    "drupal/coder": "~8.2",
+    "behat/behat": "3.1.0",
+    "drupal/drupal-extension": "~3.0",
+    "consolidation/output-formatters": "3.2.1",
+    "drush/drush": "^9.3"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "CivicActions\\Drupal\\Behat\\Bootstrap\\": "tests/behat/features/bootstrap/src"
+    }
+  }
+}

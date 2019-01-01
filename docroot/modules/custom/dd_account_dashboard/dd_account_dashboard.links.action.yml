@@ -1,0 +1,5 @@
+entity.dd_saved_content.add_form:
+  route_name: entity.dd_saved_content.add_form
+  title: 'Add DD Saved Content'
+  appears_on:
+    - entity.dd_saved_content.collection

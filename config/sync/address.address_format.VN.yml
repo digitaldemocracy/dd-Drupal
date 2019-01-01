@@ -1,0 +1,18 @@
+uuid: 8c8a0690-8e82-410f-a98a-d34cce295c05
+langcode: en
+status: true
+dependencies: {  }
+countryCode: VN
+format: "%recipient\n%organization\n%addressLine1\n%addressLine2\n%locality\n%administrativeArea %postalCode"
+requiredFields:
+  - recipient
+  - addressLine1
+  - locality
+uppercaseFields:
+  - locality
+administrativeAreaType: province
+localityType: city
+dependentLocalityType: null
+postalCodeType: postal
+postalCodePattern: '\d{6}'
+postalCodePrefix: null

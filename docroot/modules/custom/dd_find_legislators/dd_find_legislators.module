@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Contains dd_find_legislators module..
+ */
+
+use \Drupal\dd_find_legislators\Utility\CommonHelper;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dd_find_legislators_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the dd_person module.
+    case 'help.page.dd_find_legislators':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module finds legislators from address.');
+      $output .= '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+function dd_find_legislators_find($address) {
+  return CommonHelper::findLegislators($address);
+} 

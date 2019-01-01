@@ -1,0 +1,8 @@
+dd_search.autocomplete:
+  path: '/dd_search_autocomplete/{state}'
+  defaults:
+    _controller: '\Drupal\dd_search\Controller\DdSearchAutocompleteController::handleAutocomplete'
+    state: ''
+  requirements:
+    _access: 'TRUE'
+    state: ^[A-Z][A-Z]

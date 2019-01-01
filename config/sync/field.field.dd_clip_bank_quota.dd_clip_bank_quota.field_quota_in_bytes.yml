@@ -1,0 +1,22 @@
+uuid: cafc8771-7ff3-46f1-af22-61e0387a94d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.dd_clip_bank_quota.field_quota_in_bytes
+  module:
+    - dd_clip
+id: dd_clip_bank_quota.dd_clip_bank_quota.field_quota_in_bytes
+field_name: field_quota_in_bytes
+entity_type: dd_clip_bank_quota
+bundle: dd_clip_bank_quota
+label: quota_in_bytes
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: '16777216'
+default_value_callback: ''
+settings: {  }
+field_type: string

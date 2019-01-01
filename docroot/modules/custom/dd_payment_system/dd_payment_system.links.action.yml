@@ -1,0 +1,10 @@
+entity.dd_invoice_history.add_form:
+  route_name: entity.dd_invoice_history.add_form
+  title: 'Add Dd invoice history'
+  appears_on:
+    - entity.dd_invoice_history.collection
+entity.dd_subscription_plan.add_form:
+  route_name: entity.dd_subscription_plan.add_form
+  title: 'Add DD Subscription Plan'
+  appears_on:
+    - entity.dd_subscription_plan.collection

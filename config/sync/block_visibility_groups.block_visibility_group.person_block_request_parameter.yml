@@ -1,0 +1,47 @@
+uuid: b847fc09-ba43-4500-ba29-2284666c13d6
+langcode: en
+status: true
+dependencies:
+  module:
+    - request_parameter_condition
+id: person_block_request_parameter
+label: 'Persons Top Participant Block Request Parameter Checks'
+logic: and
+conditions:
+  23cf6a67-a1ec-47ea-9ab3-777dc611440e:
+    id: request_parameter
+    parameter: fullname_firstlast
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: 0
+    context_mapping: {  }
+    uuid: 23cf6a67-a1ec-47ea-9ab3-777dc611440e
+  dddbc49a-8a5b-4c6d-adc0-e5b549ac5b95:
+    id: request_parameter
+    parameter: startswith
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: 0
+    context_mapping: {  }
+    uuid: dddbc49a-8a5b-4c6d-adc0-e5b549ac5b95
+  15f82b8b-317c-44b3-82d2-be3ac52c0f15:
+    id: request_parameter
+    parameter: f
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: 0
+    context_mapping: {  }
+    uuid: 15f82b8b-317c-44b3-82d2-be3ac52c0f15
+  c08c6ae4-4a54-4c79-9128-b0d864b8a25b:
+    id: request_parameter
+    parameter: page
+    operation: Equals
+    checked_value: ''
+    case_sensitive: 'No'
+    negate: 0
+    context_mapping: {  }
+    uuid: c08c6ae4-4a54-4c79-9128-b0d864b8a25b
+allow_other_conditions: true
